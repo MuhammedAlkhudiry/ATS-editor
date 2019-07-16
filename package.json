@@ -1,0 +1,41 @@
+{
+  "name": "arabic-text-smart-editor",
+  "version": "1.0.0",
+  "description": "arabic-text-smart-editor",
+  "auther": "Muhammed Alkhudiry",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+
+    "package py": "pyinstaller -w -F  python.py",
+
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . arabic-text-smart-editor --overwrite --asar=true --platform=win32 --arch=ia32 --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"arabic-text-smart-editor\"",
+    "package-linux": "electron-packager . arabic-text-smart-editor --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
+
+    "build": "node-sass --omit-source-map-url static/assets/sass/style.scss static/assets/css/style.css",
+    "watch": "npm run css-build -- --watch"
+  },
+  "keywords": [
+    "Electron",
+    "arabic-text-smart-editor",
+    "Smart-Editor",
+    "Rich-Editor",
+    "WYGIWYS"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "bulma": "^0.7.5",
+    "electron": "^5.0.6",
+    "electron-builder": "^21.0.15",
+    "electron-reload": "^1.4.0",
+    "node-sass": "^4.12.0"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "quill": "^1.3.6",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}
