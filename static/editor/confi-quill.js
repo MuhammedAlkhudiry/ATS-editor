@@ -1,7 +1,5 @@
 'use strict';
 
-const autoformat = require('../quill/custom-modules/quill-autoformat');
-
 /* --------------------------- import custom fonts -------------------------- */
 
 var FontAttributor = Quill.import('formats/font');
@@ -9,7 +7,7 @@ FontAttributor.whitelist = [
     'dubai', 'alhurra', 'ArefRuqaa', 'Arial', 'Cairo', 'shiraz', 'ubuntu', 'zahra'
 ];
 
-Quill.register(FontAttributor, false);
+Quill.register(FontAttributor, true);
 
 /* -------------------------------------------------------------------------- */
  
@@ -19,7 +17,7 @@ const toolbarOptions = [
 
     [{ 'align': 'right' }, { 'align': 'center' }, { 'align': '' }, { 'align': 'justify' }],
 
-    ['bold', 'italic', 'underline', 'strike', 'line-height'],        // toggled buttons
+    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
 
     ['clean'],                                   // remove formatting button
 
@@ -38,24 +36,51 @@ const toolbarOptions = [
 
 
 /* ---------------------------  custom module -------------------------- */
+const AutoLinks = require('quill-auto-links');
+Quill.register('modules/autoLinks', AutoLinks.default);
 
-// var autoformat = Quill.import('../quill/custom-modules/quill-autoformat');
-Quill.register('modules/autoformat', autoformat);
 
 /* -------------------------------------------------------------------------- */
 
 let quill = new Quill('#editor', {
     // options
-    debug: 'info',
+    // debug: 'info',
     placeholder: 'ما يلفظ من قول إلا لديه رقيب عتيد..',
     theme: 'snow',
     // toolbar
     modules: {
-        toolbar: toolbarOptions,
-        autoformat: true
+        toolbar: '#toolbar-container',
+        autoLinks: true
     },
 });
 
+let autoformat = new Autoformat(quill);
 quill.format('direction', 'rtl');
 quill.format('align', 'right');
 
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+        // Add a click event on each of them
+        $navbarBurgers.forEach(el => {
+            el.addEventListener('click', () => {
+
+                // Get the target from the "data-target" attribute
+                const target = el.dataset.target;
+                const $target = document.getElementById(target);
+
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                el.classList.toggle('is-active');
+                $target.classList.toggle('is-active');
+
+            });
+        });
+    }
+
+});

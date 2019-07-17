@@ -1,12 +1,10 @@
-
-
 const Module = Quill.import('core/module');
 const Delta = Quill.import('delta');
 const { Attributor, Scope } = Quill.import('parchment');
 
 // Binds autoformat transforms to typing and pasting
 
-module.exports = class Autoformat extends Module {
+class Autoformat extends Module {
     constructor(quill, options) {
         super(quill, options);
         this.transforms = options;
@@ -349,3 +347,5 @@ Autoformat.DEFAULTS = {
 };
 
 // const AutoformatHelperAttribute = new Attributor('autoformat-helper', 'data-helper', { scope: Scope.INLINE });
+
+module.exports.Autoformat;

@@ -40,7 +40,9 @@ app.on('ready', function () {
       webPreferences: {
         preload: path.join(__dirname, 'preload.js'),
         nodeIntegration: true
-      }});
+      },
+      frame: false,
+    });
 
     // load main window from Flask.
     // mainWindow.loadURL(mainAddr);
