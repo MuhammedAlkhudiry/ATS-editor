@@ -1,0 +1,97 @@
+@font-face {
+    font-family: dubai;
+    src: url("../fonts/dubai.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: alhurra;
+    src: url("../fonts/alhurra.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: ArefRuqaa;
+    src: url("../fonts/ArefRuqaa.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: Arial;
+    src: url("../fonts/Arial.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: Cairo;
+    src: url("../fonts/Cairo.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: shiraz;
+    src: url("../fonts/shiraz.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: zahra;
+    src: url("../fonts/zahra.ttf") format("truetype");
+}
+
+.ql-font span[data-value="dubai"]::before,
+.ql-font span[data-label="dubai"]::before {
+    font-family: "dubai";
+}
+
+.ql-font-dubai {
+    font-family: 'dubai';
+}
+
+.ql-font span[data-value="alhurra"]::before,
+.ql-font span[data-label="alhurra"]::before {
+    font-family: "alhurra";
+}
+
+.ql-font-alhurra {
+    font-family: 'alhurra';
+}
+
+.ql-font span[data-value="ArefRuqaa"]::before,
+.ql-font span[data-label="ArefRuqaa"]::before {
+    font-family: "ArefRuqaa";
+}
+
+.ql-font-ArefRuqaa {
+    font-family: 'ArefRuqaa';
+}
+
+.ql-font span[data-value="Arial"]::before,
+.ql-font span[data-label="Arial"]::before {
+    font-family: "Arial";
+}
+
+.ql-font-Arial {
+    font-family: 'Arial';
+}
+
+.ql-font span[data-value="Cairo"]::before,
+.ql-font span[data-label="Cairo"]::before {
+    font-family: "Cairo";
+}
+
+.ql-font-Cairo {
+    font-family: 'Cairo';
+}
+
+.ql-font span[data-value="shiraz"]::before,
+.ql-font span[data-label="shiraz"]::before {
+    font-family: "shiraz";
+}
+
+.ql-font-shiraz {
+    font-family: 'shiraz';
+}
+
+.ql-font span[data-value="zahra"]::before,
+.ql-font span[data-label="zahra"]::before {
+    font-family: "zahra";
+}
+
+.ql-font-zahra {
+    font-family: 'zahra';
+}
