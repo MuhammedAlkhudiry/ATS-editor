@@ -1,6 +1,5 @@
 node_modules
 release-builds
-dist
 build
 __pycache__
 .vscode
