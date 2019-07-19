@@ -1,3 +1,35 @@
-@import "../../../node_modules/bulma/bulma.sass";
+@charset "utf-8";
 
+// Set your brand colors
+$purple: #8A4D76;
+$pink: #FA7C91;
+$brown: #757763;
+
+// Update Bulma's global variables
+$grey-dark: #444;
+$grey-light: #ddd;
 $primary: #06c;
+$primary-light: rgb(70, 147, 224);
+$primary-very-light: #e8f0fe;
+$danger-light: #fee8e8;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+// Update some of Bulma's component variables
+
+
+.navbar-brand {
+    .navbar-item:hover {
+        // color: $primary;
+        background: $primary-very-light !important;
+        border-radius: 0;
+    }
+
+    #exit-icon:hover {
+        background: $danger-light !important;
+        border-radius: 0;
+
+    }
+}
+
+@import "../../../node_modules/bulma/bulma.sass";

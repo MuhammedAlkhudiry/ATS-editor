@@ -4,8 +4,22 @@ tippy.setDefaults({
     arrow: true,
     arrowType: 'round',
 })
-tippy('.ql-font', {
-    content: 'نوع الخط'
+
+
+tippy('#file-name', {
+    content: 'اسم الملف'
+})
+
+tippy('#save-icon', {
+    content: 'حفظ باسم'
+})
+
+tippy('#open-file-icon', {
+    content: 'فتح ملف'
+})
+
+tippy('#new-file-icon', {
+    content: 'ملف جديد'
 })
 
 tippy('.ql-header', {
@@ -82,3 +96,4 @@ tippy('.ql-direction', {
 tippy('.ql-clean', {
     content: 'محو التنسيق'
 })
+

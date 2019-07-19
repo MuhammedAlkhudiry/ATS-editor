@@ -10,76 +10,55 @@
   <title>Hello World!</title>
 </head>
 
-<body>
+<body class="has-navbar-fixed-top">
 
   <!-- main bar -->
 
-  <div class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
-        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+      <a class="navbar-item" id="exit-icon">
+        <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/solid/times.svg" width="12" height="12">
       </a>
-  
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-        data-target="navbarBasicExample">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
+      <a class="navbar-item">
+        <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/window-maximize.svg" width="12" height="12">
       </a>
+      <a class="navbar-item">
+        <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/window-minimize.svg" width="12" height="12">
+      </a>
+
+
     </div>
-  
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <a class="navbar-item">
-          Home
-        </a>
-  
-        <a class="navbar-item">
-          Documentation
-        </a>
-  
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            More
-          </a>
-  
-          <div class="navbar-dropdown">
-            <a class="navbar-item">
-              About
-            </a>
-            <a class="navbar-item">
-              Jobs
-            </a>
-            <a class="navbar-item">
-              Contact
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item">
-              Report an issue
-            </a>
-          </div>
+    <div class="navbar-end">
+      <div class="navbar-item" id="file-name">
+        <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" placeholder="اسم الملف">
+            <span class="icon is-small is-right">
+              <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/file-alt.svg" width="16" height="16">
+            </span>
+            <span class="icon is-small is-left">
+              <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/solid/check.svg" width="16" height="16">
+            </span>
+          </p>
         </div>
       </div>
-  
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary">
-              <strong>Sign up</strong>
-            </a>
-            <a class="button is-light">
-              Log in
-            </a>
-          </div>
-        </div>
-      </div>
+      <a class="navbar-item" id="save-icon">
+        <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/save.svg" width="18" height="18">
+      </a>
+      <a class="navbar-item" id="open-file-icon">
+        <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/folder-open.svg" width="24" height="24">
+      </a>
+      <a class="navbar-item" id="new-file-icon">
+        <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/file.svg" width="16" height="16">
+        <span id="plus-sign-in-new-file">+</span>
+      </a>
     </div>
   </div>
 
   <!-- Create the toolbar container -->
   <div id="toolbar-container">
     <span class="ql-formats">
-      <select class="ql-font" >
+      <select class="ql-font">
         <option value="Arial" selected>أريال</option>
         <option value="dubai">خط دبي</option>
         <option value="alhurra">الحرة</option>
@@ -230,7 +209,7 @@
 
   <!-- Create the editor container -->
   <div class="container editor-container">
-    
+
     <div id="editor">
     </div>
   </div>

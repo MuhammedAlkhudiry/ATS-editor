@@ -1,3 +1,16 @@
 .editor-container {
     margin: 4vh 8vh;
 }
+
+#plus-sign-in-new-file {
+    position: absolute;
+    right: 50%;
+    left: 35%;
+    color: black;
+}
+
+.main-bar-icon:hover {
+    color: #06c;
+    background: #e8f0fe;
+    border-radius: 0.4em;
+}
