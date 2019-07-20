@@ -9,26 +9,77 @@ $brown: #757763;
 $grey-dark: #444;
 $grey-light: #ddd;
 $primary: #06c;
-$primary-light: rgb(70, 147, 224);
+$primary-light: #4693e0;
 $primary-very-light: #e8f0fe;
 $danger-light: #fee8e8;
-$widescreen-enabled: false;
-$fullhd-enabled: false;
 
+$success: #04df5b;
+$danger:#eb1d1d;
 // Update some of Bulma's component variables
 
+.icon {
+    opacity: 0.7;
+}
 
-.navbar-brand {
-    .navbar-item:hover {
-        // color: $primary;
-        background: $primary-very-light !important;
-        border-radius: 0;
+#file-name-container {
+
+    input {
+        width: 100%;
+        border-radius: 6px;
+        justify-self: center;
+        align-self: center;
+        padding: 8px;
+        background: #f5f5f5;
+        transition: border-color .3s ease;
+        border: 1.5px #f5f5f5 solid;
+        color: $grey-dark;
+        position: absolute;
+        height: 35px;
+        transition: 0.3s;
+        outline: none;
+        font-weight: bold;
+        font-size: 18px;
+        &:hover,
+        &:focus {
+            border-color: #4693e0;
+            font-size: 14px;
+            transition: 0.3s;
+
+            &::selection {
+                background: #bce8ff80;
+            }
+        }
+
+        &::placeholder {
+            color: $primary-light;
+        }
     }
 
-    #exit-icon:hover {
-        background: $danger-light !important;
-        border-radius: 0;
+    input:focus+#file-name-note {
+        font-size: 12px;
+        transform: translate(16px, 11px);
+        color: $grey-dark;
+        opacity: 1;
+    }
 
+    #file-name-note {
+        opacity: 0;
+        position: absolute;
+        right: 95%;
+        bottom: 50%;
+        color: $grey-dark;
+        transform: translate(16px, 20px);
+        transition:
+            transform .3s ease,
+            font-size .3s ease,
+            color .3s .1s ease,
+            opacity .3s .1s ease;
+
+        &.active {
+            font-size: 12px;
+            transform: translate(16px, 11px);
+            color: $grey-dark;
+        }
     }
 }
 

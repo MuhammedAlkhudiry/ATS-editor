@@ -26,8 +26,11 @@
 .ql-toolbar {
   position: sticky;
   z-index: 1;
-  top: 8vh;
-  background-color: #ffffff;
+  top: 70px;
+  background-color: #f9f9f9;
+  -webkit-user-drag: none;
+  user-select: none
+
 }
 
 /* -------------------------------------------------------------------------- */

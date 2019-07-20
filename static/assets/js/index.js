@@ -4,7 +4,6 @@ const { ipcRenderer } = require('electron')
 let win = remote.getCurrentWindow();
 let dialog = remote.dialog;
 let app = remote.app;
-let documentName = "اسم المستند الجديد";
 
 /* ------------------------------ DOM variables ----------------------------- */
 
@@ -28,14 +27,14 @@ resizeIcon.addEventListener('click', (e) => {
     // switch between icons square and two squares
     if (win.isMaximized()) {
         win.unmaximize();
-        resizeIcon.src = '../static/assets/fontawesome-free-5.9.0-web/svgs/regular/window-maximize.svg';
+        resizeIcon.firstElementChild.src = '../static/assets/fontawesome-free-5.9.0-web/svgs/regular/window-maximize.svg';
     } else {
         win.maximize();
-        resizeIcon.src = '../static/assets/fontawesome-free-5.9.0-web/svgs/regular/window-restore.svg';
+        resizeIcon.firstElementChild.src = '../static/assets/fontawesome-free-5.9.0-web/svgs/regular/window-restore.svg';
     }
 
 })
-document.getElementById("minimize-icon").addEventListener('click', (e) => {
+document.getElementById("min-icon").addEventListener('click', (e) => {
     win.minimize();
 })
 

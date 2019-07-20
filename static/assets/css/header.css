@@ -1,0 +1,109 @@
+.title-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 40px);
+    height: 30px;
+    background-color: #ccc;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    -webkit-user-drag: none;
+    user-select: none
+}
+
+#exit-icon,
+#resize-icon,
+#min-icon {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#exit-icon:hover {
+    background-color: #d39191;
+    transition: 0.3s;
+}
+#resize-icon:hover,
+#min-icon:hover {
+    background-color: #eee;
+    transition: 0.3s;
+
+}
+
+
+.file-management-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 40px) 35vw 100px;
+    height: 40px;
+    background-color: #f5f5f5;
+    direction: rtl;
+    z-index: 10;
+    position: fixed;
+    top: 30px;
+    width: 100%;
+    -webkit-user-drag: none;
+    user-select: none
+
+}
+
+#save-icon,
+#open-file-icon,
+#new-file-icon {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#save-icon:hover,
+#open-file-icon:hover,
+#new-file-icon:hover {
+    background-color: #ccc;
+    transition: 0.3s;
+
+}
+
+#new-file-icon{
+    position: relative;
+}
+
+#plus-sign-in-new-file {
+    position: absolute;
+    right: 35%;
+    left: 35%;
+    color: black;
+    opacity: 0.8;
+    font-size: 16px;
+}
+.icon-container {
+    justify-self: center;
+    align-self: center;
+
+}
+#file-name-container{
+    margin: 0 0.5em;
+    width: 80%;
+    height: 35px;
+    position: relative;
+    background: #f5f5f5;
+}
+
+#saving-status-container{
+    font-size: 12px;
+    color: #eb1d1d;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+/* context classes */
+
+.currently-saving{
+    color: #4693e0;
+}
+.saved-file{
+    color: #04df5b;
+}
+
+.unsaved-file{
+    color: #eb1d1d;
+}
