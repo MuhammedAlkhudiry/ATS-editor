@@ -51,3 +51,7 @@ window.addEventListener('scroll', (e) => {
 })
 
 /* -------------------------------------------------------------------------- */
+
+document.addEventListener('dragenter', (e) => {
+    document.documentElement.opacity = '0.5';
+})

@@ -13,8 +13,8 @@
 </head>
 
 <body>
-
   <!-- main bar -->
+
 
   <div class="title-bar">
     <div class="icon" id="exit-icon">
@@ -29,10 +29,12 @@
     </span>
   </div>
 
+
+
   <div class="file-management-bar">
-    <div class="icon" id="save-icon">
+    <span class="icon" id="save-icon">
       <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/save.svg" width="16" height="16">
-    </div>
+    </span>
     <span class="icon" id="open-file-icon">
       <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/folder-open.svg" width="20" height="20">
     </span>
@@ -43,13 +45,14 @@
     <div id="file-name-container" class="icon-container">
       <input placeholder="اسم المستند" id="file-name">
       <label id="file-name-note">
-          <span class="icon is-small is-left">
-              <img id="file-name-valid-img" src="../static/assets/fontawesome-free-5.9.0-web/svgs/solid/times.svg" width="12" height="12">
-            </span>
+        <span class="icon is-small is-left">
+          <img id="file-name-valid-img" src="../static/assets/fontawesome-free-5.9.0-web/svgs/solid/times.svg"
+            width="12" height="12">
+        </span>
       </label>
     </div>
 
-    <div id="saving-status-container" class="icon-container">
+    <div id="saving-status-container">
       <span id="saving-status-text">
         الملف غير محفوظ.
       </span>
@@ -215,14 +218,17 @@
     </div>
   </div>
   <!-- Initialize Quill editor -->
+  <script src="../static/assets/js/index.js"></script>
+  <script src="../static/helpers/helpers.js"></script>
   <script src="../static/quill/quill/dist/quill.js"></script>
   <script src="../static/quill/custom-modules/quill-autoformat.js"></script>
   <!-- You can also require other files to run in this process -->
   <script src="../static/core/confi-quill.js"></script>
-  <script src="../static/core/file-managment.js"></script>
+  <script src="../static/core/file-management/file-managment.js"></script>
+  <script src="../static/core/file-management/save-file.js"></script>
+  <script src="../static/core/file-management/open-file.js"></script>
   <script src="../static/core/keyboard-shortcuts.js"></script>
   <script src="../static/assets/js/tooltip.js"></script>
-  <script src="../static/assets/js/index.js"></script>
   <script src="../static/request/requests.js"></script>
 </body>
 

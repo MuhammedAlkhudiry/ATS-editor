@@ -5,9 +5,11 @@
 'use strict';
 
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require('electron')
-const path = require('path')
-var rq = require('request-promise');
+const { app, BrowserWindow } = require('electron');
+const path = require('path');
+const { ipcMain } = require('electron');
+const rq = require('request-promise');
+const fs = require('fs');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -23,7 +25,7 @@ app.on('ready', function () {
   /* ------------------ setting up Flask server ----------------- */
 
   // develop
-  var subpy = require('child_process').spawn('python', ['python.py']);
+  // var subpy = require('child_process').spawn('python', ['python.py']);
 
   // packaging
   // var subpy = require('child_process').spawn('./dist/python.exe');
@@ -49,12 +51,12 @@ app.on('ready', function () {
 
     // for developing front-end
     mainWindow.loadFile('./templates/index.html');
-    
+
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
     // TODO: dl
     mainWindow.webContents.session.clearCache(function () {
-      
+
     });
 
     mainWindow.on('closed', function () {
@@ -105,3 +107,21 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+
+// receive from index.js 
+ipcMain.on('ondragstart', (event, filePath) => {
+
+  // read file then send it back to index.js
+  fs.readFile(filePath, 'utf-8', (err, data) => {
+
+    if (err) {
+      alert("حدث خطأ ما أثناء فتح الملف :" + err.message)
+      return;
+    }
+
+    // handle the file content 
+    event.sender.send('fileData', data)
+  })
+
+})
