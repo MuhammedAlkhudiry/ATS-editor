@@ -7,8 +7,11 @@ let change = new Delta();
 document.getElementById('save-icon').addEventListener('click', saveFile);
 
 function saveFile(e) {
-  // TODO check if file saved before or not.
 
+  if (fileName.value.length === 0) {
+    showFailedNote('خانة اسم المستند فارغة');
+    return;
+  }
   Swal.fire({
     title: '<strong> اختيار صيغة الملف </strong>',
     type: 'info',
@@ -19,7 +22,7 @@ function saveFile(e) {
       <div id="pdf">
         <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/file-pdf.svg" width="18" height="18">
         <br>
-        <strong>PDF</strong>
+        <strong class="ext-name">PDF</strong>
         <br>
         <span class="is-size-7 ext-notes">
           مناسب للقراءة والطباعة <br>
@@ -31,7 +34,7 @@ function saveFile(e) {
         <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/file-code.svg" width="18" height="18">
         <br>
 
-        <strong>HTML</strong>
+        <strong class="ext-name">HTML</strong>
         <br>
         <span class="is-size-7 ext-notes">
 
@@ -41,7 +44,7 @@ function saveFile(e) {
       <div id="docx">
         <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/file-word.svg" width="18" height="18">
         <br>
-        <strong>DOCX</strong>
+        <strong class="ext-name">DOCX</strong>
         <br>
         <span class="is-size-7 ext-notes">
           مناسب لفتح الملف في برنامج وورد.
@@ -92,7 +95,7 @@ function saveFile(e) {
             change = new Delta();
             // put the name that user choose in saving dialog in fileName input in index.html.
             let FileNameWithExt = chosenPath.split('\\').pop();
-            fileName.value = FileNameWithExt.substr(0, FileNameWithExt.indexOf('.')); ;
+            fileName.value = FileNameWithExt.substr(0, FileNameWithExt.indexOf('.'));;
           });
         } catch (e) {
           showFailedNote('ثمة خلل.. تعذر حفظ المستند')

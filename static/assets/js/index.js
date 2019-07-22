@@ -4,7 +4,7 @@ const { ipcRenderer } = require('electron')
 let win = remote.getCurrentWindow();
 let dialog = remote.dialog;
 let app = remote.app;
-
+let textBox = document.getElementById('text-box');
 /* ------------------------------ DOM variables ----------------------------- */
 
 
@@ -18,8 +18,11 @@ const resizeIcon = document.getElementById("resize-icon");
 
 
 document.getElementById("exit-icon").addEventListener('click', (e) => {
-    // TODO include warning here..
-    win.close();
+
+    if (change.length() > 0) {
+        if (showUnsavedFileNote()) win.close(); 
+    }
+    else win.close();
 
 })
 resizeIcon.addEventListener('click', (e) => {
@@ -42,11 +45,12 @@ document.getElementById("min-icon").addEventListener('click', (e) => {
 
 
 // When the user scrolls the page
-window.addEventListener('scroll', (e) => {
+textBox.addEventListener('scroll', (e) => {
 
     let toolbar = document.getElementById('toolbar-container');
-    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    winScroll > 0 ? toolbar.style.boxShadow = '0px 1px 5px #00000020'
+
+    let Scroll = textBox.scrollTop;
+    Scroll > 0 ? toolbar.style.boxShadow = '0px 1px 5px #00000020'
         : toolbar.style.boxShadow = 'none';
 })
 

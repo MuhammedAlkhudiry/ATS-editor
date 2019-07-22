@@ -6,25 +6,12 @@ function openFile(e) {
 
     if (change.length() > 0) {
 
-        Swal.fire({
-            title: 'الملف غير محفوظ. هل أنت متأكد؟',
-            type: 'question',
-            customClass: {
-                icon: 'swal2-arabic-question-mark'
-            },
-            confirmButtonText: 'نعم',
-            cancelButtonText: 'لا',
-            showCancelButton: true,
-            showCloseButton: true
-
-        }).then((result) => {
-
-            if (result.value) {
-                cleanFile()
-                showOpenDialog();
-                showSuccessNote('فُتح الملف')
-            }
-        })
+        // if true, means user want to discard the unsaved file and open another file.
+        if (showUnsavedFileNote()) {
+            cleanFile()
+            showOpenDialog();
+            showSuccessNote('فُتح الملف')
+        }
 
     } else {
         cleanFile()
@@ -57,6 +44,7 @@ function showOpenDialog() {
             }
 
             setEditorContent(data)
+            chosenPath = ChosenFilePath;
         });
     }
 }
@@ -66,50 +54,32 @@ function showOpenDialog() {
 
 document.body.addEventListener('drop', (e) => {
 
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (e.dataTransfer.files.length == 0) return;
+
+    if (e.dataTransfer.files.length > 1) {
+        showFailedNote('تعذر مستند الملف.. يسمح بفتح مستند واحد فقط')
+        return;
+    }
+    
+    let draggedFile = e.dataTransfer.files[0];
+
+
     if (change.length() > 0) {
 
-        Swal.fire({
-            title: 'الملف غير محفوظ. هل أنت متأكد؟',
-            type: 'question',
-            customClass: {
-                icon: 'swal2-arabic-question-mark'
-            },
-            confirmButtonText: 'نعم',
-            cancelButtonText: 'لا',
-            showCancelButton: true,
-            showCloseButton: true
-
-        }).then((result) => {
-
-            if (result.value) {
+            if (showUnsavedFileNote()) {
                 cleanFile();
-                openFileByDragDrop();
-
+                openFileByDragDrop(draggedFile);
             }
-        })
-
     } else {
         cleanFile();
-        openFileByDragDrop();
+        openFileByDragDrop(draggedFile);
     }
-    document.documentElement.style.opacity = '1';
-
-
-    function openFileByDragDrop() {
-
-        
-        e.preventDefault();
-        e.stopPropagation();
-        if (e.dataTransfer.files.length > 1) {
-            showFailedNote('تعذر مستند الملف.. يسمح بفتح مستند واحد فقط')
-            return;
-        }
-
-        if (e.dataTransfer.files.length == 0) {
-            showFailedNote('لا توجد مستندات للفتح')
-        }
-
-        let draggedFile = e.dataTransfer.files[0];
+    
+    function openFileByDragDrop(draggedFile) {
 
         let docFile = "application/msword";
         let docxFile = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"

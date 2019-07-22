@@ -1,34 +1,5 @@
 'use strict';
 
-String.prototype.contains = function (str) { return this.indexOf(str) != -1; };
-
-function showSuccessNote(msg) {
-    const fileSaved = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 5 * 1000
-    });
-
-    fileSaved.fire({
-        type: 'success',
-        title: msg
-    })
-}
-function showFailedNote(msg) {
-    const fileSaved = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 5 * 1000
-    });
-
-    fileSaved.fire({
-        type: 'error',
-        title: msg
-    })
-}
-
 
 function cleanFile() {
     quill.setContents([]);
