@@ -1,19 +1,16 @@
-ul.tools {
-    opacity: 0;
-    list-style: none;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, .5);
-    border: solid 1px #000;
+#float-menu {
     position: absolute;
-    background: #fff;
-    z-index: 10;
+    border: 1px solid #ccc;
+    padding: 8px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.6s;
 }
 
-ul.tools li {
-    display: inline-block;
-    width: 10px;
-    height: 20px;
-    border: solid 1px #000;
-    margin: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
+#float-menu.hdn {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.6s;
+
 }
+

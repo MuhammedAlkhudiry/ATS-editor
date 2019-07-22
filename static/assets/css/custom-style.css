@@ -1,8 +1,9 @@
-#text-box{
+#text-box {
     height: 80vh;
     margin: 70px 0;
     width: 100vw;
-overflow-y:overlay;
+    overflow-y: overlay;
+    background-color: #fcfcfc;
 }
 
 
@@ -34,4 +35,3 @@ overflow-y:overlay;
 ::-webkit-scrollbar-corner {
     background-color: transparent;
 }
-
