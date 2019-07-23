@@ -14,8 +14,11 @@ const fs = require('fs');
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
-require('electron-reload')(__dirname);
+// require('electron-reload')(__dirname);
 
+// require('electron-reload')(__dirname, {
+//   electron: path.join(__dirname, 'node_modules/.bin/electron.cmd')
+// });
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -32,7 +35,7 @@ app.on('ready', function () {
 
   /* ------------------ setting up Flask server ----------------- */
 
-  var mainAddr = 'http://localhost:5000';
+  var mainAddr = 'http://localhost:5000/../../templates/index.html';
   var openWindow = function () {
 
     // setting main window..
@@ -47,10 +50,10 @@ app.on('ready', function () {
     });
 
     // load main window from Flask.
-    // mainWindow.loadURL(mainAddr);
+    mainWindow.loadURL(mainAddr);
 
     // for developing front-end
-    mainWindow.loadFile('./templates/index.html');
+    // mainWindow.loadFile('./templates/index.html');
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools();

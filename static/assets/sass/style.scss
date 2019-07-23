@@ -15,16 +15,21 @@ $danger-light: #fee8e8;
 
 $success: #04df5b;
 $danger:#eb1d1d;
+
 // Update some of Bulma's component variables
+$dimensions: 16 18 20 24 32 48 64 96 128;
 
 .icon {
     opacity: 0.7;
     outline: none;
 }
 
-html{
+html {
     height: 100%;
 }
 
+.image {
+    pointer-events: none;
+}
 
 @import "../../../node_modules/bulma/bulma.sass";

@@ -2,6 +2,12 @@
   opacity: 0.7;
   outline: none; }
 
+html {
+  height: 100%; }
+
+.image {
+  pointer-events: none; }
+
 /*! bulma.io v0.7.5 | MIT License | github.com/jgthms/bulma */
 @keyframes spinAround {
   from {
@@ -2231,6 +2237,12 @@ a.box:active {
   .image.is-16x16 {
     height: 16px;
     width: 16px; }
+  .image.is-18x18 {
+    height: 18px;
+    width: 18px; }
+  .image.is-20x20 {
+    height: 20px;
+    width: 20px; }
   .image.is-24x24 {
     height: 24px;
     width: 24px; }

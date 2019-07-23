@@ -223,34 +223,71 @@
   <!-- create float-menu show when select text -->
 
   <div id="float-menu" class="fade-in-bck">
-    <nav class="level is-mobile ">
-      <div class="level-item has-text-centered">
-        <div>
-            <button id></button>
-            <p class="title">3,456</p>
-        </div>
-      </div>
-      <div class="level-item has-text-centered">
-        <div>
-          <p class="heading">Following</p>
-          <p class="title">123</p>
-        </div>
-      </div>
-      <div class="level-item has-text-centered">
-        <div>
-          <p class="heading">Followers</p>
-          <p class="title">456K</p>
-        </div>
-      </div>
-      <div class="level-item has-text-centered">
-        <div>
-          <p class="heading">Likes</p>
-          <p class="title">789</p>
-        </div>
-      </div>
-    </nav>
+    <img class="image is-20x20" src="../static/assets/icons/arrow-up.svg" alt="">
+    <ul id="float-tools-list">
+      <li class="tool float-format" data-value="bold">
+        <svg class="image is-20x20 ql-float-format" id="Bold" viewbox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+          <path class="ql-float-stroke-1"
+            d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z"></path>
+          <path class="ql-float-stroke-1"
+            d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z">
+          </path>
+        </svg>
+      </li>
+      <li class="tool float-format" data-value="italic">
+        <svg class="image is-20x20" id="Bold" viewbox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+          <line class="ql-float-stroke-1" x1="7" x2="13" y1="4" y2="4"></line>
+          <line class="ql-float-stroke-1" x1="5" x2="11" y1="14" y2="14"></line>
+          <line class="ql-float-stroke-1" x1="8" x2="10" y1="14" y2="4"></line>
+        </svg>
+      </li>
+      <li class="tool float-format" data-value="underline">
+        <svg class="image is-20x20" id="Bold" viewbox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+          <path class="ql-float-stroke-1" d="M5,3V9a4.012,4.012,0,0,0,4,4H9a4.012,4.012,0,0,0,4-4V3"></path>
+          <rect class="ql-float-stroke-2" height="1" rx="0.5" ry="0.5" width="12" x="3" y="15"></rect>
+        </svg>
+      </li>
+      <li class="v-line">
+        <img class="image is-20x20" src="../static/assets/svg/vertical-line.svg">
+      </li>
+      <li class="tool float-color"  data-value="#000000">
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" 
+          style="background-color: rgb(0, 0, 0);"></span>
+      </li>
+      <li class="tool float-color" data-value="#e60000">
 
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" 
+          style="background-color: rgb(230, 0, 0);"></span>
+      </li>
+      <li class="tool float-color" data-value="#ff9900">
+
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" 
+          style="background-color: rgb(255, 153, 0);"></span>
+      </li>
+      <li class="tool float-color" data-value="#ffff00">
+
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" 
+          style="background-color: rgb(255, 255, 0);"></span>
+      </li>
+      <li class="tool float-color" data-value="#008a00">
+
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" 
+          style="background-color: rgb(0, 138, 0);"></span>
+      </li>
+
+      <li class="tool float-color" data-value="#0066cc">
+
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" 
+          style="background-color: rgb(0, 102, 204);"></span>
+      </li>
+      <li class="tool float-color" data-value="#9933ff">
+
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" 
+          style="background-color: rgb(153, 51, 255);"></span>
+      </li>
+    </ul>
   </div>
+
 
   <!-- Initialize Quill editor -->
   <script src="../static/assets/js/index.js"></script>

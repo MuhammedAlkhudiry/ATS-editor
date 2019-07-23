@@ -29,7 +29,7 @@ function showFailedNote(msg) {
 
 function showUnsavedFileNote() {
 
-    Swal.fire({
+    return Swal.fire({
         title: 'المستند الحالي غير محفوظ. هل أنت متأكد؟',
         type: 'question',
         customClass: {
@@ -40,8 +40,5 @@ function showUnsavedFileNote() {
         showCancelButton: true,
         showCloseButton: true
 
-    }).then((result) => {
-        // if result.value means 'yes' pressed, else no.
-        return result.value ? true : false;
     })
 }

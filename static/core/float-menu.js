@@ -13,7 +13,28 @@ window.addEventListener('mouseup', function () {
 });
 
 window.addEventListener('mousedown', function () {
-    ele.className = ''
+    ele.className = '';
 });
+
+/* ------------------------ float-tools functionality ----------------------- */
+
+let floatToolList = document.getElementById('float-tools-list').addEventListener('click', e => {
+    let clickedTool = e.target;
+    console.log(clickedTool);
+    if (clickedTool.tagName === 'LI') {
+
+        if (clickedTool.classList.contains('float-format')) {
+            quill.format(clickedTool.dataset.value, true)
+        }
+        else if (clickedTool.classList.contains('float-color')) {
+            quill.format('color', clickedTool.dataset.value)
+        }
+    }
+
+    ele.className = ''
+    window.getSelection().empty();
+
+})
+/* -------------------------------------------------------------------------- */
 
 

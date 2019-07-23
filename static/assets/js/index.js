@@ -20,9 +20,20 @@ const resizeIcon = document.getElementById("resize-icon");
 document.getElementById("exit-icon").addEventListener('click', (e) => {
 
     if (change.length() > 0) {
-        if (showUnsavedFileNote()) win.close(); 
+        showUnsavedFileNote().then((result) => {
+            // if result.value means 'yes' pressed, else no.
+            if (result.value) {
+                win.close();
+
+                // make sure the app is closed.
+                if (!win.isDestroyed()) win.destroy();
+                
+            }
+        });
     }
-    else win.close();
+    else {
+        win.close();
+    }
 
 })
 resizeIcon.addEventListener('click', (e) => {

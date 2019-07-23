@@ -1,16 +1,92 @@
 #float-menu {
     position: absolute;
-    border: 1px solid #ccc;
-    padding: 8px;
+    padding: 0 8px;
+    display: grid;
+    grid-template-rows: 9px auto;
+    justify-items: center;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.6s;
+    transition: opacity 0.5s;
+
 }
 
 #float-menu.hdn {
     visibility: visible;
-    opacity: 1;
-    transition: opacity 0.6s;
+    opacity: 0.9;
+    transition: opacity 0.5s;
 
 }
 
+
+#float-tools-list {
+    display: grid;
+    grid-template-columns: repeat(12, 30px);
+    grid-template-rows: 30px;
+    grid-template-areas: "B I U |";
+    align-items: center;
+    /* justify-items: center; */
+    /* adjusted */
+    border: .9px solid #777;
+    border-radius: 0.4em;
+    background-color: #f9f9f9;
+    width: 100%;
+}
+
+.tool:first-child,
+.tool:last-child {
+    border-top-left-radius: 0.4em;
+    border-bottom-left-radius: 0.4em;
+
+}
+
+.tool,
+.v-line {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    border-radius: 0;
+    transition: .3s;
+    width: 100%;
+    height: 100%;
+}
+
+.tool:hover:not(.ql-float-color) {
+    background-color: #e8f0fe;
+    cursor: pointer;
+    transition: .3s;
+}
+
+#float-menu-arrow {
+    justify-self: baseline;
+    align-self: baseline;
+    opacity: 0.8;
+}
+
+.ql-float-stroke-1 {
+    fill: none;
+    stroke: #444;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2px;
+}
+
+.ql-float-stroke-2 {
+    fill: #444;
+}
+
+.tool:hover .ql-float-stroke-1 {
+    stroke: #06c;
+    background: #e8f0fe;
+    border-radius: 0.4em
+}
+
+.ql-float-color {
+    border-radius: 0.4em;
+        background-color: #f3f3f3;
+        opacity: 0.8;
+
+}
+
+.ql-float-color{
+    pointer-events: none;
+}
