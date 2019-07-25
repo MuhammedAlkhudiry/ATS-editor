@@ -1,0 +1,31 @@
+.ql-searched-string {
+    background-color: #f8ff00;
+    animation: fade-in-bck 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    display: inline-block;
+    transition: .2s;
+
+}
+
+.ql-searched-string:hover {
+    background-color: #f9ff44;
+    border-radius: 5px;
+    padding: 2px;
+    transition: .2s;
+}
+
+.mis-spell {
+    background: linear-gradient(-45deg, #e70000 2px, transparent 0), linear-gradient(45deg, #ffffff00 2px, transparent 0);
+    background-position: 0px 90%;
+    background-repeat: repeat-x;
+    background-size: 2.5px 4px;
+    transition: .2s;
+        display: inline-block;
+
+}
+
+.mis-spell:hover {
+    background: #e7000027;
+    border-radius: 5px;
+    padding: 2px;
+    transition: .2s;
+}

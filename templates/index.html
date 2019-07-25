@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="../static/quill/quill/dist/quill.snow.css">
-  <link rel="stylesheet" href="../static/assets/css/style.css">
-  <link rel="stylesheet" href="../static/assets/css/fonts.css">
-  <link rel="stylesheet" href="../static/assets/css/custom-style.css">
-  <link rel="stylesheet" href="../static/assets/css/float-menu.css">
-  <link rel="stylesheet" href="../static/assets/css/header.css">
+  <link rel="stylesheet" href="../static/assets/css/text.css">
+  <link rel="stylesheet" href="../static/assets/css/bulma/style.css">
+  <link rel="stylesheet" href="../static/assets/css/index/index.css">
+  <link rel="stylesheet" href="../static/assets/css/index/float-menu.css">
+  <link rel="stylesheet" href="../static/assets/css/index/header.css">
   <link rel="stylesheet" href="../static/assets/css/animation.css">
+  <link rel="stylesheet" href="../static/assets/css/fonts.css">
 
   <title>Hello World!</title>
 </head>
@@ -214,6 +215,13 @@
 
   <!-- Create the editor container -->
   <div id="text-box">
+    <div id="search-container">
+      <input id="search-input" class="input" type="text" placeholder="بحث">
+      <input id="replace-input" class="input" type="text" placeholder="استبدال">
+      <button id="search">بحث</button>
+      <button id="replace">استبدال</button>
+      <button id="replace-all">استبدال الكل</button>
+    </div>
     <div class="container">
       <div id="editor">
       </div>
@@ -296,7 +304,6 @@
   <script src="../static/helpers/utilities.js"></script>
   <script src="../static/helpers/editor-helpers.js"></script>
   <script src="../static/quill/quill/dist/quill.js"></script>
-  <script src="../static/quill/custom-modules/quill-autoformat.js"></script>
   <!-- You can also require other files to run in this process -->
   <script src="../static/core/confi-quill.js"></script>
   <script src="../static/core/file-management/file-managment.js"></script>

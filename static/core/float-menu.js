@@ -20,7 +20,6 @@ window.addEventListener('mousedown', function () {
 
 let floatToolList = document.getElementById('float-tools-list').addEventListener('click', e => {
     let clickedTool = e.target;
-    console.log(clickedTool);
     if (clickedTool.tagName === 'LI') {
 
         if (clickedTool.classList.contains('float-format')) {
