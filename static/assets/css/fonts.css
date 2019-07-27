@@ -32,6 +32,10 @@
     font-family: zahra;
     src: url("../fonts/zahra.ttf") format("truetype");
 }
+@font-face {
+    font-family: uthmanic-font;
+    src: url("../fonts/UthmanicHafs.otf") format("truetype");
+}
 
 .ql-font span[data-value="dubai"]::before,
 .ql-font span[data-label="dubai"]::before {

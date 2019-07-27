@@ -1,3 +1,5 @@
+@import '../../../../node_modules/tippy.js/themes/light.css';
+
 .title-bar {
     display: grid;
     grid-template-columns: repeat(3, 40px);
@@ -29,9 +31,7 @@
 #min-icon:hover {
     background-color: #eee;
     transition: 0.3s;
-
 }
-
 
 .file-management-bar {
     display: grid;
@@ -59,7 +59,6 @@
 #new-file-icon:hover {
     background-color: #ccc;
     transition: 0.3s;
-
 }
 
 #new-file-icon {
@@ -69,7 +68,6 @@
 .icon-container {
     justify-self: center;
     align-self: center;
-
 }
 
 #file-name-container {
@@ -89,29 +87,25 @@
     padding: 8px;
     background: #f5f5f5;
     transition: border-color 0.4s ease;
-    border: 1.5px #f5f5f5 solid;
+    border: .13em transparent solid;
     height: 35px;
     transition: 0.4s;
     outline: none;
     font-weight: bold;
     font-size: 18px;
-    color: #06c;
+    color: #0066cccc;
 }
 
 #file-name:hover,
 #file-name:focus {
-    border-color: #4693e0;
+    border-color: #4693e071;
     font-size: 14px;
     transition: 0.4s;
 }
 
-#file-name:hover::selection,
-#file-name:focus::selection {
-    background: #bce8ff 80;
-}
 
 #file-name::placeholder {
-    color: #777;
+    color: #777777cc;
     opacity: 0.35;
 }
 
@@ -126,10 +120,14 @@
     position: absolute;
     right: 90%;
     bottom: 20%;
-    transition: transform 0.4s ease, font-size 0.4s ease, color 0.4s 0.1s ease, opacity 0.4s 0.1s ease;
+    transition: transform 0.4s ease, opacity 0.4s 0.1s ease;
 }
 
-
+@media(max-width: 500px) {
+    #file-name-note {
+        right: 85%;
+    }
+}
 
 /* context classes */
 
@@ -138,19 +136,19 @@
 }
 
 .saved-file {
-    color: #03c751;
+    color: #03c75171;
 }
 
 .unsaved-file {
-    color: #eb1d1d;
+    color: #eb1d1d71;
 }
 
 .valid-file-name {
-    border: 1.5px #03c751 solid;
+    border-color: #03c75171 !important;
 }
 
 .unvalid-file-name {
-    border: 1.5px #eb1d1d solid;
+    border-color: #eb1d1d71 !important;
 }
 
 /* --- */
@@ -162,23 +160,18 @@
     opacity: 0.7;
     justify-self: center;
     align-self: center;
-
-
 }
-
-/* #saving-container {
-    display: none;
-} */
 
 #saving-box-content {
     display: grid;
     grid-template-columns: repeat(3, .33fr);
-    grid-template-areas:
-        "html-ext pdf-ext docx-ext";
+    grid-template-areas: "html-ext pdf-ext docx-ext";
     text-align: center;
     justify-items: center;
+    width: 30em;
     user-select: none;
     -webkit-user-drag: none;
+    font-size: 14px;
 }
 
 #html {
@@ -199,7 +192,7 @@
     cursor: pointer;
     border: 1px solid rgba(92, 92, 92, 0.096);
     transition: .3s;
-    padding: 1em;
+    padding: 0.50em;
     width: 100%;
 }
 

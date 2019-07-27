@@ -10,10 +10,6 @@ tippy('#file-name', {
     content: 'اسم الملف'
 })
 
-tippy('#save-icon', {
-    content: 'حفظ باسم'
-})
-
 tippy('#open-file-icon', {
     content: 'فتح ملف'
 })
@@ -53,17 +49,41 @@ tippy('.ql-strike', {
     content: 'سطر نصفي'
 })
 
-tippy('.ql-script', {
-    content: 'مرتفع'
+tippy('button[value="sub"]', {
+    content: 'نص مصغر'
 })
 
-tippy('.ql-list', {
-    content: 'قائمة'
+tippy('button[value="super"]', {
+    content: 'نص مضخم'
 })
 
-tippy('.ql-align', {
-    content: 'محاذاة'
+tippy('button[value="ordered"]', {
+    content: 'قائمة مرقمة'
 })
+
+tippy('button[value="bullet"]', {
+    content: 'قائمة منقطة'
+})
+
+tippy('button[value=""]', {
+    content: 'محاذاة لليسار'
+})
+
+
+tippy('button[value="center"]', {
+    content: 'محاذاة للوسط'
+})
+
+
+tippy('button[value="right"]', {
+    content: 'محاذاة لليمين'
+})
+
+
+tippy('button[value="justify"]', {
+    content: 'موازنة'
+})
+
 
 tippy('.ql-image', {
     content: 'صورة'
@@ -85,8 +105,12 @@ tippy('.ql-code-block', {
     content: 'كود برمجي'
 })
 
-tippy('.ql-indent', {
-    content: 'المسافة البادئة'
+tippy('button[value="+1"]', {
+    content: 'زيادة المسافة البادئة'
+})
+
+tippy('button[value="-1"]', {
+    content: 'تقليل المسافة البادئة'
 })
 
 tippy('.ql-direction', {

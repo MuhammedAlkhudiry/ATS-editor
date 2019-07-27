@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html class="is-clipped fade-in-bck">
+<html class="is-clipped">
 
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="../static/quill/quill/dist/quill.snow.css">
-  <link rel="stylesheet" href="../static/assets/css/text.css">
+  <link rel="stylesheet" href="../static/assets/css/editor/custom-format.css">
   <link rel="stylesheet" href="../static/assets/css/bulma/style.css">
   <link rel="stylesheet" href="../static/assets/css/index/index.css">
   <link rel="stylesheet" href="../static/assets/css/index/float-menu.css">
   <link rel="stylesheet" href="../static/assets/css/index/header.css">
   <link rel="stylesheet" href="../static/assets/css/animation.css">
   <link rel="stylesheet" href="../static/assets/css/fonts.css">
+  <link rel="stylesheet" href="../static/assets/css/index/insert-bar.css">
+  <link rel="stylesheet" href="../static/assets/css/custom/custom-sweetAlert.css">
 
   <title>Hello World!</title>
 </head>
@@ -45,11 +47,10 @@
       <img src="../static/assets/icons/content-save-edit.svg" width="18" height="18">
     </span>
     <div id="file-name-container" class="icon-container">
-      <input placeholder="اسم المستند" id="file-name">
+      <input placeholder="اسم المستند" id="file-name" maxlength="100">
       <label id="file-name-note">
         <span class="icon is-small is-left">
-          <img id="file-name-valid-img" src="../static/assets/fontawesome-free-5.9.0-web/svgs/solid/times.svg"
-            width="10" height="10">
+          <img id="file-name-valid-img" src="../static/assets/fontawesome-free-5.9.0-web/svgs/solid/times.svg" width="10" height="10">
         </span>
       </label>
     </div>
@@ -60,6 +61,7 @@
       </span>
     </div>
   </div>
+
 
   <!-- Create the toolbar container -->
   <div id="toolbar-container">
@@ -213,6 +215,15 @@
     </span>
   </div>
 
+  <!-- ----------------------------- insert-bar ------------------------------ -->
+
+
+  <button class="collapsible">Open Collapsible</button>
+  <div class="content">
+    <p>Lorem ipsum...</p>
+  </div>
+  <!-- ----------------------------------------------------------------------- -->
+
   <!-- Create the editor container -->
   <div id="text-box">
     <div id="search-container">
@@ -235,10 +246,8 @@
     <ul id="float-tools-list">
       <li class="tool float-format" data-value="bold">
         <svg class="image is-20x20 ql-float-format" id="Bold" viewbox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-          <path class="ql-float-stroke-1"
-            d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z"></path>
-          <path class="ql-float-stroke-1"
-            d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z">
+          <path class="ql-float-stroke-1" d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z"></path>
+          <path class="ql-float-stroke-1" d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z">
           </path>
         </svg>
       </li>
@@ -258,60 +267,53 @@
       <li class="v-line">
         <img class="image is-20x20" src="../static/assets/svg/vertical-line.svg">
       </li>
-      <li class="tool float-color"  data-value="#000000">
-        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" 
-          style="background-color: rgb(0, 0, 0);"></span>
+      <li class="tool float-color" data-value="#000000">
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" style="background-color: rgb(0, 0, 0);"></span>
       </li>
       <li class="tool float-color" data-value="#e60000">
 
-        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" 
-          style="background-color: rgb(230, 0, 0);"></span>
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" style="background-color: rgb(230, 0, 0);"></span>
       </li>
       <li class="tool float-color" data-value="#ff9900">
 
-        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" 
-          style="background-color: rgb(255, 153, 0);"></span>
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" style="background-color: rgb(255, 153, 0);"></span>
       </li>
       <li class="tool float-color" data-value="#ffff00">
 
-        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" 
-          style="background-color: rgb(255, 255, 0);"></span>
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" style="background-color: rgb(255, 255, 0);"></span>
       </li>
       <li class="tool float-color" data-value="#008a00">
 
-        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" 
-          style="background-color: rgb(0, 138, 0);"></span>
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" style="background-color: rgb(0, 138, 0);"></span>
       </li>
 
       <li class="tool float-color" data-value="#0066cc">
 
-        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" 
-          style="background-color: rgb(0, 102, 204);"></span>
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" style="background-color: rgb(0, 102, 204);"></span>
       </li>
       <li class="tool float-color" data-value="#9933ff">
 
-        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" 
-          style="background-color: rgb(153, 51, 255);"></span>
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" style="background-color: rgb(153, 51, 255);"></span>
       </li>
     </ul>
   </div>
 
-
+  <script>
+  let Note = require('./../static/helpers/notifications');
+  </script>
   <!-- Initialize Quill editor -->
   <script src="../static/assets/js/index.js"></script>
+  <script src="../static/assets/js/tooltip.js"></script>
   <!-- helpers -->
-  <script src="../static/helpers/notifications.js"></script>
+  <!-- <script src="../static/helpers/notifications.js"></script> -->
   <script src="../static/helpers/utilities.js"></script>
   <script src="../static/helpers/editor-helpers.js"></script>
   <script src="../static/quill/quill/dist/quill.js"></script>
   <!-- You can also require other files to run in this process -->
   <script src="../static/core/confi-quill.js"></script>
-  <script src="../static/core/file-management/file-managment.js"></script>
-  <script src="../static/core/file-management/save-file.js"></script>
-  <script src="../static/core/file-management/open-file.js"></script>
+  <script src="../static/assets/js/file-management-ui.js"></script>
   <script src="../static/core/float-menu.js"></script>
   <script src="../static/core/keyboard-shortcuts.js"></script>
-  <script src="../static/assets/js/tooltip.js"></script>
   <script src="../static/request/requests.js"></script>
 </body>
 

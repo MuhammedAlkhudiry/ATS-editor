@@ -29,3 +29,19 @@
     padding: 2px;
     transition: .2s;
 }
+
+
+.ayah {
+    background-color:  #65f39e;
+    color:  #04df5b;
+    font-family: uthmanic-font;
+    animation: fade-in-bck 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    display: inline-block;
+    transition: .2s;
+}
+
+.ayah:hover {
+    border-radius: 5px;
+    padding: 2px;
+    transition: .2s;
+}

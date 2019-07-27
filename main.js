@@ -14,7 +14,7 @@ const fs = require('fs');
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
-// require('electron-reload')(__dirname);
+require('electron-reload')(__dirname);
 
 // require('electron-reload')(__dirname, {
 //   electron: path.join(__dirname, 'node_modules/.bin/electron.cmd')
@@ -50,10 +50,10 @@ app.on('ready', function () {
     });
 
     // load main window from Flask.
-    mainWindow.loadURL(mainAddr);
+    // mainWindow.loadURL(mainAddr);
 
     // for developing front-end
-    // mainWindow.loadFile('./templates/index.html');
+    mainWindow.loadFile('./templates/index.html');
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools();

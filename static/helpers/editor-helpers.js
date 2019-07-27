@@ -22,10 +22,17 @@ function getEditorContent() {
 function isOpenedFileValid(fileContent) {
     return fileContent.contains('ats-editor-file');
 }
+function isFileNameNotValid(fileName) {
 
-function setSavingStatus(msg, cssClass) {
-    let savingStatusText = document.getElementById('saving-status-text');
-    savingStatusText.innerText = msg;
-    savingStatusText.className = cssClass;
+    // TODO: check first char...
+    return fileName.isEmpty();
+
+}
+
+function getFileName(path) {
+
+    return path.split('\\').pop()
+        .substr(0, path.split('\\')
+            .pop().indexOf('.'));
 
 }

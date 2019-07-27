@@ -1,44 +1,65 @@
 'use strict';
+const Swal = require('sweetalert2')
 
-function showSuccessNote(msg) {
-    const success = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 4 * 1000
-    });
+module.exports = class Notification {
 
-    success.fire({
-        type: 'success',
-        title: msg
-    })
+    success(msg) {
+        const success = Swal.mixin({
+            toast: true,
+            position: 'top-start',
+            showConfirmButton: false,
+            timer: 4 * 1000,
+            width: '180px',
+        });
+        success.fire({
+            type: 'success',
+            title: msg
+        })
+    }
+
+    fail(msg) {
+        const failed = Swal.mixin({
+            toast: true,
+            position: 'top-start',
+            showConfirmButton: false,
+            timer: 4 * 1000,
+            width: '180px',
+        });
+
+        failed.fire({
+            type: 'error',
+            title: msg
+        })
+    }
+
+
+    unsavedFile() {
+        return Swal.fire({
+            title: 'المستند الحالي غير محفوظ. هل أنت متأكد؟',
+            type: 'question',
+            customClass: {
+                icon: 'swal2-arabic-question-mark'
+            },
+            confirmButtonText: 'نعم',
+            cancelButtonText: 'لا',
+            showCancelButton: true,
+            showCloseButton: true
+
+        })
+    }
+
+    info(msg) {
+        const infoNote = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        infoNote.fire({
+            type: 'info',
+            title: msg
+        });
+    }
 }
-function showFailedNote(msg) {
-    const failed = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 4 * 1000
-    });
 
-    failed.fire({
-        type: 'error',
-        title: msg
-    })
-}
-
-function showUnsavedFileNote() {
-
-    return Swal.fire({
-        title: 'المستند الحالي غير محفوظ. هل أنت متأكد؟',
-        type: 'question',
-        customClass: {
-            icon: 'swal2-arabic-question-mark'
-        },
-        confirmButtonText: 'نعم',
-        cancelButtonText: 'لا',
-        showCancelButton: true,
-        showCloseButton: true
-
-    })
-}
