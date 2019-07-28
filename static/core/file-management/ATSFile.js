@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 
+// Arabic Text Smart file.
 module.exports = class ATSFile {
 
     constructor() {

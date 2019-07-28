@@ -2595,8 +2595,11 @@ var Editor = function () {
     key: 'getText',
     value: function getText(index, length) {
       return this.getContents(index, length).filter(function (op) {
-        return typeof op.insert === 'string';
+        return typeof op.insert === 'string' || op.insert.image;
       }).map(function (op) {
+         if (op.insert.image) {
+          return op.insert.image = 'i';
+        }
         return op.insert;
       }).join('');
     }

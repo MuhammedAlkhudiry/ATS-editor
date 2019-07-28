@@ -5,7 +5,6 @@ function cleanFile() {
     quill.setContents([]);
     quill.format('direction', 'rtl');
     quill.format('align', 'right');
-
 }
 
 function setEditorContent(htmlString) {

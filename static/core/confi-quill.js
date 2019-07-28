@@ -27,69 +27,91 @@ class Searcher {
     constructor(quill) {
         this.quill = quill;
         this.container = document.getElementById('search-container');
-        document.getElementById('search').addEventListener('click', this.search);
-        document.getElementById('replace').addEventListener('click', this.replace);
-        document.getElementById('replace-all').addEventListener('click', this.replaceAll);
-        // quill.on('text-change', this.update.bind(this));
-        
+
+        document.getElementById('search').addEventListener('click', this.search.bind(this));
+        document.getElementById('replace').addEventListener('click', this.replace.bind(this));
+        document.getElementById('replace-all').addEventListener('click', this.replaceAll.bind(this));
+
     }
-    
-    
+
+
     search() {
         let SearchedString = document.getElementById('search-input').value;
         if (SearchedString) {
-            document.getElementById('search-input').classList.add('is-success')
-            document.getElementById('search-input').classList.remove('is-danger')
 
-
+            // TODO: support search with images.
             let totalText = quill.getText();
             let re = new RegExp(SearchedString, "g");
             let match = re.test(totalText);
             if (match) {
+                document.getElementById('search-input').className = 'input is-success'
                 let indices = Searcher.occurrencesIndices = totalText.getIndicesOf(SearchedString);
-                let length = Searcher.SearchedStringLength = SearchedString.length;
-                
-                indices.forEach(index => quill.formatText(index, length, 'SearchedString', true));
-                
-            } else {
-                document.getElementById('search-input').classList.add('is-danger')
-                document.getElementById('search-input').classList.remove('is-success')
 
+                let length = Searcher.SearchedStringLength = SearchedString.length;
+
+                indices.forEach(index => quill.formatText(index, length, 'SearchedString', true));
+
+            } else {
+                document.getElementById('search-input').className = 'input is-danger';
+                Searcher.occurrencesIndices = null;
+                Searcher.currentIndex = 0;
             }
 
         } else {
+            if (Searcher.occurrencesIndices) {
 
-            if (!indices.isEmpty()) {
-                indices.forEach(index => quill.formatText(index, length, 'SearchedString', false));                
+                Searcher.occurrencesIndices.forEach(index => quill.formatText(index, Searcher.SearchedStringLength, 'SearchedString', false));
+
+                Searcher.occurrencesIndices = null;
+                Searcher.currentIndex = 0;
             }
-            Searcher.occurrencesIndices = null;
-            Searcher.currentIndex = 0;
         }
     }
+
+
     replace() {
-        let oldString = document.getElementById('search-input').value; 
-        let newString = document.getElementById('replace-input').value; 
+        // if no occurrences, then search first.
+        if (!Searcher.occurrencesIndices) {
+            this.search();
+        }
+
+        let indices = Searcher.occurrencesIndices;
         
-        quill.deleteText(Searcher.occurrencesIndices[Searcher.currentIndex], oldString.length);
-        quill.insertText(Searcher.occurrencesIndices[Searcher.currentIndex], newString);
+        let oldString = document.getElementById('search-input').value;
+        let newString = document.getElementById('replace-input').value;
 
-        Searcher.currentIndex++;
+        quill.deleteText(indices[Searcher.currentIndex], oldString.length);
+        quill.insertText(indices[Searcher.currentIndex], newString);
 
+        // update the occurrencesIndices.
+        this.search();
     }
 
     replaceAll() {
-        let oldStringLen = document.getElementById('search-input').value.length; 
+        let oldStringLen = document.getElementById('search-input').value.length;
         let newString = document.getElementById('replace-input').value;
+        // if no occurrences, then search first.
+        if (!Searcher.occurrencesIndices) {
+            this.search();
+        }
 
-        Searcher.occurrencesIndices.forEach(index => {
-            quill.deleteText(index, oldStringLen);
-            quill.insertText(index, newString);
-        })
+        if (Searcher.occurrencesIndices) {
+
+            while (Searcher.occurrencesIndices) {
+
+                quill.deleteText(Searcher.occurrencesIndices[0], oldStringLen);
+                quill.insertText(Searcher.occurrencesIndices[0], newString);
+
+                // update the occurrencesIndices.
+                this.search();
+            }
+        }
+
     }
 }
 
 
-Searcher.occurrencesIndices = [];
+Searcher.occurrencesIndices = null;
 Searcher.currentIndex = 0;
 Searcher.SearchedStringLength = null;
 
@@ -148,6 +170,5 @@ quill.format('direction', 'rtl');
 quill.format('align', 'right');
 
 
-quill.insertText(0, 'لا إله إلا اللهلا إله إلا اللهلا إله إلا الله');
-quill.insertText(0, 'لا إله إلا اللهلا إله إلا اللهلا إله إلا الله');
+quill.insertText(0, 'لا نعم لا نعم');
 // quill.formatText(0, 4, 'SearchedString', true);

@@ -18,227 +18,237 @@
 </head>
 
 <body>
-  <!-- main bar -->
 
+  <!-- header-start -->
 
-  <div class="title-bar">
-    <div class="icon" id="exit-icon">
-      <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/solid/times.svg" width="12" height="12">
-    </div>
-    <span class="icon" id="resize-icon">
-      <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/window-maximize.svg" width="12" height="12">
+  <div id="main-container">
 
-    </span>
-    <span class="icon" id="min-icon">
-      <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/window-minimize.svg" width="12" height="12">
-    </span>
-  </div>
+    <!-- title bar -->
 
+    <div class="title-bar">
+      <span class="icon" id="exit-icon">
+        <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/solid/times.svg" width="12" height="12">
+      </span>
+      <span class="icon" id="resize-icon">
+        <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/window-maximize.svg" width="12" height="12">
 
-
-  <div class="file-management-bar">
-    <span class="icon" id="new-file-icon">
-      <img src="../static/assets/icons/file-document-box-plus-outline.svg" width="18" height="18">
-    </span>
-    <span class="icon" id="open-file-icon">
-      <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/folder-open.svg" width="20" height="20">
-    </span>
-    <span class="icon" id="save-icon">
-      <img src="../static/assets/icons/content-save-edit.svg" width="18" height="18">
-    </span>
-    <div id="file-name-container" class="icon-container">
-      <input placeholder="اسم المستند" id="file-name" maxlength="100">
-      <label id="file-name-note">
-        <span class="icon is-small is-left">
-          <img id="file-name-valid-img" src="../static/assets/fontawesome-free-5.9.0-web/svgs/solid/times.svg" width="10" height="10">
-        </span>
-      </label>
-    </div>
-
-    <div id="saving-status-container">
-      <span id="saving-status-text">
-        الملف غير محفوظ.
+      </span>
+      <span class="icon" id="min-icon">
+        <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/window-minimize.svg" width="12" height="12">
       </span>
     </div>
-  </div>
 
 
-  <!-- Create the toolbar container -->
-  <div id="toolbar-container">
-    <span class="ql-formats">
-      <select class="ql-font">
-        <option value="Arial" selected>أريال</option>
-        <option value="dubai">خط دبي</option>
-        <option value="alhurra">الحرة</option>
-        <option value="ArefRuqaa">خط الرقعة</option>
-        <option value="Cairo">كاريو</option>
-        <option value="shiraz">شيراز</option>
-        <option value="zahra">الزهراء</option>
-      </select>
-    </span>
-    <span class="ql-formats">
-      <select class="ql-header">
-        <option value="1">عنوان رئيسي</option>
-        <option value="2">عنوان فرعي</option>
-        <option value="3">عنوان فقرة</option>
-        <option value="4">نص كبير</option>
-        <option selected>نص عادي</option>
-      </select>
-    </span>
-    <span class="ql-formats">
-      <select class="ql-size">
-        <option value="small">خط صغير</option>
-        <option selected>خط متوسط</option>
-        <option value="large">خط كبير</option>
-        <option value="huge">خط ضخم</option>
-      </select>
-    </span>
-    <span class="ql-formats">
-      <select class="ql-color" title="Color">
-        <option selected="selected"></option>
-        <option value="#e60000"></option>
-        <option value="#ff9900"></option>
-        <option value="#ffff00"></option>
-        <option value="#008a00"></option>
-        <option value="#0066cc"></option>
-        <option value="#9933ff"></option>
-        <option value="#ffffff"></option>
-        <option value="#facccc"></option>
-        <option value="#ffebcc"></option>
-        <option value="#ffffcc"></option>
-        <option value="#cce8cc"></option>
-        <option value="#cce0f5"></option>
-        <option value="#ebd6ff"></option>
-        <option value="#bbbbbb"></option>
-        <option value="#f06666"></option>
-        <option value="#ffc266"></option>
-        <option value="#ffff66"></option>
-        <option value="#66b966"></option>
-        <option value="#66a3e0"></option>
-        <option value="#c285ff"></option>
-        <option value="#888888"></option>
-        <option value="#a10000"></option>
-        <option value="#b26b00"></option>
-        <option value="#b2b200"></option>
-        <option value="#006100"></option>
-        <option value="#0047b2"></option>
-        <option value="#6b24b2"></option>
-        <option value="#444444"></option>
-        <option value="#5c0000"></option>
-        <option value="#663d00"></option>
-        <option value="#666600"></option>
-        <option value="#003700"></option>
-        <option value="#002966"></option>
-        <option value="#3d1466"></option>
-      </select>
-      <select class="ql-background" title="background">
-        <option selected="selected"></option>
-        <option value="#e60000"></option>
-        <option value="#ff9900"></option>
-        <option value="#ffff00"></option>
-        <option value="#008a00"></option>
-        <option value="#0066cc"></option>
-        <option value="#9933ff"></option>
-        <option value="#ffffff"></option>
-        <option value="#facccc"></option>
-        <option value="#ffebcc"></option>
-        <option value="#ffffcc"></option>
-        <option value="#cce8cc"></option>
-        <option value="#cce0f5"></option>
-        <option value="#ebd6ff"></option>
-        <option value="#bbbbbb"></option>
-        <option value="#f06666"></option>
-        <option value="#ffc266"></option>
-        <option value="#ffff66"></option>
-        <option value="#66b966"></option>
-        <option value="#66a3e0"></option>
-        <option value="#c285ff"></option>
-        <option value="#888888"></option>
-        <option value="#a10000"></option>
-        <option value="#b26b00"></option>
-        <option value="#b2b200"></option>
-        <option value="#006100"></option>
-        <option value="#0047b2"></option>
-        <option value="#6b24b2"></option>
-        <option value="#444444"></option>
-        <option value="#5c0000"></option>
-        <option value="#663d00"></option>
-        <option value="#666600"></option>
-        <option value="#003700"></option>
-        <option value="#002966"></option>
-        <option value="#3d1466"></option>
-      </select>
-    </span>
-    <span class="ql-formats">
-      <button class="ql-bold"></button>
-      <button class="ql-italic"></button>
-      <button class="ql-underline"></button>
-      <button class="ql-strike"></button>
-    </span>
-    <span class="ql-formats">
-      <button class="ql-script" value="sub"></button>
-      <button class="ql-script" value="super"></button>
-    </span>
-    <span class="ql-formats">
-      <button class="ql-list" value="ordered"></button>
-      <button class="ql-list" value="bullet"></button>
 
-    </span>
-    <span class="ql-formats">
-      <button class="ql-align" value=""></button>
-      <button class="ql-align" value="center"></button>
-      <button class="ql-align" value="right"></button>
-      <button class="ql-align" value="justify"></button>
-    </span>
-    <span class="ql-formats">
-      <button class="ql-image"></button>
-      <button class="ql-video"></button>
-      <button class="ql-link"></button>
+    <div class="file-management-bar">
+      <span class="icon" id="new-file-icon">
+        <img src="../static/assets/icons/file-document-box-plus-outline.svg" width="18" height="18">
+      </span>
+      <span class="icon" id="open-file-icon">
+        <img src="../static/assets/fontawesome-free-5.9.0-web/svgs/regular/folder-open.svg" width="20" height="20">
+      </span>
+      <span class="icon" id="save-icon">
+        <img src="../static/assets/icons/content-save-edit.svg" width="18" height="18">
+      </span>
+      <div id="file-name-container" class="icon-container">
+        <input placeholder="اسم المستند" id="file-name" maxlength="100">
+        <label id="file-name-note">
+          <span class="icon is-small is-left">
+            <img id="file-name-valid-img" src="../static/assets/fontawesome-free-5.9.0-web/svgs/solid/times.svg"
+              width="10" height="10">
+          </span>
+        </label>
+      </div>
 
-    </span>
-    <span class="ql-formats">
-      <button class="ql-blockquote"></button>
-      <button class="ql-code-block"></button>
-
-    </span>
-    <span class="ql-formats">
-      <button class="ql-indent" value="+1"></button>
-      <button class="ql-indent" value="-1"></button>
-
-    </span>
-    <span class="ql-formats">
-      <button class="ql-direction"></button>
-    </span>
-    <span class="ql-formats">
-      <button class="ql-clean"></button>
-
-    </span>
-  </div>
-
-  <!-- ----------------------------- insert-bar ------------------------------ -->
-
-
-  <button class="collapsible">Open Collapsible</button>
-  <div class="content">
-    <p>Lorem ipsum...</p>
-  </div>
-  <!-- ----------------------------------------------------------------------- -->
-
-  <!-- Create the editor container -->
-  <div id="text-box">
-    <div id="search-container">
-      <input id="search-input" class="input" type="text" placeholder="بحث">
-      <input id="replace-input" class="input" type="text" placeholder="استبدال">
-      <button id="search">بحث</button>
-      <button id="replace">استبدال</button>
-      <button id="replace-all">استبدال الكل</button>
-    </div>
-    <div class="container">
-      <div id="editor">
+      <div id="saving-status-container">
+        <span id="saving-status-text">
+          الملف غير محفوظ.
+        </span>
       </div>
     </div>
-  </div>
 
+
+    <!-- Create the toolbar container -->
+    <div id="toolbar-container">
+      <span class="ql-formats">
+        <select class="ql-font">
+          <option value="Arial" selected>أريال</option>
+          <option value="dubai">خط دبي</option>
+          <option value="alhurra">الحرة</option>
+          <option value="ArefRuqaa">خط الرقعة</option>
+          <option value="Cairo">كاريو</option>
+          <option value="shiraz">شيراز</option>
+          <option value="zahra">الزهراء</option>
+        </select>
+      </span>
+      <span class="ql-formats">
+        <select class="ql-header">
+          <option value="1">عنوان رئيسي</option>
+          <option value="2">عنوان فرعي</option>
+          <option value="3">عنوان فقرة</option>
+          <option value="4">نص كبير</option>
+          <option selected>نص عادي</option>
+        </select>
+      </span>
+      <span class="ql-formats">
+        <select class="ql-size">
+          <option value="small">خط صغير</option>
+          <option selected>خط متوسط</option>
+          <option value="large">خط كبير</option>
+          <option value="huge">خط ضخم</option>
+        </select>
+      </span>
+      <span class="ql-formats">
+        <select class="ql-color" title="Color">
+          <option selected="selected"></option>
+          <option value="#e60000"></option>
+          <option value="#ff9900"></option>
+          <option value="#ffff00"></option>
+          <option value="#008a00"></option>
+          <option value="#0066cc"></option>
+          <option value="#9933ff"></option>
+          <option value="#ffffff"></option>
+          <option value="#facccc"></option>
+          <option value="#ffebcc"></option>
+          <option value="#ffffcc"></option>
+          <option value="#cce8cc"></option>
+          <option value="#cce0f5"></option>
+          <option value="#ebd6ff"></option>
+          <option value="#bbbbbb"></option>
+          <option value="#f06666"></option>
+          <option value="#ffc266"></option>
+          <option value="#ffff66"></option>
+          <option value="#66b966"></option>
+          <option value="#66a3e0"></option>
+          <option value="#c285ff"></option>
+          <option value="#888888"></option>
+          <option value="#a10000"></option>
+          <option value="#b26b00"></option>
+          <option value="#b2b200"></option>
+          <option value="#006100"></option>
+          <option value="#0047b2"></option>
+          <option value="#6b24b2"></option>
+          <option value="#444444"></option>
+          <option value="#5c0000"></option>
+          <option value="#663d00"></option>
+          <option value="#666600"></option>
+          <option value="#003700"></option>
+          <option value="#002966"></option>
+          <option value="#3d1466"></option>
+        </select>
+        <select class="ql-background" title="background">
+          <option selected="selected"></option>
+          <option value="#e60000"></option>
+          <option value="#ff9900"></option>
+          <option value="#ffff00"></option>
+          <option value="#008a00"></option>
+          <option value="#0066cc"></option>
+          <option value="#9933ff"></option>
+          <option value="#ffffff"></option>
+          <option value="#facccc"></option>
+          <option value="#ffebcc"></option>
+          <option value="#ffffcc"></option>
+          <option value="#cce8cc"></option>
+          <option value="#cce0f5"></option>
+          <option value="#ebd6ff"></option>
+          <option value="#bbbbbb"></option>
+          <option value="#f06666"></option>
+          <option value="#ffc266"></option>
+          <option value="#ffff66"></option>
+          <option value="#66b966"></option>
+          <option value="#66a3e0"></option>
+          <option value="#c285ff"></option>
+          <option value="#888888"></option>
+          <option value="#a10000"></option>
+          <option value="#b26b00"></option>
+          <option value="#b2b200"></option>
+          <option value="#006100"></option>
+          <option value="#0047b2"></option>
+          <option value="#6b24b2"></option>
+          <option value="#444444"></option>
+          <option value="#5c0000"></option>
+          <option value="#663d00"></option>
+          <option value="#666600"></option>
+          <option value="#003700"></option>
+          <option value="#002966"></option>
+          <option value="#3d1466"></option>
+        </select>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-bold"></button>
+        <button class="ql-italic"></button>
+        <button class="ql-underline"></button>
+        <button class="ql-strike"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-script" value="sub"></button>
+        <button class="ql-script" value="super"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-list" value="ordered"></button>
+        <button class="ql-list" value="bullet"></button>
+
+      </span>
+      <span class="ql-formats">
+        <button class="ql-align" value=""></button>
+        <button class="ql-align" value="center"></button>
+        <button class="ql-align" value="right"></button>
+        <button class="ql-align" value="justify"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-image"></button>
+        <button class="ql-video"></button>
+        <button class="ql-link"></button>
+
+      </span>
+      <span class="ql-formats">
+        <button class="ql-blockquote"></button>
+        <button class="ql-code-block"></button>
+
+      </span>
+      <span class="ql-formats">
+        <button class="ql-indent" value="+1"></button>
+        <button class="ql-indent" value="-1"></button>
+
+      </span>
+      <span class="ql-formats">
+        <button class="ql-direction"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-clean"></button>
+
+      </span>
+    </div>
+
+    <!-- ----------------------------- insert-bar ------------------------------ -->
+
+    <div id="insert-bar">
+      <span class="icon">icon</span>
+      <span class="icon">icon</span>
+      <span class="icon">icon</span>
+      <span class="icon">icon</span>
+      <span class="icon">icon</span>
+    </div>
+    <!-- ----------------------------------------------------------------------- -->
+    <!-- <div id="search-container">
+    <input id="search-input" class="input" type="text" placeholder="بحث">
+    <input id="replace-input" class="input" type="text" placeholder="استبدال">
+    <button id="search">بحث</button>
+    <button id="replace">استبدال</button>
+    <button id="replace-all">استبدال الكل</button>
+  </div> -->
+    </d>
+    <!-- header-end -->
+    <!-- Create the editor container -->
+    <div id="text-box">
+
+      <div class="container">
+        <div id="editor">
+        </div>
+      </div>
+    </div>
+
+  </div>
   <!-- create float-menu show when select text -->
 
   <div id="float-menu" class="fade-in-bck">
@@ -246,8 +256,10 @@
     <ul id="float-tools-list">
       <li class="tool float-format" data-value="bold">
         <svg class="image is-20x20 ql-float-format" id="Bold" viewbox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-          <path class="ql-float-stroke-1" d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z"></path>
-          <path class="ql-float-stroke-1" d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z">
+          <path class="ql-float-stroke-1"
+            d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z"></path>
+          <path class="ql-float-stroke-1"
+            d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z">
           </path>
         </svg>
       </li>
@@ -268,38 +280,45 @@
         <img class="image is-20x20" src="../static/assets/svg/vertical-line.svg">
       </li>
       <li class="tool float-color" data-value="#000000">
-        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" style="background-color: rgb(0, 0, 0);"></span>
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color"
+          style="background-color: rgb(0, 0, 0);"></span>
       </li>
       <li class="tool float-color" data-value="#e60000">
 
-        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" style="background-color: rgb(230, 0, 0);"></span>
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color"
+          style="background-color: rgb(230, 0, 0);"></span>
       </li>
       <li class="tool float-color" data-value="#ff9900">
 
-        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" style="background-color: rgb(255, 153, 0);"></span>
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color"
+          style="background-color: rgb(255, 153, 0);"></span>
       </li>
       <li class="tool float-color" data-value="#ffff00">
 
-        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" style="background-color: rgb(255, 255, 0);"></span>
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color"
+          style="background-color: rgb(255, 255, 0);"></span>
       </li>
       <li class="tool float-color" data-value="#008a00">
 
-        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" style="background-color: rgb(0, 138, 0);"></span>
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color"
+          style="background-color: rgb(0, 138, 0);"></span>
       </li>
 
       <li class="tool float-color" data-value="#0066cc">
 
-        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" style="background-color: rgb(0, 102, 204);"></span>
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color"
+          style="background-color: rgb(0, 102, 204);"></span>
       </li>
       <li class="tool float-color" data-value="#9933ff">
 
-        <span tabindex="0" role="button" class="image is-20x20 ql-float-color" style="background-color: rgb(153, 51, 255);"></span>
+        <span tabindex="0" role="button" class="image is-20x20 ql-float-color"
+          style="background-color: rgb(153, 51, 255);"></span>
       </li>
     </ul>
   </div>
 
   <script>
-  let Note = require('./../static/helpers/notifications');
+    let Note = require('./../static/helpers/Notification');
   </script>
   <!-- Initialize Quill editor -->
   <script src="../static/assets/js/index.js"></script>

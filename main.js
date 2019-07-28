@@ -1,7 +1,7 @@
 // TODO: replace request-promise!!!
 // TODO: change paths for python!!!
 // TODO: minify assets.
-
+// TODO: make sure of find/replace for image, modify getText();
 'use strict';
 
 // Modules to control application life and create native browser window
@@ -112,19 +112,19 @@ app.on('activate', function () {
 // code. You can also put them in separate files and require them here.
 
 
-// receive from index.js 
-ipcMain.on('ondragstart', (event, filePath) => {
+// // receive from index.js 
+// ipcMain.on('ondragstart', (event, filePath) => {
 
-  // read file then send it back to index.js
-  fs.readFile(filePath, 'utf-8', (err, data) => {
+//   // read file then send it back to index.js
+//   fs.readFile(filePath, 'utf-8', (err, data) => {
 
-    if (err) {
-      alert("حدث خطأ ما أثناء فتح الملف :" + err.message)
-      return;
-    }
+//     if (err) {
+//       alert("حدث خطأ ما أثناء فتح الملف :" + err.message)
+//       return;
+//     }
 
-    // handle the file content 
-    event.sender.send('fileData', data)
-  })
+//     // handle the file content 
+//     event.sender.send('fileData', data)
+//   })
 
-})
+// })

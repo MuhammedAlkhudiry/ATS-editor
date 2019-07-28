@@ -1,9 +1,9 @@
 #text-box {
     height: 80vh;
-    margin: 70px 0;
+    padding:  10px 0;
     width: 100vw;
     overflow-y: overlay;
-    background-color: #fcfcfc;
+    background-color: #f8f8f8;
 }
 
 

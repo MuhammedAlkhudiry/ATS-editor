@@ -11,11 +11,16 @@ tippy('#file-name', {
 })
 
 tippy('#open-file-icon', {
-    content: 'فتح ملف'
+    content: 'فتح'
 })
 
 tippy('#new-file-icon', {
-    content: 'ملف جديد'
+    content: 'جديد'
+})
+
+tippy('#save-icon', {
+    content: 'حفظ باسم',
+    multiple: true,
 })
 
 tippy('.ql-header', {
