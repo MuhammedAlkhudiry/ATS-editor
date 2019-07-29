@@ -13,13 +13,6 @@ Quill.register(FontAttributor, true);
 
 /* -------------------------------------------------------------------------- */
 
-/* ---------------------------  custom module -------------------------- */
-const AutoLinks = require('quill-auto-links');
-Quill.register('modules/autoLinks', AutoLinks.default);
-
-
-/* -------------------------------------------------------------------------- */
-
 /* ----------------------------- custom modules ----------------------------- */
 
 class Searcher {
@@ -115,7 +108,6 @@ Searcher.occurrencesIndices = null;
 Searcher.currentIndex = 0;
 Searcher.SearchedStringLength = null;
 
-
 Quill.register('modules/Searcher', Searcher);
 
 /* -------------------------------------------------------------------------- */
@@ -131,12 +123,6 @@ class SearchedStringBlot extends Inline {
         node.contentEditable = 'false';
         return node
     }
-
-    // necessary for styling using tagName = span;
-    // formats() {
-    //     return SearchedStringBlot.tagName
-    // }
-
 }
 
 SearchedStringBlot.blotName = 'SearchedString';
@@ -161,7 +147,6 @@ let quill = new Quill('#editor', {
     // toolbar
     modules: {
         toolbar: '#toolbar-container',
-        autoLinks: true,
         Searcher: true
     },
 });

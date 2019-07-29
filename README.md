@@ -1,2 +1,0 @@
-# arabic-text-smart-editor
- 

@@ -22,10 +22,6 @@ electronLocalshortcut.register(win, 'Ctrl+F', () => {
   searchFile();
 });
 
-electronLocalshortcut.register(win, 'Ctrl+Enter', () => {
-  newPage()
-});
-
 electronLocalshortcut.register(win, 'Ctrl+J', () => {
   quill.format('align', 'justify');
 });

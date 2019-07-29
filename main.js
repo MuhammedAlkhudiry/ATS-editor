@@ -1,93 +1,84 @@
-// TODO: replace request-promise!!!
-// TODO: change paths for python!!!
-// TODO: minify assets.
-// TODO: make sure of find/replace for image, modify getText();
 'use strict';
 
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require('electron');
+const {app, BrowserWindow} = require('electron');
 const path = require('path');
-const { ipcMain } = require('electron');
-const rq = require('request-promise');
-const fs = require('fs');
+const axios = require('axios');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
 require('electron-reload')(__dirname);
 
-// require('electron-reload')(__dirname, {
-//   electron: path.join(__dirname, 'node_modules/.bin/electron.cmd')
-// });
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 
 app.on('ready', function () {
 
-  /* ------------------ setting up Flask server ----------------- */
+    /* ------------------ setting up Flask server ----------------- */
 
-  // develop
-  // var subpy = require('child_process').spawn('python', ['python.py']);
+    // develop
+    // var subpy = require('child_process').spawn('python', ['python.py']);
 
-  // packaging
-  // var subpy = require('child_process').spawn('./dist/python.exe');
+    // packaging
+    // var subpy = require('child_process').spawn('./dist/python.exe');
 
-  /* ------------------ setting up Flask server ----------------- */
+    /* ------------------ setting up Flask server ----------------- */
 
-  var mainAddr = 'http://localhost:5000/../../templates/index.html';
-  var openWindow = function () {
+    const mainAddr = 'http://localhost:5000/../../templates/index.html';
+    const openWindow = function () {
 
-    // setting main window..
-    mainWindow = new BrowserWindow({
-      width: 800,
-      height: 600,
-      webPreferences: {
-        preload: path.join(__dirname, 'preload.js'),
-        nodeIntegration: true
-      },
-      frame: false,
-    });
+        // setting main window..
+        mainWindow = new BrowserWindow({
+            width: 800,
+            height: 600,
+            webPreferences: {
+                preload: path.join(__dirname, 'preload.js'),
+                nodeIntegration: true
+            },
+            frame: false,
+        });
 
-    // load main window from Flask.
-    // mainWindow.loadURL(mainAddr);
+        // load main window from Flask.
+        // mainWindow.loadURL(mainAddr);
 
-    // for developing front-end
-    mainWindow.loadFile('./templates/index.html');
+        // for developing front-end
+        mainWindow.loadFile('./templates/index.html');
 
-    // Open the DevTools.
-    mainWindow.webContents.openDevTools();
-    // TODO: dl
-    mainWindow.webContents.session.clearCache(function () {
+        // Open the DevTools.
+        mainWindow.webContents.openDevTools();
+        // TODO: dl
+        // mainWindow.webContents.session.clearCache(function () {
+        //
+        // });
 
-    });
+        mainWindow.on('closed', function () {
+            mainWindow = null;
+            // subpy.kill();
+        });
+    };
 
-    mainWindow.on('closed', function () {
-      mainWindow = null;
-      // subpy.kill();
-    });
-  };
+    /* ------------------------- starting Flask server ------------------------- */
 
-  /* ------------------------- starting Flask server ------------------------- */
+    const startUp = function () {
+        axios(mainAddr)
+            .then(function (htmlString) {
+                console.log('server started!');
+                openWindow();
+            })
+            .catch(function (err) {
+                console.log(err);
+                startUp();
+            });
+    };
 
-  var startUp = function () {
-    rq(mainAddr)
-      .then(function (htmlString) {
-        console.log('server started!');
-        openWindow();
-      })
-      .catch(function (err) {
-        console.log(err);
-        startUp();
-      });
-  };
+    // for back-end
+    // startUp();
 
-  // for back-end
-  // startUp();
-
-  // for front-end
-  openWindow()
-  /* ------------------------- starting Flask server ------------------------- */
+    // for front-end
+    openWindow()
+    /* ------------------------- starting Flask server ------------------------- */
 
 });
 
@@ -95,16 +86,16 @@ app.on('ready', function () {
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
-  // On macOS it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') app.quit()
-})
+    // On macOS it is common for applications and their menu bar
+    // to stay active until the user quits explicitly with Cmd + Q
+    if (process.platform !== 'darwin') app.quit()
+});
 
 app.on('activate', function () {
-  // On macOS it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  if (mainWindow === null) createWindow()
-})
+    // On macOS it's common to re-create a window in the app when the
+    // dock icon is clicked and there are no other windows open.
+    if (mainWindow === null) openWindow();
+});
 
 /* ---------------------------- closing functions --------------------------- */
 
@@ -112,7 +103,7 @@ app.on('activate', function () {
 // code. You can also put them in separate files and require them here.
 
 
-// // receive from index.js 
+// // receive from index.js
 // ipcMain.on('ondragstart', (event, filePath) => {
 
 //   // read file then send it back to index.js
@@ -123,7 +114,7 @@ app.on('activate', function () {
 //       return;
 //     }
 
-//     // handle the file content 
+//     // handle the file content
 //     event.sender.send('fileData', data)
 //   })
 
