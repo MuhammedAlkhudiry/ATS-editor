@@ -4,9 +4,7 @@ let ATSFile = require('./ATSFile');
 
 module.exports = class FileSaver {
 
-  static save(fileName, extension, localPath) {
-    let file = new ATSFile();
-    file.name = fileName;
+  static save(file, extension, localPath) {
 
     // show save dialog, and let user choose a location, and store the path.
     file.path = dialog.showSaveDialog({
@@ -18,12 +16,13 @@ module.exports = class FileSaver {
     });
     // TODO: if pdf, docx.
     if (extension == 'html') {
-      file.content = getEditorContent();
+      file.content = EditorHelper.getEditorContent();
 
-      // create a file in the chosen location, then write the file content in it
       try {
-        fs.writeFileSync(file.path, file.content)
-        return file;
+        fs.writeFile(file.path, file.content, e => {
+          new Note().success('حٌفظ المستند');
+          file.setSavingStatus('الملف محفوظ', 'saved-file');
+        })
       } catch (e) {
         console.log(e)
       }
@@ -31,7 +30,13 @@ module.exports = class FileSaver {
   }
 
   static autoSave(file) {
-    fs.writeFileSync(file.path, file.content)
+    try {
+      fs.writeFile(file.path, file.content, e => {
+        file.setSavingStatus('الملف محفوظ', 'saved-file');
+      })
+    } catch (e) {
+      console.log(e)
+    }
   }
 }
 

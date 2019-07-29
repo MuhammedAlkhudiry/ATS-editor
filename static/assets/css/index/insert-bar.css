@@ -1,8 +1,34 @@
 #insert-bar {
-	display: grid;
-	grid-template-columns: repeat(5, 30px);
-	justify-items: center;
-	justify-content: center;
-	transform: translate(50px, 50px);
+	background-color: #f9f9f9;
+	    border-top: 1px solid #cccccc8e;
+	    border-bottom: 1px solid #cccccc8e;
+}
 
+#insert-icons {
+	display: grid;
+	grid-template-columns: repeat(5, 25px);
+	justify-items: center;
+	justify-content: space-evenly;
+	margin: 0 30vw;
+}
+
+.insert-icon {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	transition: .3s;
+	border: 1px red solid;
+}
+
+.insert-icon:hover {
+	background-color: #e8f0fe;
+	transition: .3s;
+
+}
+
+.insert-icon:hover .ql-float-stroke-1,
+.insert-icon:hover .ql-float-stroke-2 {
+	stroke: #06c;
+	background: #e8f0fe;
+	border-radius: 0.4em
 }

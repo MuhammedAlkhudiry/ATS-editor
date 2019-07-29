@@ -18,4 +18,10 @@ module.exports = class ATSFile {
         this.savingStatus = savingStatusText.innerText = msg;
         savingStatusText.className = cssClass;
     }
+
+    setName(name) {
+        let fileName = document.getElementById('file-name');
+        fileName.value = name;
+        this.name = name;
+    }
 }

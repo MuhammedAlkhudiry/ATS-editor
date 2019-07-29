@@ -38,8 +38,8 @@ class Searcher {
     search() {
         let SearchedString = document.getElementById('search-input').value;
         if (SearchedString) {
-
-            // TODO: support search with images.
+         
+            // todo: change to customGetText();
             let totalText = quill.getText();
             let re = new RegExp(SearchedString, "g");
             let match = re.test(totalText);

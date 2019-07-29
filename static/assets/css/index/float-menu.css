@@ -20,12 +20,10 @@
 
 #float-tools-list {
     display: grid;
-    grid-template-columns: repeat(12, 30px);
+    grid-template-columns: repeat(11, 30px);
     grid-template-rows: 30px;
     grid-template-areas: "B I U |";
     align-items: center;
-    /* justify-items: center; */
-    /* adjusted */
     border: .9px solid #777;
     border-radius: 0.4em;
     background-color: #f9f9f9;
@@ -73,6 +71,10 @@
 .ql-float-stroke-2 {
     fill: #444;
 }
+
+ .ql-float-stroke-3 {
+     opacity: 0.4;
+ }
 
 .tool:hover .ql-float-stroke-1 {
     stroke: #06c;

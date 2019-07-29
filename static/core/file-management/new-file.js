@@ -9,13 +9,13 @@ function createNewFile(e) {
         new Note().unsavedFile().then((result) => {
             if (result.value) {
                 
-                cleanFile();
+                EditorHelper.cleanEditor();
                 new Note().info('ملف جديد');
             }
         })
 
     } else {
-        cleanFile()
+        EditorHelper.cleanEditor();()
         new Note().info('ملف جديد');
     }
 }
