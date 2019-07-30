@@ -6,7 +6,7 @@ const Delta = Quill.import('delta');
 
 var FontAttributor = Quill.import('formats/font');
 FontAttributor.whitelist = [
-    'dubai', 'alhurra', 'ArefRuqaa', 'Arial', 'Cairo', 'shiraz', 'ubuntu', 'zahra'
+    'dubai', 'alhurra', 'ArefRuqaa', 'Arial', 'Cairo', 'shiraz', 'ubuntu', 'zahra',
 ];
 
 Quill.register(FontAttributor, true);
@@ -31,13 +31,13 @@ class Searcher {
     search() {
         let SearchedString = document.getElementById('search-input').value;
         if (SearchedString) {
-         
+
             // todo: change to customGetText();
             let totalText = quill.getText();
-            let re = new RegExp(SearchedString, "g");
+            let re = new RegExp(SearchedString, 'g');
             let match = re.test(totalText);
             if (match) {
-                document.getElementById('search-input').className = 'input is-success'
+                document.getElementById('search-input').className = 'input is-success';
                 let indices = Searcher.occurrencesIndices = totalText.getIndicesOf(SearchedString);
 
                 let length = Searcher.SearchedStringLength = SearchedString.length;
@@ -69,7 +69,7 @@ class Searcher {
         }
 
         let indices = Searcher.occurrencesIndices;
-        
+
         let oldString = document.getElementById('search-input').value;
         let newString = document.getElementById('replace-input').value;
 
@@ -119,9 +119,9 @@ let Inline = Quill.import('blots/inline');
 class SearchedStringBlot extends Inline {
 
     static create(value) {
-        let node = super.create(value)
+        let node = super.create(value);
         node.contentEditable = 'false';
-        return node
+        return node;
     }
 }
 
@@ -147,7 +147,7 @@ let quill = new Quill('#editor', {
     // toolbar
     modules: {
         toolbar: '#toolbar-container',
-        Searcher: true
+        Searcher: true,
     },
 });
 

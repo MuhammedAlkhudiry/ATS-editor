@@ -1,0 +1,5 @@
+class PyRequest {
+    text;
+    route;
+
+}

@@ -1,15 +1,9 @@
 @import '../../../../node_modules/tippy.js/themes/light.css';
 
-#main-container {
-    position: fixed;
-    display: grid;
-    grid-template-rows: 30px 40px auto auto auto;
-    z-index: 100;
-}
 
 .title-bar {
     display: grid;
-    grid-template-columns: repeat(3, 40px);
+    grid-template-columns: repeat(3, 35px);
     height: 30px;
     background-color: #ccc;
     width: 100%;
@@ -19,11 +13,14 @@
 #exit-icon,
 #resize-icon,
 #min-icon {
-    height: 100%;
-    width: 100%;
     cursor: pointer;
     transition: 0.3s;
     -webkit-app-region: no-drag;
+}
+
+#min-icon {
+    align-items: end;
+
 }
 
 #exit-icon:hover {
@@ -77,7 +74,7 @@
     width: 80%;
     height: 35px;
     position: relative;
-    background: #f5f5f5;
+    background: transparent;
 }
 
 #file-name {
@@ -86,12 +83,11 @@
     border-radius: 6px;
     justify-self: center;
     align-self: center;
-    padding: 8px;
-    background: #f5f5f5;
-    transition: border-color 0.4s ease;
+    padding: 4px 8px;
+    background: transparent;
+    transition: border-color 0.4s ease,
+    font-size 0.4s ease;
     border: .13em transparent solid;
-    height: 35px;
-    transition: 0.4s;
     outline: none;
     font-weight: bold;
     font-size: 18px;
@@ -111,7 +107,7 @@
     opacity: 0.35;
 }
 
-#file-name:focus~#file-name-note {
+#file-name:focus ~ #file-name-note {
     font-size: 12px;
     opacity: 1;
     color: #444;
@@ -125,7 +121,7 @@
     transition: transform 0.4s ease, opacity 0.4s 0.1s ease;
 }
 
-@media(max-width: 500px) {
+@media (max-width: 500px) {
     #file-name-note {
         right: 85%;
     }

@@ -1,11 +1,10 @@
-
-let textBox = document.getElementById("text-box");
-const resizeIcon = document.getElementById("resize-icon");
+let textBox = document.getElementById('text-box');
+const resizeIcon = document.getElementById('resize-icon');
 /* -------------------------------- main bar -------------------------------- */
 
 /* ------------------------- controlling main window ------------------------ */
 
-document.getElementById("exit-icon").addEventListener("click", e => {
+document.getElementById('exit-icon').addEventListener('click', e => {
     if (change.length() > 0) {
         new Note().unsavedFile().then(result => {
             // if result.value means 'yes' pressed, else no.
@@ -19,58 +18,71 @@ document.getElementById("exit-icon").addEventListener("click", e => {
     } else {
         win.close();
     }
-});
-resizeIcon.addEventListener("click", e => {
+})
+;
+resizeIcon.addEventListener('click', e => {
     // switch between icons square and two squares
     if (win.isMaximized()) {
         win.unmaximize();
-        resizeIcon.firstElementChild.src =
-            "../static/assets/fontawesome-free-5.9.0-web/svgs/regular/window-maximize.svg";
+        resizeIcon.innerHTML =
+            '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"' +
+            ' "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" ' +
+            'xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="12" height="12" viewBox="0 0 12 12">' +
+            '<path d="M4,4H20V20H4V4M6,8V18H18V8H6Z" /></svg>';
     } else {
         win.maximize();
-        resizeIcon.firstElementChild.src =
-            "../static/assets/fontawesome-free-5.9.0-web/svgs/regular/window-restore.svg";
+        resizeIcon.innerText =
+            '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" ' +
+            '"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" ' +
+            'xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="12" height="12" viewBox="0 0 12 12">' +
+            '<path d="M4,8H8V4H20V16H16V20H4V8M16,8V14H18V6H10V8H16M6,12V18H14V12H6Z" /></svg>';
     }
-});
-document.getElementById("min-icon").addEventListener("click", e => {
+})
+;
+
+document.getElementById('min-icon').addEventListener('click', e => {
     win.minimize();
-});
+})
+;
 
 /* -------------------------------------------------------------------------- */
 
 // When the user scrolls the page
-textBox.addEventListener("scroll", e => {
-    let toolbar = document.getElementById("toolbar-container");
+textBox.addEventListener('scroll', e => {
+    let insertBar = document.getElementById('insert-bar');
 
     let Scroll = textBox.scrollTop;
     Scroll > 0
-        ? (toolbar.style.boxShadow = "0px 1px 5px #00000020")
-        : (toolbar.style.boxShadow = "none");
-});
+        ? (insertBar.style.boxShadow = '0px 1px 5px #00000020')
+        : (insertBar.style.boxShadow = 'none');
+})
+;
 
 /* -------------------------------------------------------------------------- */
 
-document.addEventListener("dragenter", e => {
-    textBox.opacity = "0.5";
-});
+document.addEventListener('dragenter', e => {
+    textBox.opacity = '0.5';
+})
+;
 
 /* -------------------------------------------------------------------------- */
-let searchInput = document.getElementById("search-input");
-searchInput.addEventListener("input", e => {
+let searchInput = document.getElementById('search-input');
+searchInput.addEventListener('input', e => {
     if (searchInput.value) {
         let totalText = quill.getText();
-        let re = new RegExp(searchInput.value, "g");
+        let re = new RegExp(searchInput.value, 'g');
         let match = re.test(totalText);
         if (match) {
-            searchInput.className = "input is-success";
+            searchInput.className = 'input is-success';
         } else {
-            searchInput.className = "input is-danger";
+            searchInput.className = 'input is-danger';
 
         }
     } else {
-        searchInput.className = "input is-primary";
+        searchInput.className = 'input is-primary';
     }
-});
+})
+;
 
 /* ------------------------------- insert-bar ------------------------------- */
 

@@ -1,34 +1,89 @@
 #insert-bar {
-	background-color: #f9f9f9;
-	    border-top: 1px solid #cccccc8e;
-	    border-bottom: 1px solid #cccccc8e;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #cccccc8e;
 }
 
 #insert-icons {
-	display: grid;
-	grid-template-columns: repeat(5, 25px);
-	justify-items: center;
-	justify-content: space-evenly;
-	margin: 0 30vw;
+    display: grid;
+    grid-template-columns: repeat(5, 35px);
+    height: 40px;
+    justify-content: space-evenly;
+    margin: 0 30vw;
 }
 
 .insert-icon {
-	width: 100%;
-	height: 100%;
-	cursor: pointer;
-	transition: .3s;
-	border: 1px red solid;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: .3s;
+    opacity: 0.8;
 }
 
 .insert-icon:hover {
-	background-color: #e8f0fe;
-	transition: .3s;
-
+    background-color: #e8f0fe;
+    transition: .3s;
 }
 
 .insert-icon:hover .ql-float-stroke-1,
 .insert-icon:hover .ql-float-stroke-2 {
-	stroke: #06c;
-	background: #e8f0fe;
-	border-radius: 0.4em
+    fill: #06c;
+    background: #e8f0fe;
+    border-radius: 0.4em
+}
+
+body {
+    font: 16px Arial;
+}
+
+.autocomplete {
+    /*the container must be positioned relative:*/
+    position: relative;
+    display: inline-block;
+}
+
+input {
+    border: 1px solid transparent;
+    background-color: #f1f1f1;
+    padding: 10px;
+    font-size: 16px;
+}
+
+input[type=text] {
+    background-color: #f1f1f1;
+    width: 100%;
+}
+
+input[type=submit] {
+    background-color: DodgerBlue;
+    color: #fff;
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: #e9e9e9;
+}
+
+.autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: DodgerBlue !important;
+    color: #ffffff;
 }

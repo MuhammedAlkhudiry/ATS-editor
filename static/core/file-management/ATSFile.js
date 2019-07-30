@@ -4,12 +4,13 @@ const fs = require('fs');
 
 // Arabic Text Smart file.
 module.exports = class ATSFile {
+    name;
+    path;
+    content;
+    savingStatus;
 
     constructor() {
-        this.name;
-        this.path;
-        this.content;
-        this.savingStatus;
+        document.getElementById('new-file-icon').addEventListener('click', ATSFile.newFile.bind(this));
     }
 
     setSavingStatus(msg, cssClass) {
@@ -24,4 +25,23 @@ module.exports = class ATSFile {
         fileName.value = name;
         this.name = name;
     }
-}
+
+    static newFile() {
+
+        if (change.length() > 0) {
+
+            new Note().unsavedFile().then((result) => {
+                if (result.value) {
+
+                    EditorHelper.cleanEditor();
+                    new Note().info('ملف جديد');
+                }
+            });
+
+        } else {
+            EditorHelper.cleanEditor();
+            new Note().info('ملف جديد');
+        }
+    }
+
+};
