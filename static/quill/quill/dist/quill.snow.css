@@ -25,7 +25,7 @@
 
 .ql-toolbar {
   position: sticky;
-  z-index: 1;
+  z-index: 2;
   top: 70px;
   background-color: #f9f9f9;
   -webkit-user-drag: none;
@@ -55,14 +55,15 @@
   outline: none;
   overflow-y: auto;
   padding: 25px 35px;
-  margin: 5vh 10vw;
+  margin: 2vh 10vw;
   tab-size: 4;
   -moz-tab-size: 4;
   text-align: left;
   white-space: pre-wrap;
   word-wrap: break-word;
-  box-shadow: 0px 0px 6px #00000015;
+  box-shadow: 0 0 6px #00000015;
   background-color: #ffffff;
+  z-index: -1;
 }
 
 .ql-editor>* {
@@ -521,7 +522,7 @@
   left: 40%;
   pointer-events: none;
   position: absolute;
-  font-family: dubai;
+  font-family: dubai, serif;
   direction: rtl;
 }
 

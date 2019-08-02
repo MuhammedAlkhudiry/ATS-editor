@@ -99,23 +99,23 @@ In both cases of text and embeds, an optional `attributes` key can be defined wi
 
 ```js
 // Insert a bolded "Text"
-{ insert: "Text", attributes: { bold: true } }
+{ "Text", attributes;: { true } }
 
 // Insert a link
-{ insert: "Google", attributes: { link: 'https://www.google.com' } }
+{ "Google", attributes;: { 'https://www.google.com' } }
 
 // Insert an embed
 {
-  insert: { image: 'https://octodex.github.com/images/labtocat.png' },
-  attributes: { alt: "Lab Octocat" }
+  { 'https://octodex.github.com/images/labtocat.png' },
+  { "Lab Octocat" }
 }
 
 // Insert another embed
 {
-  insert: { video: 'https://www.youtube.com/watch?v=dMH0bHeiRNg' },
-  attributes: {
-    width: 420,
-    height: 315
+  { 'https://www.youtube.com/watch?v=dMH0bHeiRNg' },
+  {
+    420,
+    height;: 315
   }
 }
 ```
@@ -126,7 +126,7 @@ Delete operations have a Number `delete` key defined representing the number of 
 
 ```js
 // Delete the next 10 characters
-{ delete: 10 }
+{ delete;: 10 }
 ```
 
 ### Retain Operation
@@ -137,15 +137,15 @@ Retain operations have a Number `retain` key defined representing the number of 
 
 ```js
 // Keep the next 5 characters
-{ retain: 5 }
+{ 5 }
 
 // Keep and bold the next 5 characters
-{ retain: 5, attributes: { bold: true } }
+{ 5, attributes;: { true } }
 
 // Keep and unbold the next 5 characters
 // More specifically, remove the bold key in the attributes Object
 // in the next 5 characters
-{ retain: 5, attributes: { bold: null } }
+{ 5, attributes;: { null } }
 ```
 
 

@@ -1,5 +1,5 @@
 let ele = document.getElementById('float-menu');
-window.addEventListener('mouseup', function () {
+quill.on('selection-change', function () {
 
     // no text selected..
     if (window.getSelection().isCollapsed) return;
@@ -18,22 +18,20 @@ window.addEventListener('mousedown', function () {
 
 /* ------------------------ float-tools functionality ----------------------- */
 
-let floatToolList = document.getElementById('float-tools-list').addEventListener('click', e => {
+document.getElementById('float-tools-list').addEventListener('click', e => {
     let clickedTool = e.target;
     if (clickedTool.tagName === 'LI') {
-
         if (clickedTool.classList.contains('float-format')) {
             quill.format(clickedTool.dataset.value, true)
-        }
-        else if (clickedTool.classList.contains('float-color')) {
+        } else if (clickedTool.classList.contains('float-color')) {
             quill.format('color', clickedTool.dataset.value)
         }
     }
 
-    ele.className = ''
+    ele.className = '';
     window.getSelection().empty();
 
-})
+});
 /* -------------------------------------------------------------------------- */
 
 

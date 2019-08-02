@@ -1,7 +1,26 @@
 'use strict';
-const Swal = require('sweetalert2')
+const Swal = require('sweetalert2');
 
 module.exports = class Notification {
+
+
+    constructor(msg, msgType) {
+        switch (msgType) {
+            case 'success':
+                this.success(msg);
+                break;
+            case 'fail':
+                this.fail(msg);
+                break;
+            case 'info':
+                this.info(msg);
+                break;
+            case 'unsavedFile':
+                this.unsavedFile(msg);
+                break;
+
+        }
+    }
 
     success(msg) {
         const success = Swal.mixin({
@@ -61,5 +80,5 @@ module.exports = class Notification {
             title: msg
         });
     }
-}
+};
 

@@ -349,11 +349,11 @@ Delta.prototype.push = function (newOp) {
     if (equal(newOp.attributes, lastOp.attributes)) {
       if (typeof newOp.insert === 'string' && typeof lastOp.insert === 'string') {
         this.ops[index - 1] = { insert: lastOp.insert + newOp.insert };
-        if (typeof newOp.attributes === 'object') this.ops[index - 1].attributes = newOp.attributes
+        if (typeof newOp.attributes === 'object') this.ops[index - 1].attributes = newOp.attributes;
         return this;
       } else if (typeof newOp.retain === 'number' && typeof lastOp.retain === 'number') {
         this.ops[index - 1] = { retain: lastOp.retain + newOp.retain };
-        if (typeof newOp.attributes === 'object') this.ops[index - 1].attributes = newOp.attributes
+        if (typeof newOp.attributes === 'object') this.ops[index - 1].attributes = newOp.attributes;
         return this;
       }
     }
@@ -574,7 +574,7 @@ Delta.prototype.transform = function (other, priority) {
       var otherOp = otherIter.next(length);
       if (thisOp['delete']) {
         // Our delete either makes their delete redundant or removes their retain
-        continue;
+
       } else if (otherOp['delete']) {
         delta.push(otherOp);
       } else {
@@ -2032,7 +2032,7 @@ var deepEqual = module.exports = function (actual, expected, opts) {
   } else {
     return objEquiv(actual, expected, opts);
   }
-}
+};
 
 function isUndefinedOrNull(value) {
   return value === null || value === undefined;
@@ -3768,9 +3768,8 @@ function Iterator(ops) {
   this.ops = ops;
   this.index = 0;
   this.offset = 0;
-};
-
-Iterator.prototype.hasNext = function () {
+}
+        Iterator.prototype.hasNext = function () {
   return this.peekLength() < Infinity;
 };
 
@@ -3779,7 +3778,7 @@ Iterator.prototype.next = function (length) {
   var nextOp = this.ops[this.index];
   if (nextOp) {
     var offset = this.offset;
-    var opLength = lib.length(nextOp)
+    var opLength = lib.length(nextOp);
     if (length >= opLength - offset) {
       length = opLength - offset;
       this.index += 1;
@@ -7386,7 +7385,7 @@ var BlockBlot = /** @class */ (function (_super) {
     };
     BlockBlot.prototype.format = function (name, value) {
         if (Registry.query(name, Registry.Scope.BLOCK) == null) {
-            return;
+
         }
         else if (name === this.statics.blotName && !value) {
             this.replaceWith(BlockBlot.blotName);
@@ -7742,10 +7741,8 @@ function diff_main(text1, text2, cursor_pos) {
   }
   diffs = fix_emoji(diffs);
   return diffs;
-};
-
-
-/**
+}
+        /**
  * Find the differences between two texts.  Assumes that the texts do not
  * have any common prefix or suffix.
  * @param {string} text1 Old string to be diffed.
@@ -7803,10 +7800,8 @@ function diff_compute_(text1, text2) {
   }
 
   return diff_bisect_(text1, text2);
-};
-
-
-/**
+}
+        /**
  * Find the 'middle snake' of a diff, split the problem in two
  * and return the recursively constructed diff.
  * See Myers 1986 paper: An O(ND) Difference Algorithm and Its Variations.
@@ -7919,10 +7914,8 @@ function diff_bisect_(text1, text2) {
   // Diff took too long and hit the deadline or
   // number of diffs equals number of characters, no commonality at all.
   return [[DIFF_DELETE, text1], [DIFF_INSERT, text2]];
-};
-
-
-/**
+}
+        /**
  * Given the location of the 'middle snake', split the diff in two parts
  * and recurse.
  * @param {string} text1 Old string to be diffed.
@@ -7942,10 +7935,8 @@ function diff_bisectSplit_(text1, text2, x, y) {
   var diffsb = diff_main(text1b, text2b);
 
   return diffs.concat(diffsb);
-};
-
-
-/**
+}
+        /**
  * Determine the common prefix of two strings.
  * @param {string} text1 First string.
  * @param {string} text2 Second string.
@@ -7974,10 +7965,8 @@ function diff_commonPrefix(text1, text2) {
     pointermid = Math.floor((pointermax - pointermin) / 2 + pointermin);
   }
   return pointermid;
-};
-
-
-/**
+}
+        /**
  * Determine the common suffix of two strings.
  * @param {string} text1 First string.
  * @param {string} text2 Second string.
@@ -8006,10 +7995,8 @@ function diff_commonSuffix(text1, text2) {
     pointermid = Math.floor((pointermax - pointermin) / 2 + pointermin);
   }
   return pointermid;
-};
-
-
-/**
+}
+        /**
  * Do the two texts share a substring which is at least half the length of the
  * longer text?
  * This speedup can produce non-minimal diffs.
@@ -8099,10 +8086,8 @@ function diff_halfMatch_(text1, text2) {
   }
   var mid_common = hm[4];
   return [text1_a, text1_b, text2_a, text2_b, mid_common];
-};
-
-
-/**
+}
+        /**
  * Reorder and merge like edit sections.  Merge equalities.
  * Any edit section can move as long as it doesn't cross an equality.
  * @param {Array} diffs Array of diff tuples.
@@ -8226,10 +8211,8 @@ function diff_cleanupMerge(diffs) {
   if (changes) {
     diff_cleanupMerge(diffs);
   }
-};
-
-
-var diff = diff_main;
+}
+        var diff = diff_main;
 diff.INSERT = DIFF_INSERT;
 diff.DELETE = DIFF_DELETE;
 diff.EQUAL = DIFF_EQUAL;
@@ -8312,7 +8295,7 @@ function fix_cursor (diffs, cursor_pos) {
     if (d_next != null && d[1] + d_next[1] === d_next[1] + d[1]) {
       // Case 1)
       // It is possible to perform a naive shift
-      ndiffs.splice(cursor_pointer, 2, d_next, d)
+      ndiffs.splice(cursor_pointer, 2, d_next, d);
       return merge_tuples(ndiffs, cursor_pointer, 2)
     } else if (d_next != null && d_next[1].indexOf(d[1]) === 0) {
       // Case 2)
@@ -8344,10 +8327,10 @@ function fix_emoji (diffs) {
   var compact = false;
   var starts_with_pair_end = function(str) {
     return str.charCodeAt(0) >= 0xDC00 && str.charCodeAt(0) <= 0xDFFF;
-  }
+  };
   var ends_with_pair_start = function(str) {
     return str.charCodeAt(str.length-1) >= 0xD800 && str.charCodeAt(str.length-1) <= 0xDBFF;
-  }
+  };
   for (var i = 2; i < diffs.length; i += 1) {
     if (diffs[i-2][0] === DIFF_EQUAL && ends_with_pair_start(diffs[i-2][1]) &&
         diffs[i-1][0] === DIFF_DELETE && starts_with_pair_end(diffs[i-1][1]) &&
@@ -8424,9 +8407,8 @@ exports = module.exports = supportsArgumentsClass ? supported : unsupported;
 exports.supported = supported;
 function supported(object) {
   return Object.prototype.toString.call(object) == '[object Arguments]';
-};
-
-exports.unsupported = unsupported;
+}
+        exports.unsupported = unsupported;
 function unsupported(object){
   return object &&
     typeof object == 'object' &&
@@ -8434,10 +8416,8 @@ function unsupported(object){
     Object.prototype.hasOwnProperty.call(object, 'callee') &&
     !Object.prototype.propertyIsEnumerable.call(object, 'callee') ||
     false;
-};
-
-
-/***/ }),
+}
+        /***/ }),
 /* 54 */
 /***/ (function(module, exports) {
 

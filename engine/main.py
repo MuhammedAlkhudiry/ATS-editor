@@ -13,16 +13,6 @@ class Verb:
 class Noun:
     def __init__(self):
         pass
-        
-    let page = document.activeElement
-    let children = page.children
-    for (const child of children) {
-      if (child.textContent.trim().length == 0) {
-        child.parentElement.removeChild(child)
-        
-      }
-      
-    }
 
 # global
 

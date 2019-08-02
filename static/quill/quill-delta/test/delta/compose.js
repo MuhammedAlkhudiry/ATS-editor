@@ -174,7 +174,7 @@ describe('compose()', function () {
                        .insert('B')
                        .insert('C', { bold: true });
     var b = new Delta().delete(1);
-    var expected = new Delta().insert('B').insert('C', { bold: true })
+    var expected = new Delta().insert('B').insert('C', { bold: true });
     expect(a.compose(b)).toEqual(expected);
   });
 
@@ -184,12 +184,12 @@ describe('compose()', function () {
                        .insert('C', { bold: true })
                        .insert('D')
                        .insert('E', { bold: true })
-                       .insert('F')
+                       .insert('F');
     var b = new Delta().retain(1).delete(1);
     var expected = new Delta().insert('AC', { bold: true })
                               .insert('D')
                               .insert('E', { bold: true })
-                              .insert('F')
+                              .insert('F');
     expect(a.compose(b)).toEqual(expected);
   });
 });

@@ -1,6 +1,9 @@
 #insert-bar {
+    position: relative;
     background-color: #f9f9f9;
     border-bottom: 1px solid #cccccc8e;
+    z-index: 1;
+
 }
 
 #insert-icons {
@@ -19,71 +22,76 @@
     opacity: 0.8;
 }
 
-.insert-icon:hover {
+.insert-icon:hover:not(#ayah-input) {
     background-color: #e8f0fe;
     transition: .3s;
 }
 
-.insert-icon:hover .ql-float-stroke-1,
-.insert-icon:hover .ql-float-stroke-2 {
+.insert-icon:hover .ql-custom-stroke-1,
+.insert-icon:hover .ql-custom-stroke-2 {
     fill: #06c;
     background: #e8f0fe;
     border-radius: 0.4em
 }
 
-body {
-    font: 16px Arial;
+#insert-ayah-box {
+    position: absolute;
+    opacity: 0;
+    top: 100%;
+    right: 50%;
+    display: block;
+    direction: rtl;
+   transition: opacity 0.4s;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 2px 8px;
+    background-color: #fafafa;
+    width: auto;
+    max-width: 40vw;
+    border-radius: 0.4em;
+    border: 1px solid #d4d4d4;
+
 }
 
-.autocomplete {
-    /*the container must be positioned relative:*/
-    position: relative;
-    display: inline-block;
-}
-
-input {
+#ayah-input {
     border: 1px solid transparent;
-    background-color: #f1f1f1;
     padding: 10px;
-    font-size: 16px;
-}
-
-input[type=text] {
-    background-color: #f1f1f1;
+    font-size: 12px;
+    border-radius: 0.4em;
     width: 100%;
 }
 
-input[type=submit] {
-    background-color: DodgerBlue;
-    color: #fff;
+#ayah-input::placeholder {
+    color: #a8a8a8;
 }
 
-.autocomplete-items {
-    position: absolute;
+
+#ayah-list {
     border: 1px solid #d4d4d4;
     border-bottom: none;
     border-top: none;
     z-index: 99;
-    /*position the autocomplete items to be the same width as the container:*/
-    top: 100%;
-    left: 0;
-    right: 0;
+    font: 12px dubai, sans-serif;
+    text-align: right;
+    height: auto;
+    max-height: 40vh;
+    width: auto;
+    max-width: 40vw;
+    overflow: overlay;
 }
 
-.autocomplete-items div {
+
+#ayah-list div {
     padding: 10px;
     cursor: pointer;
     background-color: #fff;
     border-bottom: 1px solid #d4d4d4;
 }
 
-.autocomplete-items div:hover {
-    /*when hovering an item:*/
+#ayah-list div:hover {
     background-color: #e9e9e9;
 }
 
-.autocomplete-active {
+.ayah-active {
     /*when navigating through the items using the arrow keys:*/
-    background-color: DodgerBlue !important;
+    background-color: #06c !important;
     color: #ffffff;
 }

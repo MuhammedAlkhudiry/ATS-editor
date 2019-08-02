@@ -15,10 +15,10 @@ module.exports = class FileLoader {
             },
             ],
             properties: ['openFile']
-        }
+        };
 
         // show open file dialog, if you choose file, then read it.
-        loadedFile.path = dialog.showOpenDialog(options)[0]
+        loadedFile.path = dialog.showOpenDialog(options)[0];
         if (loadedFile.path) {
             fs.readFile(loadedFile.path, 'utf8', (err, data) => {
                 if (err) {
@@ -37,7 +37,7 @@ module.exports = class FileLoader {
         let docFile = "application/msword";
         let docxFile = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
         let loadedFile = new ATSFile();
-        if (draggedFile.type == "text/html") {
+        if (draggedFile.type === "text/html") {
 
             loadedFile.path = draggedFile.path;
 
@@ -50,10 +50,10 @@ module.exports = class FileLoader {
                 FileHelper.handleLoadedFile(loadedFile, file);
             })
 
-        } else if (draggedFile.type == docFile || draggedFile.type == docxFile) {
+        } else if (draggedFile.type === docFile || draggedFile.type === docxFile) {
             // TODO: convert from doc/docx to html then send to main process
         } else {
             new Note().fail('صيغة المستند غير مقبولة')
         }
     }
-}
+};

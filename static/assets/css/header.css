@@ -1,4 +1,4 @@
-@import '../../../../node_modules/tippy.js/themes/light.css';
+@import '../../../node_modules/tippy.js/themes/light.css';
 
 
 .title-bar {
@@ -130,23 +130,23 @@
 /* context classes */
 
 .currently-saving {
-    color: #4693e0;
+    color: #4693ee;
 }
 
 .saved-file {
-    color: #03c75171;
+    color: #03c751ee;
 }
 
 .unsaved-file {
-    color: #eb1d1d71;
+    color: #eb1d1dee;
 }
 
 .valid-file-name {
-    border-color: #03c75171 !important;
+    border-color: #03c751ee !important;
 }
 
 .unvalid-file-name {
-    border-color: #eb1d1d71 !important;
+    border-color: #eb1d1dee !important;
 }
 
 /* --- */

@@ -232,7 +232,7 @@ function matchAttributor(node, delta) {
     if (attr != null && (attr.attrName === name || attr.keyName === name)) {
       formats[attr.attrName] = attr.value(node) || undefined;
     }
-    attr = STYLE_ATTRIBUTORS[name]
+    attr = STYLE_ATTRIBUTORS[name];
     if (attr != null && (attr.attrName === name || attr.keyName === name)) {
       attr = STYLE_ATTRIBUTORS[name];
       formats[attr.attrName] = attr.value(node) || undefined;

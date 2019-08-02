@@ -1,5 +1,5 @@
 
-class FileHelper {
+module.exports = class FileHelper {
 
     static isOpenedFileValid(fileContent) {
         return fileContent.contains('ats-editor-file');
@@ -21,7 +21,7 @@ class FileHelper {
 
         if (FileHelper.isOpenedFileValid(loadedFile.content)) {
             file = loadedFile;
-            EditorHelper.setEditorContent(file.content)
+            EditorHelper.setEditorContent(file.content);
             file.setName(FileHelper.getFileNameFromPath(file.path));
             new Note().success('فُتح الملف');
         } else {

@@ -1,6 +1,6 @@
-let ATSFile = require('./../static/core/file-management/ATSFile');
-let FileSaver = require('./../static/core/file-management/FileSaver');
-let FileLoader = require('./../static/core/file-management/FileLoader');
+let ATSFile = require('./../static/core/File-management/ATSFile');
+let FileSaver = require('./../static/core/File-management/FileSaver');
+let FileLoader = require('./../static/core/File-management/FileLoader');
 let file = new ATSFile();
 let change = new Delta();
 
@@ -26,8 +26,29 @@ fileName.addEventListener('input', e => {
 fileName.addEventListener('focusout', e => {
     fileName.className = '';
 });
-/* -------------------------------------------------------------------------- */
 
+
+/* -------------------------------------------------------------------------- */
+/* -------------------------------- file name ------------------------------- */
+document.getElementById('new-file-icon').addEventListener('click', e => {
+
+    if (change.length() > 0) {
+
+        new Note().unsavedFile().then((result) => {
+            if (result.value) {
+
+                EditorHelper.cleanEditor();
+                new Note().info('مستند جديد');
+            }
+        });
+
+    } else {
+        EditorHelper.cleanEditor();
+        new Note().info('مستند جديد');
+    }
+
+});
+/* -------------------------------------------------------------------------- */
 
 let savingBoxHTML = `
 <div id="saving-box-content">
@@ -64,7 +85,7 @@ let savingBoxHTML = `
     <strong class="ext-name">DOCX</strong>
     <br>
     <span class="is-size-7 ext-notes">
-      مناسب لفتح الملف في برنامج وورد.
+      مناسب لفتح المستند في برنامج وورد.
     </span>
   </div>
 </div>
@@ -88,8 +109,6 @@ tippy('#save-icon', {
                 fileName.className = 'unvalid-file-name';
                 return;
             }
-            ;
-
             e.preventDefault();
             e.stopPropagation();
             file.setName(fileName.value);
@@ -159,10 +178,10 @@ document.body.addEventListener('drop', (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (e.dataTransfer.files.length == 0) return;
+    if (e.dataTransfer.files.length === 0) return;
 
     if (e.dataTransfer.files.length > 1) {
-        new Note().fail('تعذر مستند الملف.. يسمح بفتح مستند واحد فقط');
+        new Note().fail('تعذر فتح المستند.. يسمح بفتح مستند واحد فقط');
         return;
     }
 

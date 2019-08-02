@@ -101,21 +101,3 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-
-
-// // receive from index.js
-// ipcMain.on('ondragstart', (event, filePath) => {
-
-//   // read file then send it back to index.js
-//   fs.readFile(filePath, 'utf-8', (err, data) => {
-
-//     if (err) {
-//       alert("حدث خطأ ما أثناء فتح الملف :" + err.message)
-//       return;
-//     }
-
-//     // handle the file content
-//     event.sender.send('fileData', data)
-//   })
-
-// })

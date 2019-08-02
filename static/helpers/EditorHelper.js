@@ -1,6 +1,6 @@
 'use strict';
 
-class EditorHelper {
+module.exports = class EditorHelper {
 
     static cleanEditor() {
         quill.setContents([]);
@@ -15,8 +15,7 @@ class EditorHelper {
     }
 
     static getEditorContent() {
-        let content = 'ats-editor-file' + quill.container.firstChild.innerHTML
-        return content;
+        return 'ats-editor-file' + quill.container.firstChild.innerHTML;
     }
 
     static customGetText() {

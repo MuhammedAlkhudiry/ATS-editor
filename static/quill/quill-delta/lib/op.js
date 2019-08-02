@@ -68,8 +68,7 @@ function Iterator(ops) {
   this.ops = ops;
   this.index = 0;
   this.offset = 0;
-};
-
+}
 Iterator.prototype.hasNext = function () {
   return this.peekLength() < Infinity;
 };
@@ -79,7 +78,7 @@ Iterator.prototype.next = function (length) {
   var nextOp = this.ops[this.index];
   if (nextOp) {
     var offset = this.offset;
-    var opLength = lib.length(nextOp)
+    var opLength = lib.length(nextOp);
     if (length >= opLength - offset) {
       length = opLength - offset;
       this.index += 1;

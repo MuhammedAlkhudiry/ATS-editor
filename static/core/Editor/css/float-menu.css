@@ -7,7 +7,7 @@
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.5s;
-
+    z-index: 100;
 }
 
 #float-menu.hdn {
@@ -47,7 +47,9 @@
     width: 100%;
     height: 100%;
 }
-
+.v-line{
+    margin: 0 auto;
+}
 .tool:hover:not(.ql-float-color) {
     background-color: #e8f0fe;
     cursor: pointer;
@@ -60,7 +62,7 @@
     opacity: 0.8;
 }
 
-.ql-float-stroke-1 {
+.ql-custom-stroke-1 {
     fill: none;
     stroke: #444;
     stroke-linecap: round;
@@ -68,7 +70,7 @@
     stroke-width: 2px;
 }
 
-.ql-float-stroke-2 {
+.ql-custom-stroke-2 {
     fill: #444;
 }
 
@@ -76,7 +78,7 @@
      opacity: 0.4;
  }
 
-.tool:hover .ql-float-stroke-1 {
+.tool:hover .ql-custom-stroke-1 {
     stroke: #06c;
     background: #e8f0fe;
     border-radius: 0.4em

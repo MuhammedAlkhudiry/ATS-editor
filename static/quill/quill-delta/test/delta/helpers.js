@@ -113,7 +113,7 @@ describe('helpers', function () {
         return typeof op.insert === 'string';
       });
       expect(arr.length).toEqual(2);
-    })
+    });
 
     it('forEach()', function () {
       var spy = { predicate: function () {} };

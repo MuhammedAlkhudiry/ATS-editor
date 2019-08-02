@@ -65,11 +65,11 @@ Delta.prototype.push = function (newOp) {
     if (equal(newOp.attributes, lastOp.attributes)) {
       if (typeof newOp.insert === 'string' && typeof lastOp.insert === 'string') {
         this.ops[index - 1] = { insert: lastOp.insert + newOp.insert };
-        if (typeof newOp.attributes === 'object') this.ops[index - 1].attributes = newOp.attributes
+        if (typeof newOp.attributes === 'object') this.ops[index - 1].attributes = newOp.attributes;
         return this;
       } else if (typeof newOp.retain === 'number' && typeof lastOp.retain === 'number') {
         this.ops[index - 1] = { retain: lastOp.retain + newOp.retain };
-        if (typeof newOp.attributes === 'object') this.ops[index - 1].attributes = newOp.attributes
+        if (typeof newOp.attributes === 'object') this.ops[index - 1].attributes = newOp.attributes;
         return this;
       }
     }
@@ -309,7 +309,7 @@ Delta.prototype.transform = function (other, priority) {
       var otherOp = otherIter.next(length);
       if (thisOp['delete']) {
         // Our delete either makes their delete redundant or removes their retain
-        continue;
+
       } else if (otherOp['delete']) {
         delta.push(otherOp);
       } else {

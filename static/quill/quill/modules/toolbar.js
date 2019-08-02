@@ -255,7 +255,7 @@ Toolbar.DEFAULTS = {
       }
     }
   }
-}
+};
 
 
 export { Toolbar as default, addControls };

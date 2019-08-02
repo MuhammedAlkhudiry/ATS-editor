@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<!--suppress CheckEmptyScriptTag -->
+<!--suppress ALL -->
 <html>
 
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/quill/quill/dist/quill.snow.css">
-    <link rel="stylesheet" href="../static/assets/css/editor/custom-format.css">
-    <link rel="stylesheet" href="../static/assets/css/index/index.css">
-    <link rel="stylesheet" href="../static/assets/css/index/float-menu.css">
-    <link rel="stylesheet" href="../static/assets/css/index/header.css">
+    <link rel="stylesheet" href="../static/core/Editor/css/blots.css">
+    <link rel="stylesheet" href="../static/assets/css/index.css">
+    <link rel="stylesheet" href="../static/core/Editor/css/float-menu.css">
+    <link rel="stylesheet" href="../static/assets/css/header.css">
     <link rel="stylesheet" href="../static/assets/css/animation.css">
     <link rel="stylesheet" href="../static/assets/css/fonts.css">
-    <link rel="stylesheet" href="../static/assets/css/index/insert-bar.css">
+    <link rel="stylesheet" href="../static/core/Insert-management/css/insert-bar.css">
     <link rel="stylesheet" href="../static/assets/css/custom/custom-sweetAlert.css">
 
     <title>Hello World!</title>
@@ -81,15 +81,14 @@
                   version="1.1"
                   width="20"
                   height="20"
-                  viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>
+                  viewBox="0 0 24 24"><path
+                  d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>
           </span>
             </label>
         </div>
 
         <div id="saving-status-container">
-        <span id="saving-status-text">
-          الملف غير محفوظ.
-        </span>
+        <span id="saving-status-text" class="unsaved-file">المستند غير محفوظ.</span>
         </div>
     </div>
 
@@ -256,7 +255,7 @@
                 "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                      width="22" height="22" viewBox="0 0 24 24">
-                    <path class="ql-float-stroke-2"
+                    <path class="ql-custom-stroke-2"
                           d="M5,4H19A2,2 0 0,1 21,6V18A2,2 0 0,1 19,20H5A2,2 0 0,1 3,18V6A2,2 0 0,1 5,4M5,8V12H11V8H5M13,8V12H19V8H13M5,14V18H11V14H5M13,14V18H19V14H13Z"/>
                 </svg>
 
@@ -266,16 +265,17 @@
                 "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                      width="22" height="22" viewBox="0 0 22 22">
-                    <path class="ql-float-stroke-2"
+                    <path class="ql-custom-stroke-2"
                           d="M21,5C19.89,4.65 18.67,4.5 17.5,4.5C15.55,4.5 13.45,4.9 12,6C10.55,4.9 8.45,4.5 6.5,4.5C4.55,4.5 2.45,4.9 1,6V20.65C1,20.9 1.25,21.15 1.5,21.15C1.6,21.15 1.65,21.1 1.75,21.1C3.1,20.45 5.05,20 6.5,20C8.45,20 10.55,20.4 12,21.5C13.35,20.65 15.8,20 17.5,20C19.15,20 20.85,20.3 22.25,21.05C22.35,21.1 22.4,21.1 22.5,21.1C22.75,21.1 23,20.85 23,20.6V6C22.4,5.55 21.75,5.25 21,5M21,18.5C19.9,18.15 18.7,18 17.5,18C15.8,18 13.35,18.65 12,19.5V8C13.35,7.15 15.8,6.5 17.5,6.5C18.7,6.5 19.9,6.65 21,7V18.5Z"/>
                 </svg>
+
             </li>
             <li class="icon insert-icon" id="insert-hadith">
                 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
                 "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                      width="22" height="22" viewBox="0 0 22 22">
-                    <path class="ql-float-stroke-2"
+                    <path class="ql-custom-stroke-2"
                           d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9M10,16V19.08L13.08,16H20V4H4V16H10M6,7H18V9H6V7M6,11H15V13H6V11Z"/>
                 </svg>
             </li>
@@ -284,39 +284,33 @@
                 "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                      width="22" height="22" viewBox="0 0 24 24">
-                    <path class="ql-float-stroke-2"
+                    <path class="ql-custom-stroke-2"
                           d="M22,2C22,2 14.36,1.63 8.34,9.88C3.72,16.21 2,22 2,22L3.94,21C5.38,18.5 6.13,17.47 7.54,16C10.07,16.74 12.71,16.65 15,14C13,13.44 11.4,13.57 9.04,13.81C11.69,12 13.5,11.6 16,12L17,10C15.2,9.66 14,9.63 12.22,10.04C14.19,8.65 15.56,7.87 18,8L19.21,6.07C17.65,5.96 16.71,6.13 14.92,6.57C16.53,5.11 18,4.45 20.14,4.32C20.14,4.32 21.19,2.43 22,2Z"/>
                 </svg>
             </li>
         </ul>
+        <div id="insert-ayah-box">
+            <input id="ayah-input" type="text" placeholder="بحث عن آية قرآنية">
+        </div>
     </div>
 
-    <form autocomplete="off" action="/action_page.php">
-        <div class="autocomplete" style="width:300px;">
-            <input id="myInput" type="text" name="myCountry" placeholder="Country">
-        </div>
-        <input type="submit">
-    </form>
 
     <!-- ----------------------------------------------------------------------- -->
-    <div id="search-container" style="display: none">
+    <div id="search-container">
         <input id="search-input" class="input" type="text" placeholder="بحث">
         <input id="replace-input" class="input" type="text" placeholder="استبدال">
         <button id="search">بحث</button>
         <button id="replace">استبدال</button>
         <button id="replace-all">استبدال الكل</button>
     </div>
-    </d>
     <!-- header-end -->
     <!-- Create the editor container -->
     <div id="text-box">
-
         <div class="container">
             <div id="editor">
             </div>
         </div>
     </div>
-
 </div>
 <!-- create float-menu show when select text -->
 
@@ -331,34 +325,32 @@
 
     <ul id="float-tools-list">
         <li class="tool float-format" data-value="bold">
-            <svg class="ql-float-format" id="Bold" viewbox="0 0 18 18"
+            <svg class="ql-float-format" id="Bold" width="22"
+                 height="24" viewbox="0 0 18 18"
                  xmlns="http://www.w3.org/2000/svg">
-                <path class="ql-float-stroke-1"
+                <path class="ql-custom-stroke-1"
                       d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z"></path>
-                <path class="ql-float-stroke-1"
+                <path class="ql-custom-stroke-1"
                       d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z">
                 </path>
             </svg>
         </li>
         <li class="tool float-format" data-value="italic">
-            <svg id="Bold" viewbox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                <line class="ql-float-stroke-1" x1="7" x2="13" y1="4" y2="4"></line>
-                <line class="ql-float-stroke-1" x1="5" x2="11" y1="14" y2="14"></line>
-                <line class="ql-float-stroke-1" x1="8" x2="10" y1="14" y2="4"></line>
+            <svg id="Bold" width="22"
+                 height="22" viewbox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <line class="ql-custom-stroke-1" x1="7" x2="13" y1="4" y2="4"></line>
+                <line class="ql-custom-stroke-1" x1="5" x2="11" y1="14" y2="14"></line>
+                <line class="ql-custom-stroke-1" x1="8" x2="10" y1="14" y2="4"></line>
             </svg>
         </li>
         <li class="tool float-format" data-value="underline">
-            <svg id="Bold" viewbox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                <path class="ql-float-stroke-1" d="M5,3V9a4.012,4.012,0,0,0,4,4H9a4.012,4.012,0,0,0,4-4V3"></path>
-                <rect class="ql-float-stroke-2" height="1" rx="0.5" ry="0.5" width="12" x="3" y="15"></rect>
+            <svg id="Bold" width="22"
+                 height="22" viewbox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <path class="ql-custom-stroke-1" d="M5,3V9a4.012,4.012,0,0,0,4,4H9a4.012,4.012,0,0,0,4-4V3"></path>
+                <rect class="ql-custom-stroke-2" height="1" rx="0.5" ry="0.5" width="12" x="3" y="15"></rect>
             </svg>
         </li>
-        <li class="v-line">
-            <svg version="1.1" id="line_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                 x="0px" y="0px" width="50px" height="250px" xml:space="preserve">
-  <path class="path-vert" fill="#444" stroke-width="3" stroke="#444" d="M30 0 v600 400"/></svg>
-
-        </li>
+            <hr width="1" size="24">
         <li class="tool float-color" data-value="#000000">
         <span tabindex="0" role="button" class="ql-float-color"
               style="background-color: rgb(0, 0, 0);"></span>
@@ -398,25 +390,30 @@
 </div>
 
 <script>
-    let Note = require('./../static/helpers/Notification');
+    <!--load global modules-->
+    const Note = require('./../static/helpers/Notification');
+    const ArabicHelper = require('./../static/helpers/ArabicHelper');
+    const EditorHelper = require('./../static/helpers/EditorHelper');
+    const FileHelper = require('./../static/helpers/FileHelper');
+    const path = require("path");
+    const remote = require("electron").remote;
+    const win = remote.getCurrentWindow();
+    const fs = require('fs');
+    const dialog = remote.dialog;
+    const app = remote.app;
+
 </script>
 <!-- Initialize Quill editor -->
-<script src="../static/assets/js/index.js"></script>
 <script src="../static/assets/js/header.js"></script>
 <script src="../static/assets/js/tooltip.js"></script>
-<!-- helpers -->
-<!-- <script src="../static/helpers/notifications.js"></script> -->
 <script src="../static/helpers/utilities.js"></script>
-<script src="../static/helpers/EditorHelper.js"></script>
-<script src="../static/helpers/FileHelper.js"></script>
 <script src="../static/quill/quill/dist/quill.js"></script>
 <!-- You can also require other files to run in this process -->
-<script src="../static/core/confi-quill.js"></script>
-<script src="../static/assets/js/file-management-bar.js"></script>
-<script src="../static/assets/js/insert-bar.js"></script>
-<script src="../static/core/float-menu.js"></script>
-<script src="../static/core/keyboard-shortcuts.js"></script>
-<script src="../static/request/requests.js"></script>
+<script src="../static/core/Editor/editor.js"></script>
+<script src="../static/core/File-management/UI.js"></script>
+<script src="../static/core/Insert-management/UI.js"></script>
+<script src="../static/core/Editor/js/float-menu.js"></script>
+<script src="../static/core/Editor/typing/keyboard-shortcuts.js"></script>
 </body>
 
 </html>

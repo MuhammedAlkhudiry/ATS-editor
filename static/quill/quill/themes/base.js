@@ -137,7 +137,7 @@ BaseTheme.DEFAULTS = extend(true, {}, Theme.DEFAULTS, {
                   , Emitter.sources.USER);
                   this.quill.setSelection(range.index + 1, Emitter.sources.SILENT);
                   fileInput.value = "";
-                }
+                };
                 reader.readAsDataURL(fileInput.files[0]);
               }
             });

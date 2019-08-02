@@ -13,35 +13,32 @@
     transition: .2s;
 }
 
-.mis-spell {
-    background: linear-gradient(-45deg, #e70000 2px, transparent 0), linear-gradient(45deg, #ffffff00 2px, transparent 0);
-    background-position: 0px 90%;
-    background-repeat: repeat-x;
-    background-size: 2.5px 4px;
-    transition: .2s;
-        display: inline-block;
-
+.ql-mis-spell {
+    background: linear-gradient(-175deg, #e7000066 2px, transparent 0) repeat-x 0 90%;
+    background-size:6px 3px;
+    transition: background .2s;
+    display: inline-block;
 }
 
-.mis-spell:hover {
+.ql-mis-spell:hover {
     background: #e7000027;
     border-radius: 5px;
     padding: 2px;
-    transition: .2s;
+    transition: background .2s;
 }
 
 
-.ayah {
-    background-color:  #65f39e;
-    color:  #04df5b;
+.ql-ayah {
+    color: #03a351ee;
     font-family: uthmanic-font;
     animation: fade-in-bck 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
     display: inline-block;
     transition: .2s;
+    font-size: 1rem;
 }
 
-.ayah:hover {
-    border-radius: 5px;
+.ql-ayah:hover {
     padding: 2px;
     transition: .2s;
+    border: 1px darkgreen solid;
 }

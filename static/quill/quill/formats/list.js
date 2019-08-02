@@ -72,7 +72,7 @@ class List extends Container {
       } else if(format === 'unchecked') {
         blot.format('list', 'checked');
       }
-    }
+    };
 
     domNode.addEventListener('touchstart', listEventHandler);
     domNode.addEventListener('mousedown', listEventHandler);

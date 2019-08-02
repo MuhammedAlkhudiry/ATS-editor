@@ -1,19 +1,3 @@
-'use strict';
-
-const Delta = Quill.import('delta');
-
-/* --------------------------- import custom fonts -------------------------- */
-
-var FontAttributor = Quill.import('formats/font');
-FontAttributor.whitelist = [
-    'dubai', 'alhurra', 'ArefRuqaa', 'Arial', 'Cairo', 'shiraz', 'ubuntu', 'zahra',
-];
-
-Quill.register(FontAttributor, true);
-
-/* -------------------------------------------------------------------------- */
-
-/* ----------------------------- custom modules ----------------------------- */
 
 class Searcher {
 
@@ -33,11 +17,10 @@ class Searcher {
         if (SearchedString) {
 
             // todo: change to customGetText();
-            let totalText = quill.getText();
+            let totalText = ArabicHelper.removeTashkeel(quill.getText());
             let re = new RegExp(SearchedString, 'g');
             let match = re.test(totalText);
             if (match) {
-                document.getElementById('search-input').className = 'input is-success';
                 let indices = Searcher.occurrencesIndices = totalText.getIndicesOf(SearchedString);
 
                 let length = Searcher.SearchedStringLength = SearchedString.length;
@@ -45,7 +28,6 @@ class Searcher {
                 indices.forEach(index => quill.formatText(index, length, 'SearchedString', true));
 
             } else {
-                document.getElementById('search-input').className = 'input is-danger';
                 Searcher.occurrencesIndices = null;
                 Searcher.currentIndex = 0;
             }
@@ -103,57 +85,8 @@ class Searcher {
     }
 }
 
-
 Searcher.occurrencesIndices = null;
 Searcher.currentIndex = 0;
 Searcher.SearchedStringLength = null;
 
-Quill.register('modules/Searcher', Searcher);
-
-/* -------------------------------------------------------------------------- */
-
-/* ----------------------------- custom styling ----------------------------- */
-
-let Inline = Quill.import('blots/inline');
-
-class SearchedStringBlot extends Inline {
-
-    static create(value) {
-        let node = super.create(value);
-        node.contentEditable = 'false';
-        return node;
-    }
-}
-
-SearchedStringBlot.blotName = 'SearchedString';
-SearchedStringBlot.className = 'ql-searched-string';
-SearchedStringBlot.tagName = 'div';
-
-Quill.register(SearchedStringBlot);
-
-// class SpellingErrorBlot extends Inline { }
-// ItalicBlot.blotName = 'italic';
-// ItalicBlot.tagName = 'em';
-
-// Quill.register(ItalicBlot);
-
-/* -------------------------------------------------------------------------- */
-
-let quill = new Quill('#editor', {
-    // options
-    debug: 'warning',
-    placeholder: 'ما يلفظ من قول إلا لديه رقيب عتيد..',
-    theme: 'snow',
-    // toolbar
-    modules: {
-        toolbar: '#toolbar-container',
-        Searcher: true,
-    },
-});
-
-quill.format('direction', 'rtl');
-quill.format('align', 'right');
-
-
-quill.insertText(0, 'لا نعم لا نعم');
-// quill.formatText(0, 4, 'SearchedString', true);
+module.exports = Searcher;
