@@ -1,21 +1,34 @@
 module.exports = class Inserter {
 
-    constructor(text, textType, index = 0) {
+    constructor(text, textType, index = 0, data) {
+
 
         switch (textType) {
             case 'ayah':
-                text = `﴿ ${text} ﴾`;
+                this.insertAyah(text);
                 break;
             case 'hadith':
-                // text = `﴿ ${text} ﴾`;
+                this.insertHadith(text);
                 break;
             case 'poetry':
                 // text = `﴿ ${text} ﴾`;
                 break;
-
         }
 
-        quill.insertText(index, text, 'Ayah', true);
+
+    }
+
+    insertAyah(text) {
+        quill.insertText(TypingHelper.getCaretPosition(), `﴿ ${text} ﴾`, 'Ayah', true);
+    }
+
+    insertHadith(text) {
+        quill.insertText(TypingHelper.getCaretPosition(), `(${text})`, 'Hadith', true);
+
+    }
+
+    insertPoetry() {
+
     }
 
 };

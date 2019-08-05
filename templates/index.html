@@ -88,7 +88,7 @@
         </div>
 
         <div id="saving-status-container">
-        <span id="saving-status-text" class="unsaved-file">المستند غير محفوظ.</span>
+            <span id="saving-status-text" class="unsaved-file">المستند غير محفوظ.</span>
         </div>
     </div>
 
@@ -289,8 +289,14 @@
                 </svg>
             </li>
         </ul>
-        <div id="insert-ayah-box">
-            <input id="ayah-input" type="text" placeholder="بحث عن آية قرآنية">
+        <div id="insert-ayah-box" class="insert-box">
+            <input id="ayah-input" class="insert-input" type="text" placeholder="بحث عن آية قرآنية">
+        </div>
+        <div id="insert-hadith-box" class="insert-box">
+            <input id="hadith-input" class="insert-input" type="text" placeholder="بحث عن حديث نبوي">
+        </div>
+        <div id="insert-poetry-box" class="insert-box">
+            <input id="poetry-input" class="insert-input" type="text" placeholder="إدراج بيت شعر">
         </div>
     </div>
 
@@ -350,7 +356,7 @@
                 <rect class="ql-custom-stroke-2" height="1" rx="0.5" ry="0.5" width="12" x="3" y="15"></rect>
             </svg>
         </li>
-            <hr width="1" size="24">
+        <hr width="1" size="24">
         <li class="tool float-color" data-value="#000000">
         <span tabindex="0" role="button" class="ql-float-color"
               style="background-color: rgb(0, 0, 0);"></span>
@@ -391,16 +397,19 @@
 
 <script>
     <!--load global modules-->
-    const Note = require('./../static/helpers/Notification');
-    const ArabicHelper = require('./../static/helpers/ArabicHelper');
-    const EditorHelper = require('./../static/helpers/EditorHelper');
-    const FileHelper = require('./../static/helpers/FileHelper');
-    const path = require("path");
-    const remote = require("electron").remote;
-    const win = remote.getCurrentWindow();
-    const fs = require('fs');
-    const dialog = remote.dialog;
-    const app = remote.app;
+    const Note = require('./../static/helpers/Notification'),
+        ArabicHelper = require('./../static/helpers/ArabicHelper'),
+        EditorHelper = require('./../static/helpers/EditorHelper'),
+        FileHelper = require('./../static/helpers/FileHelper'),
+        TypingHelper = require('./../static/helpers/TypingHelper'),
+        Inserter = require('./../static/core/Insert-management/Inserter'), path = require("path"),
+        remote = require("electron").remote, win = remote.getCurrentWindow(), fs = require('fs'),
+        dialog = remote.dialog, app = remote.app,
+        hadiths_Tashkeel = require('./../static/core/Insert-management/data/Hadiths_with-tashkeel'),
+        hadiths_NoTashkeel = require('./../static/core/Insert-management/data/Hadiths_without-tashkeel'),
+        Ayat_Tashkeel = require('./../static/core/Insert-management/data/Q_with-tashkeel'),
+        Ayat_NoTashkeel = require('./../static/core/Insert-management/data/Q_without-tashkeel'),
+        surahs = require('./../static/core/Insert-management/data/surahs');
 
 </script>
 <!-- Initialize Quill editor -->
@@ -412,6 +421,8 @@
 <script src="../static/core/Editor/editor.js"></script>
 <script src="../static/core/File-management/UI.js"></script>
 <script src="../static/core/Insert-management/UI.js"></script>
+<script src="../static/core/Insert-management/InsertAyahUI.js"></script>
+<script src="../static/core/Insert-management/insertHadithUI.js"></script>
 <script src="../static/core/Editor/js/float-menu.js"></script>
 <script src="../static/core/Editor/typing/keyboard-shortcuts.js"></script>
 </body>

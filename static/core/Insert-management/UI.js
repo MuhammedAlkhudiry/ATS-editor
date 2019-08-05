@@ -1,115 +1,64 @@
-const Inserter = require('./../static/core/Insert-management/Inserter');
-const Ayat_Tashkeel = require('./../static/core/Insert-management/data/Q_with-tashkeel');
-const Ayat_NoTashkeel = require('./../static/core/Insert-management/data/Q_without-tashkeel');
-
-
-let ayahInput = document.getElementById("ayah-input");
-let InsertAyahButton = document.getElementById("insert-ayah");
-let insertAyahBox = document.getElementById('insert-ayah-box');
 let currentFocus;
-let ayahList;
 
-InsertAyahButton.addEventListener('click', e => {
+document.getElementById('insert-bar').addEventListener('click', e => {
 
-    if (insertAyahBox.style.opacity === '1') insertAyahBox.style.opacity = '0';
-    else insertAyahBox.style.opacity = '1';
+    let clickedIcon = e.target;
+    let insertBox;
+    if (clickedIcon.classList.contains('insert-icon')) {
 
-});
+        if (clickedIcon.id === 'insert-ayah') {
+            insertBox = document.getElementById('insert-ayah-box');
+        } else if (clickedIcon.id === 'insert-hadith') {
+            insertBox = document.getElementById('insert-hadith-box');
+        } else if (clickedIcon.id === 'insert-poetry') {
+            insertBox = document.getElementById('insert-poetry-box');
+        }
 
-ayahInput.addEventListener('input', function (e) {
+        if (insertBox.className === 'insert-box show') {
 
-    const searchedAyah = this.value;
-    /*close any already open list*/
-    closeCurrentList();
-
-    if (!searchedAyah) return;
-
-    currentFocus = -1;
-    /*create a DIV element that will contain the items (values):*/
-    ayahList = document.createElement('DIV');
-    ayahList.id = 'ayah-list';
-    ayahList.style.display = 'none';
-    this.parentNode.appendChild(ayahList);
-
-    if (ayahList.childElementCount > 5) return;
-
-    /*for each item in the array...*/
-    for (const [i, ayah] of Ayat_NoTashkeel.entries()) {
-        if (ayah.content.trim().contains(searchedAyah.trim())) {
-            /*create a DIV element for each matching element:*/
-            let ayahListItem = document.createElement('DIV');
-
-            ayahListItem.innerHTML = Ayat_Tashkeel[i].content.replace(searchedAyah, `<strong>${searchedAyah}</strong>`);
-
-            /*execute a function when someone clicks on the item value (DIV element):*/
-            ayahListItem.addEventListener('click', function (e) {
-
-                /*insert ayah in editor*/
-                new Inserter(this.textContent, 'ayah');
-                closeCurrentList();
-            });
-
-            ayahList.appendChild(ayahListItem);
-            ayahList.style.display = 'block';
-            if (ayahList.childElementCount > 15) break;
-
+            insertBox.className = 'insert-box';
+        } else {
+            document.querySelectorAll('.insert-box.show').forEach(box => box.className = 'insert-box');
+            insertBox.className = 'insert-box show';
         }
     }
-});
-
-ayahInput.addEventListener('keydown', function (e) {
-    let ayahList = document.getElementById('ayah-list');
-    if (!ayahList) return;
-    let ayahListItems = ayahList.children;
-
-    switch (e.key) {
-
-        case "Enter":
-            if (currentFocus > -1) {
-                /*and simulate a click on the "active" item:*/
-                if (ayahListItems) ayahListItems[currentFocus].click();
-            }
-            break;
-        case "ArrowUp":
-            currentFocus--;
-            /*and and make the current item more visible:*/
-            addActive(ayahListItems);
-            e.preventDefault();
-            break;
-        case "ArrowDown":
-            currentFocus++;
-            /*and and make the current item more visible:*/
-            addActive(ayahListItems);
-            e.preventDefault();
-            break;
-    }
 
 });
-
-
-function addActive(ayahListItems) {
-    /*a function to classify an item as "active":*/
-    if (!ayahListItems) return false;
-    /*start by removing the "active" class on all items:*/
-    removeActive(ayahListItems);
-    if (currentFocus >= ayahListItems.length) currentFocus = 0;
-    if (currentFocus < 0) currentFocus = (ayahListItems.length - 1);
-
-    ayahListItems[currentFocus].classList.add('ayah-active');
-}
-
-function removeActive() {
-    if (document.querySelector('.ayah-active'))
-        document.querySelector('.ayah-active').className = '';
-}
-
-function closeCurrentList() {
-    if (insertAyahBox.lastElementChild.id === 'ayah-list') {
-        insertAyahBox.lastElementChild.remove();
-    }
-}
-
 document.addEventListener('click', function (e) {
     closeCurrentList();
+});
 
+function closeCurrentList() {
+    document.querySelectorAll('.insert-list').forEach(list => list.parentElement.removeChild(list));
+}
+
+
+document.getElementsByClassName('ql-editor')[0].addEventListener('mouseover', e => {
+    if (e.target.classList.contains('ql-ayah')) {
+        // remove brackets.
+        let ayahText = e.target.textContent.slice(2, -2);
+        for (const ayah of Ayat_Tashkeel) {
+            if (ayah.content === ayahText) {
+                for (const surah of surahs) {
+                    if (ayah.surah_number === surah.number) {
+                        tippy(e.target, {
+                            content: ` الآية: ${ayah.verse_number} <br> ${surah.name}`,
+                        })
+                    }
+                }
+            }
+        }
+
+    } else if (e.target.classList.contains('ql-hadith')) {
+        // remove brackets.
+        let hadithText = e.target.textContent.slice(2, -2);
+        for (const hadith of hadiths_Tashkeel) {
+            if (hadith.content === hadithText) {
+                let hadithCollections = hadith.collections.join(' و');
+                tippy(e.target, {
+                    content: ` رقم الحديث: ${hadith.number} <br> رواه ${hadithCollections} <br> الراوي: ${hadith.narrator} <br> صحة الحديث ${hadith.authenticity}`,
+                })
+            }
+        }
+    }
 });

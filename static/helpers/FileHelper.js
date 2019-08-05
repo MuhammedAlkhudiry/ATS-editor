@@ -1,4 +1,3 @@
-
 module.exports = class FileHelper {
 
     static isOpenedFileValid(fileContent) {
@@ -23,10 +22,9 @@ module.exports = class FileHelper {
             file = loadedFile;
             EditorHelper.setEditorContent(file.content);
             file.setName(FileHelper.getFileNameFromPath(file.path));
-            new Note().success('فُتح الملف');
+            Note('fail', 'تعذر فتح المستند.. يسمح بفتح مستند واحد فقط')('success', 'فُتح الملف');
         } else {
-            new Note().fail('المستند معطوب')
+            new Note('fail', 'المستند معطوب')
         }
     }
-
-}
+};

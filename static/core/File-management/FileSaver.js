@@ -16,7 +16,7 @@ module.exports = class FileSaver {
 
             try {
                 fs.writeFile(file.path, file.content, e => {
-                    new Note().success('حٌفظ المستند');
+                    new Note('success', 'حٌفظ المستند');
                     file.setSavingStatus('المستند محفوظ', 'saved-file');
                 })
             } catch (e) {

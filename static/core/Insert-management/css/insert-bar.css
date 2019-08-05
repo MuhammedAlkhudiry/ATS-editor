@@ -22,7 +22,7 @@
     opacity: 0.8;
 }
 
-.insert-icon:hover:not(#ayah-input) {
+.insert-icon:hover {
     background-color: #e8f0fe;
     transition: .3s;
 }
@@ -34,24 +34,46 @@
     border-radius: 0.4em
 }
 
-#insert-ayah-box {
+.insert-box {
     position: absolute;
     opacity: 0;
-    top: 100%;
-    right: 50%;
+    visibility: hidden;
     display: block;
     direction: rtl;
-   transition: opacity 0.4s;
+    transition: opacity 0.4s;
     box-shadow: rgba(0, 0, 0, 0.2) 0 2px 8px;
     background-color: #fafafa;
     width: auto;
     max-width: 40vw;
     border-radius: 0.4em;
     border: 1px solid #d4d4d4;
+}
+
+#insert-ayah-box {
+    top: 100%;
+    right: 50%;
 
 }
 
-#ayah-input {
+#insert-hadith-box {
+    top: 100%;
+    right: 40%;
+
+}
+
+#insert-poetry-box {
+    top: 100%;
+    right: 30%;
+
+}
+
+.insert-box.show {
+    opacity: 1;
+    visibility: visible;
+
+}
+
+.insert-input {
     border: 1px solid transparent;
     padding: 10px;
     font-size: 12px;
@@ -59,12 +81,12 @@
     width: 100%;
 }
 
-#ayah-input::placeholder {
+.insert-input::placeholder {
     color: #a8a8a8;
 }
 
 
-#ayah-list {
+.insert-list {
     border: 1px solid #d4d4d4;
     border-bottom: none;
     border-top: none;
@@ -79,19 +101,18 @@
 }
 
 
-#ayah-list div {
+.insert-list div {
     padding: 10px;
     cursor: pointer;
     background-color: #fff;
     border-bottom: 1px solid #d4d4d4;
 }
 
-#ayah-list div:hover {
+.insert-list div:hover {
     background-color: #e9e9e9;
 }
 
-.ayah-active {
-    /*when navigating through the items using the arrow keys:*/
+.insert-list-active {
     background-color: #06c !important;
     color: #ffffff;
 }

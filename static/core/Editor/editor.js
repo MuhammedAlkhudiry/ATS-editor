@@ -12,6 +12,7 @@ FontAttributor.whitelist = [
 Quill.register(FontAttributor, true);
 
 /* -------------------------------------------------------------------------- */
+
 /* ----------------------------- custom modules ----------------------------- */
 const Searcher = require('./../static/core/Editor/custom-modules/Searcher');
 
@@ -19,15 +20,17 @@ Quill.register('modules/Searcher', Searcher);
 
 /* -------------------------------------------------------------------------- */
 
-/* ----------------------------- custom styling ----------------------------- */
+/* ----------------------------- custom blots ----------------------------- */
 
 const SearchedStringBlot = require('./../static/core/Editor/custom-blots/SearchBlot');
 const SpellingErrorBlot = require('./../static/core/Editor/custom-blots/SpellingErrorBlot');
 const AyahBlot = require('./../static/core/Editor/custom-blots/AyahBlot');
+const hadithBlot = require('./../static/core/Editor/custom-blots/hadithBlot');
 
 Quill.register(SearchedStringBlot);
 Quill.register(SpellingErrorBlot);
 Quill.register(AyahBlot);
+Quill.register(hadithBlot);
 
 /* -------------------------------------------------------------------------- */
 
@@ -48,6 +51,5 @@ quill.format('align', 'right');
 
 
 quill.insertText(0, 'لا نعم لا نعم');
-// quill.insertText(0, '﴿ لا نعم لا نعم ﴾', 'Ayah', true);
 
 // quill.formatText(0, 11, 'Misspell', true);

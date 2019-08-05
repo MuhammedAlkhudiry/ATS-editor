@@ -4,7 +4,7 @@ const Swal = require('sweetalert2');
 module.exports = class Notification {
 
 
-    constructor(msg, msgType) {
+    constructor(msgType, msg = '') {
         switch (msgType) {
             case 'success':
                 this.success(msg);
@@ -15,8 +15,8 @@ module.exports = class Notification {
             case 'info':
                 this.info(msg);
                 break;
-            case 'unsavedFile':
-                this.unsavedFile(msg);
+            case 'unsaved-file':
+                this.unsavedFile();
                 break;
 
         }

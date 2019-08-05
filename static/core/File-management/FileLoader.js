@@ -22,7 +22,7 @@ module.exports = class FileLoader {
         if (loadedFile.path) {
             fs.readFile(loadedFile.path, 'utf8', (err, data) => {
                 if (err) {
-                    new Note().fail('ثمة خلل.. تعذر فتح الملف');
+                    new Note('fail', 'ثمة خلل.. تعذر فتح الملف')
                     return;
                 }
                 loadedFile.content = data;
@@ -43,7 +43,7 @@ module.exports = class FileLoader {
 
             fs.readFile(loadedFile.path, 'utf8', (err, data) => {
                 if (err) {
-                    new Note().fail('ثمة خلل.. تعذر فتح الملف');
+                    new Note('fail', 'ثمة خلل.. تعذر فتح الملف')
                     return;
                 }
                 loadedFile.content = data;
@@ -53,7 +53,7 @@ module.exports = class FileLoader {
         } else if (draggedFile.type === docFile || draggedFile.type === docxFile) {
             // TODO: convert from doc/docx to html then send to main process
         } else {
-            new Note().fail('صيغة المستند غير مقبولة')
+            new Note('fail', 'صيغة المستند غير مقبولة')
         }
     }
 };

@@ -3,7 +3,6 @@
     animation: fade-in-bck 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
     display: inline-block;
     transition: .2s;
-
 }
 
 .ql-searched-string:hover {
@@ -15,7 +14,7 @@
 
 .ql-mis-spell {
     background: linear-gradient(-175deg, #e7000066 2px, transparent 0) repeat-x 0 90%;
-    background-size:6px 3px;
+    background-size: 6px 3px;
     transition: background .2s;
     display: inline-block;
 }
@@ -38,7 +37,24 @@
 }
 
 .ql-ayah:hover {
-    padding: 2px;
     transition: .2s;
-    border: 1px darkgreen solid;
+    background: #03FB7122;
+    border-radius: .4em;
+
+}
+
+.ql-hadith {
+    color: #634911ee;
+    font-family: "Traditional Arabic";
+    animation: fade-in-bck 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    display: inline-block;
+    transition: .2s;
+    font-size: 1rem;
+}
+
+.ql-hadith:hover {
+    transition: .2s;
+    background: #63491122;
+    border-radius: .4em;
+
 }

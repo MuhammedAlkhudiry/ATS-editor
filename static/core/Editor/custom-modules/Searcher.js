@@ -22,7 +22,6 @@ class Searcher {
             let match = re.test(totalText);
             if (match) {
                 let indices = Searcher.occurrencesIndices = totalText.getIndicesOf(SearchedString);
-
                 let length = Searcher.SearchedStringLength = SearchedString.length;
 
                 indices.forEach(index => quill.formatText(index, length, 'SearchedString', true));
@@ -34,7 +33,6 @@ class Searcher {
 
         } else {
             if (Searcher.occurrencesIndices) {
-
                 Searcher.occurrencesIndices.forEach(index => quill.formatText(index, Searcher.SearchedStringLength, 'SearchedString', false));
 
                 Searcher.occurrencesIndices = null;
@@ -71,7 +69,6 @@ class Searcher {
         }
 
         if (Searcher.occurrencesIndices) {
-
             while (Searcher.occurrencesIndices) {
 
                 quill.deleteText(Searcher.occurrencesIndices[0], oldStringLen);
@@ -81,7 +78,6 @@ class Searcher {
                 this.search();
             }
         }
-
     }
 }
 

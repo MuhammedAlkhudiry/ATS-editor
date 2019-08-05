@@ -34,17 +34,17 @@ document.getElementById('new-file-icon').addEventListener('click', e => {
 
     if (change.length() > 0) {
 
-        new Note().unsavedFile().then((result) => {
+        new Note('unsaved-file').then((result) => {
             if (result.value) {
 
                 EditorHelper.cleanEditor();
-                new Note().info('مستند جديد');
+                new Note('info', 'مستند جديد');
             }
         });
 
     } else {
         EditorHelper.cleanEditor();
-        new Note().info('مستند جديد');
+        new Note('info', 'مستند جديد');
     }
 
 });
@@ -104,7 +104,7 @@ tippy('#save-icon', {
 
         document.getElementById('saving-box-content').addEventListener('click', e => {
             if (FileHelper.isFileNameNotValid(fileName.value)) {
-                new Note().fail('خانة اسم المستند فارغة');
+                Note('fail', 'تعذر فتح المستند.. يسمح بفتح مستند واحد فقط')('fail', 'خانة اسم المستند فارغة');
                 fileName.focus();
                 fileName.className = 'unvalid-file-name';
                 return;
@@ -121,7 +121,7 @@ tippy('#save-icon', {
                 change = new Delta();
 
             } catch (err) {
-                new Note().fail('ثمة خلل.. تعذر حفظ المستند');
+                new Note('fail', 'ثمة خلل.. تعذر حفظ المستند');
 
             }
         });
@@ -153,7 +153,7 @@ function loadFile(e) {
 
     if (change.length() > 0) {
 
-        new Note().unsavedFile().then((result) => {
+        new Note('unsaved-file').then((result) => {
             if (result.value) {
 
                 EditorHelper.cleanEditor();
@@ -181,7 +181,7 @@ document.body.addEventListener('drop', (e) => {
     if (e.dataTransfer.files.length === 0) return;
 
     if (e.dataTransfer.files.length > 1) {
-        new Note().fail('تعذر فتح المستند.. يسمح بفتح مستند واحد فقط');
+        new Note('fail', 'تعذر فتح المستند.. يسمح بفتح مستند واحد فقط')
         return;
     }
 
@@ -189,7 +189,7 @@ document.body.addEventListener('drop', (e) => {
 
     if (change.length() > 0) {
 
-        new Note().unsavedFile().then((result) => {
+        new Note('unsaved-file').then((result) => {
             if (result.value) {
                 EditorHelper.cleanEditor();
                 FileHelper.handleLoadedFile(FileLoader.loadByDragDrop(draggedFile));

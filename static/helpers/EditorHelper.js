@@ -19,7 +19,6 @@ module.exports = class EditorHelper {
     }
 
     static customGetText() {
-
         return quill.getContents().filter(function (op) {
             return typeof op.insert === 'string' || op.insert.image;
         }).map(function (op) {
@@ -30,4 +29,4 @@ module.exports = class EditorHelper {
         }).join('');
     }
 
-}
+};

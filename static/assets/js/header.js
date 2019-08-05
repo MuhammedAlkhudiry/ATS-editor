@@ -6,7 +6,7 @@ const resizeIcon = document.getElementById('resize-icon');
 
 document.getElementById('exit-icon').addEventListener('click', e => {
     if (change.length() > 0) {
-        new Note().unsavedFile().then(result => {
+        new Note('unsaved-file').then(result => {
             // if result.value means 'yes' pressed, else no.
             if (result.value) {
                 win.close();
