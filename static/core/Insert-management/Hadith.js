@@ -1,4 +1,4 @@
-module.exports = class Hadith {
+ class Hadith {
     // رقم الحديث
     number;
     // كتاب الحديث

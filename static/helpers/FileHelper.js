@@ -1,4 +1,4 @@
-module.exports = class FileHelper {
+ class FileHelper {
 
     static isOpenedFileValid(fileContent) {
         return fileContent.contains('ats-editor-file');
@@ -22,9 +22,9 @@ module.exports = class FileHelper {
             file = loadedFile;
             EditorHelper.setEditorContent(file.content);
             file.setName(FileHelper.getFileNameFromPath(file.path));
-            Note('fail', 'تعذر فتح المستند.. يسمح بفتح مستند واحد فقط')('success', 'فُتح الملف');
+            new Notification('fail', 'تعذر فتح المستند.. يسمح بفتح مستند واحد فقط')('success', 'فُتح الملف');
         } else {
-            new Note('fail', 'المستند معطوب')
+            new Notification('fail', 'المستند معطوب')
         }
     }
 };

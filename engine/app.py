@@ -1,16 +1,16 @@
 import sys
 from flask import Flask, render_template, request, json
-
-app = Flask(__name__)
+from spell_checker import analyze
+app = Flask(__name__,root_path= '../ATS-editor/')
 
 @app.route("/")
 def hello():
     return render_template('index.html')
 
 
-@app.route("/words/<content>", methods=['GET'])
-def words(content):
-    return json.dumps(len(content))
+@app.route("/check-spell/<text>", methods=['GET'])
+def words(text):
+    return json.dumps(analyze(text))
 
 
 if __name__ == "__main__":

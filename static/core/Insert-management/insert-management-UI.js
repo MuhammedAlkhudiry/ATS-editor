@@ -1,5 +1,11 @@
 let currentFocus;
 
+let hadiths_Tashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Hadiths_with-tashkeel.json').toString()),
+    hadiths_NoTashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Hadiths_without-tashkeel.json').toString()),
+    Ayat_Tashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Q_with-tashkeel.json').toString()),
+    Ayat_NoTashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Q_without-tashkeel.json').toString().trim()),
+    surahs = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/surahs.json').toString());
+
 document.getElementById('insert-bar').addEventListener('click', e => {
 
     let clickedIcon = e.target;
@@ -8,18 +14,25 @@ document.getElementById('insert-bar').addEventListener('click', e => {
 
         if (clickedIcon.id === 'insert-ayah') {
             insertBox = document.getElementById('insert-ayah-box');
-        } else if (clickedIcon.id === 'insert-hadith') {
+        }
+        else if (clickedIcon.id === 'insert-hadith') {
             insertBox = document.getElementById('insert-hadith-box');
-        } else if (clickedIcon.id === 'insert-poetry') {
+        }
+        else if (clickedIcon.id === 'insert-poetry') {
             insertBox = document.getElementById('insert-poetry-box');
+        }
+        else if (clickedIcon.id === 'search-replace') {
+            insertBox = document.getElementById('search-box');
         }
 
         if (insertBox.className === 'insert-box show') {
-
             insertBox.className = 'insert-box';
-        } else {
+            if (insertBox.id === 'search-replace') Searcher.removeStyle();
+        }
+        else {
             document.querySelectorAll('.insert-box.show').forEach(box => box.className = 'insert-box');
             insertBox.className = 'insert-box show';
+            insertBox.focus();
         }
     }
 
@@ -43,21 +56,22 @@ document.getElementsByClassName('ql-editor')[0].addEventListener('mouseover', e 
                     if (ayah.surah_number === surah.number) {
                         tippy(e.target, {
                             content: ` الآية: ${ayah.verse_number} <br> ${surah.name}`,
-                        })
+                        });
                     }
                 }
             }
         }
 
-    } else if (e.target.classList.contains('ql-hadith')) {
+    }
+    else if (e.target.classList.contains('ql-hadith')) {
         // remove brackets.
-        let hadithText = e.target.textContent.slice(2, -2);
+        let hadithText = e.target.textContent.slice(1, -1);
         for (const hadith of hadiths_Tashkeel) {
             if (hadith.content === hadithText) {
                 let hadithCollections = hadith.collections.join(' و');
                 tippy(e.target, {
-                    content: ` رقم الحديث: ${hadith.number} <br> رواه ${hadithCollections} <br> الراوي: ${hadith.narrator} <br> صحة الحديث ${hadith.authenticity}`,
-                })
+                    content: ` رقم الحديث: ${hadith.number} <br> رواه ${hadithCollections} <br> الراوي: ${hadith.narrator} <br> صحة الحديث: ${hadith.authenticity}`,
+                });
             }
         }
     }

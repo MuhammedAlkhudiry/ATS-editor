@@ -1,6 +1,3 @@
-let ATSFile = require('./../static/core/File-management/ATSFile');
-let FileSaver = require('./../static/core/File-management/FileSaver');
-let FileLoader = require('./../static/core/File-management/FileLoader');
 let file = new ATSFile();
 let change = new Delta();
 
@@ -34,24 +31,31 @@ document.getElementById('new-file-icon').addEventListener('click', e => {
 
     if (change.length() > 0) {
 
-        new Note('unsaved-file').then((result) => {
+        new Notification('unsaved-file').then((result) => {
             if (result.value) {
 
                 EditorHelper.cleanEditor();
-                new Note('info', 'مستند جديد');
+                new Notification('info', 'مستند جديد');
             }
         });
 
     } else {
         EditorHelper.cleanEditor();
-        new Note('info', 'مستند جديد');
+        new Notification('info', 'مستند جديد');
     }
 
 });
 /* -------------------------------------------------------------------------- */
 
-let savingBoxHTML = `
-<div id="saving-box-content">
+/* --------------------------------- saving --------------------------------- */
+
+tippy('#save-icon', {
+    trigger: 'click',
+    theme: 'light',
+    interactive: true,
+    multiple: true,
+    maxWidth: 1000,
+    content: `<div id="saving-box-content">
   <div id="pdf">
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5C3,3.89 3.89,3 5,3H19M10.59,10.08C10.57,10.13 10.3,11.84 8.5,14.77C8.5,14.77 5,16.58 5.83,17.94C6.5,19 8.15,17.9 9.56,15.27C9.56,15.27 11.38,14.63 13.79,14.45C13.79,14.45 17.65,16.19 18.17,14.34C18.69,12.5 15.12,12.9 14.5,13.09C14.5,13.09 12.46,11.75 12,9.89C12,9.89 13.13,5.95 11.38,6C9.63,6.05 10.29,9.12 10.59,10.08M11.4,11.13C11.43,11.13 11.87,12.33 13.29,13.58C13.29,13.58 10.96,14.04 9.9,14.5C9.9,14.5 10.9,12.75 11.4,11.13M15.32,13.84C15.9,13.69 17.64,14 17.58,14.32C17.5,14.65 15.32,13.84 15.32,13.84M8.26,15.7C7.73,16.91 6.83,17.68 6.6,17.67C6.37,17.66 7.3,16.07 8.26,15.7M11.4,8.76C11.39,8.71 11.03,6.57 11.4,6.61C11.94,6.67 11.4,8.71 11.4,8.76Z" /></svg>    
     <br>
@@ -88,23 +92,12 @@ let savingBoxHTML = `
       مناسب لفتح المستند في برنامج وورد.
     </span>
   </div>
-</div>
-`;
-
-/* --------------------------------- saving --------------------------------- */
-
-tippy('#save-icon', {
-    trigger: 'click',
-    theme: 'light',
-    interactive: true,
-    multiple: true,
-    maxWidth: 1000,
-    content: savingBoxHTML,
+</div>`,
     onShown() {
 
         document.getElementById('saving-box-content').addEventListener('click', e => {
             if (FileHelper.isFileNameNotValid(fileName.value)) {
-                Note('fail', 'تعذر فتح المستند.. يسمح بفتح مستند واحد فقط')('fail', 'خانة اسم المستند فارغة');
+                new Notification('fail', 'خانة اسم المستند فارغة');
                 fileName.focus();
                 fileName.className = 'unvalid-file-name';
                 return;
@@ -121,7 +114,8 @@ tippy('#save-icon', {
                 change = new Delta();
 
             } catch (err) {
-                new Note('fail', 'ثمة خلل.. تعذر حفظ المستند');
+                console.log(err);
+                new Notification('fail', 'ثمة خلل.. تعذر حفظ المستند');
 
             }
         });
@@ -153,7 +147,7 @@ function loadFile(e) {
 
     if (change.length() > 0) {
 
-        new Note('unsaved-file').then((result) => {
+        new Notification('unsaved-file').then((result) => {
             if (result.value) {
 
                 EditorHelper.cleanEditor();
@@ -181,7 +175,7 @@ document.body.addEventListener('drop', (e) => {
     if (e.dataTransfer.files.length === 0) return;
 
     if (e.dataTransfer.files.length > 1) {
-        new Note('fail', 'تعذر فتح المستند.. يسمح بفتح مستند واحد فقط')
+        new Notification('fail', 'تعذر فتح المستند.. يسمح بفتح مستند واحد فقط');
         return;
     }
 
@@ -189,7 +183,7 @@ document.body.addEventListener('drop', (e) => {
 
     if (change.length() > 0) {
 
-        new Note('unsaved-file').then((result) => {
+        new Notification('unsaved-file').then((result) => {
             if (result.value) {
                 EditorHelper.cleanEditor();
                 FileHelper.handleLoadedFile(FileLoader.loadByDragDrop(draggedFile));

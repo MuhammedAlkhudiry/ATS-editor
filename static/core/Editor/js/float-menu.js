@@ -6,10 +6,11 @@ quill.on('selection-change', function () {
 
     let sel = window.getSelection(),
         rect = sel.getRangeAt(0).getBoundingClientRect();
-    ele.style.top = `${rect.y + 20}px`;
-    ele.style.left = `${rect.x - ele.clientWidth / 2 + rect.width / 2}px`;
 
-    ele.className = 'hdn'
+    ele.style.top = `${rect.y + 20}px`;
+    ele.style.left = `${rect.x - ele.clientWidth + rect.width}px`;
+
+    ele.className = 'show'
 });
 
 window.addEventListener('mousedown', function () {

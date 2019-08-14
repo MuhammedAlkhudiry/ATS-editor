@@ -3343,7 +3343,7 @@ var ContainerBlot = /** @class */ (function (_super) {
             }
             catch (err) {
                 if (err instanceof Registry.ParchmentError)
-
+                    return;
                 else
                     throw err;
             }

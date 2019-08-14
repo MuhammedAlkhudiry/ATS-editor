@@ -41,7 +41,7 @@ hadithInput.addEventListener('input', function (e) {
 
 
 hadithInput.addEventListener('keydown', function (e) {
-    let hadithList = document.getElementById('ayah-list');
+    let hadithList = document.getElementById('hadith-list');
     if (!hadithList) return;
     let hadithListItems = hadithList.children;
 

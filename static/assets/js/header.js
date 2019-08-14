@@ -6,7 +6,7 @@ const resizeIcon = document.getElementById('resize-icon');
 
 document.getElementById('exit-icon').addEventListener('click', e => {
     if (change.length() > 0) {
-        new Note('unsaved-file').then(result => {
+        new Notification('unsaved-file').then(result => {
             // if result.value means 'yes' pressed, else no.
             if (result.value) {
                 win.close();
@@ -15,7 +15,8 @@ document.getElementById('exit-icon').addEventListener('click', e => {
                 if (!win.isDestroyed()) win.destroy();
             }
         });
-    } else {
+    }
+    else {
         win.close();
     }
 })
@@ -25,17 +26,12 @@ resizeIcon.addEventListener('click', e => {
     if (win.isMaximized()) {
         win.unmaximize();
         resizeIcon.innerHTML =
-            '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"' +
-            ' "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" ' +
-            'xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="12" height="12" viewBox="0 0 12 12">' +
-            '<path d="M4,4H20V20H4V4M6,8V18H18V8H6Z" /></svg>';
-    } else {
+            `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="18" height="18" viewBox="0 0 24 24"><path d="M4,4H20V20H4V4M6,8V18H18V8H6Z"></path></svg>`;
+    }
+    else {
         win.maximize();
-        resizeIcon.innerText =
-            '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" ' +
-            '"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" ' +
-            'xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="12" height="12" viewBox="0 0 12 12">' +
-            '<path d="M4,8H8V4H20V16H16V20H4V8M16,8V14H18V6H10V8H16M6,12V18H14V12H6Z" /></svg>';
+        resizeIcon.innerHTML =
+            `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="18" height="18" viewBox="0 0 24 24"><path d="M4,8H8V4H20V16H16V20H4V8M16,8V14H18V6H10V8H16M6,12V18H14V12H6Z" /></svg>`;
     }
 })
 ;
@@ -73,12 +69,11 @@ searchInput.addEventListener('input', e => {
         let re = new RegExp(searchInput.value, 'g');
         let match = re.test(totalText);
         if (match) {
-            searchInput.className = 'input is-success';
-        } else {
-            searchInput.className = 'input is-danger';
+        }
+        else {
 
         }
-    } else {
-        searchInput.className = 'input is-primary';
+    }
+    else {
     }
 });

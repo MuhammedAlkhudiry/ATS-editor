@@ -19,14 +19,14 @@ app.on('ready', function () {
     /* ------------------ setting up Flask server ----------------- */
 
     // develop
-    // var subpy = require('child_process').spawn('python', ['python.py']);
+    // const subpy = require('child_process').spawn('python', ['./engine/app.py']);
 
     // packaging
     // var subpy = require('child_process').spawn('./dist/python.exe');
 
     /* ------------------ setting up Flask server ----------------- */
 
-    const mainAddr = 'http://localhost:5000/../../templates/index.html';
+    const mainAddr = 'http://localhost:5000';
     const openWindow = function () {
 
         // setting main window..
@@ -41,17 +41,17 @@ app.on('ready', function () {
         });
 
         // load main window from Flask.
-        // mainWindow.loadURL(mainAddr);
+        mainWindow.loadURL(mainAddr);
 
         // for developing front-end
-        mainWindow.loadFile('./templates/index.html');
+        // mainWindow.loadFile('./templates/index.html');
 
         // Open the DevTools.
         mainWindow.webContents.openDevTools();
         // TODO: dl
-        // mainWindow.webContents.session.clearCache(function () {
-        //
-        // });
+        mainWindow.webContents.session.clearCache(function () {
+
+        });
 
         mainWindow.on('closed', function () {
             mainWindow = null;
@@ -62,7 +62,7 @@ app.on('ready', function () {
     /* ------------------------- starting Flask server ------------------------- */
 
     const startUp = function () {
-        axios(mainAddr)
+        axios.get(mainAddr)
             .then(function (htmlString) {
                 console.log('server started!');
                 openWindow();
@@ -72,9 +72,7 @@ app.on('ready', function () {
                 startUp();
             });
     };
-
-    // for back-end
-    // startUp();
+// startUp();
 
     // for front-end
     openWindow()

@@ -1,7 +1,5 @@
 'use strict';
-const Swal = require('sweetalert2');
-
-module.exports = class Notification {
+class Notification {
 
 
     constructor(msgType, msg = '') {
@@ -16,9 +14,7 @@ module.exports = class Notification {
                 this.info(msg);
                 break;
             case 'unsaved-file':
-                this.unsavedFile();
-                break;
-
+                return this.unsavedFile();
         }
     }
 
@@ -33,7 +29,7 @@ module.exports = class Notification {
         success.fire({
             type: 'success',
             title: msg
-        })
+        });
     }
 
     fail(msg) {
@@ -48,7 +44,7 @@ module.exports = class Notification {
         failed.fire({
             type: 'error',
             title: msg
-        })
+        });
     }
 
 
@@ -64,7 +60,7 @@ module.exports = class Notification {
             showCancelButton: true,
             showCloseButton: true
 
-        })
+        });
     }
 
     info(msg) {
@@ -80,5 +76,4 @@ module.exports = class Notification {
             title: msg
         });
     }
-};
-
+}

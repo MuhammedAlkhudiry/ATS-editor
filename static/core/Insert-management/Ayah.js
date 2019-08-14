@@ -1,4 +1,4 @@
-module.exports = class Ayah {
+ class Ayah {
 
     // سورة الآية
     surah;

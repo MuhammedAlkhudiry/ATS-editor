@@ -1,4 +1,4 @@
-module.exports = class Inserter {
+ class Inserter {
 
     constructor(text, textType, index = 0, data) {
 

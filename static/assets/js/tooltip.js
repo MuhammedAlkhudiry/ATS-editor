@@ -1,4 +1,3 @@
-let tippy = require('tippy.js');
 
 tippy.setDefaults({
     arrow: true,

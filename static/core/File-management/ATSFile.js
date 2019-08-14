@@ -1,9 +1,7 @@
 'use strict';
 
-const fs = require('fs');
-
 // Arabic Text Smart file.
-module.exports = class ATSFile {
+class ATSFile {
     name;
     path;
     content;
@@ -22,4 +20,4 @@ module.exports = class ATSFile {
         this.name = name;
     }
 
-};
+}

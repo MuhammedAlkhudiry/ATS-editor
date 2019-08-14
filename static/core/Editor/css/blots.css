@@ -15,15 +15,14 @@
 .ql-mis-spell {
     background: linear-gradient(-175deg, #e7000066 2px, transparent 0) repeat-x 0 90%;
     background-size: 6px 3px;
-    transition: background .2s;
+    transition: background-color  .2s;
     display: inline-block;
 }
 
 .ql-mis-spell:hover {
     background: #e7000027;
-    border-radius: 5px;
-    padding: 2px;
-    transition: background .2s;
+    border-radius: .4em;
+    transition: background-color  .2s;
 }
 
 

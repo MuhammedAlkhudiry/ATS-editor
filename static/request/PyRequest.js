@@ -1,8 +1,6 @@
 'use strict';
 
-const axios = require('axios');
 axios.defaults.baseURL = 'http://localhost:5000';
-
 
 class PyRequest {
     text;
@@ -14,11 +12,14 @@ class PyRequest {
     }
 
     get() {
-        axios.get(`/${this.route}/${this.text}`)
-            .then(function (response) {
-                // response.data;
+
+        let url = encodeURI(`/${this.route}/${this.text}`);
+        axios.get(url)
+            .then(response => {
+                EditorHelper.format(this.route,response.data);
+                console.log(response.data);
             })
-            .catch(function (error) {
+            .catch(error => {
                 // TODO: dl for debugging..
                 if (error.response) {
                     // The request was made and the server responded with a status code
@@ -26,12 +27,14 @@ class PyRequest {
                     console.log(error.response.data);
                     console.log(error.response.status);
                     console.log(error.response.headers);
-                } else if (error.request) {
+                }
+                else if (error.request) {
                     // The request was made but no response was received
                     // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                     // http.ClientRequest in node.js
                     console.log(error.request);
-                } else {
+                }
+                else {
                     // Something happened in setting up the request that triggered an Error
                     console.log('Error', error.message);
                 }

@@ -44,33 +44,32 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0 2px 8px;
     background-color: #fafafa;
     width: auto;
-    max-width: 40vw;
+    max-width: 50vw;
     border-radius: 0.4em;
     border: 1px solid #d4d4d4;
 }
 
 #insert-ayah-box {
     top: 100%;
-    right: 50%;
+    right: 55%;
 
 }
 
 #insert-hadith-box {
     top: 100%;
-    right: 40%;
+    right: 45%;
 
 }
 
 #insert-poetry-box {
     top: 100%;
-    right: 30%;
+    right: 35%;
 
 }
 
 .insert-box.show {
     opacity: 1;
     visibility: visible;
-
 }
 
 .insert-input {
@@ -81,7 +80,7 @@
     width: 100%;
 }
 
-.insert-input::placeholder {
+.insert-input::placeholder, #search-box input::placeholder {
     color: #a8a8a8;
 }
 
@@ -115,4 +114,42 @@
 .insert-list-active {
     background-color: #06c !important;
     color: #ffffff;
+}
+
+
+#search-box {
+    position: absolute;
+    top: 100%;
+    right: 20%;
+    z-index: 99;
+    direction: rtl;
+    text-align: center;
+    justify-content: space-between;
+    justify-items: center;
+    padding: .5em;
+    transition: opacity 0.4s;
+    box-shadow: rgba(0, 0, 0, 0.15) 0 2px 8px;
+    background-color: #fafafa;
+    border-radius: 0.3em;
+    border: 1px solid #d4d4d4;
+}
+
+@media (max-width: 700px) {
+    #search-box {
+        grid-template-areas: none;
+    }
+}
+
+#search-box * {
+    margin: 3px 0;
+    height: 25px;
+    padding: 2px 5px;
+}
+
+#search-box input {
+    border: 1px solid transparent;
+    padding: 10px;
+    font-size: 12px;
+    border-radius: 0.4em;
+    width: 40%;
 }

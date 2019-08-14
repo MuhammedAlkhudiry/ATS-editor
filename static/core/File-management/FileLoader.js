@@ -1,7 +1,5 @@
-const fs = require('fs');
-let ATSFile = require('./ATSFile');
 
-module.exports = class FileLoader {
+ class FileLoader {
     static load(file) {
 
         let loadedFile = new ATSFile();
@@ -18,11 +16,11 @@ module.exports = class FileLoader {
         };
 
         // show open file dialog, if you choose file, then read it.
-        loadedFile.path = dialog.showOpenDialog(options)[0];
+        loadedFile.path = dialog.showOpenDialogSync(options)[0];
         if (loadedFile.path) {
             fs.readFile(loadedFile.path, 'utf8', (err, data) => {
                 if (err) {
-                    new Note('fail', 'ثمة خلل.. تعذر فتح الملف')
+                    new Notification('fail', 'ثمة خلل.. تعذر فتح الملف')
                     return;
                 }
                 loadedFile.content = data;
@@ -40,10 +38,9 @@ module.exports = class FileLoader {
         if (draggedFile.type === "text/html") {
 
             loadedFile.path = draggedFile.path;
-
             fs.readFile(loadedFile.path, 'utf8', (err, data) => {
                 if (err) {
-                    new Note('fail', 'ثمة خلل.. تعذر فتح الملف')
+                    new Notification('fail', 'ثمة خلل.. تعذر فتح الملف')
                     return;
                 }
                 loadedFile.content = data;
@@ -53,7 +50,7 @@ module.exports = class FileLoader {
         } else if (draggedFile.type === docFile || draggedFile.type === docxFile) {
             // TODO: convert from doc/docx to html then send to main process
         } else {
-            new Note('fail', 'صيغة المستند غير مقبولة')
+            new Notification('fail', 'صيغة المستند غير مقبولة')
         }
     }
 };

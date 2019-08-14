@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = class EditorHelper {
+class EditorHelper {
 
     static cleanEditor() {
         quill.setContents([]);
@@ -29,4 +29,15 @@ module.exports = class EditorHelper {
         }).join('');
     }
 
-};
+    static format(blot, words) {
+        for (const word of Object.keys(words)) {
+            let indices = quill.getText().getIndicesOf(word);
+            indices.forEach(index => {
+                let currentCaretPos = TypingHelper.getCaretPosition();
+                quill.formatText(index, word.length, 'Misspell', true);
+                TypingHelper.setCaretPosition(currentCaretPos);
+
+            });
+        }
+    }
+}
