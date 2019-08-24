@@ -1,4 +1,4 @@
-let hadithInput = document.getElementById("hadith-input");
+let hadithInput = document.getElementById('hadith-input');
 let hadithList;
 hadithInput.addEventListener('input', function (e) {
 
@@ -47,21 +47,23 @@ hadithInput.addEventListener('keydown', function (e) {
 
     switch (e.key) {
 
-        case "Enter":
+        case 'Enter':
             if (currentFocus > -1) {
                 /*and simulate a click on the "active" item:*/
                 if (hadithListItems) hadithListItems[currentFocus].click();
             }
             break;
-        case "ArrowUp":
+        case 'ArrowUp':
             currentFocus--;
             /*and and make the current item more visible:*/
+            hadithListItems[currentFocus].scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
             addActive(hadithListItems);
             e.preventDefault();
             break;
-        case "ArrowDown":
+        case 'ArrowDown':
             currentFocus++;
             /*and and make the current item more visible:*/
+            hadithListItems[currentFocus].scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
             addActive(hadithListItems);
             e.preventDefault();
             break;

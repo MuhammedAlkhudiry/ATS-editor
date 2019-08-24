@@ -46,6 +46,12 @@ tippy('#insert-poetry', {
     placement: 'bottom'
 });
 
+tippy('#search-replace', {
+    content: 'بحث واستبدال',
+    multiple: true,
+    placement: 'bottom'
+});
+
 tippy('.ql-header', {
     content: 'حجم النص',
 });

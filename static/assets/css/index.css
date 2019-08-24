@@ -5,6 +5,23 @@
     outline: none;
 }
 
+
+html {
+    /* Adjust font size */
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    /* Font varient */
+    font-variant-ligatures: none;
+    -webkit-font-variant-ligatures: none;
+    /* Smoothing */
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+}
+
+
 ul, ol {
     list-style: none;
 }
@@ -12,10 +29,15 @@ ul, ol {
 
 input, button, body:not(#tex-box) {
     font-family: dubai, sans-serif;
+    font-size: 14px;
 }
 
 input {
     padding: .15em .5em;
+}
+
+input:focus {
+    border: 1px solid #0066cc;
 }
 
 svg, hr {
@@ -30,6 +52,8 @@ svg, hr {
     overflow: hidden;
     height: 100%;
     width: 100%;
+    background-image: linear-gradient(135deg, #eaf4fe 50%, #daecfe 30%);
+
 }
 
 
@@ -37,7 +61,6 @@ svg, hr {
     height: 80vh;
     width: 100vw;
     overflow-y: overlay;
-    background-image: linear-gradient(135deg, #eaf4fe 50%, #daecfe 30%);
     overflow-x: hidden;
 }
 

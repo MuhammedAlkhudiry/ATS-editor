@@ -23,26 +23,81 @@ class Searcher {
     search() {
         //  remove any previous search
         Searcher.removeStyle();
-        Searcher.SearchedString = document.getElementById('search-input').value;
-        if (Searcher.SearchedString) {
-            let totalText = quill.getText();
-            let re = new RegExp(Searcher.SearchedString, 'gi');
-            let match = re.test(totalText);
-            if (match) {
-                let indices = Searcher.occurrencesIndices = totalText.getIndicesOf(Searcher.SearchedString);
-                let length = (Searcher.SearchedStringLength = Searcher.SearchedString.length);
 
-                indices.forEach(index => quill.formatText(index, length, 'SearchedString', true)
-                );
-            }
-            else {
-                Searcher.occurrencesIndices = null;
-                Searcher.currentIndex = 0;
-            }
+        Searcher.SearchedString = searchInput.value;
+        if (!Searcher.SearchedString) return;
+
+        if (Searcher.isSearchedStringFound()) {
+
+            let totalText = quill.getText();
+            this.SearchWithoutTaskeel(totalText);
         }
         else {
-            Searcher.removeStyle();
+            Searcher.occurrencesIndices = null;
+            Searcher.currentIndex = 0;
         }
+    }
+
+    SearchWithTaskeel(totalText) {
+
+        if (!new RegExp(SearchedString, 'gi').test(ArabicHelper.removeTashkeel(totalText))) return;
+
+        let indices = [];
+        let totalLength = [];
+
+        for (let i = 0; i < totalText.length; i++) {
+
+            let tempLen = SearchedString.length;
+            let isMatched = true;
+
+            let currentCharSS = 0;
+            if (totalText[i] === SearchedString[currentCharSS]) {
+                currentCharSS++;
+
+                for (let j = i + 1, k = 0; k < SearchedString.length; j++ , k++) {
+                    if (ArabicHelper.isHarakah(totalText[j])) {
+                        tempLen++;
+
+                        // if current word is not matched with searched string.
+                    }
+                    else if (totalText[j] !== SearchedString[currentCharSS]) {
+                        currentCharSS++;
+                        isMatched = false;
+                        break;
+                    }
+                    else {
+                        currentCharSS++;
+                    }
+                    // if end of text
+                    if (!totalText[j]) {
+                        isMatched = false;
+                        break;
+                    }
+                    // if word without tashkeel matched
+                    if (!SearchedString[currentCharSS]) break;
+                }
+                // if word is matched after parsing it, add it
+                if (isMatched) {
+                    totalLength[indices.length] = tempLen;
+                    indices.push(i);
+                }
+            }
+
+        }
+
+        return {
+            index: indices,
+            length: totalLength
+        };
+
+    }
+
+    SearchWithoutTaskeel(totalText) {
+        let indices = Searcher.occurrencesIndices = totalText.getIndicesOf(Searcher.SearchedString);
+        let length = (Searcher.SearchedStringLength = Searcher.SearchedString.length);
+
+        indices.forEach(index => quill.formatText(index, length, 'SearchedString', true));
+
     }
 
     replace() {
@@ -54,8 +109,8 @@ class Searcher {
 
         let indices = Searcher.occurrencesIndices;
 
-        let oldString = document.getElementById('search-input').value;
-        let newString = document.getElementById('replace-input').value;
+        let oldString = searchInput.value;
+        let newString = replaceInput.value;
 
         quill.deleteText(indices[Searcher.currentIndex], oldString.length);
         quill.insertText(indices[Searcher.currentIndex], newString);
@@ -66,8 +121,8 @@ class Searcher {
 
     replaceAll() {
         if (!Searcher.SearchedString) return;
-        let oldStringLen = document.getElementById('search-input').value.length;
-        let newString = document.getElementById('replace-input').value;
+        let oldStringLen = searchInput.value.length;
+        let newString = replaceInput.value;
 
         // if no occurrences, then search first.
         if (!Searcher.occurrencesIndices) this.search();
@@ -93,5 +148,9 @@ class Searcher {
                 )
             );
         }
+    }
+
+    static isSearchedStringFound() {
+        return new RegExp(Searcher.SearchedString, 'gi').test(quill.getText());
     }
 }

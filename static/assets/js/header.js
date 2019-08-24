@@ -1,4 +1,6 @@
 let textBox = document.getElementById('text-box');
+let insertBar = document.getElementById('insert-bar');
+
 const resizeIcon = document.getElementById('resize-icon');
 /* -------------------------------- main bar -------------------------------- */
 
@@ -45,7 +47,6 @@ document.getElementById('min-icon').addEventListener('click', e => {
 
 // When the user scrolls the page
 textBox.addEventListener('scroll', e => {
-    let insertBar = document.getElementById('insert-bar');
 
     let Scroll = textBox.scrollTop;
     Scroll > 0

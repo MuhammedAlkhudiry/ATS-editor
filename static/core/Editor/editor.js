@@ -12,22 +12,19 @@ Quill.register(FontAttributor, true);
 /* -------------------------------------------------------------------------- */
 
 /* ----------------------------- custom modules ----------------------------- */
-// import {Searcher} from './custom-modules/Searcher';
 Quill.register('modules/Searcher', Searcher);
+Quill.register('modules/better-table', quillBetterTable);
+Quill.register('modules/blotFormatter', QuillBlotFormatter.default);
 
 /* -------------------------------------------------------------------------- */
 
 /* ----------------------------- custom blots ----------------------------- */
 
-// const SearchedStringBlot = require('./../static/core/Editor/custom-blots/SearchBlot');
-// const SpellingErrorBlot = require('./../static/core/Editor/custom-blots/SpellingErrorBlot');
-// const AyahBlot = require('./../static/core/Editor/custom-blots/AyahBlot');
-// const hadithBlot = require('./../static/core/Editor/custom-blots/hadithBlot');
-
 Quill.register(SearchedStringBlot);
 Quill.register(SpellingErrorBlot);
 Quill.register(AyahBlot);
 Quill.register(hadithBlot);
+Quill.register(PoetryBlot);
 
 /* -------------------------------------------------------------------------- */
 
@@ -36,17 +33,40 @@ const quill = new Quill('#editor', {
     debug: 'warning',
     placeholder: 'ما يلفظ من قول إلا لديه رقيب عتيد..',
     theme: 'snow',
-    // toolbar
     modules: {
         toolbar: '#toolbar-container',
         Searcher: true,
+        autoformat: true,
+        table: false,
+        'better-table': {
+            operationMenu: {
+                items: {
+                    unmergeCells: {
+                        text: 'Another unmerge cells name'
+                    }
+                }
+            }
+        },
+        blotFormatter: {},
     },
+    keyboard: {
+        bindings: quillBetterTable.keyboardBindings
+    }
 });
+
 
 quill.format('direction', 'rtl');
 quill.format('align', 'right');
 
+const tableModule = quill.getModule('better-table');
 
 quill.insertText(0, 'محمد في المسجد');
 
-// quill.formatText(0, 11, 'Misspell', true);
+// for pagination
+// setInterval(() => {
+//     let sum = Array.from(textBox.querySelectorAll('p')).map(para => {
+//         return para.clientHeight;
+//     }).reduce((a, b) => a + b, 0);
+//
+//     console.log(sum);
+// }, 1000);

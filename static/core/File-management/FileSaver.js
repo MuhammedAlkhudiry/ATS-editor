@@ -4,25 +4,27 @@ class FileSaver {
 
         // show save dialog, and let user choose a location, and store the path.
         file.path = dialog.showSaveDialogSync({
-            defaultPath: localPath + "/" + file.name,
-            "filters": [{
-                "name": extension,
-                "extensions": [extension]
+            defaultPath: localPath + '/' + file.name,
+            'filters': [{
+                'name': extension,
+                'extensions': [extension]
             },],
         });
         // TODO: if pdf, docx.
         if (extension === 'html') {
+            Searcher.removeStyle();
             file.content = EditorHelper.getEditorContent();
 
             try {
                 fs.writeFile(file.path, file.content, e => {
                     new Notification('success', 'حٌفظ المستند');
                     file.setSavingStatus('المستند محفوظ', 'saved-file');
-                })
+                });
             } catch (e) {
-                console.log(e)
+                console.log(e);
             }
-        } else if (extension === 'pdf') {
+        }
+        else if (extension === 'pdf') {
 
             win.webContents.printToPDF({
                 marginsType: 0,
@@ -35,8 +37,8 @@ class FileSaver {
                 fs.writeFile(file.path, data, e => {
                     new Notification('success', 'حٌفظ المستند بصيغة PDF');
                     file.path = null;
-                })
-            })
+                });
+            });
         }
     }
 
@@ -44,9 +46,9 @@ class FileSaver {
         try {
             fs.writeFile(file.path, file.content, e => {
                 file.setSavingStatus('المستند محفوظ', 'saved-file');
-            })
+            });
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
     }
 };

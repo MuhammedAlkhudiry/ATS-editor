@@ -15,14 +15,14 @@
 .ql-mis-spell {
     background: linear-gradient(-175deg, #e7000066 2px, transparent 0) repeat-x 0 90%;
     background-size: 6px 3px;
-    transition: background-color  .2s;
+    transition: background-color .2s;
     display: inline-block;
 }
 
 .ql-mis-spell:hover {
     background: #e7000027;
     border-radius: .4em;
-    transition: background-color  .2s;
+    transition: background-color .2s;
 }
 
 
@@ -32,7 +32,6 @@
     animation: fade-in-bck 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
     display: inline-block;
     transition: .2s;
-    font-size: 1rem;
 }
 
 .ql-ayah:hover {
@@ -48,7 +47,6 @@
     animation: fade-in-bck 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
     display: inline-block;
     transition: .2s;
-    font-size: 1rem;
 }
 
 .ql-hadith:hover {
@@ -56,4 +54,19 @@
     background: #63491122;
     border-radius: .4em;
 
+}
+
+.ql-poetry {
+    color: #26323dee;
+    animation: fade-in-bck 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    transition: .2s;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.ql-poetry:hover {
+    transition: .2s;
+    background: #26323d11;
+    border-radius: .4em;
+    border: 1px #26323d33 solid;
 }

@@ -4,11 +4,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../static/quill/quill/dist/quill.snow.css">
+    <link rel="stylesheet" href="../static/quill/quill.snow.css">
     <link rel="stylesheet" href="../static/core/Editor/css/blots.css">
     <link rel="stylesheet" href="../static/assets/css/index.css">
     <link rel="stylesheet" href="../static/core/Editor/css/float-menu.css">
     <link rel="stylesheet" href="../static/assets/css/header.css">
+    <link rel="stylesheet" href="../static/assets/css/footer.css">
     <link rel="stylesheet" href="../static/assets/css/animation.css">
     <link rel="stylesheet" href="../static/assets/css/fonts.css">
     <link rel="stylesheet" href="../static/core/Insert-management/css/insert-bar.css">
@@ -300,14 +301,155 @@
             <input id="hadith-input" class="insert-input" type="text" placeholder="بحث عن حديث نبوي">
         </div>
         <div id="insert-poetry-box" class="insert-box">
-            <input id="poetry-input" class="insert-input" type="text" placeholder="إدراج بيت شعر">
+            <input id="poetry-input-first-part" type="text" placeholder="الشطر الأول">
+            <input id="poetry-input-second-part" type="text" placeholder="الشطر الثاني">
+            <button class="btn" id="insert-poetry-btn">إدراج</button>
+
         </div>
         <div id="search-box" class="insert-box">
-            <input id="search-input" class="effect-7" type="text" placeholder="بحث">
-            <input id="replace-input" class="effect-7" type="text" placeholder="استبدال">
-            <button class="btn" id="search">بحث</button>
-            <button class="btn" id="replace">استبدال</button>
-            <button class="btn" id="replace-all">استبدال الكل</button>
+            <input id="search-input" type="text" placeholder="بحث">
+            <input id="replace-input" type="text" placeholder="استبدال">
+            <div class="btn-group">
+                <button class="btn" id="search">بحث</button>
+                <button class="btn" id="replace">استبدال</button>
+                <button class="btn" id="replace-all">استبدال الكل</button>
+            </div>
+        </div>
+
+        <table id="insert-table-box" class="insert-box">
+            <tr>
+                <td id="01-01"></td>
+                <td id="01-02"></td>
+                <td id="01-03"></td>
+                <td id="01-04"></td>
+                <td id="01-05"></td>
+                <td id="01-06"></td>
+                <td id="01-07"></td>
+                <td id="01-08"></td>
+                <td id="01-09"></td>
+                <td id="01-10"></td>
+            </tr>
+            <tr>
+                <td id="02-01"></td>
+                <td id="02-02"></td>
+                <td id="02-03"></td>
+                <td id="02-04"></td>
+                <td id="02-05"></td>
+                <td id="02-06"></td>
+                <td id="02-07"></td>
+                <td id="02-08"></td>
+                <td id="02-09"></td>
+                <td id="02-10"></td>
+            </tr>
+            <tr>
+                <td id="03-01"></td>
+                <td id="03-02"></td>
+                <td id="03-03"></td>
+                <td id="03-04"></td>
+                <td id="03-05"></td>
+                <td id="03-06"></td>
+                <td id="03-07"></td>
+                <td id="03-08"></td>
+                <td id="03-09"></td>
+                <td id="03-10"></td>
+            </tr>
+            <tr>
+                <td id="04-01"></td>
+                <td id="04-02"></td>
+                <td id="04-03"></td>
+                <td id="04-04"></td>
+                <td id="04-05"></td>
+                <td id="04-06"></td>
+                <td id="04-07"></td>
+                <td id="04-08"></td>
+                <td id="04-09"></td>
+                <td id="04-10"></td>
+            </tr>
+            <tr>
+                <td id="05-01"></td>
+                <td id="05-02"></td>
+                <td id="05-03"></td>
+                <td id="05-04"></td>
+                <td id="05-05"></td>
+                <td id="05-06"></td>
+                <td id="05-07"></td>
+                <td id="05-08"></td>
+                <td id="05-09"></td>
+                <td id="05-10"></td>
+            </tr>
+
+            <tr>
+                <td id="06-01"></td>
+                <td id="06-02"></td>
+                <td id="06-03"></td>
+                <td id="06-04"></td>
+                <td id="06-05"></td>
+                <td id="06-06"></td>
+                <td id="06-07"></td>
+                <td id="06-08"></td>
+                <td id="06-09"></td>
+                <td id="06-10"></td>
+            </tr>
+
+            <tr>
+                <td id="07-01"></td>
+                <td id="07-02"></td>
+                <td id="07-03"></td>
+                <td id="07-04"></td>
+                <td id="07-05"></td>
+                <td id="07-06"></td>
+                <td id="07-07"></td>
+                <td id="07-08"></td>
+                <td id="07-09"></td>
+                <td id="07-10"></td>
+            </tr>
+
+            <tr>
+                <td id="08-01"></td>
+                <td id="08-02"></td>
+                <td id="08-03"></td>
+                <td id="08-04"></td>
+                <td id="08-05"></td>
+                <td id="08-06"></td>
+                <td id="08-07"></td>
+                <td id="08-08"></td>
+                <td id="08-09"></td>
+                <td id="08-10"></td>
+            </tr>
+
+            <tr>
+                <td id="09-01"></td>
+                <td id="09-02"></td>
+                <td id="09-03"></td>
+                <td id="09-04"></td>
+                <td id="09-05"></td>
+                <td id="09-06"></td>
+                <td id="09-07"></td>
+                <td id="09-08"></td>
+                <td id="09-09"></td>
+                <td id="09-10"></td>
+            </tr>
+
+            <tr>
+                <td id="10-01"></td>
+                <td id="10-02"></td>
+                <td id="10-03"></td>
+                <td id="10-04"></td>
+                <td id="10-05"></td>
+                <td id="10-06"></td>
+                <td id="10-07"></td>
+                <td id="10-08"></td>
+                <td id="10-09"></td>
+                <td id="10-10"></td>
+            </tr>
+
+        </table>
+        <div id="float-row-column-tip"></div>
+        <div class="expand-arrow" id="expand-arrow">
+            <svg style="width:22px;height:22px" viewBox="0 0 24 24">
+                <path fill="#000000"
+                      d="M7.41,18.41L6,17L12,11L18,17L16.59,18.41L12,13.83L7.41,18.41M7.41,12.41L6,11L12,5L18,11L16.59,12.41L12,7.83L7.41,12.41Z"/>
+            </svg>
         </div>
     </div>
 
@@ -322,17 +464,14 @@
             </div>
         </div>
     </div>
+
+    <!--    <div class="footer">-->
+    <!--        <span id="word-number">عدد الكلمات</span>-->
+    <!--    </div>-->
 </div>
 <!-- create float-menu show when select text -->
 
 <div id="float-menu" class="fade-in-bck">
-
-    <!--    <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"-->
-    <!--    "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">-->
-    <!--    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24"-->
-    <!--         height="24" viewBox="0 0 24 24">-->
-    <!--        <path d="M0 7s2.021-.015 5.253-4.218C6.584 1.051 7.797.007 9 0c1.203-.007 2.416 1.035 3.761 2.782C16.012 7.005 18 7 18 7H0z"></path>-->
-    <!--    </svg>-->
 
     <ul id="float-tools-list">
         <li class="tool float-format" data-value="bold">
@@ -401,7 +540,11 @@
 </div>
 
 <!-- Initialize Quill editor -->
-<script src="../static/quill/quill/dist/quill.js"></script>
+<script src="../static/quill/quill.js"></script>
+<script src="../static/quill/quill-better-table.js"></script>
+<!--<script src="../static/quill/image-drop.min.js"></script>-->
+<script src="../static/quill/quill-autoformat.js"></script>
+<script src="../static/quill/quill-blot-formatter.min.js"></script>
 <script>
     <!--load Electron/node.js modules-->
     const path = require('path'),
@@ -414,7 +557,10 @@
         dialog = remote.dialog,
         app = remote.app,
         Inline = Quill.import('blots/inline'),
-        Delta = Quill.import('delta')
+        Block = Quill.import('blots/block'),
+        Delta = Quill.import('delta');
+    //    global DOM variables
+
 </script>
 
 <!--loading request-->
@@ -434,6 +580,7 @@
 <script src="../static/core/Editor/custom-modules/Searcher.js"></script>
 <script src="../static/core/Editor/custom-blots/AyahBlot.js"></script>
 <script src="../static/core/Editor/custom-blots/HadithBlot.js"></script>
+<script src="../static/core/Editor/custom-blots/PoetryBlot.js"></script>
 <script src="../static/core/Editor/custom-blots/SearchBlot.js"></script>
 <script src="../static/core/Editor/custom-blots/SpellingErrorBlot.js"></script>
 <!--config quill editor-->
@@ -446,11 +593,14 @@
 <!--loading insert-management-->
 <script src="../static/core/Insert-management/Inserter.js"></script>
 <script src="../static/core/Insert-management/insert-management-UI.js"></script>
+<script src="../static/core/Insert-management/insert-table.js"></script>
 <script src="../static/core/Insert-management/insert-ayah-UI.js"></script>
 <script src="../static/core/Insert-management/insert-hadith-UI.js"></script>
+<script src="../static/core/Insert-management/insert-poetry-UI.js"></script>
 <!--loading the rest-->
 <script src="../static/core/Editor/js/float-menu.js"></script>
 <script src="../static/core/Editor/typing/keyboard-shortcuts.js"></script>
+<script src="../static/core/Editor/typing/TypingHandler.js"></script>
 <script src="../static/core/Editor/typing/typing-event-handlers.js"></script>
 </body>
 

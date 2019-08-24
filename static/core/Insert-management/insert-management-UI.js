@@ -1,41 +1,61 @@
 let currentFocus;
 
-let hadiths_Tashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Hadiths_with-tashkeel.json').toString()),
+const hadiths_Tashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Hadiths_with-tashkeel.json').toString()),
     hadiths_NoTashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Hadiths_without-tashkeel.json').toString()),
     Ayat_Tashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Q_with-tashkeel.json').toString()),
     Ayat_NoTashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Q_without-tashkeel.json').toString().trim()),
     surahs = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/surahs.json').toString());
 
+const replaceInput = document.getElementById('replace-input');
+const expandArrow = document.getElementById('expand-arrow');
+
 document.getElementById('insert-bar').addEventListener('click', e => {
 
     let clickedIcon = e.target;
     let insertBox;
-    if (clickedIcon.classList.contains('insert-icon')) {
+    if (['expand-arrow', 'insert-icon'].includes(clickedIcon.className.replace('icon', '').trim())) {
 
-        if (clickedIcon.id === 'insert-ayah') {
-            insertBox = document.getElementById('insert-ayah-box');
-        }
-        else if (clickedIcon.id === 'insert-hadith') {
-            insertBox = document.getElementById('insert-hadith-box');
-        }
-        else if (clickedIcon.id === 'insert-poetry') {
-            insertBox = document.getElementById('insert-poetry-box');
-        }
-        else if (clickedIcon.id === 'search-replace') {
-            insertBox = document.getElementById('search-box');
+        switch (clickedIcon.id) {
+            case 'insert-table':
+                insertBox = document.getElementById('insert-table-box');
+                break;
+            case 'insert-ayah':
+                insertBox = document.getElementById('insert-ayah-box');
+                break;
+            case 'insert-hadith':
+                insertBox = document.getElementById('insert-hadith-box');
+                break;
+            case 'insert-poetry':
+                insertBox = document.getElementById('insert-poetry-box');
+                break;
+            case 'search-replace':
+                insertBox = document.getElementById('search-box');
+                break;
+            default:
+                return;
         }
 
         if (insertBox.className === 'insert-box show') {
             insertBox.className = 'insert-box';
-            if (insertBox.id === 'search-replace') Searcher.removeStyle();
+            if (insertBox.id === 'search-box') Searcher.removeStyle();
         }
         else {
             document.querySelectorAll('.insert-box.show').forEach(box => box.className = 'insert-box');
             insertBox.className = 'insert-box show';
             insertBox.focus();
+
+            if (insertBox.id === 'search-box') {
+                if (window.getSelection()) {
+                    searchInput.value = window.getSelection().toString();
+                    searchInput.select();
+                }
+
+            }
         }
     }
-
+    else {
+        expandArrow.click();
+    }
 });
 document.addEventListener('click', function (e) {
     closeCurrentList();
@@ -44,7 +64,6 @@ document.addEventListener('click', function (e) {
 function closeCurrentList() {
     document.querySelectorAll('.insert-list').forEach(list => list.parentElement.removeChild(list));
 }
-
 
 document.getElementsByClassName('ql-editor')[0].addEventListener('mouseover', e => {
     if (e.target.classList.contains('ql-ayah')) {
@@ -75,4 +94,14 @@ document.getElementsByClassName('ql-editor')[0].addEventListener('mouseover', e 
             }
         }
     }
+});
+
+
+expandArrow.addEventListener('click', function () {
+    let isInsertBarOpen = insertBar.classList.contains('slide-in');
+
+    isInsertBarOpen ? this.style.transform = 'rotate(180deg)' : this.style.transform = 'rotate(0)';
+
+    document.querySelectorAll('.insert-box.show').forEach(box => box.className = 'insert-box');
+    insertBar.setAttribute('class', isInsertBarOpen ? 'slide-out' : 'slide-in');
 });

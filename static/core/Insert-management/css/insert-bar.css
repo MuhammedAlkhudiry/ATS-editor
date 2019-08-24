@@ -3,7 +3,7 @@
     background-color: #f9f9f9;
     border-bottom: 1px solid #cccccc8e;
     z-index: 1;
-
+    transform: translateY(-80%);
 }
 
 #insert-icons {
@@ -44,9 +44,42 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0 2px 8px;
     background-color: #fafafa;
     width: auto;
-    max-width: 50vw;
+    max-width: 60vw;
     border-radius: 0.4em;
     border: 1px solid #d4d4d4;
+}
+
+#insert-table-box {
+    cursor: pointer;
+    border-spacing: 5px;
+}
+
+#insert-table-box td {
+    width: 15px;
+    height: 15px;
+    background-color: #e8f0fe;
+    transition: 0.3s;
+    border: 2px #ffffff solid;
+}
+
+#float-row-column-tip {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #e8f0fe;
+    transition: .1s;
+    padding: 2px 6px;
+    border-radius: .4em;
+    color: #26323d99;
+    font-family: dubai;
+    border-bottom: 2px #0066cc77 solid;
+    visibility: hidden;
+}
+
+#insert-table-box {
+    top: 100%;
+    right: 65%;
+
 }
 
 #insert-ayah-box {
@@ -117,39 +150,49 @@
 }
 
 
-#search-box {
-    position: absolute;
+#search-box, #insert-poetry-box {
     top: 100%;
     right: 20%;
     z-index: 99;
-    direction: rtl;
-    text-align: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1.5fr));
     justify-items: center;
     padding: .5em;
     transition: opacity 0.4s;
-    box-shadow: rgba(0, 0, 0, 0.15) 0 2px 8px;
-    background-color: #fafafa;
-    border-radius: 0.3em;
-    border: 1px solid #d4d4d4;
 }
 
-@media (max-width: 700px) {
-    #search-box {
-        grid-template-areas: none;
-    }
-}
-
-#search-box * {
-    margin: 3px 0;
+#search-box *, #insert-poetry-box * {
     height: 25px;
     padding: 2px 5px;
 }
 
-#search-box input {
-    border: 1px solid transparent;
-    padding: 10px;
+#search-box input, #insert-poetry-box input {
+    border: 1px solid #d4d4d4;
     font-size: 12px;
     border-radius: 0.4em;
-    width: 40%;
+}
+
+.expand-arrow {
+    position: absolute;
+    transition: .3s;
+    transform: rotate(180deg);
+    opacity: .7;
+    cursor: pointer;
+    z-index: 2;
+    padding: 2px 4px;
+    border-bottom-right-radius: 0.4em;
+    border-top-left-radius: 0.4em;
+    background-color: #f9f9f9;
+
+}
+
+.expand-arrow:hover {
+    background-color: #fefefe;
+    transition: .3s;
+
+}
+
+#insert-bar.slide-in .expand-arrow{
+    top: 5px;
+    transition: .3s;
 }

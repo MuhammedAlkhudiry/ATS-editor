@@ -1,34 +1,30 @@
- class Inserter {
+class Inserter {
 
-    constructor(text, textType, index = 0, data) {
-
+    constructor(text, textType) {
 
         switch (textType) {
             case 'ayah':
-                this.insertAyah(text);
+                Inserter.insertAyah(text);
                 break;
             case 'hadith':
-                this.insertHadith(text);
+                Inserter.insertHadith(text);
                 break;
             case 'poetry':
-                // text = `﴿ ${text} ﴾`;
+                Inserter.insertPoetry(text);
                 break;
         }
-
-
     }
 
-    insertAyah(text) {
+    static insertAyah(text) {
         quill.insertText(TypingHelper.getCaretPosition(), `﴿ ${text} ﴾`, 'Ayah', true);
     }
 
-    insertHadith(text) {
+    static insertHadith(text) {
         quill.insertText(TypingHelper.getCaretPosition(), `(${text})`, 'Hadith', true);
 
     }
 
-    insertPoetry() {
-
+    static insertPoetry(text) {
+        quill.insertText(TypingHelper.getCaretPosition(), `${text}`, 'Poetry', true);
     }
-
-};
+}

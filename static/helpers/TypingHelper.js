@@ -13,10 +13,4 @@
         return (char === ' ') || (char === '\t') || (char === '\n');
     }
 
-    static SaveCaretPosition() {
-        TypingHelper.currentCaretPosition = TypingHelper.getCaretPosition();
-    }
-    static restoreCaretPosition() {
-        TypingHelper.restoreCaretPosition(TypingHelper.currentCaretPosition);
-    }
-};
+}

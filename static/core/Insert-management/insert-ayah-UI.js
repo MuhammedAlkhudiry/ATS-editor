@@ -1,4 +1,4 @@
-let ayahInput = document.getElementById("ayah-input");
+let ayahInput = document.getElementById('ayah-input');
 let ayahList;
 
 
@@ -48,22 +48,24 @@ ayahInput.addEventListener('keydown', function (e) {
 
     switch (e.key) {
 
-        case "Enter":
+        case 'Enter':
             if (currentFocus > -1) {
                 /*and simulate a click on the "active" item:*/
                 if (ayahListItems) ayahListItems[currentFocus].click();
             }
             break;
-        case "ArrowUp":
+        case 'ArrowUp':
             currentFocus--;
             /*and and make the current item more visible:*/
             addActive(ayahListItems);
+            ayahListItems[currentFocus].scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
             e.preventDefault();
             break;
-        case "ArrowDown":
+        case 'ArrowDown':
             currentFocus++;
             /*and and make the current item more visible:*/
             addActive(ayahListItems);
+            ayahListItems[currentFocus].scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
             e.preventDefault();
             break;
     }
