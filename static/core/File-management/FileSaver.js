@@ -26,16 +26,10 @@ class FileSaver {
         }
         else if (extension === 'pdf') {
 
-            win.webContents.printToPDF({
-                marginsType: 0,
-                printBackground: false,
-                printSelectionOnly: false,
-                landscape: false,
-                pageSize: 'A4',
-            }, (error, data) => {
+            win.webContents.printToPDF({}, (error, data) => {
                 if (error) throw error;
                 fs.writeFile(file.path, data, e => {
-                    new Notification('success', 'حٌفظ المستند بصيغة PDF');
+                    new Notification('success', 'PDF حٌفظ المستند بصيغة');
                     file.path = null;
                 });
             });

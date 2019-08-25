@@ -1244,21 +1244,27 @@ table td {
     position: absolute;
     display: flex;
     align-items: flex-end;
-    overflow: hidden;
     z-index: 99;
     height: 16px;
+
+}
+
+.qlbt-col-tool:hover .qlbt-col-tool-cell{
+    background-color: #e8f0fe;
+    transition: .3s;
+
 }
 
 .qlbt-col-tool .qlbt-col-tool-cell {
     position: relative;
     background-color: #fff;
     border-top: 1px solid #000;
-    border-right: 1px solid #000;
+    border-right: 2px solid #000;
     border-bottom: 1px solid #000;
 }
 
 .qlbt-col-tool .qlbt-col-tool-cell:first-child {
-    border-left: 1px solid #000;
+    border-left: 2px solid #000;
 }
 
 .qlbt-col-tool .qlbt-col-tool-cell-holder {
@@ -1267,8 +1273,8 @@ table td {
     top: 0;
     bottom: 0;
     z-index: 3;
-    width: 1px;
-    background-color: transparent;
+    width: 3px;
+    background-color: #0066cc;
     cursor: ew-resize;
 }
 

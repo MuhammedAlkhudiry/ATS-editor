@@ -117,27 +117,6 @@ svg, hr {
     background-color: #1097FF;
 }
 
-@media print {
-
-    #main-container:not(#text-box), .tippy-tooltip, .swal2-show {
-        visibility: hidden;
-    }
-
-
-    .ql-editor {
-        visibility: visible;
-        height: 100%;
-        width: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        margin: 0;
-        padding: 15px;
-        z-index: 9999;
-    }
-
-}
-
 .ql-custom-stroke-1 {
     fill: none;
     stroke: #444;
@@ -153,3 +132,75 @@ svg, hr {
 .ql-custom-stroke-3 {
     opacity: 0.4;
 }
+
+@media print {
+
+    body {
+        background: white;
+        font-size: 12pt;
+    }
+
+    a:link,
+    a:visited {
+        color: #520;
+        background: transparent;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+     a:link:after,
+     a:visited:after {
+        content: " (" attr(href) ") ";
+        font-size: 90%;
+    }
+
+
+    #main-container:not(#text-box), .tippy-tooltip, .swal2-show {
+        visibility: hidden;
+    }
+
+    .ql-editor {
+        display: block;
+        visibility: visible;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 15px;
+        z-index: 9999;
+        overflow: visible;
+        float: none;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        page-break-inside: avoid
+    }
+
+    img {
+        page-break-inside: avoid;
+        page-break-after: avoid;
+    }
+
+    table, pre {
+        page-break-inside: avoid
+    }
+
+    ul, ol, dl {
+        page-break-before: avoid
+    }
+
+    body, h1, h2, h3, ol, ul, div {
+        width: auto;
+        border: 0;
+        margin: 0 5%;
+        padding: 0;
+        float: none;
+        position: static;
+        overflow: visible;
+    }
+
+}
+

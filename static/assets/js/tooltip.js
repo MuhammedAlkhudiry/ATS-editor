@@ -154,3 +154,4 @@ tippy('.ql-direction', {
 tippy('.ql-clean', {
     content: 'محو التنسيق',
 });
+

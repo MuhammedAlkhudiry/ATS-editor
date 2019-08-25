@@ -1,11 +1,10 @@
-
- class FileLoader {
+class FileLoader {
     static load(file) {
 
         let loadedFile = new ATSFile();
 
         let options = {
-            defaultPath: path.resolve(app.getPath("desktop")),
+            defaultPath: path.resolve(app.getPath('desktop')),
 
             filters: [{
                 name: 'html',
@@ -16,41 +15,46 @@
         };
 
         // show open file dialog, if you choose file, then read it.
-        loadedFile.path = dialog.showOpenDialogSync(options)[0];
-        if (loadedFile.path) {
-            fs.readFile(loadedFile.path, 'utf8', (err, data) => {
-                if (err) {
-                    new Notification('fail', 'ثمة خلل.. تعذر فتح الملف')
-                    return;
+        dialog.showOpenDialog(options)
+            .then(result => {
+                if (!result.canceled) {
+                    loadedFile.path = result.filePaths[0];
+                    fs.readFile(loadedFile.path, 'utf8', (err, data) => {
+                        if (err) {
+                            new Notification('fail', 'ثمة خلل.. تعذر فتح الملف');
+                            return;
+                        }
+                        loadedFile.content = data;
+                        FileHelper.handleLoadedFile(loadedFile, file);
+                    });
                 }
-                loadedFile.content = data;
-                FileHelper.handleLoadedFile(loadedFile, file);
-
-            })
-
-        }
+            }).catch(err => {
+            console.log(err);
+        });
     }
 
     static loadByDragDrop(draggedFile, file) {
-        let docFile = "application/msword";
-        let docxFile = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+        let docFile = 'application/msword';
+        let docxFile = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
         let loadedFile = new ATSFile();
-        if (draggedFile.type === "text/html") {
+        if (draggedFile.type === 'text/html') {
 
             loadedFile.path = draggedFile.path;
             fs.readFile(loadedFile.path, 'utf8', (err, data) => {
                 if (err) {
-                    new Notification('fail', 'ثمة خلل.. تعذر فتح الملف')
+                    new Notification('fail', 'ثمة خلل.. تعذر فتح الملف');
                     return;
                 }
                 loadedFile.content = data;
                 FileHelper.handleLoadedFile(loadedFile, file);
-            })
+            });
 
-        } else if (draggedFile.type === docFile || draggedFile.type === docxFile) {
-            // TODO: convert from doc/docx to html then send to main process
-        } else {
-            new Notification('fail', 'صيغة المستند غير مقبولة')
+        }
+        else if (draggedFile.type === docFile || draggedFile.type === docxFile) {
+            // TODO: convert from doc/docx to html
+        }
+        else {
+            new Notification('fail', 'صيغة المستند غير مقبولة');
         }
     }
-};
+}

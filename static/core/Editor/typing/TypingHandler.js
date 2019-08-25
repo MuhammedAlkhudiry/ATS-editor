@@ -10,14 +10,14 @@ class TypingHandler {
                 {retain: 1, attributes: attribute},
             ];
         }
-        if (del && insert && retain) {
+       else if (del && insert && retain) {
             TypingHandler.ops = [
                 {retain: retain},
                 {insert: insert},
                 {delete: del},
             ];
         }
-        if (del && insert) {
+        else if (del && insert) {
             TypingHandler.ops = [
                 {insert: insert},
                 {delete: del},

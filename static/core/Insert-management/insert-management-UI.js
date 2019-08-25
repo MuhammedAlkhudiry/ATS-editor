@@ -13,7 +13,7 @@ document.getElementById('insert-bar').addEventListener('click', e => {
 
     let clickedIcon = e.target;
     let insertBox;
-    if (['expand-arrow', 'insert-icon'].includes(clickedIcon.className.replace('icon', '').trim())) {
+    if (clickedIcon !== insertBar) {
 
         switch (clickedIcon.id) {
             case 'insert-table':

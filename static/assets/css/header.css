@@ -131,7 +131,7 @@
 }
 
 .saved-file {
-    color: #03c751ee;
+    color: #009943ee;
 }
 
 .unsaved-file {
@@ -139,7 +139,7 @@
 }
 
 .valid-file-name {
-    border-color: #03c751ee !important;
+    border-color: #009943ee !important;
 }
 
 .unvalid-file-name {

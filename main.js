@@ -41,10 +41,10 @@ app.on('ready', function () {
         });
 
         // load main window from Flask.
-        mainWindow.loadURL(mainAddr);
+        // mainWindow.loadURL(mainAddr);
 
         // for developing front-end
-        // mainWindow.loadFile('./templates/index.html');
+        mainWindow.loadFile('./templates/index.html');
 
         // Open the DevTools.
         mainWindow.webContents.openDevTools();

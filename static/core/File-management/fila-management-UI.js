@@ -9,7 +9,8 @@ fileName.addEventListener('input', e => {
     if (fileName.value.length > 0) {
         fileName.className = 'valid-file-name';
         fileNameValidationIcon.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" widthz="20" height="20" viewBox="0 0 24 24"><path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" /></svg>';
-    } else {
+    }
+    else {
         fileName.className = 'unvalid-file-name';
         fileNameValidationIcon.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="20" height="20" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>';
     }
@@ -39,7 +40,8 @@ document.getElementById('new-file-icon').addEventListener('click', e => {
             }
         });
 
-    } else {
+    }
+    else {
         EditorHelper.cleanEditor();
         new Notification('info', 'مستند جديد');
     }
@@ -129,13 +131,12 @@ tippy('#save-icon', {
 // Save periodically
 setInterval(function () {
     if (change.length() > 0 && file.path) {
-        file.setSavingStatus('يجري الحفظ...', 'currently-saving');
         file.content = EditorHelper.getEditorContent();
         FileSaver.autoSave(file);
         change = new Delta();
         file.setSavingStatus('المستند محفوظ', 'saved-file');
     }
-}, 5 * 1000);
+}, 10 * 1000);
 
 /* -------------------------------------------------------------------------- */
 
@@ -156,7 +157,8 @@ function loadFile(e) {
             }
         });
 
-    } else {
+    }
+    else {
         EditorHelper.cleanEditor();
         FileLoader.load(file);
     }
@@ -190,7 +192,8 @@ document.body.addEventListener('drop', (e) => {
             }
         });
 
-    } else {
+    }
+    else {
         EditorHelper.cleanEditor();
         FileHelper.handleLoadedFile(FileLoader.loadByDragDrop(draggedFile));
     }
@@ -203,7 +206,11 @@ document.body.addEventListener('drop', (e) => {
 
 quill.on('text-change', function (delta) {
     change = change.compose(delta);
-    file.setSavingStatus('المستند غير محفوظ', 'unsaved-file');
+    if (file.path)
+        file.setSavingStatus('يجري الحفظ...', 'currently-saving');
+    else
+        file.setSavingStatus('المستند غير محفوظ', 'unsaved-file');
+
 });
 
 /* -------------------------------------------------------------------------- */

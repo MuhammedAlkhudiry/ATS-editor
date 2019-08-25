@@ -1,15 +1,19 @@
 let insertPoetryBox = document.getElementById('insert-poetry-box');
 let poetryInputParts = [document.getElementById('poetry-input-first-part'), document.getElementById('poetry-input-second-part')];
 
+let isPoetryInserted = false;
 document.getElementById('insert-poetry-btn').addEventListener('click', function (e) {
 
     tableModule.insertTable(1, 2);
     insertPoetryBox.className = 'insert-box';
+    isPoetryInserted = true;
 });
 
 
 let observer = new MutationObserver(mutationRecords => {
-    // if (mutationRecords[mutationRecords.length - 1].target.className !== 'quill-better-table-wrapper') return;
+
+    if (!isPoetryInserted) return;
+
     let insertedPoetry = mutationRecords.find(element => {
         if (!element.target.className) return;
         if (element.target.className === 'quill-better-table-wrapper') return element;
@@ -27,6 +31,8 @@ let observer = new MutationObserver(mutationRecords => {
 
     insertedPoetry.style.width = '';
     insertedPoetry.className = 'ql-poetry';
+
+    isPoetryInserted = false;
 
 });
 

@@ -22,7 +22,7 @@
             file = loadedFile;
             EditorHelper.setEditorContent(file.content);
             file.setName(FileHelper.getFileNameFromPath(file.path));
-            new Notification('fail', 'تعذر فتح المستند.. يسمح بفتح مستند واحد فقط')('success', 'فُتح الملف');
+            new Notification('success', 'فُتح الملف');
         } else {
             new Notification('fail', 'المستند معطوب')
         }
