@@ -1,4 +1,5 @@
-let ele = document.getElementById('float-menu');
+let floatingMenu = document.getElementById('float-menu');
+
 quill.on('selection-change', function () {
 
     // no text selected..
@@ -7,14 +8,14 @@ quill.on('selection-change', function () {
     let sel = window.getSelection(),
         rect = sel.getRangeAt(0).getBoundingClientRect();
 
-    ele.style.top = `${rect.y + 20}px`;
-    ele.style.left = `${rect.x - ele.clientWidth + rect.width}px`;
+    floatingMenu.style.top = `${rect.y + 20}px`;
+    floatingMenu.style.left = `${rect.x - floatingMenu.clientWidth + rect.width}px`;
 
-    ele.className = 'show'
+    floatingMenu.className = 'show';
 });
 
 window.addEventListener('mousedown', function () {
-    ele.className = '';
+    floatingMenu.className = '';
 });
 
 /* ------------------------ float-tools functionality ----------------------- */
@@ -23,13 +24,17 @@ document.getElementById('float-tools-list').addEventListener('click', e => {
     let clickedTool = e.target;
     if (clickedTool.tagName === 'LI') {
         if (clickedTool.classList.contains('float-format')) {
-            quill.format(clickedTool.dataset.value, true)
-        } else if (clickedTool.classList.contains('float-color')) {
-            quill.format('color', clickedTool.dataset.value)
+            quill.format(clickedTool.dataset.value, true);
+        }
+        else if (clickedTool.classList.contains('float-color')) {
+            quill.format('color', clickedTool.dataset.value);
+        }
+        else if (clickedTool.classList.contains('float-operation')) {
+            document.execCommand(clickedTool.dataset.value);
         }
     }
 
-    ele.className = '';
+    floatingMenu.className = '';
     window.getSelection().empty();
 
 });

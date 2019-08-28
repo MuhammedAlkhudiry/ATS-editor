@@ -1,0 +1,8 @@
+class User {
+
+    dictionary;
+    settings;
+
+
+
+}

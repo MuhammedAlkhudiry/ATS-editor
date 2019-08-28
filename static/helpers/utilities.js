@@ -25,6 +25,9 @@ String.prototype.indexOfRegex = function (regex, fromIndex) {
     const match = str.match(regex);
     return match ? str.indexOf(match[0]) + fromIndex : -1;
 };
+String.prototype.isNumeric = function () {
+    return /^-?\d+$/.test(this);
+};
 /* -------------------------------------------------------------------------- */
 
 /* ---------------------------------- Array --------------------------------- */

@@ -20,7 +20,7 @@
 
 #float-tools-list {
     display: grid;
-    grid-template-columns: repeat(11, 30px);
+    grid-template-columns: repeat(15, 28px);
     grid-template-rows: 30px;
     align-items: center;
     border-radius: 0.4em;
@@ -55,12 +55,6 @@
     cursor: pointer;
     transition: .3s;
 }
-
-/*#float-menu-arrow {*/
-/*    justify-self: baseline;*/
-/*    align-self: baseline;*/
-/*    opacity: 0.8;*/
-/*}*/
 
 
 .tool:hover .ql-custom-stroke-1 {

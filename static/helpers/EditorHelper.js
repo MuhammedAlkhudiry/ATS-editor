@@ -30,14 +30,40 @@ class EditorHelper {
     }
 
     static format(blot, words) {
-        for (const word of Object.keys(words)) {
+        for (const word of words.trim().split(' ')) {
+            if (word.length < 5) continue;
             let indices = quill.getText().getIndicesOf(word);
-            indices.forEach(index => {
-                let currentCaretPos = TypingHelper.getCaretPosition();
-                quill.formatText(index, word.length, 'Misspell', true);
-                TypingHelper.setCaretPosition(currentCaretPos);
+            for (let i = 0; i < indices.length; i++) {
+                setTimeout(() => {
+                    let currentCaretPos = TypingHelper.getCaretPosition();
+                    quill.formatText(indices[i], word.length, 'Misspell', true);
+                    TypingHelper.setCaretPosition(currentCaretPos);
+                }, 0);
 
-            });
+            }
         }
+    }
+
+    static getCurrentWord() {
+        let sel, word = '';
+        if (window.getSelection && (sel = window.getSelection()).modify) {
+            const selectedRange = sel.getRangeAt(0);
+            sel.collapseToStart();
+            sel.modify('move', 'backward', 'word');
+            sel.modify('extend', 'forward', 'word');
+
+            word = sel.toString();
+
+            // Restore selection
+            sel.removeAllRanges();
+            sel.addRange(selectedRange);
+        }
+        else if ((sel = document.selection) && sel.type !== 'Control') {
+            const range = sel.createRange();
+            range.collapse(true);
+            range.expand('word');
+            word = range.text;
+        }
+        return word;
     }
 }

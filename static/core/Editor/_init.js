@@ -4,7 +4,7 @@
 
 const FontAttributor = Quill.import('formats/font');
 FontAttributor.whitelist = [
-    'dubai', 'alhurra', 'ArefRuqaa', 'Arial', 'Cairo', 'shiraz', 'ubuntu', 'zahra',
+    'dubai', 'alhurra', 'ArefRuqaa', 'Arial', 'Cairo', 'shiraz', 'ubuntu', 'zahra', 'Noto-Naskh-Arabic'
 ];
 
 Quill.register(FontAttributor, true);
@@ -27,6 +27,22 @@ Quill.register(hadithBlot);
 Quill.register(PoetryBlot);
 
 /* -------------------------------------------------------------------------- */
+/* ----------------------------- custom handlers ----------------------------- */
+
+// this is for fixing direction, since It's not working for some reason.
+const directionHandler = () => {
+    let currentFormat = quill.getFormat();
+    if (currentFormat.align !== 'right' && currentFormat.direction !== 'rtl') {
+        quill.format('direction', 'rtl');
+        quill.format('align', 'right');
+    }
+    else if (currentFormat.align !== 'left' && currentFormat.direction !== 'ltr') {
+        quill.format('direction', false);
+        quill.format('align', false);
+    }
+};
+
+/* -------------------------------------------------------------------------- */
 
 const quill = new Quill('#editor', {
     // options
@@ -34,9 +50,13 @@ const quill = new Quill('#editor', {
     placeholder: 'ما يلفظ من قول إلا لديه رقيب عتيد..',
     theme: 'snow',
     modules: {
-        toolbar: '#toolbar-container',
+        toolbar: {
+            container: '#toolbar-container',
+            handlers: {
+                'direction': directionHandler
+            }
+        },
         Searcher: true,
-        autoformat: true,
         table: false,
         'better-table': {
             operationMenu: {
@@ -48,11 +68,27 @@ const quill = new Quill('#editor', {
             }
         },
         blotFormatter: {},
+        history: {
+            delay: 2000,
+            maxStack: 500,
+            userOnly: true
+        },
+        clipboard: true,
     },
     keyboard: {
         bindings: quillBetterTable.keyboardBindings
-    }
+    },
 });
+
+/* ----------------------------- custom buttons ----------------------------- */
+
+// this is for fixing direction, since It's not working for some reason.
+document.querySelector('.ql-undo').addEventListener('click', e => quill.history.undo());
+document.querySelector('.ql-redo').addEventListener('click', e => quill.history.redo());
+document.querySelector('.ql-copy-format').addEventListener('click', e => {
+});
+
+/* -------------------------------------------------------------------------- */
 
 
 quill.format('direction', 'rtl');

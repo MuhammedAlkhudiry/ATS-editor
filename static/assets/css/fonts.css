@@ -37,6 +37,11 @@
     src: url("../fonts/UthmanicHafs.otf") format("truetype");
 }
 
+@font-face {
+    font-family: Noto-Naskh-Arabic;
+    src: url("../fonts/NotoNaskhArabicUI-Bold.ttf") format("truetype");
+}
+
 .ql-font span[data-value="dubai"]::before,
 .ql-font span[data-label="dubai"]::before {
     font-family: "dubai";
@@ -98,4 +103,13 @@
 
 .ql-font-zahra {
     font-family: 'zahra';
+}
+
+.ql-font span[data-value="Noto-Naskh-Arabic"]::before,
+.ql-font span[data-label="Noto-Naskh-Arabic"]::before {
+    font-family: "Noto-Naskh-Arabic";
+}
+
+.ql-font-NotoNaskhArabic {
+    font-family: 'Noto-Naskh-Arabic';
 }

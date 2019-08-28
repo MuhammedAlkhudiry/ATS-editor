@@ -106,11 +106,12 @@
 }
 
 .insert-input {
-    border: 1px solid transparent;
     padding: 10px;
     font-size: 12px;
     border-radius: 0.4em;
     width: 100%;
+    border: 1px solid #d4d4d4;
+
 }
 
 .insert-input::placeholder, #search-box input::placeholder {
@@ -161,15 +162,9 @@
     transition: opacity 0.4s;
 }
 
-#search-box *, #insert-poetry-box * {
+#search-box input, #search-box button, #insert-poetry-box * {
     height: 25px;
     padding: 2px 5px;
-}
-
-#search-box input, #insert-poetry-box input {
-    border: 1px solid #d4d4d4;
-    font-size: 12px;
-    border-radius: 0.4em;
 }
 
 .expand-arrow {
@@ -192,7 +187,7 @@
 
 }
 
-#insert-bar.slide-in .expand-arrow{
+#insert-bar.slide-in .expand-arrow {
     top: 5px;
     transition: .3s;
 }

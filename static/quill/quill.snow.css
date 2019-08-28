@@ -524,7 +524,6 @@
     pointer-events: none;
     position: absolute;
     font-family: dubai, serif;
-    direction: rtl;
 }
 
 .ql-snow.ql-toolbar:after,
@@ -1246,9 +1245,18 @@ table td {
     align-items: flex-end;
     z-index: 99;
     height: 16px;
-
+    opacity: .35;
 }
 
+.qlbt-col-tool:focus-within{
+    opacity: .7;
+    transition: .5s;
+}
+
+.qlbt-col-tool:hover {
+    opacity: .7;
+    transition: .5s;
+}
 .qlbt-col-tool:hover .qlbt-col-tool-cell{
     background-color: #e8f0fe;
     transition: .3s;

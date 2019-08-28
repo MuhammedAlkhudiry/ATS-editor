@@ -1,12 +1,12 @@
-
 tippy.setDefaults({
     arrow: true,
     arrowType: 'round',
+    delay: 300
 });
 
 
 tippy('#file-name', {
-    content: 'اسم الملف',
+    content: 'اسم المستند',
 });
 
 tippy('#open-file-icon', {
@@ -21,35 +21,48 @@ tippy('#save-icon', {
     content: 'حفظ باسم',
     multiple: true,
 });
+tippy('#saving-status-text', {
+    content: 'حالة المستند',
+    multiple: true,
+    delay: 700
+});
 
 tippy('#insert-table', {
     content: 'إدراج جدول',
-    multiple: true,
     placement: 'bottom'
+
 });
 
 tippy('#insert-ayah', {
     content: 'إدراج آية قرآنية',
-    multiple: true,
     placement: 'bottom'
+
 });
 
 tippy('#insert-hadith', {
     content: 'إدراج حديث نبوي',
-    multiple: true,
     placement: 'bottom'
+
 });
 
 tippy('#insert-poetry', {
     content: 'إدراج بيت شعر',
-    multiple: true,
     placement: 'bottom'
+
 });
 
 tippy('#search-replace', {
     content: 'بحث واستبدال',
-    multiple: true,
     placement: 'bottom'
+
+});
+
+tippy('.ql-undo', {
+    content: 'تراجع',
+});
+
+tippy('.ql-redo', {
+    content: 'تقادم',
 });
 
 tippy('.ql-header', {
@@ -153,5 +166,21 @@ tippy('.ql-direction', {
 
 tippy('.ql-clean', {
     content: 'محو التنسيق',
+});
+
+tippy('li[data-value="copy"]', {
+    content: 'نسخ',
+});
+tippy('li[data-value="cut"]', {
+    content: 'قص',
+});
+tippy('li[data-value="paste"]', {
+    content: 'لصق',
+});
+
+
+tippy('.expand-arrow', {
+    content: 'شريط الأدوات',
+    placement: 'bottom'
 });
 

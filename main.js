@@ -7,7 +7,7 @@ const axios = require('axios');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
-
+// todo: dl
 require('electron-reload')(__dirname);
 
 // This method will be called when Electron has finished
@@ -46,9 +46,12 @@ app.on('ready', function () {
         // for developing front-end
         mainWindow.loadFile('./templates/index.html');
 
+        // TODO: dl
         // Open the DevTools.
         mainWindow.webContents.openDevTools();
-        // TODO: dl
+        // install electron extension
+        // require('devtron').install();
+
         mainWindow.webContents.session.clearCache(function () {
 
         });
@@ -75,7 +78,7 @@ app.on('ready', function () {
 // startUp();
 
     // for front-end
-    openWindow()
+    openWindow();
     /* ------------------------- starting Flask server ------------------------- */
 
 });
@@ -86,7 +89,7 @@ app.on('ready', function () {
 app.on('window-all-closed', function () {
     // On macOS it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
-    if (process.platform !== 'darwin') app.quit()
+    if (process.platform !== 'darwin') app.quit();
 });
 
 app.on('activate', function () {

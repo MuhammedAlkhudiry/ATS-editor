@@ -10,7 +10,7 @@ class TypingHandler {
                 {retain: 1, attributes: attribute},
             ];
         }
-       else if (del && insert && retain) {
+        else if (del && insert && retain) {
             TypingHandler.ops = [
                 {retain: retain},
                 {insert: insert},
@@ -30,10 +30,29 @@ class TypingHandler {
     }
 
     static isInsertedCharEquals(delta, char) {
-        return delta.ops[1].insert === char;
+        if (delta.ops[1]) {
+            if (delta.ops[1].insert)
+                return delta.ops[1].insert === char;
+        }
+        if (delta.ops[0]) {
+            if (delta.ops[0].insert)
+                return delta.ops[0].insert === char;
+        }
+    }
+
+    static isInsertedCharNumber(delta) {
+        if (delta.ops[1]) {
+            if (delta.ops[1].insert)
+                return delta.ops[1].insert.isNumeric();
+        }
+        if (delta.ops[0]) {
+            if (delta.ops[0].insert)
+                return delta.ops[0].insert.isNumeric();
+        }
     }
 
     static isLastCharsEquals(oldDelta, numberOfChar, string) {
         return oldDelta.ops[0].insert.slice(-numberOfChar) === string;
     }
+
 }
