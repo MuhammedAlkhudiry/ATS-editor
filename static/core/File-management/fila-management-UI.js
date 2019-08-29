@@ -1,4 +1,5 @@
 let file = new ATSFile();
+let user = new User();
 let change = new Delta();
 
 /* -------------------------------- file name ------------------------------- */
@@ -130,6 +131,7 @@ tippy('#save-icon', {
 
 // Save periodically
 setInterval(function () {
+    // todo: if file.path exist..
     if (change.length() > 0 && file.path) {
         file.content = EditorHelper.getEditorContent();
         FileSaver.autoSave(file);

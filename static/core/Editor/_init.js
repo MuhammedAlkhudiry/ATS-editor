@@ -95,6 +95,7 @@ quill.format('direction', 'rtl');
 quill.format('align', 'right');
 
 const tableModule = quill.getModule('better-table');
+const quillEditor = document.getElementsByClassName('ql-editor')[0];
 
 quill.insertText(0, 'محمد في المسجد');
 

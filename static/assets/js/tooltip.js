@@ -182,5 +182,9 @@ tippy('li[data-value="paste"]', {
 tippy('.expand-arrow', {
     content: 'شريط الأدوات',
     placement: 'bottom'
+});tippy('#show-correction-icon span', {
+    content: 'اقتراحات',
+    placement: 'right',
+    delay: 2000
 });
 

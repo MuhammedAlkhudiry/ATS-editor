@@ -1,14 +1,12 @@
 .swal2-show {
     animation: fade-in-bck .3s !important;
 }
+
 .swal2-hide {
     animation: fade-out-bck .2s !important;
 }
 
 .swal2-popup {
     font-size: .75rem !important;
-}
-
-.swal2-popup {
-    font-size: 1.75rem;
+    width: auto !important;
 }

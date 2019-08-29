@@ -6,6 +6,7 @@ class ATSFile {
     path;
     content;
     savingStatus;
+    lastModifiedDate = null;
 
     setSavingStatus(msg, cssClass) {
         let savingStatusText = document.getElementById('saving-status-text');

@@ -13,10 +13,12 @@
 
 #float-menu.show {
     visibility: visible;
-    opacity: 0.9;
-    transition: opacity 0.5s;
+    opacity: 0.5;
+    transition: opacity 0.4s;
 }
-
+#float-menu:hover {
+    opacity: 0.9;
+}
 
 #float-tools-list {
     display: grid;

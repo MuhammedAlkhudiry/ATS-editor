@@ -1,6 +1,5 @@
 // Arabic punctuation handler
 quill.on('text-change', function (delta, oldDelta, source) {
-    console.log(EditorHelper.getCurrentWord())
     if (delta.ops.length !== 2 && !delta.ops[0].insert) return;
     // if no text inserted, return.
     if (delta.ops.length === 2)

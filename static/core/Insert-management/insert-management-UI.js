@@ -65,7 +65,7 @@ function closeCurrentList() {
     document.querySelectorAll('.insert-list').forEach(list => list.parentElement.removeChild(list));
 }
 
-document.getElementsByClassName('ql-editor')[0].addEventListener('mouseover', e => {
+quillEditor.addEventListener('mouseover', e => {
     if (e.target.classList.contains('ql-ayah')) {
         // remove brackets.
         let ayahText = e.target.textContent.slice(2, -2);

@@ -1,8 +1,3 @@
-let textBox = document.getElementById('text-box');
-let insertBar = document.getElementById('insert-bar');
-
-const resizeIcon = document.getElementById('resize-icon');
-/* -------------------------------- main bar -------------------------------- */
 
 /* ------------------------- controlling main window ------------------------ */
 

@@ -31,6 +31,7 @@
     "electron-localshortcut": "^3.1.0",
     "electron-reload": "^1.4.1",
     "electron-store": "^4.0.0",
+    "hijrah-date": "^1.0.3",
     "quill-blot-formatter": "^1.0.5",
     "quran-json": "^1.0.1",
     "sweetalert2": "^8.14.0",
