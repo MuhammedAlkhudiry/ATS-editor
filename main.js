@@ -27,7 +27,7 @@ app.on('ready', function () {
     /* ------------------ setting up Flask server ----------------- */
 
     const mainAddr = 'http://localhost:5000';
-    const openWindow = function () {
+    const openWindow = () => {
 
         // setting main window..
         mainWindow = new BrowserWindow({

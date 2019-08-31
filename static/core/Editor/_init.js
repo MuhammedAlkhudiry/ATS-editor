@@ -27,22 +27,6 @@ Quill.register(hadithBlot);
 Quill.register(PoetryBlot);
 
 /* -------------------------------------------------------------------------- */
-/* ----------------------------- custom handlers ----------------------------- */
-
-// this is for fixing direction, since It's not working for some reason.
-const directionHandler = () => {
-    let currentFormat = quill.getFormat();
-    if (currentFormat.align !== 'right' && currentFormat.direction !== 'rtl') {
-        quill.format('direction', 'rtl');
-        quill.format('align', 'right');
-    }
-    else if (currentFormat.align !== 'left' && currentFormat.direction !== 'ltr') {
-        quill.format('direction', false);
-        quill.format('align', false);
-    }
-};
-
-/* -------------------------------------------------------------------------- */
 
 const quill = new Quill('#editor', {
     // options
@@ -51,50 +35,30 @@ const quill = new Quill('#editor', {
     theme: 'snow',
     modules: {
         toolbar: {
-            container: '#toolbar-container',
-            handlers: {
-                'direction': directionHandler
-            }
+            container: '#toolbar-container'
         },
         Searcher: true,
         table: false,
         'better-table': {
-            operationMenu: {
-                items: {
-                    unmergeCells: {
-                        text: 'Another unmerge cells name'
-                    }
-                }
-            }
+            operationMenu: {}
         },
         blotFormatter: {},
         history: {
-            delay: 2000,
+            delay: 4000,
             maxStack: 500,
-            userOnly: true
         },
-        clipboard: true,
     },
     keyboard: {
         bindings: quillBetterTable.keyboardBindings
     },
 });
 
-/* ----------------------------- custom buttons ----------------------------- */
-
-// this is for fixing direction, since It's not working for some reason.
-document.querySelector('.ql-undo').addEventListener('click', e => quill.history.undo());
-document.querySelector('.ql-redo').addEventListener('click', e => quill.history.redo());
-document.querySelector('.ql-copy-format').addEventListener('click', e => {
-});
-
-/* -------------------------------------------------------------------------- */
-
 
 quill.format('direction', 'rtl');
 quill.format('align', 'right');
 
 const tableModule = quill.getModule('better-table');
+const toolbar = quill.getModule('toolbar');
 const quillEditor = document.getElementsByClassName('ql-editor')[0];
 
 quill.insertText(0, 'محمد في المسجد');
@@ -107,3 +71,9 @@ quill.insertText(0, 'محمد في المسجد');
 //
 //     console.log(sum);
 // }, 1000);
+
+
+// todo: for styling tables
+quillEditor.addEventListener('mouseup', evt => {
+    let selectedCells = EditorHelper.tableSelectedCells;
+});

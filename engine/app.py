@@ -2,7 +2,8 @@ import sys
 from flask import Flask, render_template, request, json
 from spell_checker import analyze
 
-app = Flask(__name__, template_folder= '../templates', static_folder= '../static')
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
+
 
 @app.route("/")
 def hello():

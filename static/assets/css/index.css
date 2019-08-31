@@ -56,13 +56,12 @@ svg, hr {
 #main-container {
     position: fixed;
     display: grid;
-    grid-template-rows: 30px 40px auto 40px auto;
+    grid-template-rows: 30px 40px auto max-content auto;
     z-index: 100;
     overflow: hidden;
     height: 100%;
     width: 100%;
     background-image: linear-gradient(135deg, #eaf4fe 50%, #daecfe 30%);
-
 }
 
 

@@ -2,7 +2,9 @@ class Searcher {
 
     static occurrencesIndices = [];
     static currentIndex = 0;
-    static SearchedStringLength = 0;
+    static length = 0;
+    // used for ignore tashkeel
+    static totalLength = [];
     static SearchedString = '';
 
     constructor(quill) {
@@ -10,8 +12,8 @@ class Searcher {
         this.container = document.getElementById('search-container');
 
         document
-            .getElementById('search')
-            .addEventListener('click', this.search.bind(this));
+            .getElementById('search-input')
+            .addEventListener('input', this.search.bind(this));
         document
             .getElementById('replace')
             .addEventListener('click', this.replace.bind(this));
@@ -20,47 +22,53 @@ class Searcher {
             .addEventListener('click', this.replaceAll.bind(this));
     }
 
+
+    // مُحمد
+    // مُحًمد
     search() {
         //  remove any previous search
-        Searcher.removeStyle();
+        if (!Searcher.occurrencesIndices.isEmpty()) Searcher.removeStyle();
 
+        let isTashkeelIgnore = document.getElementById('ignore-taskeel').checked;
         Searcher.SearchedString = searchInput.value;
+
         if (!Searcher.SearchedString) return;
 
         if (Searcher.isSearchedStringFound()) {
-
-            let totalText = quill.getText();
-            this.SearchWithoutTaskeel(totalText);
+            setTimeout(() => {
+                let totalText = quill.getText();
+                if (isTashkeelIgnore) this.SearchIgnoreTashkeel(totalText);
+                else this.SearchTashkeel(totalText);
+            }, 0);
         }
         else {
-            Searcher.occurrencesIndices = null;
+            Searcher.occurrencesIndices = [];
             Searcher.currentIndex = 0;
         }
     }
 
-    SearchWithTaskeel(totalText) {
 
-        if (!new RegExp(SearchedString, 'gi').test(ArabicHelper.removeTashkeel(totalText))) return;
+    SearchIgnoreTashkeel(totalText) {
 
         let indices = [];
         let totalLength = [];
 
         for (let i = 0; i < totalText.length; i++) {
 
-            let tempLen = SearchedString.length;
+            let tempLen = Searcher.SearchedString.length;
             let isMatched = true;
 
             let currentCharSS = 0;
-            if (totalText[i] === SearchedString[currentCharSS]) {
+            if (totalText[i] === Searcher.SearchedString[currentCharSS]) {
                 currentCharSS++;
 
-                for (let j = i + 1, k = 0; k < SearchedString.length; j++ , k++) {
+                for (let j = i + 1, k = 0; k < Searcher.SearchedString.length; j++ , k++) {
                     if (ArabicHelper.isHarakah(totalText[j])) {
                         tempLen++;
 
                         // if current word is not matched with searched string.
                     }
-                    else if (totalText[j] !== SearchedString[currentCharSS]) {
+                    else if (totalText[j] !== Searcher.SearchedString[currentCharSS]) {
                         currentCharSS++;
                         isMatched = false;
                         break;
@@ -74,7 +82,7 @@ class Searcher {
                         break;
                     }
                     // if word without tashkeel matched
-                    if (!SearchedString[currentCharSS]) break;
+                    if (!Searcher.SearchedString[currentCharSS]) break;
                 }
                 // if word is matched after parsing it, add it
                 if (isMatched) {
@@ -85,19 +93,15 @@ class Searcher {
 
         }
 
-        return {
-            index: indices,
-            length: totalLength
-        };
-
+        Searcher.occurrencesIndices = indices;
+        Searcher.totalLength = totalLength;
+        Searcher.addStyle();
     }
 
-    SearchWithoutTaskeel(totalText) {
-        let indices = Searcher.occurrencesIndices = totalText.getIndicesOf(Searcher.SearchedString);
-        let length = (Searcher.SearchedStringLength = Searcher.SearchedString.length);
-
-        indices.forEach(index => quill.formatText(index, length, 'SearchedString', true));
-
+    SearchTashkeel(totalText) {
+        Searcher.occurrencesIndices = totalText.getIndicesOf(Searcher.SearchedString);
+        Searcher.length = Searcher.SearchedString.length;
+        Searcher.addStyle();
     }
 
     replace() {
@@ -108,49 +112,93 @@ class Searcher {
         if (!Searcher.occurrencesIndices) return;
 
         let indices = Searcher.occurrencesIndices;
-
-        let oldString = searchInput.value;
         let newString = replaceInput.value;
 
-        quill.deleteText(indices[Searcher.currentIndex], oldString.length);
-        quill.insertText(indices[Searcher.currentIndex], newString);
-        quill.formatText(indices[Searcher.currentIndex], newString.length, 'SearchedString', false);
+        if (Searcher.totalLength.isEmpty()) {
+            quill.deleteText(indices[Searcher.currentIndex], Searcher.length);
+            quill.insertText(indices[Searcher.currentIndex], newString);
+            quill.formatText(indices[Searcher.currentIndex], newString.length, 'SearchedString', false);
+        }
+        else {
+            quill.deleteText(indices[Searcher.currentIndex], Searcher.totalLength[Searcher.currentIndex]);
+            quill.insertText(indices[Searcher.currentIndex], newString);
+            quill.formatText(indices[Searcher.currentIndex], newString.length, 'SearchedString', false);
+
+        }
         // update the occurrencesIndices.
         this.search();
     }
 
     replaceAll() {
         if (!Searcher.SearchedString) return;
-        let oldStringLen = searchInput.value.length;
         let newString = replaceInput.value;
 
         // if no occurrences, then search first.
         if (!Searcher.occurrencesIndices) this.search();
         if (!Searcher.occurrencesIndices) return;
 
-
-        if (Searcher.occurrencesIndices) {
+        if (Searcher.totalLength.isEmpty()) {
             while (Searcher.occurrencesIndices) {
-                quill.deleteText(Searcher.occurrencesIndices[0], oldStringLen);
-                quill.insertText(Searcher.occurrencesIndices[0], newString);
+                setTimeout(() => {
+                    quill.deleteText(Searcher.occurrencesIndices[0], Searcher.length);
+                    quill.insertText(Searcher.occurrencesIndices[0], newString);
 
-                // update the occurrencesIndices.
-                this.search();
+                    // update the occurrencesIndices.
+                    this.search();
+                }, 0);
+            }
+            while (Searcher.occurrencesIndices) {
+                setTimeout(() => {
+                    quill.deleteText(Searcher.occurrencesIndices[0], Searcher.totalLength[Searcher.currentIndex]);
+                    quill.insertText(Searcher.occurrencesIndices[0], newString);
+
+                    // update the occurrencesIndices.
+                    this.search();
+                }, 0);
+
             }
         }
+
         Searcher.removeStyle();
     }
 
+    static addStyle() {
+        if (Searcher.totalLength.isEmpty()) {
+            for (let i = 0; i < Searcher.occurrencesIndices.length; i++) {
+                setTimeout(() => {
+                    quill.formatText(Searcher.occurrencesIndices[i], Searcher.length, 'SearchedString', true);
+                }, 0);
+            }
+        }
+        else {
+            for (let i = 0; i < Searcher.occurrencesIndices.length; i++) {
+                setTimeout(() => {
+                    quill.formatText(Searcher.occurrencesIndices[i], Searcher.totalLength[i], 'SearchedString', true);
+                }, 0);
+            }
+        }
+    }
+
     static removeStyle() {
-        if (Searcher.occurrencesIndices) {
-            Searcher.occurrencesIndices.forEach(index =>
-                quill.formatText(index, Searcher.SearchedStringLength, 'SearchedString', false
-                )
-            );
+
+        if (Searcher.totalLength.isEmpty()) {
+            for (let i = 0; i < Searcher.occurrencesIndices.length; i++) {
+                setTimeout(() => {
+                    quill.formatText(Searcher.occurrencesIndices[i], Searcher.length, 'SearchedString', false);
+                }, 0);
+            }
+        }
+        else {
+            for (let i = 0; i < Searcher.occurrencesIndices.length; i++) {
+                setTimeout(() => {
+                    quill.formatText(Searcher.occurrencesIndices[i], Searcher.totalLength[i], 'SearchedString', false);
+                }, 0);
+            }
         }
     }
 
     static isSearchedStringFound() {
-        return new RegExp(Searcher.SearchedString, 'gi').test(quill.getText());
+        return new RegExp(Searcher.SearchedString, 'gi').test(ArabicHelper.removeTashkeel(quill.getText()));
     }
+
 }

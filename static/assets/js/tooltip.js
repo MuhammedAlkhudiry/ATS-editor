@@ -51,6 +51,12 @@ tippy('#insert-poetry', {
 
 });
 
+tippy('#insert-date', {
+    content: 'إدراج تاريخ',
+    placement: 'bottom'
+
+});
+
 tippy('#search-replace', {
     content: 'بحث واستبدال',
     placement: 'bottom'
@@ -167,6 +173,9 @@ tippy('.ql-direction', {
 tippy('.ql-clean', {
     content: 'محو التنسيق',
 });
+tippy('.ql-copy-format', {
+    content: 'نسخ التنسيق',
+});
 
 tippy('li[data-value="copy"]', {
     content: 'نسخ',
@@ -182,7 +191,8 @@ tippy('li[data-value="paste"]', {
 tippy('.expand-arrow', {
     content: 'شريط الأدوات',
     placement: 'bottom'
-});tippy('#show-correction-icon span', {
+});
+tippy('#show-correction-icon span', {
     content: 'اقتراحات',
     placement: 'right',
     delay: 2000

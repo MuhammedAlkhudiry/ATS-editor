@@ -88,20 +88,17 @@
                             /******/                        new Error('Manifest request to ' + requestPath + ' timed out.')
                             /******/);
                         /******/
-                    }
-                    else if (request.status === 404) {
+                    } else if (request.status === 404) {
                         /******/ 					// no update available
                         /******/
                         resolve();
                         /******/
-                    }
-                    else if (request.status !== 200 && request.status !== 304) {
+                    } else if (request.status !== 200 && request.status !== 304) {
                         /******/ 					// other failure
                         /******/
                         reject(new Error('Manifest request to ' + requestPath + ' failed.'));
                         /******/
-                    }
-                    else {
+                    } else {
                         /******/ 					// success
                         /******/
                         try {
@@ -165,8 +162,7 @@
                             /******/
                         }
                         /******/
-                    }
-                    else {
+                    } else {
                         /******/
                         hotCurrentParents = [moduleId];
                         /******/
@@ -180,8 +176,7 @@
                         /******/
                     }
                     /******/
-                }
-                else {
+                } else {
                     /******/
                     console.warn(
                         /******/                    '[HMR] unexpected require(' +
@@ -531,8 +526,7 @@
                 /******/
                 hotWaitingFilesMap[chunkId] = true;
                 /******/
-            }
-            else {
+            } else {
                 /******/
                 hotRequestedFilesMap[chunkId] = true;
                 /******/
@@ -581,8 +575,7 @@
                     }
                     /******/);
                 /******/
-            }
-            else {
+            } else {
                 /******/
                 var outdatedModules = [];
                 /******/
@@ -782,8 +775,7 @@
                         /******/
                         result = getAffectedStuff(moduleId);
                         /******/
-                    }
-                    else {
+                    } else {
                         /******/
                         result = {
                             /******/                        type: 'disposed',
@@ -1196,8 +1188,7 @@
                             /******/
                         }
                         /******/
-                    }
-                    else {
+                    } else {
                         /******/
                         if (options.onErrored) {
                             /******/
@@ -1472,7 +1463,7 @@
 
                 path = evt.path || evt.composedPath && evt.composedPath(); // other: edge
 
-                if (path == undefined && evt.target) {
+                if (path === undefined && evt.target) {
                     path = [];
                     let target = evt.target;
                     path.push(target);
@@ -1548,7 +1539,6 @@
 
                     for (let index = 0; index < Math.max(cellsNumber, existCells.length); index++) {
                         let col = tableCols.at(index);
-                        let colWidth = col && parseInt(col.formats()[col.statics.blotName].width, 10); // if cell already exist
 
                         let toolCell = null;
 
@@ -1556,16 +1546,16 @@
                             toolCell = this.createToolCell();
                             this.domNode.appendChild(toolCell);
                             this.addColCellHolderHandler(toolCell); // set tool cell min-width
+                            let colWidth = col && parseInt(col.formats()[col.statics.blotName].width, 10); // if cell already exist
 
                             css(toolCell, {
                                 'min-width': ''.concat(colWidth, 'px')
                             });
-                        }
-                        else if (existCells[index] && index >= cellsNumber) {
+                        } else if (existCells[index] && index >= cellsNumber) {
                             existCells[index].remove();
-                        }
-                        else {
+                        } else {
                             toolCell = existCells[index]; // set tool cell min-width
+                            let colWidth = col && parseInt(col.formats()[col.statics.blotName].width, 10); // if cell already exist
 
                             css(toolCell, {
                                 'min-width': ''.concat(colWidth, 'px')
@@ -1600,8 +1590,7 @@
 
                             if (width0 + x - x0 >= CELL_MIN_WIDTH) {
                                 delta = x - x0;
-                            }
-                            else {
+                            } else {
                                 delta = CELL_MIN_WIDTH - width0;
                             }
 
@@ -1732,8 +1721,7 @@
                                 rowspan,
                                 colspan
                             });
-                        }
-                        else {
+                        } else {
                             if (row) {
                                 this.replaceWith(TableCellLine.blotName, {
                                     row,
@@ -1741,13 +1729,11 @@
                                     rowspan,
                                     colspan
                                 });
-                            }
-                            else {
+                            } else {
                                 super.format(name, value);
                             }
                         }
-                    }
-                    else {
+                    } else {
                         super.format(name, value);
                     }
                 }
@@ -1779,8 +1765,7 @@
                             const child = this.scroll.create(this.statics.defaultChild.blotName);
                             this.appendChild(child); // TODO double check if necessary
                             // child.optimize(context);
-                        }
-                        else {
+                        } else {
                             this.remove();
                         }
                     } // Block optimize
@@ -1841,12 +1826,10 @@
                     if (CELL_ATTRIBUTES.concat(CELL_IDENTITY_KEYS).indexOf(name) > -1) {
                         if (value) {
                             this.domNode.setAttribute('data-'.concat(name), value);
-                        }
-                        else {
+                        } else {
                             this.domNode.removeAttribute('data-'.concat(name));
                         }
-                    }
-                    else if (name === 'header') {
+                    } else if (name === 'header') {
                         if (!value) return;
                         const {
                             row,
@@ -1861,8 +1844,7 @@
                             rowspan,
                             colspan
                         });
-                    }
-                    else {
+                    } else {
                         super.format(name, value);
                     }
                 }
@@ -1962,8 +1944,7 @@
                 toggleAttribute(name, value) {
                     if (value) {
                         this.domNode.setAttribute(name, value);
-                    }
-                    else {
+                    } else {
                         this.domNode.removeAttribute(name);
                     }
                 }
@@ -1978,12 +1959,10 @@
                     if (CELL_ATTRIBUTES.indexOf(name) > -1) {
                         this.toggleAttribute(name, value);
                         this.formatChildren(name, value);
-                    }
-                    else if (['row'].indexOf(name) > -1) {
+                    } else if (['row'].indexOf(name) > -1) {
                         this.toggleAttribute('data-'.concat(name), value);
                         this.formatChildren(name, value);
-                    }
-                    else {
+                    } else {
                         super.format(name, value);
                     }
                 }
@@ -2117,8 +2096,7 @@
                 format(name, value) {
                     if (COL_ATTRIBUTES.indexOf(name) > -1) {
                         this.domNode.setAttribute(''.concat(name), value || COL_DEFAULT[name]);
-                    }
-                    else {
+                    } else {
                         super.format(name, value);
                     }
                 }
@@ -2156,7 +2134,7 @@
                             sumWidth = sumWidth + parseInt(col.formats()[TableCol.blotName].width, 10);
                             return sumWidth;
                         }, 0);
-                        // this.domNode.style.width = '100%';
+                        this.domNode.style.width = ''.concat(tableWidth, 'px');
                     }, 0);
                 }
 
@@ -2181,8 +2159,7 @@
 
                         if (cellRect.x + ERROR_LIMIT > compareRect.x && cellRect.x1 - ERROR_LIMIT < compareRect.x1) {
                             removedCells.push(cell);
-                        }
-                        else if (cellRect.x < compareRect.x + ERROR_LIMIT && cellRect.x1 > compareRect.x1 - ERROR_LIMIT) {
+                        } else if (cellRect.x < compareRect.x + ERROR_LIMIT && cellRect.x1 > compareRect.x1 - ERROR_LIMIT) {
                             modifiedCells.push(cell);
                         }
                     });
@@ -2222,8 +2199,7 @@
 
                         if (cellRect.y > compareRect.y - ERROR_LIMIT && cellRect.y1 < compareRect.y1 + ERROR_LIMIT) {
                             removedCells.push(cell);
-                        }
-                        else if (cellRect.y < compareRect.y + ERROR_LIMIT && cellRect.y1 > compareRect.y1 - ERROR_LIMIT) {
+                        } else if (cellRect.y < compareRect.y + ERROR_LIMIT && cellRect.y1 > compareRect.y1 - ERROR_LIMIT) {
                             modifiedCells.push(cell);
 
                             if (Math.abs(cellRect.y - compareRect.y) < ERROR_LIMIT) {
@@ -2295,8 +2271,7 @@
 
                     if (ref) {
                         tableRow.insertBefore(tableCell, ref);
-                    }
-                    else {
+                    } else {
                         tableRow.appendChild(tableCell);
                     }
                 }
@@ -2320,20 +2295,17 @@
                                 // the right of selected boundary equal to the right of table cell,
                                 // add a new table cell right aside this table cell
                                 addAsideCells.push(cell);
-                            }
-                            else if (compareRect.x1 - cellRect.x > ERROR_LIMIT && compareRect.x1 - cellRect.x1 < -ERROR_LIMIT) {
+                            } else if (compareRect.x1 - cellRect.x > ERROR_LIMIT && compareRect.x1 - cellRect.x1 < -ERROR_LIMIT) {
                                 // the right of selected boundary is inside this table cell
                                 // colspan of this table cell will increase 1
                                 modifiedCells.push(cell);
                             }
-                        }
-                        else {
+                        } else {
                             if (Math.abs(cellRect.x - compareRect.x) < ERROR_LIMIT) {
                                 // left of selected boundary equal to left of table cell,
                                 // add a new table cell left aside this table cell
                                 addAsideCells.push(cell);
-                            }
-                            else if (compareRect.x - cellRect.x > ERROR_LIMIT && compareRect.x - cellRect.x1 < -ERROR_LIMIT) {
+                            } else if (compareRect.x - cellRect.x > ERROR_LIMIT && compareRect.x - cellRect.x1 < -ERROR_LIMIT) {
                                 // the left of selected boundary is inside this table cell
                                 // colspan of this table cell will increase 1
                                 modifiedCells.push(cell);
@@ -2359,8 +2331,7 @@
 
                         if (ref) {
                             tableRow.insertBefore(tableCell, ref);
-                        }
-                        else {
+                        } else {
                             tableRow.appendChild(tableCell);
                         }
 
@@ -2372,8 +2343,7 @@
 
                     if (colRef) {
                         tableColGroup.insertBefore(tableCol, colRef);
-                    }
-                    else {
+                    } else {
                         tableColGroup.appendChild(tableCol);
                     }
 
@@ -2408,16 +2378,13 @@
                         if (isDown) {
                             if (Math.abs(cellRect.y1 - compareRect.y1) < ERROR_LIMIT) {
                                 addBelowCells.push(cell);
-                            }
-                            else if (compareRect.y1 - cellRect.y > ERROR_LIMIT && compareRect.y1 - cellRect.y1 < -ERROR_LIMIT) {
+                            } else if (compareRect.y1 - cellRect.y > ERROR_LIMIT && compareRect.y1 - cellRect.y1 < -ERROR_LIMIT) {
                                 modifiedCells.push(cell);
                             }
-                        }
-                        else {
+                        } else {
                             if (Math.abs(cellRect.y - compareRect.y) < ERROR_LIMIT) {
                                 addBelowCells.push(cell);
-                            }
-                            else if (compareRect.y - cellRect.y > ERROR_LIMIT && compareRect.y - cellRect.y1 < -ERROR_LIMIT) {
+                            } else if (compareRect.y - cellRect.y > ERROR_LIMIT && compareRect.y - cellRect.y1 < -ERROR_LIMIT) {
                                 modifiedCells.push(cell);
                             }
                         }
@@ -2459,8 +2426,7 @@
 
                         if (isDown) {
                             return Math.abs(rowRect.y - compareRect.y - compareRect.height) < ERROR_LIMIT;
-                        }
-                        else {
+                        } else {
                             return Math.abs(rowRect.y - compareRect.y) < ERROR_LIMIT;
                         }
                     });
@@ -2475,8 +2441,7 @@
                         if (index !== 0) {
                             result && tableCell.moveChildren(result);
                             tableCell.remove();
-                        }
-                        else {
+                        } else {
                             tableCell.format('colspan', colspan);
                             tableCell.format('rowspan', rowspan);
                             result = tableCell;
@@ -2660,7 +2625,7 @@
                         const endTdRect = getRelativeRect(endTd.getBoundingClientRect(), self.quill.root.parentNode);
                         self.boundary = computeBoundaryFromRects(startTdRect, endTdRect);
                         self.correctBoundary();
-                        self.selectedTds = self.computeSelectedTds();
+                        self.selectedTds = EditorHelper.tableSelectedCells = self.computeSelectedTds();
                         self.repositionHelpLines(); // avoid select text in multiple table-cell
 
                         if (startTd !== endTd) {
@@ -3079,8 +3044,7 @@
                             if (insertStr.charAt(i) === '\n') {
                                 if (i === 0) {
                                     lines.push('\n');
-                                }
-                                else {
+                                } else {
                                     lines.push(insertStr.substring(start, i));
                                     lines.push('\n');
                                 }
@@ -3094,8 +3058,7 @@
                         lines.forEach(text => {
                             text === '\n' ? newDelta.insert('\n', op.attributes) : newDelta.insert(text, _omit(op.attributes, ['table', 'table-cell-line', 'header']));
                         });
-                    }
-                    else {
+                    } else {
                         newDelta.insert(op.insert, op.attributes);
                     }
 
@@ -3113,8 +3076,7 @@
                                 rowspan,
                                 colspan
                             };
-                        }
-                        else if (op.attributes['table-cell-line']) {
+                        } else if (op.attributes['table-cell-line']) {
                             childAttrs['table-cell-line'] = {
                                 row: rowId,
                                 cell: cellId,
@@ -3126,8 +3088,7 @@
                         newDelta.insert(op.insert, Object.assign({}, Object.assign({}, {
                             row: rowId
                         }, op.attributes.table), childAttrs, _omit(op.attributes, ['table'])));
-                    }
-                    else {
+                    } else {
                         newDelta.insert(op.insert, Object.assign({}, _omit(op.attributes, ['table', 'table-cell-line'])));
                     }
 
@@ -3168,8 +3129,7 @@
                             if (insertStr.charAt(i) === '\n') {
                                 if (i === 0) {
                                     lines.push('\n');
-                                }
-                                else {
+                                } else {
                                     lines.push(insertStr.substring(start, i));
                                     lines.push('\n');
                                 }
@@ -3195,8 +3155,7 @@
                                 }
                             }) : newDelta.insert(text, op.attributes);
                         });
-                    }
-                    else {
+                    } else {
                         newDelta.insert(op.insert, op.attributes);
                     }
 
@@ -3212,8 +3171,7 @@
                                 colspan
                             }
                         }));
-                    }
-                    else {
+                    } else {
                         newDelta.insert(op.insert, Object.assign({}, _omit(op.attributes, ['table', 'table-cell-line'])));
                     }
 
@@ -3238,8 +3196,7 @@
 
                 if (colsNumber === maxCellsNumber) {
                     return delta;
-                }
-                else {
+                } else {
                     for (let i = 0; i < maxCellsNumber - colsNumber; i++) {
                         newColDelta.insert('\n', {
                             'table-col': true
@@ -3309,8 +3266,7 @@
 
                             if (this.table) this.hideTableTools();
                             this.showTableTools(tableNode, quill, options);
-                        }
-                        else if (this.table) {
+                        } else if (this.table) {
                             // other clicked
                             this.hideTableTools();
                         }
@@ -3438,6 +3394,7 @@
                     this.table = table;
                     this.columnTool = new table_column_tool_TableColumnTool(table, quill, options);
                     this.tableSelection = new table_selection_TableSelection(table, quill, options);
+                    return this.tableSelection.selectedTds;
                 }
 
                 hideTableTools() {

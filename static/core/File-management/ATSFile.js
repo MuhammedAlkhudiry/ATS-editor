@@ -13,6 +13,10 @@ class ATSFile {
 
         this.savingStatus = savingStatusText.innerText = msg;
         savingStatusText.className = cssClass;
+        if (msg === 'المستند محفوظ') {
+            this.setLastModifiedDate();
+
+        }
     }
 
     setName(name) {
@@ -20,5 +24,14 @@ class ATSFile {
         fileName.value = name;
         this.name = name;
     }
+
+    setLastModifiedDate() {
+        this.lastModifiedDate = `${new HijriDate().getWeekdayName()}، الساعة: ${new Date().toLocaleTimeString('en-US', {
+            hour: 'numeric',
+            minute: 'numeric'
+        })}`;
+
+        lastModifiedDate.textContent = ` آخر تعديل: ${this.lastModifiedDate}`;
+    };
 
 }

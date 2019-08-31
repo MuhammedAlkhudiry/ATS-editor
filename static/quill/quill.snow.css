@@ -51,7 +51,8 @@
     box-sizing: border-box;
     line-height: 1.42;
     height: 100%;
-    min-height: 300px;
+    width: 794px;
+    min-height: 1123px;
     outline: none;
     overflow-y: auto;
     padding: 25px 35px;
@@ -61,7 +62,7 @@
     text-align: left;
     white-space: pre-wrap;
     word-wrap: break-word;
-    box-shadow: 0 0 6px #00000015;
+    box-shadow: 0 0 6px #00000035;
     background-color: #ffffff;
     z-index: -1;
     transition: 0.3s;
@@ -520,10 +521,12 @@
     color: rgba(0, 0, 0, 0.4);
     opacity: 0.7;
     content: attr(data-placeholder);
-    left: 40%;
+    left: 50%;
     pointer-events: none;
     position: absolute;
+    width: 100%;
     font-family: dubai, serif;
+    direction: rtl;
 }
 
 .ql-snow.ql-toolbar:after,
@@ -1084,7 +1087,7 @@
 }
 
 .ql-toolbar.ql-snow .ql-formats {
-    margin-right: 15px;
+    margin-right: 20px;
 }
 
 .ql-toolbar.ql-snow .ql-picker-label {
@@ -1207,7 +1210,6 @@
 table {
     table-layout: fixed;
     border-collapse: collapse;
-    margin: 0 auto;
     text-align: right;
 }
 
@@ -1248,7 +1250,7 @@ table td {
     opacity: .35;
 }
 
-.qlbt-col-tool:focus-within{
+.qlbt-col-tool:focus-within {
     opacity: .7;
     transition: .5s;
 }
@@ -1257,7 +1259,8 @@ table td {
     opacity: .7;
     transition: .5s;
 }
-.qlbt-col-tool:hover .qlbt-col-tool-cell{
+
+.qlbt-col-tool:hover .qlbt-col-tool-cell {
     background-color: #e8f0fe;
     transition: .3s;
 
@@ -1308,4 +1311,9 @@ table td {
     display: block;
     width: 8px;
     height: 100%;
+}
+
+
+button.ql-copy-format.ql-active {
+    cursor: url('data:image/svg+xml;utf8,<svg width="18"height="18" viewBox="0 0 22 22"><path class="ql-fill"d="M18,4V3A1,1 0 0,0 17,2H5A1,1 0 0,0 4,3V7A1,1 0 0,0 5,7H17A1,1 0 0,0 11,7V6H19V10H9V21A1,1 0 0,0 10,22H12A1,1 0 0,0 11,21V12H21V4H18Z"/></svg>'), auto;
 }

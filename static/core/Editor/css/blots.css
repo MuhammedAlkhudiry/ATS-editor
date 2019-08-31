@@ -1,7 +1,7 @@
 .ql-searched-string {
     background-color: #f8ff00;
     animation: fade-in-bck 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-    display: inline-block;
+    display: inline;
     transition: .2s;
 }
 
@@ -16,7 +16,7 @@
     background: url('data:image/svg+xml;utf-8,<?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="9px" height="6px" viewBox="0 0 9 6" enable-background="new 0 0 9 6" xml:space="preserve"><polygon style="stroke:red;"  opacity="0.9" points="4.5,4.5 0,0 0,1.208 4.5,5.708 9,1.208 9,0 "/></svg>') repeat-x 0 100%;
     background-size: 6px 4px;
     transition: background-color .2s;
-    display: inline-block;
+    display: inline;
     -webkit-animation: slide .2s linear alternate;
 
 }
@@ -32,7 +32,7 @@
     color: #03a351ee;
     font-family: uthmanic-font;
     animation: fade-in-bck 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-    display: inline-block;
+    display: inline;
     transition: .2s;
 }
 
@@ -47,7 +47,7 @@
     color: #634911ee;
     font-family: "Traditional Arabic";
     animation: fade-in-bck 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-    display: inline-block;
+    display: inline;
     transition: .2s;
 }
 

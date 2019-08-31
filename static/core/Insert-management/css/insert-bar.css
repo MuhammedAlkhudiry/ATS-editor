@@ -3,12 +3,11 @@
     background-color: #f9f9f9;
     border-bottom: 1px solid #cccccc8e;
     z-index: 1;
-    transform: translateY(-80%);
 }
 
 #insert-icons {
     display: grid;
-    grid-template-columns: repeat(5, 35px);
+    grid-template-columns: repeat(auto-fit, 35px);
     height: 40px;
     justify-content: space-evenly;
     margin: 0 30vw;
@@ -100,6 +99,12 @@
 
 }
 
+#insert-date-box {
+    top: 100%;
+    right: 25%;
+
+}
+
 .insert-box.show {
     opacity: 1;
     visibility: visible;
@@ -177,17 +182,16 @@
     padding: 2px 4px;
     border-bottom-right-radius: 0.4em;
     border-top-left-radius: 0.4em;
-    background-color: #f9f9f9;
 
 }
 
 .expand-arrow:hover {
-    background-color: #fefefe;
+    background-color: #fefefe77;
     transition: .3s;
-
+    fill: #0066cc;
 }
 
-#insert-bar.slide-in .expand-arrow {
-    top: 5px;
+.expand-arrow.down {
+    transform: translateY(-2.5em) rotate(0deg);
     transition: .3s;
 }

@@ -2,6 +2,10 @@
 
 class EditorHelper {
 
+    static isFormatCopied = false;
+    static copiedFormat = null;
+    static tableSelectedCells = null;
+
     static cleanEditor() {
         quill.setContents([]);
         quill.format('direction', 'rtl');
@@ -57,8 +61,7 @@ class EditorHelper {
             // Restore selection
             sel.removeAllRanges();
             sel.addRange(selectedRange);
-        }
-        else if ((sel = document.selection) && sel.type !== 'Control') {
+        } else if ((sel = document.selection) && sel.type !== 'Control') {
             const range = sel.createRange();
             range.collapse(true);
             range.expand('word');

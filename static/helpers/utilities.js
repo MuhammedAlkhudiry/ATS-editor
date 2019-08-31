@@ -34,4 +34,7 @@ String.prototype.isNumeric = function () {
 Array.prototype.isEmpty = function () {
     return this.length === 0;
 };
+Array.prototype.lastElement = function () {
+    return this[this.length - 1];
+};
 /* -------------------------------------------------------------------------- */

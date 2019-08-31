@@ -1,7 +1,7 @@
 
 .file-management-bar {
     display: grid;
-    grid-template-columns: repeat(3, 40px) 35vw 100px;
+    grid-template-columns: repeat(3, 40px) 35vw 300px;
     height: 40px;
     background-color: #f5f5f5;
     direction: rtl;
@@ -126,6 +126,10 @@
     align-self: center;
 }
 
+#last-modified-date {
+    color: #444444;
+}
+
 #saving-box-content {
     display: grid;
     grid-template-columns: repeat(3, .33fr);
@@ -134,8 +138,6 @@
     justify-items: center;
     justify-content: center;
     width: 30em;
-    user-select: none;
-    -webkit-user-drag: none;
     font-size: 14px;
 }
 

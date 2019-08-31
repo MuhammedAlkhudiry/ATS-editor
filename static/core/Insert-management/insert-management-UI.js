@@ -9,6 +9,9 @@ const hadiths_Tashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-manage
 const replaceInput = document.getElementById('replace-input');
 const expandArrow = document.getElementById('expand-arrow');
 
+const picker = new Datepicker(true, new HijriDate().getFullYear(), new HijriDate().getMonth(), 0, 'ar', 'blue');
+picker.attachTo(document.getElementById('insert-date-box'));
+
 document.getElementById('insert-bar').addEventListener('click', e => {
 
     let clickedIcon = e.target;
@@ -28,6 +31,9 @@ document.getElementById('insert-bar').addEventListener('click', e => {
             case 'insert-poetry':
                 insertBox = document.getElementById('insert-poetry-box');
                 break;
+            case 'insert-date':
+                insertBox = document.getElementById('insert-date-box');
+                break;
             case 'search-replace':
                 insertBox = document.getElementById('search-box');
                 break;
@@ -40,7 +46,7 @@ document.getElementById('insert-bar').addEventListener('click', e => {
             if (insertBox.id === 'search-box') Searcher.removeStyle();
         }
         else {
-            document.querySelectorAll('.insert-box.show').forEach(box => box.className = 'insert-box');
+            closeInsertBoxes();
             insertBox.className = 'insert-box show';
             insertBox.focus();
 
@@ -100,8 +106,15 @@ quillEditor.addEventListener('mouseover', e => {
 expandArrow.addEventListener('click', function () {
     let isInsertBarOpen = insertBar.classList.contains('slide-in');
 
-    isInsertBarOpen ? this.style.transform = 'rotate(180deg)' : this.style.transform = 'rotate(0)';
+    isInsertBarOpen ? this.classList.remove('down') : this.classList.add('down');
 
-    document.querySelectorAll('.insert-box.show').forEach(box => box.className = 'insert-box');
+    closeInsertBoxes();
     insertBar.setAttribute('class', isInsertBarOpen ? 'slide-out' : 'slide-in');
 });
+
+
+function closeInsertBoxes() {
+    document.querySelectorAll('.insert-box.show').forEach(box => box.className = 'insert-box');
+
+}
+

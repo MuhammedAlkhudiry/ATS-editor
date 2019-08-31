@@ -12,6 +12,9 @@ class Inserter {
             case 'poetry':
                 Inserter.insertPoetry(text);
                 break;
+            case 'date':
+                Inserter.insertDate(text);
+                break;
         }
     }
 
@@ -26,5 +29,10 @@ class Inserter {
 
     static insertPoetry(text) {
         quill.insertText(TypingHelper.getCaretPosition(), `${text}`, 'Poetry', true);
+    }
+
+    static insertDate(text) {
+        quill.insertText(TypingHelper.getCaretPosition(), `${text}`);
+
     }
 }

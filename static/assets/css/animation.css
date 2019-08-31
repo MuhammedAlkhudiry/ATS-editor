@@ -7,13 +7,23 @@
 }
 
 .slide-in {
-    animation: slide-in 0.5s forwards;
-    -webkit-animation: slide-in 0.5s forwards;
+    animation: slide-in 0.4s forwards;
+    -webkit-animation: slide-in 0.4s forwards;
+}
+
+.slide-in .insert-icon {
+    visibility: visible;
+    opacity: 0.8;
+}
+
+.slide-out .insert-icon {
+    visibility: hidden;
+    opacity: 0;
 }
 
 .slide-out {
-    animation: slide-out 0.5s forwards;
-    -webkit-animation: slide-out 0.5s forwards;
+    animation: slide-out 0.4s forwards;
+    -webkit-animation: slide-out 0.4s forwards;
 }
 
 /* ----------------------------------------------
@@ -67,18 +77,26 @@
 
 
 @keyframes slide-in {
+    0% {
+        height: 10px;
+        visibility: hidden;
+        opacity: 0;
+
+    }
     100% {
-        transform: translateY(0%);
+        height: 40px;
+        visibility: visible;
+        opacity: 1;
+
     }
 }
 
 @keyframes slide-out {
     0% {
-        transform: translateY(0%);
+        height: 40px;
     }
     100% {
-        transform: translateY(-80%);
-        opacity: 1
+        height: 10px;
     }
 }
 
@@ -89,6 +107,10 @@
 }
 
 @-webkit-keyframes slide {
-    from { background-position: 10px 90%; }
-    to { background-position: 20px 90%; }
+    from {
+        background-position: 10px 90%;
+    }
+    to {
+        background-position: 20px 90%;
+    }
 }
