@@ -44,8 +44,7 @@ document.getElementById('insert-bar').addEventListener('click', e => {
         if (insertBox.className === 'insert-box show') {
             insertBox.className = 'insert-box';
             if (insertBox.id === 'search-box') Searcher.removeStyle();
-        }
-        else {
+        } else {
             closeInsertBoxes();
             insertBox.className = 'insert-box show';
             insertBox.focus();
@@ -58,8 +57,7 @@ document.getElementById('insert-bar').addEventListener('click', e => {
 
             }
         }
-    }
-    else {
+    } else {
         expandArrow.click();
     }
 });
@@ -87,8 +85,7 @@ quillEditor.addEventListener('mouseover', e => {
             }
         }
 
-    }
-    else if (e.target.classList.contains('ql-hadith')) {
+    } else if (e.target.classList.contains('ql-hadith')) {
         // remove brackets.
         let hadithText = e.target.textContent.slice(1, -1);
         for (const hadith of hadiths_Tashkeel) {
@@ -107,6 +104,7 @@ expandArrow.addEventListener('click', function () {
     let isInsertBarOpen = insertBar.classList.contains('slide-in');
 
     isInsertBarOpen ? this.classList.remove('down') : this.classList.add('down');
+    // isInsertBarOpen ? console.log(tippy(expandArrow)) : tippy(this).setContent = '';
 
     closeInsertBoxes();
     insertBar.setAttribute('class', isInsertBarOpen ? 'slide-out' : 'slide-in');
