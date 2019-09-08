@@ -80,7 +80,7 @@
 }
 
 #correction-menu li:hover {
-    background-color: #e8f0fe;
+    background-color: var(--light-primary);
     transition: .3s;
 }
 
@@ -89,7 +89,7 @@
 }
 
 #correction-menu li:hover svg {
-    fill: #0066cc;
+    fill: var(--primary);
 }
 
 #correction-menu #ignore:hover svg {

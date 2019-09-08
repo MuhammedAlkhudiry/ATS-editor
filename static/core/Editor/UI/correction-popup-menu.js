@@ -40,6 +40,7 @@ operationSection.addEventListener('click', e => {
 
     if (clickedOperation.id === 'add-to-dictionary') {
         user.dictionary = misspelledWord.textContent;
+        new Notification('success', 'أُضيفت الكلمة إلى القاموس الشخصي')
     }
     else if (clickedOperation.id === 'ignore-word') {
         user.ignoreWords.push(misspelledWord.textContent);

@@ -71,18 +71,27 @@ tippy('.ql-redo', {
     content: 'تقادم',
 });
 
+tippy('.ql-font', {
+    content: 'خط النص',
+});
 tippy('.ql-header', {
-    content: 'حجم النص',
+    content: 'نوع النص',
 });
 
 tippy('.ql-size', {
-    content: 'حجم الخط',
+    content: 'حجم النص',
 });
+
+tippy('.ql-line-height', {
+    content: 'تباعد الأسطر',
+});
+
 tippy('.ql-color', {
-    content: 'لون الخط',
+    content: 'لون النص',
 });
+
 tippy('.ql-background', {
-    content: 'لون خلفية الخط',
+    content: 'لون خلفية النص',
 });
 
 tippy('.ql-bold', {
@@ -192,9 +201,20 @@ tippy('.expand-arrow', {
     content: 'شريط الأدوات',
     placement: 'bottom'
 });
+tippy('#increase-zoom', {
+    content: 'تكبير',
+    placement: 'top'
+});
+
+tippy('#decrease-zoom', {
+    content: 'تصغير',
+    placement: 'bottom'
+});
+
 tippy('#show-correction-icon span', {
     content: 'اقتراحات',
     placement: 'right',
     delay: 2000
 });
+
 

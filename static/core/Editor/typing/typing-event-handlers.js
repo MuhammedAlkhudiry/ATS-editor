@@ -1,6 +1,7 @@
 // Arabic punctuation handler
 quill.on('text-change', function (delta, oldDelta, source) {
-    if (delta.ops.length !== 2 && !delta.ops[0].insert) return;
+
+    if (delta.ops.length < 2 && !delta.ops[0].insert) return;
     // if no text inserted, return.
     if (delta.ops.length === 2)
         if (!delta.ops[1].insert && !delta.ops[0].insert) return;
@@ -50,11 +51,9 @@ quill.on('text-change', function (delta, oldDelta, source) {
         if (delta.ops[1].insert.length < 5) {
             if ('Ayah' in delta.ops[1].attributes) {
                 TypingHandler.setOps({Ayah: false}, TypingHandler.previousTextLen);
-            }
-            else if ('Hadith' in delta.ops[1].attributes) {
+            } else if ('Hadith' in delta.ops[1].attributes) {
                 TypingHandler.setOps({Hadith: false}, TypingHandler.previousTextLen);
-            }
-            else if ('Misspell' in delta.ops[1].attributes) {
+            } else if ('Misspell' in delta.ops[1].attributes) {
                 TypingHandler.setOps({Misspell: false}, TypingHandler.previousTextLen);
             }
             quill.updateContents({
@@ -79,7 +78,7 @@ quill.on('text-change', function (delta, oldDelta, source) {
 quill.on('text-change', function (delta, oldDelta, source) {
 
     // is user selected all line then write first char
-    if (delta.ops.length === 2)
+    if (delta.ops.length === 2 || delta.ops.length === 3)
         if (!delta.ops[1].delete) return;
         else if (delta.ops[1].delete !== oldDelta.ops[0].insert.trim().length) return;
 
@@ -90,8 +89,7 @@ quill.on('text-change', function (delta, oldDelta, source) {
                 quill.format('direction', 'rtl');
                 quill.format('align', 'right');
             }
-        }
-        else if (delta.ops[0].insert.match(/[A-Za-z]/)) {
+        } else if (delta.ops[0].insert.match(/[A-Za-z]/)) {
             let currentFormat = quill.getFormat();
             if (currentFormat.align !== 'left' && currentFormat.direction !== 'ltr') {
                 quill.format('direction', false);

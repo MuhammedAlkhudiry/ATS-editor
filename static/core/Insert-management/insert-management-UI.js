@@ -104,15 +104,16 @@ expandArrow.addEventListener('click', function () {
     let isInsertBarOpen = insertBar.classList.contains('slide-in');
 
     isInsertBarOpen ? this.classList.remove('down') : this.classList.add('down');
-    // isInsertBarOpen ? console.log(tippy(expandArrow)) : tippy(this).setContent = '';
 
     closeInsertBoxes();
     insertBar.setAttribute('class', isInsertBarOpen ? 'slide-out' : 'slide-in');
 });
 
+textBox.addEventListener('dblclick', () => closeInsertBoxes());
 
 function closeInsertBoxes() {
     document.querySelectorAll('.insert-box.show').forEach(box => box.className = 'insert-box');
 
 }
+
 

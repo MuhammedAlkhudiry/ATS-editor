@@ -28,7 +28,11 @@ class ArabicHelper {
         return new RegExp(/[\u0617-\u061A\u064B-\u0652]/).test(char);
     }
 
+    static removeHamza(arabicText) {
+        return arabicText.replace(/[اأإآ]/g, 'ا');
+    }
+
     static isHamza(char) {
-        return new RegExp(/[(اأإآ]/).test(char);
+        return new RegExp(/[اأإآ]/g).test(char);
     }
 }

@@ -5,6 +5,9 @@ class EditorHelper {
     static isFormatCopied = false;
     static copiedFormat = null;
     static tableSelectedCells = null;
+    static currentZoom = 3;
+    static zoomTypes = [50, 75, 100, 125, 150, 200];
+
 
     static cleanEditor() {
         quill.setContents([]);

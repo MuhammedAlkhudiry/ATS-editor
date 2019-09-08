@@ -1,10 +1,19 @@
-.footer {
+#footer {
+    display: grid;
+    grid-template-columns: 10em 15em;
     position: fixed;
     left: 0;
     bottom: 0;
-    height: 22px;
     width: 100%;
     background-color: #f3f3f3;
-    color: #23241f;
+    color: var(--black);
     font-size: 11px;
+    box-shadow: 0 0 6px #00000035;
+}
+
+#zoom-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 5em);
+    background-color: #e3e3e3;
+
 }

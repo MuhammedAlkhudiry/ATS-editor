@@ -29,8 +29,9 @@ let observer = new MutationObserver(mutationRecords => {
         poetryPart.firstElementChild.textContent = poetryInputParts[i].value;
     }
 
-    insertedPoetry.style.width = '';
-    insertedPoetry.className = 'ql-poetry';
+    insertedPoetry.firstElementChild.className = '';
+    insertedPoetry.firstElementChild.style.width = 'auto';
+    insertedPoetry.classList.replace('quill-better-table-wrapper', 'ql-poetry');
 
     isPoetryInserted = false;
 

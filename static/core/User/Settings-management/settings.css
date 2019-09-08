@@ -18,7 +18,7 @@
 .tabs ul li label {
     font-weight: bold;
     font-size: 18px;
-    color: #0066cc;
+    color: var(--primary);
 }
 
 .tabs ul {
@@ -89,7 +89,7 @@
     max-width: 100%;
     margin: 0 auto;
     height: 4px;
-    background: #0066cc;
+    background: var(--primary);
     border-radius: 1px;
 }
 
@@ -106,7 +106,7 @@
 }
 
 .tabs .content section h2 {
-    color: #0066cc;
+    color: var(--primary);
     display: none;
 }
 
@@ -116,7 +116,7 @@
     display: block;
     width: 30px;
     height: 3px;
-    background: #0066cc;
+    background: var(--primary);
     margin-top: 5px;
     left: 1px;
 }
@@ -128,11 +128,11 @@
 
 .tabs input[name="tab-control"]:nth-of-type(1):checked ~ ul > li:nth-child(1) > label {
     cursor: default;
-    color: #0066cc;
+    color: var(--primary);
 }
 
 .tabs input[name="tab-control"]:nth-of-type(1):checked ~ ul > li:nth-child(1) > label path {
-    fill: #0066cc;
+    fill: var(--primary);
 }
 
 @media (max-width: 600px) {
@@ -151,11 +151,11 @@
 
 .tabs input[name="tab-control"]:nth-of-type(2):checked ~ ul > li:nth-child(2) > label {
     cursor: default;
-    color: #0066cc;
+    color: var(--primary);
 }
 
 .tabs input[name="tab-control"]:nth-of-type(2):checked ~ ul > li:nth-child(2) > label path {
-    fill: #0066cc;
+    fill: var(--primary);
 }
 
 @media (max-width: 600px) {
@@ -174,11 +174,11 @@
 
 .tabs input[name="tab-control"]:nth-of-type(3):checked ~ ul > li:nth-child(3) > label {
     cursor: default;
-    color: #0066cc;
+    color: var(--primary);
 }
 
 .tabs input[name="tab-control"]:nth-of-type(3):checked ~ ul > li:nth-child(3) > label path {
-    fill: #0066cc;
+    fill: var(--primary);
 }
 
 @media (max-width: 600px) {
@@ -197,11 +197,11 @@
 
 .tabs input[name="tab-control"]:nth-of-type(4):checked ~ ul > li:nth-child(4) > label {
     cursor: default;
-    color: #0066cc;
+    color: var(--primary);
 }
 
 .tabs input[name="tab-control"]:nth-of-type(4):checked ~ ul > li:nth-child(4) > label path {
-    fill: #0066cc;
+    fill: var(--primary);
 }
 
 @media (max-width: 600px) {

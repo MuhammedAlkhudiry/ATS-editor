@@ -1,7 +1,3 @@
-let electronLocalshortcut = require('electron-localshortcut');
-
-
-/* -------------------------------- shortcuts ------------------------------- */
 
 /* ----------------------------- new, save, open ---------------------------- */
 

@@ -1,0 +1,7 @@
+.tippy-tooltip {
+    background-color: var(--dark-gray);
+}
+
+.tippy-tooltip .tippy-roundarrow {
+    fill: var(--dark-gray);
+}

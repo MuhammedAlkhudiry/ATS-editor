@@ -22,14 +22,14 @@
 }
 
 .insert-icon:hover {
-    background-color: #e8f0fe;
+    background-color: var(--light-primary);
     transition: .3s;
 }
 
 .insert-icon:hover .ql-custom-stroke-1,
 .insert-icon:hover .ql-custom-stroke-2 {
-    fill: #06c;
-    background: #e8f0fe;
+    fill: var(--primary);
+    background: var(--light-primary);
     border-radius: 0.4em
 }
 
@@ -39,13 +39,12 @@
     visibility: hidden;
     display: block;
     direction: rtl;
-    transition: opacity 0.4s;
+    transition: opacity 0.2s;
     box-shadow: rgba(0, 0, 0, 0.2) 0 2px 8px;
     background-color: #fafafa;
     width: auto;
     max-width: 60vw;
     border-radius: 0.4em;
-    border: 1px solid #d4d4d4;
 }
 
 #insert-table-box {
@@ -56,7 +55,7 @@
 #insert-table-box td {
     width: 15px;
     height: 15px;
-    background-color: #e8f0fe;
+    background-color: var(--light-primary);
     transition: 0.3s;
     border: 2px #ffffff solid;
 }
@@ -65,7 +64,7 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    background-color: #e8f0fe;
+    background-color: var(--light-primary);
     transition: .1s;
     padding: 2px 6px;
     border-radius: .4em;
@@ -111,18 +110,10 @@
 }
 
 .insert-input {
-    padding: 10px;
-    font-size: 12px;
-    border-radius: 0.4em;
     width: 100%;
     border: 1px solid #d4d4d4;
-
+    border-radius: 0.4em;
 }
-
-.insert-input::placeholder, #search-box input::placeholder {
-    color: #a8a8a8;
-}
-
 
 .insert-list {
     border: 1px solid #d4d4d4;
@@ -151,7 +142,7 @@
 }
 
 .insert-list-active {
-    background-color: #06c !important;
+    background-color: var(--primary) !important;
     color: #ffffff;
 }
 
@@ -161,7 +152,8 @@
     right: 20%;
     z-index: 99;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1.5fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1.5fr));
+    column-gap: 10px;
     justify-items: center;
     padding: .5em;
     transition: opacity 0.4s;
@@ -188,7 +180,7 @@
 .expand-arrow:hover {
     background-color: #fefefe77;
     transition: .3s;
-    fill: #0066cc;
+    fill: var(--primary);
 }
 
 .expand-arrow.down {

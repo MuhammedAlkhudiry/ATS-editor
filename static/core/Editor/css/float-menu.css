@@ -60,8 +60,8 @@
 
 
 .tool:hover .ql-custom-stroke-1 {
-    stroke: #06c;
-    background: #e8f0fe;
+    stroke: var(--primary);
+    background: var(--light-primary);
     border-radius: 0.4em
 }
 

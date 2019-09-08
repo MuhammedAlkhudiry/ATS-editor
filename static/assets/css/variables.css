@@ -1,0 +1,13 @@
+:root {
+    --primary: #0066cc;
+    --secondary: #1a8cff;
+    --light-primary: #e8f0fe;
+    --dark-gray: #555;
+    --light-gray: #bbb;
+    --white: #eee;
+    --black: #23241f;
+    --success: #009943ee;
+    --light-success: #DAFFF5;
+    --danger: #eb1d1dee;
+    --light-danger: #FFDcDE;
+}

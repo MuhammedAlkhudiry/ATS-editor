@@ -20,8 +20,8 @@ insertTable.addEventListener('mouseover', e => {
         record.style.backgroundColor = '#0066CC77';
     }
 
-    floatTip.style.top = (e.pageY - 110) + 'px';
-    floatTip.style.left = (e.pageX) + 'px';
+    floatTip.style.top = (e.pageY - 80) + 'px';
+    floatTip.style.left = (e.pageX - 80) + 'px';
     floatTip.style.visibility = 'visible';
     floatTip.textContent = currRow + ' x ' + currCol;
 });

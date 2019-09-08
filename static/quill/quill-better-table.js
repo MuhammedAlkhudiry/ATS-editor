@@ -1473,7 +1473,6 @@
                         path.push(target);
                     }
                 }
-
                 return path;
             }
 
@@ -1484,7 +1483,216 @@
             const COL_TOOL_CELL_HEIGHT = 12;
             const ROW_TOOL_WIDTH = 12;
             const CELL_MIN_WIDTH = 50;
-            const PRIMARY_COLOR = '#35A7ED';
+            const PRIMARY_COLOR = '#1a8cff';
+
+            class table_styleTool {
+                backgroundColorBound = this.backgroundColorHandler.bind(this);
+                borderColorBound = this.borderColorHandler.bind(this);
+                borderWidthBound = this.borderWidthHandler.bind(this);
+                BorderStyleBound = this.borderStyleHandler.bind(this);
+                backgroundColorBtn;
+                borderColorBtn;
+                borderWidthBtn;
+                BorderStyleBtn;
+
+                constructor(table, quill, options) {
+                    if (!table) return null;
+                    this.table = table;
+                    this.quill = quill;
+                    this.options = options;
+                    this.domNode = null;
+                    this.parent = this.quill.root.parentNode;
+                    this.initStylingTool();
+                    this.createStyingItems();
+
+                }
+
+                initStylingTool() {
+                    this.domNode = document.createElement('div');
+                    this.domNode.classList.add('qlbt-style-tool');
+                    this.domNode.addEventListener('click', this.boundClick);
+                    this.parent.appendChild(this.domNode);
+                    const tableRect = this.table.getBoundingClientRect();
+                    const containerRect = this.quill.root.parentNode.getBoundingClientRect();
+                    const tableViewRect = this.table.parentNode.getBoundingClientRect();
+                    css(this.domNode, {
+                        width: '22px',
+                        height: '22px',
+                        left: ''.concat(tableRect.x - 25, 'px'),
+                        top: ''.concat(tableViewRect.top - containerRect.top + 22, 'px')
+                    });
+                }
+
+                createStyingItems() {
+                    this.backgroundColorBtn = document.createElement('div');
+                    this.backgroundColorBtn.id = 'backgroundColor';
+                    this.backgroundColorBtn.className = 'icon';
+                    this.backgroundColorBtn.innerHTML = `<svg style="width:22px;height:22px" viewBox="0 0 24 24">
+    <path class="ql-custom-stroke-2" d="M19,11.5C19,11.5 17,13.67 17,15A2,2 0 0,0 19,17A2,2 0 0,0 21,15C21,13.67 19,11.5 19,11.5M5.21,10L10,5.21L14.79,10M16.56,8.94L7.62,0L6.21,1.41L8.59,3.79L3.44,8.94C2.85,9.5 2.85,10.47 3.44,11.06L8.94,16.56C9.23,16.85 9.62,17 10,17C10.38,17 10.77,16.85 11.06,16.56L16.56,11.06C17.15,10.47 17.15,9.5 16.56,8.94Z" />
+</svg>`;
+                    this.borderColorBtn = document.createElement('div');
+                    this.borderColorBtn.id = 'borderColorBtn';
+                    this.borderColorBtn.className = 'icon';
+
+                    this.borderColorBtn.innerHTML = `<svg style="width:22px;height:22px" viewBox="0 0 24 24">
+    <path class="ql-custom-stroke-2" d="M20.71,4.04C21.1,3.65 21.1,3 20.71,2.63L18.37,0.29C18,-0.1 17.35,-0.1 16.96,0.29L15,2.25L18.75,6M17.75,7L14,3.25L4,13.25V17H7.75L17.75,7Z" />
+</svg>`;
+                    this.borderWidthBtn = document.createElement('div');
+                    this.borderWidthBtn.id = 'borderWidthBtn';
+                    this.borderWidthBtn.className = 'icon';
+
+                    this.borderWidthBtn.innerHTML = `<svg style="width:22px;height:22px" viewBox="0 0 24 24">
+    <path class="ql-custom-stroke-2" d="M3,17H21V15H3V17M3,20H21V19H3V20M3,13H21V10H3V13M3,4V8H21V4H3Z" />
+</svg>`;
+                    this.BorderStyleBtn = document.createElement('div');
+                    this.BorderStyleBtn.id = 'BorderStyleBtn';
+                    this.BorderStyleBtn.className = 'icon';
+
+                    this.BorderStyleBtn.innerHTML = `<svg style="width:22px;height:22px" viewBox="0 0 24 24">
+    <path class="ql-custom-stroke-2" d="M3,16H8V14H3V16M9.5,16H14.5V14H9.5V16M16,16H21V14H16V16M3,20H5V18H3V20M7,20H9V18H7V20M11,20H13V18H11V20M15,20H17V18H15V20M19,20H21V18H19V20M3,12H11V10H3V12M13,12H21V10H13V12M3,4V8H21V4H3Z" />
+</svg>`;
+
+
+                    this.backgroundColorBtn.addEventListener('click', this.backgroundColorBound);
+                    this.borderColorBtn.addEventListener('click', this.borderColorBtn);
+                    this.borderWidthBtn.addEventListener('click', this.borderWidthBtn);
+                    this.BorderStyleBtn.addEventListener('click', this.BorderStyleBound);
+
+                    this.domNode.appendChild(this.backgroundColorBtn);
+                    this.domNode.appendChild(this.borderColorBtn);
+                    this.domNode.appendChild(this.borderWidthBtn);
+                    this.domNode.appendChild(this.BorderStyleBtn);
+
+                    tippy(this.backgroundColorBtn, {
+                        content: 'لون الخلفية',
+                        placement: 'left'
+                    });
+                    tippy(this.borderColorBtn, {
+                        content: 'لون الحد',
+                        placement: 'left'
+
+                    });
+                    tippy(this.borderWidthBtn, {
+                        content: 'عرض الحد',
+                        placement: 'left'
+
+                    });
+                    tippy(this.BorderStyleBtn, {
+                        content: 'شكل الحد',
+                        placement: 'left'
+
+                    });
+
+                }
+
+                backgroundColorHandler() {
+
+                }
+
+                borderColorHandler() {
+
+                }
+
+                borderWidthHandler() {
+
+                }
+
+                borderStyleHandler() {
+
+                }
+
+                destroy() {
+                    this.domNode.remove();
+                    return null;
+                }
+            }
+
+            class table_movingTool {
+                isDragging = false;
+                parent = null;
+                currentTarget = null;
+                // google: remove event listener from bind, to get why use these variables.
+                boundDrag = this.dragMoveToolHandler.bind(this);
+                boundMoving = this.movingTableHandler.bind(this);
+                boundDrop = this.dropMoveToolHandler.bind(this);
+
+                constructor(table, quill, options) {
+                    if (!table) return null;
+                    this.table = table;
+                    this.quill = quill;
+                    this.options = options;
+                    this.domNode = null;
+                    this.parent = this.quill.root.parentNode;
+                    this.initMovingTool();
+
+                }
+
+                initMovingTool() {
+                    this.domNode = document.createElement('div');
+                    this.domNode.classList.add('qlbt-move-tool');
+                    this.domNode.classList.add('icon');
+                    this.domNode.innerHTML = `<svg style="width:22px;height:22px"  viewBox="0 0 24 24"><path class="ql-custom-stroke-2" d="M20,2H4C2.89,2 2,2.89 2,4V20C2,21.11 2.89,22 4,22H20C21.11,22 22,21.11 22,20V4C22,2.89 21.11,2 20,2M20,20H4V4H20M13,8V10H11V8H9L12,5L15,8M16,15V13H14V11H16V9L19,12M10,13H8V15L5,12L8,9V11H10M15,16L12,19L9,16H11V14H13V16" /></svg>`;
+                    this.domNode.addEventListener('mousedown', this.boundDrag);
+                    this.parent.appendChild(this.domNode);
+                    const tableRect = this.table.getBoundingClientRect();
+                    const containerRect = this.quill.root.parentNode.getBoundingClientRect();
+                    const tableViewRect = this.table.parentNode.getBoundingClientRect();
+                    css(this.domNode, {
+                        width: '22px',
+                        height: '22px',
+                        left: ''.concat(tableRect.x - 25, 'px'),
+                        top: ''.concat(tableViewRect.top - containerRect.top, 'px')
+                    });
+                    tippy(this.domNode, {
+                        content: 'نقل الجدول',
+                        placement: 'left'
+                    });
+                }
+
+                locateMovingTool() {
+
+                    this.quill.getModule('better-table').hideTableTools();
+                }
+
+                dragMoveToolHandler(e) {
+                    this.isDragging = true;
+                    this.table.style.opacity = '0.3';
+                    document.addEventListener('mousemove', this.boundMoving);
+                    document.addEventListener('mouseup', this.boundDrop);
+
+                }
+
+                dropMoveToolHandler(e) {
+                    if (this.isDragging && e.target.nodeName === 'P') {
+                        this.table.remove();
+                        this.quill.root.insertBefore(this.table, e.target.nextSibling);
+                        this.locateMovingTool();
+
+                    }
+
+                    this.isDragging = false;
+                    this.table.style.opacity = '1';
+                    if (this.currentTarget) this.currentTarget.classList.remove('current-position-table');
+                    document.removeEventListener('mousemove', this.boundMoving);
+                    document.removeEventListener('mouseup', this.boundDrop);
+
+                }
+
+                movingTableHandler(e) {
+                    if (this.currentTarget) this.currentTarget.classList.remove('current-position-table');
+
+                    e.preventDefault();
+                    if (e.target.nodeName === 'P') {
+                        this.currentTarget = e.target;
+                        this.currentTarget.classList.add('current-position-table');
+                    }
+                }
+
+                destroy() {
+                    this.domNode.remove();
+                    return null;
+                }
+            }
 
             class table_column_tool_TableColumnTool {
                 constructor(table, quill, options) {
@@ -1583,6 +1791,8 @@
                     let $helpLine = null;
 
                     const handleDrag = e => {
+                        console.log(e);
+
                         e.preventDefault();
 
                         if (dragging) {
@@ -1601,6 +1811,8 @@
                     };
 
                     const handleMouseup = e => {
+                        console.log(e);
+
                         e.preventDefault();
                         const existCells = Array.from(this.domNode.querySelectorAll('.qlbt-col-tool-cell'));
                         const colIndex = existCells.indexOf(cell);
@@ -2570,7 +2782,7 @@
 // CONCATENATED MODULE: ./src/modules/table-selection.js
 
 
-            const table_selection_PRIMARY_COLOR = '#35A7ED';
+            const table_selection_PRIMARY_COLOR = '#1a8cff';
             const LINE_POSITIONS = ['left', 'right', 'top', 'bottom'];
             const table_selection_ERROR_LIMIT = 2;
 
@@ -2690,28 +2902,28 @@
                         left: ''.concat(this.boundary.x - tableViewScrollLeft - 1, 'px'),
                         top: ''.concat(this.boundary.y, 'px'),
                         height: ''.concat(this.boundary.height + 1, 'px'),
-                        width: '1px'
+                        width: '2.5px'
                     });
                     css(this.right, {
                         display: 'block',
                         left: ''.concat(this.boundary.x1 - tableViewScrollLeft, 'px'),
                         top: ''.concat(this.boundary.y, 'px'),
                         height: ''.concat(this.boundary.height + 1, 'px'),
-                        width: '1px'
+                        width: '2.5px'
                     });
                     css(this.top, {
                         display: 'block',
                         left: ''.concat(this.boundary.x - 1 - tableViewScrollLeft, 'px'),
                         top: ''.concat(this.boundary.y, 'px'),
                         width: ''.concat(this.boundary.width + 1, 'px'),
-                        height: '1px'
+                        height: '2.5px'
                     });
                     css(this.bottom, {
                         display: 'block',
                         left: ''.concat(this.boundary.x - 1 - tableViewScrollLeft, 'px'),
                         top: ''.concat(this.boundary.y1 + 1, 'px'),
                         width: ''.concat(this.boundary.width + 1, 'px'),
-                        height: '1px'
+                        height: '2.5px'
                     });
                 } // based on selectedTds compute positions of help lines
                 // It is useful when selectedTds are not changed
@@ -2778,7 +2990,7 @@
             const table_operation_menu_ERROR_LIMIT = 5;
             const MENU_ITEMS_DEFAULT = {
                 insertColumnRight: {
-                    text: 'إدراج عمود في اليمين',
+                    text: `<svg style="width:22px;height:22px" viewBox="0 0 24 24"><path d="M13,2A2,2 0 0,0 11,4V20A2,2 0 0,0 13,22H22V2H13M20,10V14H13V10H20M20,16V20H13V16H20M20,4V8H13V4H20M9,11H6V8H4V11H1V13H4V16H6V13H9V11Z" /></svg>`,
 
                     handler() {
                         const tableContainer = external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.find(this.table);
@@ -2790,11 +3002,11 @@
                         this.quill.update(external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.sources.USER);
                         this.quill.setSelection(this.quill.getIndex(newColumn[0]), 0, external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.sources.SILENT);
                         this.tableSelection.setSelection(newColumn[0].domNode.getBoundingClientRect(), newColumn[0].domNode.getBoundingClientRect());
-                    }
-
+                    },
+                    ArabicText: 'إدراج عمود لليمين'
                 },
                 insertColumnLeft: {
-                    text: 'إدراج عمود في اليسار',
+                    text: '<svg style="width:22px;height:22px" viewBox="0 0 24 24">\n    <path d="M11,2A2,2 0 0,1 13,4V20A2,2 0 0,1 11,22H2V2H11M4,10V14H11V10H4M4,16V20H11V16H4M4,4V8H11V4H4M15,11H18V8H20V11H23V13H20V16H18V13H15V11Z" /></svg>',
 
                     handler() {
                         const tableContainer = external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.find(this.table);
@@ -2806,11 +3018,12 @@
                         this.quill.update(external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.sources.USER);
                         this.quill.setSelection(this.quill.getIndex(newColumn[0]), 0, external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.sources.SILENT);
                         this.tableSelection.setSelection(newColumn[0].domNode.getBoundingClientRect(), newColumn[0].domNode.getBoundingClientRect());
-                    }
+                    },
+                    ArabicText: 'إدراج عمود لليسار'
 
                 },
                 insertRowUp: {
-                    text: 'إدراج صف في الأعلى',
+                    text: '<svg style="width:22px;height:22px" viewBox="0 0 24 24">\n <path d="M22,14A2,2 0 0,0 20,12H4A2,2 0 0,0 2,14V21H4V19H8V21H10V19H14V21H16V19H20V21H22V14M4,14H8V17H4V14M10,14H14V17H10V14M20,14V17H16V14H20M11,10H13V7H16V5H13V2H11V5H8V7H11V10Z" />\n' + '</svg>',
 
                     handler() {
                         const tableContainer = external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.find(this.table);
@@ -2818,11 +3031,14 @@
                         this.quill.update(external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.sources.USER);
                         this.quill.setSelection(this.quill.getIndex(affectedCells[0]), 0, external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.sources.SILENT);
                         this.tableSelection.setSelection(affectedCells[0].domNode.getBoundingClientRect(), affectedCells[0].domNode.getBoundingClientRect());
-                    }
+                    },
+                    ArabicText: 'إدراج صف للأعلى'
 
                 },
                 insertRowDown: {
-                    text: 'إدراج صف في الأسفل',
+                    text: '<svg style="width:22px;height:22px" viewBox="0 0 24 24">\n' +
+                        '    <path d="M22,10A2,2 0 0,1 20,12H4A2,2 0 0,1 2,10V3H4V5H8V3H10V5H14V3H16V5H20V3H22V10M4,10H8V7H4V10M10,10H14V7H10V10M20,10V7H16V10H20M11,14H13V17H16V19H13V22H11V19H8V17H11V14Z" />\n' +
+                        '</svg>',
 
                     handler() {
                         const tableContainer = external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.find(this.table);
@@ -2830,11 +3046,14 @@
                         this.quill.update(external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.sources.USER);
                         this.quill.setSelection(this.quill.getIndex(affectedCells[0]), 0, external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.sources.SILENT);
                         this.tableSelection.setSelection(affectedCells[0].domNode.getBoundingClientRect(), affectedCells[0].domNode.getBoundingClientRect());
-                    }
+                    },
+                    ArabicText: 'إدراج صف للأسفل'
 
                 },
                 mergeCells: {
-                    text: 'دمج الخلايا المحددة',
+                    text: '<svg style="width:22px;height:22px" viewBox="0 0 24 24">\n' +
+                        '    <path class="ql-custom-stroke-2" d="M5,10H3V4H11V6H5V10M19,18H13V20H21V14H19V18M5,18V14H3V20H11V18H5M21,4H13V6H19V10H21V4M8,13V15L11,12L8,9V11H3V13H8M16,11V9L13,12L16,15V13H21V11H16Z" />\n' +
+                        '</svg>',
 
                     handler() {
                         const tableContainer = external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.find(this.table); // compute merged Cell rowspan, equal to length of selected rows
@@ -2861,22 +3080,28 @@
                         const mergedCell = tableContainer.mergeCells(this.boundary, this.selectedTds, rowspan, colspan, this.quill.root.parentNode);
                         this.quill.update(external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.sources.USER);
                         this.tableSelection.setSelection(mergedCell.domNode.getBoundingClientRect(), mergedCell.domNode.getBoundingClientRect());
-                    }
+                    },
+                    ArabicText: 'دمج الخلايا المحددة'
 
                 },
                 unmergeCells: {
-                    text: 'إلغاء دمج الخلايا',
+                    text: '<svg style="width:22px;height:22px" viewBox="0 0 24 24">\n' +
+                        '    <path class="ql-custom-stroke-2" d="M9,11H15V8L19,12L15,16V13H9V16L5,12L9,8V11M2,20V4H4V20H2M20,20V4H22V20H20Z" />\n' +
+                        '</svg>',
 
                     handler() {
                         const tableContainer = external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.find(this.table);
                         tableContainer.unmergeCells(this.selectedTds, this.quill.root.parentNode);
                         this.quill.update(external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.sources.USER);
                         this.tableSelection.clearSelection();
-                    }
+                    },
+                    ArabicText: 'إلغاء دمج الخلايا المحددة'
 
                 },
                 deleteColumn: {
-                    text: 'حذف الأعمدة المحددة',
+                    text: '<svg style="width:22px;height:22px" viewBox="0 0 24 24">\n' +
+                        '    <path d="M4,2H11A2,2 0 0,1 13,4V20A2,2 0 0,1 11,22H4A2,2 0 0,1 2,20V4A2,2 0 0,1 4,2M4,10V14H11V10H4M4,16V20H11V16H4M4,4V8H11V4H4M17.59,12L15,9.41L16.41,8L19,10.59L21.59,8L23,9.41L20.41,12L23,14.59L21.59,16L19,13.41L16.41,16L15,14.59L17.59,12Z" />\n' +
+                        '</svg>',
 
                     handler() {
                         const tableContainer = external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.find(this.table);
@@ -2890,22 +3115,28 @@
                             this.quill.update(external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.sources.USER);
                             this.tableSelection.clearSelection();
                         }
-                    }
+                    },
+                    ArabicText: 'حذف عمود'
 
                 },
                 deleteRow: {
-                    text: 'حذف الصفوف المحددة',
+                    text: '<svg style="width:22px;height:22px" viewBox="0 0 24 24">\n' +
+                        '    <path d="M9.41,13L12,15.59L14.59,13L16,14.41L13.41,17L16,19.59L14.59,21L12,18.41L9.41,21L8,19.59L10.59,17L8,14.41L9.41,13M22,9A2,2 0 0,1 20,11H4A2,2 0 0,1 2,9V6A2,2 0 0,1 4,4H20A2,2 0 0,1 22,6V9M4,9H8V6H4V9M10,9H14V6H10V9M16,9H20V6H16V9Z" />\n' +
+                        '</svg>',
 
                     handler() {
                         const tableContainer = external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.find(this.table);
                         tableContainer.deleteRow(this.boundary, this.quill.root.parentNode);
                         this.quill.update(external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.sources.USER);
                         this.tableSelection.clearSelection();
-                    }
+                    },
+                    ArabicText: 'حذف صف'
 
                 },
                 deleteTable: {
-                    text: 'حذف الجدول',
+                    text: '<svg style="width:22px;height:22px" viewBox="0 0 24 24">\n' +
+                        '    <path d="M15.46,15.88L16.88,14.46L19,16.59L21.12,14.46L22.54,15.88L20.41,18L22.54,20.12L21.12,21.54L19,19.41L16.88,21.54L15.46,20.12L17.59,18L15.46,15.88M4,3H18A2,2 0 0,1 20,5V12.08C18.45,11.82 16.92,12.18 15.68,13H12V17H13.08C12.97,17.68 12.97,18.35 13.08,19H4A2,2 0 0,1 2,17V5A2,2 0 0,1 4,3M4,7V11H10V7H4M12,7V11H18V7H12M4,13V17H10V13H4Z" />\n' +
+                        '</svg>',
 
                     handler() {
                         const betterTableModule = this.quill.getModule('better-table');
@@ -2913,7 +3144,8 @@
                         betterTableModule.hideTableTools();
                         tableContainer.remove();
                         this.quill.update(external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.sources.USER);
-                    }
+                    },
+                    ArabicText: 'حذف الجدول'
 
                 }
             };
@@ -2952,19 +3184,28 @@
                         left,
                         top
                     } = _ref;
-                    this.domNode = document.createElement('div');
+                    this.domNode = document.createElement('ul');
                     this.domNode.classList.add('qlbt-operation-menu');
                     css(this.domNode, {
                         position: 'absolute',
                         left: ''.concat(left, 'px'),
                         top: ''.concat(top, 'px'),
-                        'min-height': ''.concat(MENU_MIN_HEIHGT, 'px'),
-                        width: ''.concat(MENU_WIDTH, 'px')
                     });
 
                     for (let name in this.menuItems) {
                         if (this.menuItems[name]) {
-                            this.domNode.appendChild(this.menuItemCreator(Object.assign({}, MENU_ITEMS_DEFAULT[name], this.menuItems[name])));
+                            let menuItem = this.menuItemCreator(Object.assign({}, MENU_ITEMS_DEFAULT[name], this.menuItems[name]));
+                            menuItem.id = name;
+                            this.domNode.appendChild(menuItem);
+                            if (['insertColumnLeft', 'insertRowDown', 'unmergeCells'].includes(name)) {
+                                let hr = document.createElement('hr');
+                                hr.setAttribute('width', 1);
+                                hr.setAttribute('size', 24);
+                                this.domNode.appendChild(hr);
+                            }
+                            tippy(menuItem, {
+                                content: this.menuItems[name].ArabicText
+                            });
                         }
                     }
                 }
@@ -2974,9 +3215,10 @@
                         text,
                         handler
                     } = _ref2;
-                    const node = document.createElement('div');
+                    const node = document.createElement('li');
                     node.classList.add('qlbt-operation-menu-item');
-                    node.innerText = text;
+                    node.classList.add('icon');
+                    node.innerHTML = text;
                     node.addEventListener('click', handler.bind(this), false);
                     return node;
                 }
@@ -3394,11 +3636,15 @@
                     this.table = table;
                     this.columnTool = new table_column_tool_TableColumnTool(table, quill, options);
                     this.tableSelection = new table_selection_TableSelection(table, quill, options);
+                    this.movingTool = new table_movingTool(table, quill, options);
+                    this.stylingTool = new table_styleTool(table, quill, options);
                     return this.tableSelection.selectedTds;
                 }
 
                 hideTableTools() {
                     this.columnTool && this.columnTool.destroy();
+                    this.movingTool && this.movingTool.destroy();
+                    this.stylingTool && this.stylingTool.destroy();
                     this.tableSelection && this.tableSelection.destroy();
                     this.tableOperationMenu && this.tableOperationMenu.destroy();
                     this.columnTool = null;
