@@ -8,7 +8,7 @@ class FileSaver {
             'filters': [{
                 'name': extension,
                 'extensions': [extension]
-            },],
+            }],
         });
 
         // TODO: if pdf, docx.
@@ -22,42 +22,31 @@ class FileSaver {
     }
 
     static autoSave(file) {
-        try {
-            fs.writeFile(file.path, file.content, e => {
-                file.setSavingStatus('المستند محفوظ', 'saved-file');
-            });
-        } catch (e) {
-            console.log(e);
-        }
+        fs.writeFile(file.path, file.content).then(data => file.setSavingStatus('المستند محفوظ', 'saved-file'));
     }
+
 
     static saveAsPDF() {
 
-        const options = {
-            'format': 'A4',        // allowed units: A3, A4, A5, Legal, Letter, Tabloid
-            'orientation': 'landscape', // portrait or landscape
-        };
+        document.querySelector('.for-print').innerHTML = document.querySelector('.ql-container').outerHTML;
+        win.webContents.printToPDF({}).then((data) =>
+            fs.writeFile(file.path, data).then(() => {
+                new Notification('success', 'حٌفظ المستند');
+                file.setSavingStatus('المستند محفوظ', 'saved-file');
 
-        pdf.create(EditorHelper.getEditorContent().replace('ats-editor-file', ''), options).toFile(file.path, (err, res) => {
-            if (err) return console.log(err);
-            new Notification('success', 'PDF حٌفظ المستند بصيغة');
-            file.path = null;
-        });
+            }).catch(() => new Notification('fail', 'تعذر حفظ المستند')));
+
     }
 
     static saveAsHTML() {
         Searcher.removeStyle();
-        file.content = EditorHelper.getEditorContent();
+        file.content = 'ats-editor-file' + EditorHelper.getEditorContent();
 
-        try {
-            fs.writeFile(file.path, file.content, e => {
-                new Notification('success', 'حٌفظ المستند');
-                file.setSavingStatus('المستند محفوظ', 'saved-file');
-            });
-        } catch (e) {
-            console.log(e);
-        }
+        fs.writeFile(file.path, file.content).then(data => {
+            new Notification('success', 'حٌفظ المستند');
+            file.setSavingStatus('المستند محفوظ', 'saved-file');
+
+        }).catch(err => new Notification('fail', 'تعذر حفظ المستند'));
     }
 }
-
 

@@ -17,7 +17,7 @@ insertTable.addEventListener('mouseover', e => {
         let row = parseInt(record.id);
         let col = parseInt(record.id.substr(3));
         if (col > currCol || row > currRow) continue;
-        record.style.backgroundColor = '#0066CC77';
+        record.style.backgroundColor = '#0066cc77';
     }
 
     floatTip.style.top = (e.pageY - 80) + 'px';
@@ -37,5 +37,20 @@ insertTable.addEventListener('click', e => {
     let floatTipContent = floatTip.textContent.replace(' ', '').replace('x', '').split(' ');
     let rowToInsert = parseInt(floatTipContent[0]),
         colToInsert = parseInt(floatTipContent[1]);
+
+    if (isCaretInTable()) {
+        const caretContainer = window.getSelection().getRangeAt(0).endContainer;
+        let nextElement = caretContainer.closest('.quill-better-table-wrapper').nextElementSibling;
+        EditorHelper.setRangeIn(nextElement);
+        quill.insertText(quill.getSelection(), '\n');
+    }
+
     tableModule.insertTable(rowToInsert, colToInsert);
 });
+
+const isCaretInTable = () => {
+    let caretContainer = window.getSelection().getRangeAt(0).endContainer;
+
+    if (!caretContainer.dataset) return false;
+    else return caretContainer.dataset.row;
+};

@@ -19,14 +19,12 @@ class FileLoader {
             .then(result => {
                 if (!result.canceled) {
                     loadedFile.path = result.filePaths[0];
-                    fs.readFile(loadedFile.path, 'utf8', (err, data) => {
-                        if (err) {
-                            new Notification('fail', 'ثمة خلل.. تعذر فتح الملف');
-                            return;
-                        }
-                        loadedFile.content = data;
-                        FileHelper.handleLoadedFile(loadedFile, file);
-                    });
+                    fs.readFile(loadedFile.path, 'utf8')
+                        .then(data => {
+                            loadedFile.content = data;
+                            FileHelper.handleLoadedFile(loadedFile, file);
+
+                        }).catch(() => new Notification('fail', 'ثمة خلل.. تعذر فتح الملف'));
                 }
             }).catch(err => {
             console.log(err);
@@ -38,22 +36,16 @@ class FileLoader {
         let docxFile = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
         let loadedFile = new ATSFile();
         if (draggedFile.type === 'text/html') {
-
             loadedFile.path = draggedFile.path;
-            fs.readFile(loadedFile.path, 'utf8', (err, data) => {
-                if (err) {
-                    new Notification('fail', 'ثمة خلل.. تعذر فتح الملف');
-                    return;
-                }
+
+            fs.readFile(loadedFile.path, 'utf8').then(data => {
                 loadedFile.content = data;
                 FileHelper.handleLoadedFile(loadedFile, file);
-            });
+            }).catch(() => new Notification('fail', 'ثمة خلل.. تعذر فتح الملف'));
 
-        }
-        else if (draggedFile.type === docFile || draggedFile.type === docxFile) {
+        } else if (draggedFile.type === docFile || draggedFile.type === docxFile) {
             // TODO: convert from doc/docx to html
-        }
-        else {
+        } else {
             new Notification('fail', 'صيغة المستند غير مقبولة');
         }
     }

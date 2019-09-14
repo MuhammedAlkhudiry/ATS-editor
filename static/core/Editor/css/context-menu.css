@@ -1,0 +1,53 @@
+
+#context-menu {
+    z-index: 100;
+    direction: rtl;
+    color: var(--black);
+    transition: .3s;
+    position: absolute;
+    font-size: 12px;
+}
+
+#context-menu ul {
+    display: block;
+    left: 40px;
+    top: 40px;
+    box-shadow: 5px -5px 5px -3px #00000007, -4px 1px 5px 0px #00000007, 3px 2px 5px 1px #00000007;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+}
+
+#context-menu li {
+    display: grid;
+    grid-template-columns: .3fr 1fr;
+    transition: .2s;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.require-select {
+    cursor: default;
+}
+
+#context-menu li:hover {
+    background-color: var(--light-primary);
+    transition: .2s;
+}
+
+#context-menu li:hover svg {
+    fill: var(--primary);
+}
+
+#context-menu #ctx-delete:hover svg {
+    fill: var(--danger);
+}
+
+#context-menu .ignore-word:hover svg {
+    fill: var(--danger);
+}
+
+#context-menu hr {
+    width: 85%;
+    margin: auto;
+    opacity: 0.7;
+}

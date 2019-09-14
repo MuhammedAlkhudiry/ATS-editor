@@ -39,11 +39,9 @@ operationSection.addEventListener('click', e => {
     let clickedOperation = e.target;
 
     if (clickedOperation.id === 'add-to-dictionary') {
-        user.dictionary = misspelledWord.textContent;
-        new Notification('success', 'أُضيفت الكلمة إلى القاموس الشخصي')
-    }
-    else if (clickedOperation.id === 'ignore-word') {
-        user.ignoreWords.push(misspelledWord.textContent);
+        user.addToDictionary(misspelledWord.textContent);
+    } else if (clickedOperation.id === 'ignore-word') {
+        user.addToIgnoreWords(misspelledWord.textContent);
         let indices = quill.getText().getIndicesOf(misspelledWord.textContent);
         indices.forEach(index => quill.formatText(index, misspelledWord.textContent.length, 'Misspell', false));
         quillEditor.click();

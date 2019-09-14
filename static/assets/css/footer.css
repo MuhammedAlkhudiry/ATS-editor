@@ -9,11 +9,12 @@
     color: var(--black);
     font-size: 11px;
     box-shadow: 0 0 6px #00000035;
+    font-weight: bold;
 }
 
 #zoom-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, 5em);
     background-color: #e3e3e3;
-
 }
+

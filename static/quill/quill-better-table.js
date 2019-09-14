@@ -20,7 +20,7 @@
         var parentHotUpdateCallback = window['webpackHotUpdatequillBetterTable'];
         /******/
         window['webpackHotUpdatequillBetterTable'] = // eslint-disable-next-line no-unused-vars
-            /******/    function webpackHotUpdateCallback(chunkId, moreModules) {
+            /******/function webpackHotUpdateCallback(chunkId, moreModules) {
             /******/
             hotAddUpdateChunk(chunkId, moreModules);
             /******/
@@ -36,7 +36,8 @@
             /******/
             script.charset = 'utf-8';
             /******/
-            script.src = __webpack_require__.p + '' + chunkId + '.' + hotCurrentHash + '.hot-update.js';
+            script.src =
+                __webpack_require__.p + '' + chunkId + '.' + hotCurrentHash + '.hot-update.js';
             /******/
             if (null) script.crossOrigin = null;
             /******/
@@ -299,13 +300,16 @@
                 /******/            accept: function (dep, callback) {
                     /******/
                     if (dep === undefined) hot._selfAccepted = true;
-                    /******/ else if (typeof dep === 'function') hot._selfAccepted = dep;
+                    /******/ else if (typeof dep === 'function') hot._selfAccepted =
+                        dep;
                     /******/ else if (typeof dep === 'object')
                     /******/                    for (var i = 0; i < dep.length; i++)
-                            /******/                        hot._acceptedDependencies[dep[i]] = callback || function () {
+                            /******/                        hot._acceptedDependencies[dep[i]] =
+                                callback || function () {
+                                };
+                    /******/ else hot._acceptedDependencies[dep] =
+                            callback || function () {
                             };
-                    /******/ else hot._acceptedDependencies[dep] = callback || function () {
-                        };
                     /******/
                 },
                 /******/            decline: function (dep) {
@@ -313,7 +317,8 @@
                     if (dep === undefined) hot._selfDeclined = true;
                     /******/ else if (typeof dep === 'object')
                     /******/                    for (var i = 0; i < dep.length; i++)
-                            /******/                        hot._declinedDependencies[dep[i]] = true;
+                            /******/                        hot._declinedDependencies[dep[i]] =
+                                true;
                     /******/ else hot._declinedDependencies[dep] = true;
                     /******/
                 },
@@ -650,9 +655,12 @@
                     if (module.hot._selfDeclined) {
                         /******/
                         return {
-                            /******/                        type: 'self-declined',
-                            /******/                        chain: chain,
-                            /******/                        moduleId: moduleId
+                            /******/
+                            type: 'self-declined',
+                            /******/
+                            chain: chain,
+                            /******/
+                            moduleId: moduleId
                             /******/
                         };
                         /******/
@@ -680,10 +688,14 @@
                         if (parent.hot._declinedDependencies[moduleId]) {
                             /******/
                             return {
-                                /******/                            type: 'declined',
-                                /******/                            chain: chain.concat([parentId]),
-                                /******/                            moduleId: moduleId,
-                                /******/                            parentId: parentId
+                                /******/
+                                type: 'declined',
+                                /******/
+                                chain: chain.concat([parentId]),
+                                /******/
+                                moduleId: moduleId,
+                                /******/
+                                parentId: parentId
                                 /******/
                             };
                             /******/
@@ -694,7 +706,8 @@
                         if (parent.hot._acceptedDependencies[moduleId]) {
                             /******/
                             if (!outdatedDependencies[parentId])
-                            /******/                            outdatedDependencies[parentId] = [];
+                            /******/                            outdatedDependencies[parentId] =
+                                [];
                             /******/
                             addAllToSet(outdatedDependencies[parentId], [moduleId]);
                             /******/
@@ -707,8 +720,10 @@
                         outdatedModules.push(parentId);
                         /******/
                         queue.push({
-                            /******/                        chain: chain.concat([parentId]),
-                            /******/                        id: parentId
+                            /******/
+                            chain: chain.concat([parentId]),
+                            /******/
+                            id: parentId
                             /******/
                         });
                         /******/
@@ -718,10 +733,14 @@
                 /******/
                 /******/
                 return {
-                    /******/                type: 'accepted',
-                    /******/                moduleId: updateModuleId,
-                    /******/                outdatedModules: outdatedModules,
-                    /******/                outdatedDependencies: outdatedDependencies
+                    /******/
+                    type: 'accepted',
+                    /******/
+                    moduleId: updateModuleId,
+                    /******/
+                    outdatedModules: outdatedModules,
+                    /******/
+                    outdatedDependencies: outdatedDependencies
                     /******/
                 };
                 /******/
@@ -796,7 +815,8 @@
                     /******/
                     if (result.chain) {
                         /******/
-                        chainInfo = '\nUpdate propagation: ' + result.chain.join(' -> ');
+                        chainInfo =
+                            '\nUpdate propagation: ' + result.chain.join(' -> ');
                         /******/
                     }
                     /******/
@@ -807,11 +827,12 @@
                             if (options.onDeclined) options.onDeclined(result);
                             /******/
                             if (!options.ignoreDeclined)
-                            /******/                            abortError = new Error(
-                                /******/                                'Aborted because of self decline: ' +
-                                /******/                                    result.moduleId +
-                                /******/                                    chainInfo
-                                /******/);
+                            /******/                            abortError =
+                                new Error(
+                                    /******/                                'Aborted because of self decline: ' +
+                                    /******/                                    result.moduleId +
+                                    /******/                                    chainInfo
+                                    /******/);
                             /******/
                             break;
                         /******/
@@ -820,13 +841,14 @@
                             if (options.onDeclined) options.onDeclined(result);
                             /******/
                             if (!options.ignoreDeclined)
-                            /******/                            abortError = new Error(
-                                /******/                                'Aborted because of declined dependency: ' +
-                                /******/                                    result.moduleId +
-                                /******/                                    ' in ' +
-                                /******/                                    result.parentId +
-                                /******/                                    chainInfo
-                                /******/);
+                            /******/                            abortError =
+                                new Error(
+                                    /******/                                'Aborted because of declined dependency: ' +
+                                    /******/                                    result.moduleId +
+                                    /******/                                    ' in ' +
+                                    /******/                                    result.parentId +
+                                    /******/                                    chainInfo
+                                    /******/);
                             /******/
                             break;
                         /******/
@@ -835,9 +857,10 @@
                             if (options.onUnaccepted) options.onUnaccepted(result);
                             /******/
                             if (!options.ignoreUnaccepted)
-                            /******/                            abortError = new Error(
-                                /******/                                'Aborted because ' + moduleId + ' is not accepted' + chainInfo
-                                /******/);
+                            /******/                            abortError =
+                                new Error(
+                                    /******/                                'Aborted because ' + moduleId + ' is not accepted' + chainInfo
+                                    /******/);
                             /******/
                             break;
                         /******/
@@ -887,7 +910,8 @@
                             /******/) {
                                 /******/
                                 if (!outdatedDependencies[moduleId])
-                                /******/                                outdatedDependencies[moduleId] = [];
+                                /******/                                outdatedDependencies[moduleId] =
+                                    [];
                                 /******/
                                 addAllToSet(
                                     /******/                                outdatedDependencies[moduleId],
@@ -928,8 +952,10 @@
                 /******/) {
                     /******/
                     outdatedSelfAcceptedModules.push({
-                        /******/                    module: moduleId,
-                        /******/                    errorHandler: installedModules[moduleId].hot._selfAccepted
+                        /******/
+                        module: moduleId,
+                        /******/
+                        errorHandler: installedModules[moduleId].hot._selfAccepted
                         /******/
                     });
                     /******/
@@ -1029,9 +1055,11 @@
                     /******/
                     if (module) {
                         /******/
-                        moduleOutdatedDependencies = outdatedDependencies[moduleId];
+                        moduleOutdatedDependencies =
+                            outdatedDependencies[moduleId];
                         /******/
-                        for (j = 0; j < moduleOutdatedDependencies.length; j++) {
+                        for (j =
+                                 0; j < moduleOutdatedDependencies.length; j++) {
                             /******/
                             dependency = moduleOutdatedDependencies[j];
                             /******/
@@ -1080,11 +1108,13 @@
                     /******/
                     if (module) {
                         /******/
-                        moduleOutdatedDependencies = outdatedDependencies[moduleId];
+                        moduleOutdatedDependencies =
+                            outdatedDependencies[moduleId];
                         /******/
                         var callbacks = [];
                         /******/
-                        for (i = 0; i < moduleOutdatedDependencies.length; i++) {
+                        for (i =
+                                 0; i < moduleOutdatedDependencies.length; i++) {
                             /******/
                             dependency = moduleOutdatedDependencies[i];
                             /******/
@@ -1169,10 +1199,14 @@
                             if (options.onErrored) {
                                 /******/
                                 options.onErrored({
-                                    /******/                                type: 'self-accept-error-handler-errored',
-                                    /******/                                moduleId: moduleId,
-                                    /******/                                error: err2,
-                                    /******/                                originalError: err
+                                    /******/
+                                    type: 'self-accept-error-handler-errored',
+                                    /******/
+                                    moduleId: moduleId,
+                                    /******/
+                                    error: err2,
+                                    /******/
+                                    originalError: err
                                     /******/
                                 });
                                 /******/
@@ -1193,9 +1227,12 @@
                         if (options.onErrored) {
                             /******/
                             options.onErrored({
-                                /******/                            type: 'self-accept-errored',
-                                /******/                            moduleId: moduleId,
-                                /******/                            error: err
+                                /******/
+                                type: 'self-accept-errored',
+                                /******/
+                                moduleId: moduleId,
+                                /******/
+                                error: err
                                 /******/
                             });
                             /******/
@@ -1262,7 +1299,9 @@
                 /******/
                 hot: hotCreateModule(moduleId),
                 /******/
-                parents: (hotCurrentParentsTemp = hotCurrentParents, hotCurrentParents = [], hotCurrentParentsTemp),
+                parents: (hotCurrentParentsTemp =
+                    hotCurrentParents, hotCurrentParents =
+                    [], hotCurrentParentsTemp),
                 /******/
                 children: []
                 /******/
@@ -1298,7 +1337,10 @@
             /******/
             if (!__webpack_require__.o(exports, name)) {
                 /******/
-                Object.defineProperty(exports, name, {enumerable: true, get: getter});
+                Object.defineProperty(exports, name, {
+                    enumerable: true,
+                    get: getter
+                });
                 /******/
             }
             /******/
@@ -1336,7 +1378,10 @@
             /******/
             __webpack_require__.r(ns);
             /******/
-            Object.defineProperty(ns, 'default', {enumerable: true, value: value});
+            Object.defineProperty(ns, 'default', {
+                enumerable: true,
+                value: value
+            });
             /******/
             if (mode & 2 && typeof value != 'string') for (var key in value) __webpack_require__.d(ns, key, function (key) {
                 return value[key];
@@ -1442,9 +1487,10 @@
 
             function _omit(obj, uselessKeys) {
                 return obj && Object.keys(obj).reduce((acc, key) => {
-                    return uselessKeys.includes(key) ? acc : Object.assign({}, acc, {
-                        [key]: obj[key]
-                    });
+                    return uselessKeys.includes(key) ? acc :
+                        Object.assign({}, acc, {
+                            [key]: obj[key]
+                        });
                 }, {});
             }
 
@@ -1493,7 +1539,7 @@
                 backgroundColorBtn;
                 borderColorBtn;
                 borderWidthBtn;
-                BorderStyleBtn;
+                borderStyleBtn;
 
                 constructor(table, quill, options) {
                     if (!table) return null;
@@ -1530,80 +1576,178 @@
                     this.backgroundColorBtn.innerHTML = `<svg style="width:22px;height:22px" viewBox="0 0 24 24">
     <path class="ql-custom-stroke-2" d="M19,11.5C19,11.5 17,13.67 17,15A2,2 0 0,0 19,17A2,2 0 0,0 21,15C21,13.67 19,11.5 19,11.5M5.21,10L10,5.21L14.79,10M16.56,8.94L7.62,0L6.21,1.41L8.59,3.79L3.44,8.94C2.85,9.5 2.85,10.47 3.44,11.06L8.94,16.56C9.23,16.85 9.62,17 10,17C10.38,17 10.77,16.85 11.06,16.56L16.56,11.06C17.15,10.47 17.15,9.5 16.56,8.94Z" />
 </svg>`;
+
                     this.borderColorBtn = document.createElement('div');
                     this.borderColorBtn.id = 'borderColorBtn';
                     this.borderColorBtn.className = 'icon';
-
                     this.borderColorBtn.innerHTML = `<svg style="width:22px;height:22px" viewBox="0 0 24 24">
     <path class="ql-custom-stroke-2" d="M20.71,4.04C21.1,3.65 21.1,3 20.71,2.63L18.37,0.29C18,-0.1 17.35,-0.1 16.96,0.29L15,2.25L18.75,6M17.75,7L14,3.25L4,13.25V17H7.75L17.75,7Z" />
 </svg>`;
+
                     this.borderWidthBtn = document.createElement('div');
                     this.borderWidthBtn.id = 'borderWidthBtn';
                     this.borderWidthBtn.className = 'icon';
-
                     this.borderWidthBtn.innerHTML = `<svg style="width:22px;height:22px" viewBox="0 0 24 24">
     <path class="ql-custom-stroke-2" d="M3,17H21V15H3V17M3,20H21V19H3V20M3,13H21V10H3V13M3,4V8H21V4H3Z" />
 </svg>`;
-                    this.BorderStyleBtn = document.createElement('div');
-                    this.BorderStyleBtn.id = 'BorderStyleBtn';
-                    this.BorderStyleBtn.className = 'icon';
 
-                    this.BorderStyleBtn.innerHTML = `<svg style="width:22px;height:22px" viewBox="0 0 24 24">
+                    this.borderStyleBtn = document.createElement('div');
+                    this.borderStyleBtn.id = 'BorderStyleBtn';
+                    this.borderStyleBtn.className = 'icon';
+                    this.borderStyleBtn.innerHTML = `<svg style="width:22px;height:22px" viewBox="0 0 24 24">
     <path class="ql-custom-stroke-2" d="M3,16H8V14H3V16M9.5,16H14.5V14H9.5V16M16,16H21V14H16V16M3,20H5V18H3V20M7,20H9V18H7V20M11,20H13V18H11V20M15,20H17V18H15V20M19,20H21V18H19V20M3,12H11V10H3V12M13,12H21V10H13V12M3,4V8H21V4H3Z" />
 </svg>`;
 
 
                     this.backgroundColorBtn.addEventListener('click', this.backgroundColorBound);
-                    this.borderColorBtn.addEventListener('click', this.borderColorBtn);
-                    this.borderWidthBtn.addEventListener('click', this.borderWidthBtn);
-                    this.BorderStyleBtn.addEventListener('click', this.BorderStyleBound);
+                    this.borderColorBtn.addEventListener('click', this.borderColorBound);
+                    this.borderWidthBtn.addEventListener('click', this.borderWidthBound);
+                    this.borderStyleBtn.addEventListener('click', this.BorderStyleBound);
 
                     this.domNode.appendChild(this.backgroundColorBtn);
                     this.domNode.appendChild(this.borderColorBtn);
                     this.domNode.appendChild(this.borderWidthBtn);
-                    this.domNode.appendChild(this.BorderStyleBtn);
+                    this.domNode.appendChild(this.borderStyleBtn);
 
                     tippy(this.backgroundColorBtn, {
                         content: 'لون الخلفية',
-                        placement: 'left'
+                        placement: 'right',
                     });
                     tippy(this.borderColorBtn, {
                         content: 'لون الحد',
-                        placement: 'left'
+                        placement: 'right'
 
                     });
                     tippy(this.borderWidthBtn, {
                         content: 'عرض الحد',
-                        placement: 'left'
+                        placement: 'right'
 
                     });
-                    tippy(this.BorderStyleBtn, {
+                    tippy(this.borderStyleBtn, {
                         content: 'شكل الحد',
-                        placement: 'left'
+                        placement: 'right'
 
                     });
 
                 }
 
-                backgroundColorHandler() {
+                backgroundColorHandler(e) {
 
+                    const clickedElement = e.target;
+                    if (clickedElement === this.backgroundColorBtn) {
+                        this.destroyCurrentPicker();
+                        this.createColorPicker(this.backgroundColorBtn);
+                    } else if (clickedElement.className === 'qlbt-style-colors-item') {
+                        const selectedCells = this.quill.getModule('better-table').getSelectedCells();
+                        if (!selectedCells) return;
+
+                        selectedCells.forEach(cell => cell.domNode.style.backgroundColor =
+                            clickedElement.dataset.value);
+
+                    }
                 }
 
-                borderColorHandler() {
+                borderColorHandler(e) {
+                    const clickedElement = e.target;
+                    if (clickedElement === this.borderColorBtn) {
+                        this.destroyCurrentPicker();
+                        this.createColorPicker(this.borderColorBtn);
+                    } else if (clickedElement.className === 'qlbt-style-colors-item') {
+                        const selectedCells = this.quill.getModule('better-table').getSelectedCells();
+                        if (!selectedCells) return;
 
+                        selectedCells.forEach(cell => cell.domNode.style.borderColor =
+                            clickedElement.dataset.value);
+                    }
                 }
 
-                borderWidthHandler() {
+                borderWidthHandler(e) {
+                    const clickedElement = e.target;
+                    if (clickedElement === this.borderWidthBtn) {
+                        this.destroyCurrentPicker();
+                        this.createPicker(this.borderWidthBtn, [0, 1, 1.5, 1.75, 2.25, 3, 4.5,
+                            6]);
+                    } else if (clickedElement.className === 'qlbt-style-item') {
+                        const selectedCells = this.quill.getModule('better-table').getSelectedCells();
+                        if (!selectedCells) return;
 
+                        selectedCells.forEach(cell => cell.domNode.style.borderWidth =
+                            `${clickedElement.dataset.value}px`);
+                    }
                 }
 
-                borderStyleHandler() {
+                borderStyleHandler(e) {
+                    const clickedElement = e.target;
+                    if (clickedElement === this.borderStyleBtn) {
+                        this.destroyCurrentPicker();
+                        this.createPicker(this.borderStyleBtn, ['solid', 'dotted',
+                            'dashed']);
+                    } else if (clickedElement.className === 'qlbt-style-item') {
+                        const selectedCells = this.quill.getModule('better-table').getSelectedCells();
+                        if (!selectedCells) return;
 
+                        selectedCells.forEach(cell => cell.domNode.style.borderStyle =
+                            clickedElement.dataset.value);
+                    }
                 }
 
                 destroy() {
                     this.domNode.remove();
                     return null;
+                }
+
+                createPicker(pickerParent, items) {
+                    let pickerContainer = document.createElement('span');
+                    pickerContainer.classList.add('qlbt-style-picker-options');
+                    pickerParent.appendChild(pickerContainer);
+                    items.forEach(item => {
+                        let itemSpan = document.createElement('span');
+                        itemSpan.className = 'qlbt-style-item';
+                        itemSpan.dataset.value = item;
+                        if (pickerParent === this.borderWidthBtn) itemSpan.innerText = item;
+                        else {
+                            const line = document.createElement('div');
+                            line.id = item;
+                            itemSpan.appendChild(line);
+
+                        }
+                        pickerContainer.appendChild(itemSpan);
+                    });
+                }
+
+                createColorPicker(colorPickerParent) {
+                    let colors = ['#000000', '#e60000', '#ff9900',
+                        '#ffff00',
+                        '#008a00', '#0066cc', '#9933ff', '#ffffff',
+                        '#facccc', '#ffebcc', '#ffffcc', '#cce8cc',
+                        '#cce0f5', '#ebd6ff', '#bbbbbb', '#f06666',
+                        '#ffc266', '#ffff66', '#66b966', '#66a3e0',
+                        '#c285ff', '#888888', '#a10000', '#b26b00',
+                        '#b2b200', '#006100', '#0047b2', '#6b24b2',
+                        '#444444', '#5c0000', '#663d00', '#666600',
+                        '#003700', '#002966', '#3d1466'];
+
+                    let colorPickerContainer = document.createElement('span');
+                    colorPickerContainer.classList.add('qlbt-style-colors-picker-options');
+                    colorPickerParent.appendChild(colorPickerContainer);
+                    colors.forEach(color => {
+                        let colorSpan = document.createElement('span');
+                        colorSpan.className = 'qlbt-style-colors-item';
+                        colorSpan.dataset.value = color;
+                        colorSpan.style.backgroundColor = color;
+                        colorPickerContainer.appendChild(colorSpan);
+                    });
+                }
+
+                destroyCurrentPicker() {
+                    if (this.backgroundColorBtn.querySelector('span'))
+                        this.backgroundColorBtn.removeChild(this.backgroundColorBtn.querySelector('span'));
+                    else if (this.borderColorBtn.querySelector('span'))
+                        this.borderColorBtn.removeChild(this.borderColorBtn.querySelector('span'));
+                    else if (this.borderWidthBtn.querySelector('span'))
+                        this.borderWidthBtn.removeChild(this.borderWidthBtn.querySelector('span'));
+                    else if (this.borderStyleBtn.querySelector('span'))
+                        this.borderStyleBtn.removeChild(this.borderStyleBtn.querySelector('span'));
                 }
             }
 
@@ -1631,7 +1775,8 @@
                     this.domNode = document.createElement('div');
                     this.domNode.classList.add('qlbt-move-tool');
                     this.domNode.classList.add('icon');
-                    this.domNode.innerHTML = `<svg style="width:22px;height:22px"  viewBox="0 0 24 24"><path class="ql-custom-stroke-2" d="M20,2H4C2.89,2 2,2.89 2,4V20C2,21.11 2.89,22 4,22H20C21.11,22 22,21.11 22,20V4C22,2.89 21.11,2 20,2M20,20H4V4H20M13,8V10H11V8H9L12,5L15,8M16,15V13H14V11H16V9L19,12M10,13H8V15L5,12L8,9V11H10M15,16L12,19L9,16H11V14H13V16" /></svg>`;
+                    this.domNode.innerHTML =
+                        `<svg style="width:22px;height:22px"  viewBox="0 0 24 24"><path class="ql-custom-stroke-2" d="M20,2H4C2.89,2 2,2.89 2,4V20C2,21.11 2.89,22 4,22H20C21.11,22 22,21.11 22,20V4C22,2.89 21.11,2 20,2M20,20H4V4H20M13,8V10H11V8H9L12,5L15,8M16,15V13H14V11H16V9L19,12M10,13H8V15L5,12L8,9V11H10M15,16L12,19L9,16H11V14H13V16" /></svg>`;
                     this.domNode.addEventListener('mousedown', this.boundDrag);
                     this.parent.appendChild(this.domNode);
                     const tableRect = this.table.getBoundingClientRect();
@@ -1791,8 +1936,6 @@
                     let $helpLine = null;
 
                     const handleDrag = e => {
-                        console.log(e);
-
                         e.preventDefault();
 
                         if (dragging) {
@@ -1811,8 +1954,6 @@
                     };
 
                     const handleMouseup = e => {
-                        console.log(e);
-
                         e.preventDefault();
                         const existCells = Array.from(this.domNode.querySelectorAll('.qlbt-col-tool-cell'));
                         const colIndex = existCells.indexOf(cell);
@@ -1909,7 +2050,8 @@
                     formats.value = this.tagName.indexOf(domNode.tagName) + 1;
                     return CELL_ATTRIBUTES.concat(CELL_IDENTITY_KEYS).reduce((formats, attribute) => {
                         if (domNode.hasAttribute('data-'.concat(attribute))) {
-                            formats[attribute] = domNode.getAttribute('data-'.concat(attribute)) || undefined;
+                            formats[attribute] =
+                                domNode.getAttribute('data-'.concat(attribute)) || undefined;
                         }
 
                         return formats;
@@ -2014,7 +2156,8 @@
                 static create(value) {
                     const node = super.create(value);
                     CELL_IDENTITY_KEYS.forEach(key => {
-                        let identityMaker = key === 'row' ? table_rowId : table_cellId;
+                        let identityMaker = key === 'row' ? table_rowId :
+                            table_cellId;
                         node.setAttribute('data-'.concat(key), value[key] || identityMaker());
                     });
                     CELL_ATTRIBUTES.forEach(attrName => {
@@ -2027,7 +2170,8 @@
                     const formats = {};
                     return CELL_ATTRIBUTES.concat(CELL_IDENTITY_KEYS).reduce((formats, attribute) => {
                         if (domNode.hasAttribute('data-'.concat(attribute))) {
-                            formats[attribute] = domNode.getAttribute('data-'.concat(attribute)) || undefined;
+                            formats[attribute] =
+                                domNode.getAttribute('data-'.concat(attribute)) || undefined;
                         }
 
                         return formats;
@@ -2122,7 +2266,8 @@
 
                     return CELL_ATTRIBUTES.reduce((formats, attribute) => {
                         if (domNode.hasAttribute(attribute)) {
-                            formats[attribute] = domNode.getAttribute(attribute);
+                            formats[attribute] =
+                                domNode.getAttribute(attribute);
                         }
 
                         return formats;
@@ -2146,7 +2291,8 @@
 
                     return CELL_ATTRIBUTES.reduce((formats, attribute) => {
                         if (this.domNode.hasAttribute(attribute)) {
-                            formats[attribute] = this.domNode.getAttribute(attribute);
+                            formats[attribute] =
+                                this.domNode.getAttribute(attribute);
                         }
 
                         return formats;
@@ -2234,7 +2380,8 @@
                 formats() {
                     return ['row'].reduce((formats, attrName) => {
                         if (this.domNode.hasAttribute('data-'.concat(attrName))) {
-                            formats[attrName] = this.domNode.getAttribute('data-'.concat(attrName));
+                            formats[attrName] =
+                                this.domNode.getAttribute('data-'.concat(attrName));
                         }
 
                         return formats;
@@ -2298,7 +2445,8 @@
                 static formats(domNode) {
                     return COL_ATTRIBUTES.reduce((formats, attribute) => {
                         if (domNode.hasAttribute(''.concat(attribute))) {
-                            formats[attribute] = domNode.getAttribute(''.concat(attribute)) || undefined;
+                            formats[attribute] =
+                                domNode.getAttribute(''.concat(attribute)) || undefined;
                         }
 
                         return formats;
@@ -2343,7 +2491,8 @@
                         const colGroup = this.colGroup();
                         if (!colGroup) return;
                         const tableWidth = colGroup.children.reduce((sumWidth, col) => {
-                            sumWidth = sumWidth + parseInt(col.formats()[TableCol.blotName].width, 10);
+                            sumWidth =
+                                sumWidth + parseInt(col.formats()[TableCol.blotName].width, 10);
                             return sumWidth;
                         }, 0);
                         this.domNode.style.width = ''.concat(tableWidth, 'px');
@@ -2359,8 +2508,10 @@
                 }
 
                 deleteColumns(compareRect) {
-                    let delIndexes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-                    let editorWrapper = arguments.length > 2 ? arguments[2] : undefined;
+                    let delIndexes = arguments.length > 1 && arguments[1] !== undefined ?
+                        arguments[1] : [];
+                    let editorWrapper = arguments.length > 2 ? arguments[2] :
+                        undefined;
                     const [body] = this.descendants(TableBody);
                     if (body == null || body.children.head == null) return;
                     const tableCells = this.descendants(TableCell);
@@ -2489,8 +2640,10 @@
                 }
 
                 insertColumn(compareRect, colIndex) {
-                    let isRight = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-                    let editorWrapper = arguments.length > 3 ? arguments[3] : undefined;
+                    let isRight = arguments.length > 2 && arguments[2] !== undefined ?
+                        arguments[2] : true;
+                    let editorWrapper = arguments.length > 3 ? arguments[3] :
+                        undefined;
                     const [body] = this.descendants(TableBody);
                     const [tableColGroup] = this.descendants(TableColGroup);
                     const tableCols = this.descendants(TableCol);
@@ -2551,7 +2704,8 @@
                     }); // insert new tableCol
 
                     const tableCol = this.scroll.create(TableCol.blotName, true);
-                    let colRef = isRight ? tableCols[colIndex].next : tableCols[colIndex];
+                    let colRef = isRight ? tableCols[colIndex].next :
+                        tableCols[colIndex];
 
                     if (colRef) {
                         tableColGroup.insertBefore(tableCol, colRef);
@@ -2740,7 +2894,8 @@
                         const tableModule = quill.getModule('better-table');
 
                         if (tableModule.columnTool) {
-                            tableModule.columnTool.domNode.scrollLeft = e.target.scrollLeft;
+                            tableModule.columnTool.domNode.scrollLeft =
+                                e.target.scrollLeft;
                         }
 
                         if (tableModule.tableSelection && tableModule.tableSelection.selectedTds.length > 0) {
@@ -2826,7 +2981,8 @@
                     const startTd = e.target.closest('td[data-row]');
                     const startTdRect = getRelativeRect(startTd.getBoundingClientRect(), this.quill.root.parentNode);
                     this.dragging = true;
-                    this.boundary = computeBoundaryFromRects(startTdRect, startTdRect);
+                    this.boundary =
+                        computeBoundaryFromRects(startTdRect, startTdRect);
                     this.correctBoundary();
                     this.selectedTds = this.computeSelectedTds();
                     this.repositionHelpLines();
@@ -2835,9 +2991,11 @@
                         if (e.button !== 0 || !e.target.closest('.quill-better-table')) return;
                         const endTd = e.target.closest('td[data-row]');
                         const endTdRect = getRelativeRect(endTd.getBoundingClientRect(), self.quill.root.parentNode);
-                        self.boundary = computeBoundaryFromRects(startTdRect, endTdRect);
+                        self.boundary =
+                            computeBoundaryFromRects(startTdRect, endTdRect);
                         self.correctBoundary();
-                        self.selectedTds = EditorHelper.tableSelectedCells = self.computeSelectedTds();
+                        self.selectedTds = EditorHelper.tableSelectedCells =
+                            self.computeSelectedTds();
                         self.repositionHelpLines(); // avoid select text in multiple table-cell
 
                         if (startTd !== endTd) {
@@ -2865,12 +3023,13 @@
                         let isCellIntersected = (x + table_selection_ERROR_LIMIT >= this.boundary.x && x + table_selection_ERROR_LIMIT <= this.boundary.x1 || x - table_selection_ERROR_LIMIT + width >= this.boundary.x && x - table_selection_ERROR_LIMIT + width <= this.boundary.x1) && (y + table_selection_ERROR_LIMIT >= this.boundary.y && y + table_selection_ERROR_LIMIT <= this.boundary.y1 || y - table_selection_ERROR_LIMIT + height >= this.boundary.y && y - table_selection_ERROR_LIMIT + height <= this.boundary.y1);
 
                         if (isCellIntersected) {
-                            this.boundary = computeBoundaryFromRects(this.boundary, {
-                                x,
-                                y,
-                                width,
-                                height
-                            });
+                            this.boundary =
+                                computeBoundaryFromRects(this.boundary, {
+                                    x,
+                                    y,
+                                    width,
+                                    height
+                                });
                         }
                     });
                 }
@@ -2932,7 +3091,8 @@
                 refreshHelpLinesPosition() {
                     const startRect = getRelativeRect(this.selectedTds[0].domNode.getBoundingClientRect(), this.quill.root.parentNode);
                     const endRect = getRelativeRect(this.selectedTds[this.selectedTds.length - 1].domNode.getBoundingClientRect(), this.quill.root.parentNode);
-                    this.boundary = computeBoundaryFromRects(startRect, endRect);
+                    this.boundary =
+                        computeBoundaryFromRects(startRect, endRect);
                     this.repositionHelpLines();
                 }
 
@@ -2947,7 +3107,8 @@
                 }
 
                 setSelection(startRect, endRect) {
-                    this.boundary = computeBoundaryFromRects(getRelativeRect(startRect, this.quill.root.parentNode), getRelativeRect(endRect, this.quill.root.parentNode));
+                    this.boundary =
+                        computeBoundaryFromRects(getRelativeRect(startRect, this.quill.root.parentNode), getRelativeRect(endRect, this.quill.root.parentNode));
                     this.correctBoundary();
                     this.selectedTds = this.computeSelectedTds();
                     this.repositionHelpLines();
@@ -3157,7 +3318,8 @@
                     this.table = params.table;
                     this.quill = quill;
                     this.options = options;
-                    this.menuItems = Object.assign({}, MENU_ITEMS_DEFAULT, options.items);
+                    this.menuItems =
+                        Object.assign({}, MENU_ITEMS_DEFAULT, options.items);
                     this.tableColumnTool = betterTableModule.columnTool;
                     this.boundary = this.tableSelection.boundary;
                     this.selectedTds = this.tableSelection.selectedTds;
@@ -3197,7 +3359,8 @@
                             let menuItem = this.menuItemCreator(Object.assign({}, MENU_ITEMS_DEFAULT[name], this.menuItems[name]));
                             menuItem.id = name;
                             this.domNode.appendChild(menuItem);
-                            if (['insertColumnLeft', 'insertRowDown', 'unmergeCells'].includes(name)) {
+                            if (['insertColumnLeft', 'insertRowDown',
+                                'unmergeCells'].includes(name)) {
                                 let hr = document.createElement('hr');
                                 hr.setAttribute('width', 1);
                                 hr.setAttribute('size', 24);
@@ -3256,7 +3419,8 @@
 
             function matchTableCell(node, delta, scroll) {
                 const row = node.parentNode;
-                const table = row.parentNode.tagName === 'TABLE' ? row.parentNode : row.parentNode.parentNode;
+                const table = row.parentNode.tagName === 'TABLE' ?
+                    row.parentNode : row.parentNode.parentNode;
                 const rows = Array.from(table.querySelectorAll('tr'));
                 const cells = Array.from(row.querySelectorAll('td'));
                 const rowId = rows.indexOf(row) + 1;
@@ -3298,7 +3462,10 @@
                         const tailStr = insertStr.substring(start);
                         if (tailStr) lines.push(tailStr);
                         lines.forEach(text => {
-                            text === '\n' ? newDelta.insert('\n', op.attributes) : newDelta.insert(text, _omit(op.attributes, ['table', 'table-cell-line', 'header']));
+                            text === '\n' ?
+                                newDelta.insert('\n', op.attributes) :
+                                newDelta.insert(text, _omit(op.attributes, ['table',
+                                    'table-cell-line', 'header']));
                         });
                     } else {
                         newDelta.insert(op.insert, op.attributes);
@@ -3331,7 +3498,8 @@
                             row: rowId
                         }, op.attributes.table), childAttrs, _omit(op.attributes, ['table'])));
                     } else {
-                        newDelta.insert(op.insert, Object.assign({}, _omit(op.attributes, ['table', 'table-cell-line'])));
+                        newDelta.insert(op.insert, Object.assign({}, _omit(op.attributes, ['table',
+                            'table-cell-line'])));
                     }
 
                     console.log(newDelta);
@@ -3341,7 +3509,8 @@
 
             function matchTableHeader(node, delta, scroll) {
                 const row = node.parentNode;
-                const table = row.parentNode.tagName === 'TABLE' ? row.parentNode : row.parentNode.parentNode;
+                const table = row.parentNode.tagName === 'TABLE' ?
+                    row.parentNode : row.parentNode.parentNode;
                 const rows = Array.from(table.querySelectorAll('tr'));
                 const cells = Array.from(row.querySelectorAll('th'));
                 const rowId = rows.indexOf(row) + 1;
@@ -3414,7 +3583,8 @@
                             }
                         }));
                     } else {
-                        newDelta.insert(op.insert, Object.assign({}, _omit(op.attributes, ['table', 'table-cell-line'])));
+                        newDelta.insert(op.insert, Object.assign({}, _omit(op.attributes, ['table',
+                            'table-cell-line'])));
                     }
 
                     return newDelta;
@@ -3535,16 +3705,18 @@
                             this.tableSelection.setSelection(cellNode.getBoundingClientRect(), cellNode.getBoundingClientRect());
                         }
 
-                        if (this.tableOperationMenu) this.tableOperationMenu = this.tableOperationMenu.destroy();
+                        if (this.tableOperationMenu) this.tableOperationMenu =
+                            this.tableOperationMenu.destroy();
 
                         if (tableNode) {
-                            this.tableOperationMenu = new table_operation_menu_TableOperationMenu({
-                                table: tableNode,
-                                row: rowNode,
-                                cell: cellNode,
-                                left: evt.pageX,
-                                top: evt.pageY
-                            }, quill, options.operationMenu);
+                            this.tableOperationMenu =
+                                new table_operation_menu_TableOperationMenu({
+                                    table: tableNode,
+                                    row: rowNode,
+                                    cell: cellNode,
+                                    left: evt.pageX,
+                                    top: evt.pageY
+                                }, quill, options.operationMenu);
                         }
                     }, false); // add keyboard binding：Backspace
                     // prevent user hits backspace to delete table cell
@@ -3578,13 +3750,15 @@
                     quill.clipboard.addMatcher('table', matchTable); // quill.clipboard.addMatcher('h1, h2, h3, h4, h5, h6', matchHeader)
                     // remove matcher for tr tag
 
-                    quill.clipboard.matchers = quill.clipboard.matchers.filter(matcher => {
-                        return matcher[0] !== 'tr';
-                    });
+                    quill.clipboard.matchers =
+                        quill.clipboard.matchers.filter(matcher => {
+                            return matcher[0] !== 'tr';
+                        });
                 }
 
                 getTable() {
-                    let range = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.quill.getSelection();
+                    let range = arguments.length > 0 && arguments[0] !== undefined ?
+                        arguments[0] : this.quill.getSelection();
                     if (range == null) return [null, null, null, -1];
                     const [cellLine, offset] = this.quill.getLine(range.index);
 
@@ -3598,6 +3772,10 @@
                     return [table, row, cell, offset];
                 }
 
+                getSelectedCells() {
+                    return this.tableSelection.selectedTds;
+                }
+
                 insertTable(rows, columns) {
                     const range = this.quill.getSelection(true);
                     if (range == null) return;
@@ -3609,12 +3787,13 @@
                         align: 'right'
                     }); // insert table column
 
-                    delta = new Array(columns).fill('\n').reduce((memo, text) => {
-                        memo.insert(text, {
-                            'table-col': true
-                        });
-                        return memo;
-                    }, delta); // insert table cell line with empty line
+                    delta =
+                        new Array(columns).fill('\n').reduce((memo, text) => {
+                            memo.insert(text, {
+                                'table-col': true
+                            });
+                            return memo;
+                        }, delta); // insert table cell line with empty line
 
                     delta = new Array(rows).fill(0).reduce(memo => {
                         let tableRowId = table_rowId();
@@ -3634,10 +3813,14 @@
 
                 showTableTools(table, quill, options) {
                     this.table = table;
-                    this.columnTool = new table_column_tool_TableColumnTool(table, quill, options);
-                    this.tableSelection = new table_selection_TableSelection(table, quill, options);
-                    this.movingTool = new table_movingTool(table, quill, options);
-                    this.stylingTool = new table_styleTool(table, quill, options);
+                    this.columnTool =
+                        new table_column_tool_TableColumnTool(table, quill, options);
+                    this.tableSelection =
+                        new table_selection_TableSelection(table, quill, options);
+                    this.movingTool =
+                        new table_movingTool(table, quill, options);
+                    this.stylingTool =
+                        new table_styleTool(table, quill, options);
                     return this.tableSelection.selectedTds;
                 }
 
@@ -3721,7 +3904,8 @@
                 }
             };
             /* harmony default export */
-            var quill_better_table = __webpack_exports__['default'] = (quill_better_table_BetterTable);
+            var quill_better_table = __webpack_exports__['default'] =
+                (quill_better_table_BetterTable);
 
             /***/
         }),

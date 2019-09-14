@@ -1,30 +1,30 @@
 'use strict';
 
-// custom fonts
-const FontAttributor = Quill.import('formats/font');
-FontAttributor.whitelist = [
-    'dubai', 'alhurra', 'ArefRuqaa', 'Arial', 'Cairo', 'shiraz', 'ubuntu', 'zahra', 'Noto-Naskh-Arabic'
-];
+const createCustomAttributes = () => {
+    const Parchment = Quill.import('parchment');
+    const FontAttributor = Quill.import('formats/font');
+    const SizeAttributor = Quill.import('attributors/style/size');
 
-Quill.register(FontAttributor, true);
+    // custom fonts
+    FontAttributor.whitelist = [
+        'dubai', 'alhurra', 'ArefRuqaa', 'Arial', 'Cairo', 'shiraz', 'ubuntu', 'zahra',
+        'Noto-Naskh-Arabic'
+    ];
 
-// custom font sizes
-const SizeAttributor = Quill.import('attributors/style/size');
-SizeAttributor.whitelist = ['8px', '9px', '10px', '11px', '12px', '14px', '18px', '24px', '30px', '36px',
-    '48px', '60px', '72px'];
-Quill.register(SizeAttributor, true);
+    // custom font sizes
+    SizeAttributor.whitelist =
+        ['8px', '9px', '10px', '11px', '12px', '14px', '18px', '24px', '30px', '36px',
+            '48px', '60px', '72px'];
 
-/* -------------------------------------------------------------------------- */
+    // line-height
+    const LineHeightStyle = new Parchment.StyleAttributor('line-height', 'line-height', {
+        scope: Parchment.Scope.INLINE,
+        whitelist: ['1.0', '1.2', '1.5', '2.0']
+    });
 
-const Parchment = Quill.import('parchment');
-const lineHeightConfig = {
-    scope: Parchment.Scope.INLINE,
-    whitelist: ['1.0', '1.2', '1.5', '2.0']
+    return [FontAttributor, SizeAttributor, LineHeightStyle];
+
 };
-
-const lineHeightStyle = new Parchment.StyleAttributor('line-height', 'line-height', lineHeightConfig);
-Quill.register(lineHeightStyle);
-
 
 /* ----------------------------- custom modules ----------------------------- */
 Quill.register('modules/Searcher', Searcher);
@@ -40,6 +40,16 @@ Quill.register(SpellingErrorBlot);
 Quill.register(AyahBlot);
 Quill.register(hadithBlot);
 Quill.register(PoetryBlot);
+
+/* -------------------------------------------------------------------------- */
+
+/* ----------------------------- custom attributes ----------------------------- */
+
+const [FontAttributor, SizeAttributor, LineHeightStyle] = createCustomAttributes();
+
+Quill.register(FontAttributor);
+Quill.register(SizeAttributor);
+Quill.register(LineHeightStyle);
 
 /* -------------------------------------------------------------------------- */
 
@@ -81,6 +91,8 @@ quillEditor.classList.add('zoom-100');
 quill.insertText(0, 'احمد في المسجد');
 // quill.insertText(22, 'أحُمد في المسجد');
 // quill.insertText(44, 'أحمد في المسجد');
+tableModule.insertTable(3, 3);
+
 
 // for pagination
 // setInterval(() => {

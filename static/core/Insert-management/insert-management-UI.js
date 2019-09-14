@@ -1,10 +1,10 @@
 let currentFocus;
 
-const hadiths_Tashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Hadiths_with-tashkeel.json').toString()),
-    hadiths_NoTashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Hadiths_without-tashkeel.json').toString()),
-    Ayat_Tashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Q_with-tashkeel.json').toString()),
-    Ayat_NoTashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Q_without-tashkeel.json').toString().trim()),
-    surahs = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/surahs.json').toString());
+// const hadiths_Tashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Hadiths_with-tashkeel.json').toString()),
+//     hadiths_NoTashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Hadiths_without-tashkeel.json').toString()),
+//     Ayat_Tashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Q_with-tashkeel.json').toString()),
+//     Ayat_NoTashkeel = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/Q_without-tashkeel.json').toString().trim()),
+//     surahs = JSON.parse(fs.readFileSync('./static/core/Insert-management/data/surahs.json').toString());
 
 const replaceInput = document.getElementById('replace-input');
 const expandArrow = document.getElementById('expand-arrow');

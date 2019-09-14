@@ -1,5 +1,5 @@
 let file = new ATSFile();
-let user = new User();
+// let user = new User();
 let change = new Delta();
 
 /* -------------------------------- file name ------------------------------- */
@@ -128,7 +128,7 @@ tippy('#save-icon', {
 setInterval(function () {
     // todo: if file.path exist..
     if (change.length() > 0 && file.path) {
-        file.content = EditorHelper.getEditorContent();
+        file.content =  'ats-editor-file' +  EditorHelper.getEditorContent();
         FileSaver.autoSave(file);
         change = new Delta();
         file.setSavingStatus('المستند محفوظ', 'saved-file');

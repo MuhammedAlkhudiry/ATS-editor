@@ -38,6 +38,8 @@ app.on('ready', function () {
                 nodeIntegration: true
             },
             frame: false,
+            backgroundColor: '#0066cc',
+            show: false
         });
 
         // load main window from Flask.
@@ -52,13 +54,19 @@ app.on('ready', function () {
         // install electron extension
         // require('devtron').install();
 
-        mainWindow.webContents.session.clearCache(function () {
-
-        });
+        mainWindow.webContents.session.clearCache();
 
         mainWindow.on('closed', function () {
             mainWindow = null;
             // subpy.kill();
+        });
+        mainWindow.on('session-end', function () {
+            mainWindow = null;
+            // subpy.kill();
+        });
+
+        mainWindow.once('ready-to-show', () => {
+            mainWindow.show();
         });
     };
 
@@ -97,6 +105,7 @@ app.on('activate', function () {
     // dock icon is clicked and there are no other windows open.
     if (mainWindow === null) openWindow();
 });
+
 
 /* ---------------------------- closing functions --------------------------- */
 

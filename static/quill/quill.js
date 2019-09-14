@@ -385,8 +385,7 @@
                 if (super.optimize(t), this.enforceAllowedChildren(), null != this.uiNode && this.uiNode !== this.domNode.firstChild && this.domNode.insertBefore(this.uiNode, this.domNode.firstChild), 0 === this.children.length) if (null != this.statics.defaultChild) {
                     const t = this.scroll.create(this.statics.defaultChild.blotName);
                     this.appendChild(t);
-                }
-                else this.remove();
+                } else this.remove();
             }
 
             path(t, e = !1) {
@@ -634,8 +633,7 @@
                     const s = this.scroll.query(t, r.INLINE);
                     if (null == s) return;
                     s instanceof b ? this.attributes.attribute(s, e) : !e || t === this.statics.blotName && this.formats()[t] === e || this.replaceWith(t, e);
-                }
-                else this.children.forEach(t => {
+                } else this.children.forEach(t => {
                     t instanceof A || (t = t.wrap(A.blotName, !0)), this.attributes.copy(t);
                 }), this.unwrap();
             }
@@ -648,8 +646,7 @@
             formatAt(t, e, s, i) {
                 if (null != this.formats()[s] || this.scroll.query(s, r.ATTRIBUTE)) {
                     this.isolate(t, e).format(s, i);
-                }
-                else super.formatAt(t, e, s, i);
+                } else super.formatAt(t, e, s, i);
             }
 
             optimize(t) {
@@ -995,8 +992,7 @@
                                 var g = new t(s.rest());
                                 return c.concat(g).chop();
                             }
-                        }
-                        else 'number' == typeof f.delete && 'number' == typeof d.retain && c.push(f);
+                        } else 'number' == typeof f.delete && 'number' == typeof d.retain && c.push(f);
                     }
                     return c.chop();
                 }, t.prototype.concat = function (e) {
@@ -1189,8 +1185,7 @@
                 if ('string' == typeof e && e.endsWith('\n')) {
                     const s = this.scroll.create(h.blotName);
                     this.parent.insertBefore(s, 0 === t ? this : this.next), s.insertAt(0, e.slice(0, -1));
-                }
-                else super.insertAt(t, e, s);
+                } else super.insertAt(t, e, s);
             }
         }
 
@@ -1260,8 +1255,7 @@
                     'string' == typeof s ? this.register(`formats/${s}`, t, e) : Object.keys(t).forEach(s => {
                         this.register(s, t[s], e);
                     });
-                }
-                else null == this.imports[t] || s || g.warn(`Overwriting ${t} with`, e), this.imports[t] = e, (t.startsWith('blots/') || t.startsWith('formats/')) && 'abstract' !== e.blotName && b.register(e), 'function' == typeof e.register && e.register(b);
+                } else null == this.imports[t] || s || g.warn(`Overwriting ${t} with`, e), this.imports[t] = e, (t.startsWith('blots/') || t.startsWith('formats/')) && 'abstract' !== e.blotName && b.register(e), 'function' == typeof e.register && e.register(b);
             }
 
             constructor(t, e = {}) {
@@ -1482,8 +1476,7 @@
                 modules: {clipboard: !0, keyboard: !0, history: !0, uploader: !0}
             }, e)).theme && e.theme !== y.DEFAULTS.theme) {
                 if (e.theme = y.import(`themes/${e.theme}`), null == e.theme) throw new Error(`Invalid theme ${e.theme}. Did you register it?`);
-            }
-            else e.theme = p.default;
+            } else e.theme = p.default;
             const s = (0, l.default)(!0, {}, e.theme.DEFAULTS);
             [s, e].forEach(t => {
                 t.modules = t.modules || {}, Object.keys(t.modules).forEach(e => {
@@ -1522,8 +1515,7 @@
                 var u = [t.index, t.index + t.length].map(t => e.transformPosition(t, n !== a.default.sources.USER)),
                     h = i(u, 2);
                 l = h[0], o = h[1];
-            }
-            else {
+            } else {
                 var d = [t.index, t.index + t.length].map(t => t < e || t === e && n === a.default.sources.USER ? t : s >= 0 ? t + s : Math.max(e, t + s)),
                     f = i(d, 2);
                 l = f[0], o = f[1];
@@ -1564,8 +1556,7 @@
                 if (o.compare(this.statics.blotName, s) < 0 && this.scroll.query(s, i.Scope.BLOT)) {
                     const i = this.isolate(t, e);
                     r && i.wrap(s, r);
-                }
-                else super.formatAt(t, e, s, r);
+                } else super.formatAt(t, e, s, r);
             }
 
             optimize(t) {
@@ -1833,8 +1824,7 @@
                         if (t instanceof r.LeafBlot) {
                             const e = t.split(s.start.offset);
                             t.parent.insertBefore(this.cursor, e);
-                        }
-                        else t.insertBefore(this.cursor, s.start.node);
+                        } else t.insertBefore(this.cursor, s.start.node);
                         this.cursor.attach();
                     }
                     this.cursor.format(t, e), this.scroll.optimize(), this.setNativeRange(this.cursor.textNode, this.cursor.textNode.data.length), this.update();
@@ -1956,16 +1946,14 @@
                         const r = document.createRange();
                         r.setStart(t, e), r.setEnd(s, i), n.removeAllRanges(), n.addRange(r);
                     }
-                }
-                else n.removeAllRanges(), this.root.blur();
+                } else n.removeAllRanges(), this.root.blur();
             }
 
             setRange(t, e = !1, s = o.default.sources.API) {
                 if ('string' == typeof e && (s = e, e = !1), u.info('setRange', t), null != t) {
                     const s = this.rangeToNative(t);
                     this.setNativeRange(...s, e);
-                }
-                else this.setNativeRange(null);
+                } else this.setNativeRange(null);
                 this.update(s);
             }
 
@@ -2180,8 +2168,7 @@
                 if (this.select.selectedIndex > -1) {
                     const e = this.container.querySelector('.ql-picker-options').children[this.select.selectedIndex];
                     t = this.select.options[this.select.selectedIndex], this.selectItem(e);
-                }
-                else this.selectItem(null);
+                } else this.selectItem(null);
                 const e = null != t && t !== this.select.querySelector('option[selected]');
                 this.label.classList.toggle('ql-active', e);
             }
@@ -2433,11 +2420,10 @@
                 if (t === this.leftGuard) if (this.prev instanceof r.default) {
                     const t = this.prev.length();
                     this.prev.insertAt(t, i), e = {startNode: this.prev.domNode, startOffset: t + i.length};
-                }
-                else s = document.createTextNode(i), this.parent.insertBefore(this.scroll.create(s), this), e = {
-                        startNode: s,
-                        startOffset: i.length
-                    }; else t === this.rightGuard && (this.next instanceof r.default ? (this.next.insertAt(0, i), e = {
+                } else s = document.createTextNode(i), this.parent.insertBefore(this.scroll.create(s), this), e = {
+                    startNode: s,
+                    startOffset: i.length
+                }; else t === this.rightGuard && (this.next instanceof r.default ? (this.next.insertAt(0, i), e = {
                     startNode: this.next.domNode,
                     startOffset: i.length
                 }) : (s = document.createTextNode(i), this.parent.insertBefore(this.scroll.create(s), this.next), e = {
@@ -2542,8 +2528,7 @@
                 if ('string' == typeof t) {
                     const s = this.convert({html: t, text: ''});
                     this.quill.setContents(s, e), this.quill.setSelection(0, o.default.sources.SILENT);
-                }
-                else {
+                } else {
                     const i = this.convert({html: e, text: ''});
                     this.quill.updateContents((new n.default).retain(t).concat(i), s), this.quill.setSelection(t + i.length(), o.default.sources.SILENT);
                 }
@@ -2598,8 +2583,7 @@
                             Array.from(t.querySelectorAll(o)).forEach(t => {
                                 if (e.has(t)) {
                                     e.get(t).push(a);
-                                }
-                                else e.set(t, [a]);
+                                } else e.set(t, [a]);
                             });
                     }
                 }), [s, r];
@@ -2652,8 +2636,7 @@
             if (i.prototype instanceof l.EmbedBlot) {
                 const e = {}, r = i.value(t);
                 if (null != r) return e[i.blotName] = r, (new n.default).insert(e, i.formats(t, s));
-            }
-            else if (i.prototype instanceof l.BlockBlot && !q(e, '\n') && e.insert('\n'), 'function' == typeof i.formats) return A(e, i.blotName, i.formats(t, s));
+            } else if (i.prototype instanceof l.BlockBlot && !q(e, '\n') && e.insert('\n'), 'function' == typeof i.formats) return A(e, i.blotName, i.formats(t, s));
             return e;
         }
 
@@ -3463,8 +3446,7 @@
                                 b = (0, l.default)(b, (0, d.bubbleFormats)(t));
                             }
                             a = o.AttributeMap.diff(b, a) || {};
-                        }
-                        else if ('object' == typeof r.insert) {
+                        } else if ('object' == typeof r.insert) {
                             const e = Object.keys(r.insert)[0];
                             if (null == e) return t;
                             this.scroll.insertAt(t, e, r.insert[e]);
@@ -3572,8 +3554,7 @@
                         c = (new a.default).insert(r.value()),
                         f = s && {oldRange: A(s.oldRange, -l), newRange: A(s.newRange, -l)};
                     t = (new a.default).retain(l).concat(u.diff(c, f)).reduce((t, e) => e.insert ? t.insert(e.insert, n) : t.push(e), new a.default), this.delta = i.compose(t);
-                }
-                else this.delta = this.getDelta(), t && (0, n.default)(i.compose(t), this.delta) || (t = i.diff(this.delta, s));
+                } else this.delta = this.getDelta(), t && (0, n.default)(i.compose(t), this.delta) || (t = i.diff(this.delta, s));
                 return t;
             }
         };
@@ -3635,8 +3616,7 @@
                 }
                 for (u = 1, a = new Array(h - 1); u < h; u++) a[u - 1] = arguments[u];
                 c.fn.apply(c.context, a);
-            }
-            else {
+            } else {
                 var d, f = c.length;
                 for (u = 0; u < f; u++) switch (c[u].once && this.removeListener(t, c[u].fn, void 0, !0), h) {
                     case 1:
@@ -3755,8 +3735,7 @@
                 if (t >= this.length()) if (null == s || null == this.scroll.query(e, r.Scope.BLOCK)) {
                     const t = this.scroll.create(this.statics.defaultChild.blotName);
                     this.appendChild(t), null == s && e.endsWith('\n') ? t.insertAt(0, e.slice(0, -1), s) : t.insertAt(0, e, s);
-                }
-                else {
+                } else {
                     const t = this.scroll.create(e, s);
                     this.appendChild(t);
                 } else super.insertAt(t, e, s);
@@ -3767,8 +3746,7 @@
                 if (t.statics.scope === r.Scope.INLINE_BLOT) {
                     const s = this.scroll.create(this.statics.defaultChild.blotName);
                     s.appendChild(t), super.insertBefore(s, e);
-                }
-                else super.insertBefore(t, e);
+                } else super.insertBefore(t, e);
             }
 
             isEnabled() {
@@ -3873,8 +3851,7 @@
                 if (this.lastRecorded + this.options.delay > i && this.stack.undo.length > 0) {
                     const e = this.stack.undo.pop();
                     s = s.compose(e.undo), t = e.redo.compose(t);
-                }
-                else this.lastRecorded = i;
+                } else this.lastRecorded = i;
                 this.stack.undo.push({
                     redo: t,
                     undo: s
@@ -4006,8 +3983,7 @@
                         if (null != t.offset && t.offset !== N.offset) return !1;
                         if (Array.isArray(t.format)) {
                             if (t.format.every(t => null == N.format[t])) return !1;
-                        }
-                        else if ('object' == typeof t.format && !Object.keys(t.format).every(e => !0 === t.format[e] ? null != N.format[e] : !1 === t.format[e] ? null == N.format[e] : (0, n.default)(t.format[e], N.format[e]))) return !1;
+                        } else if ('object' == typeof t.format && !Object.keys(t.format).every(e => !0 === t.format[e] ? null != N.format[e] : !1 === t.format[e] ? null == N.format[e] : (0, n.default)(t.format[e], N.format[e]))) return !1;
                         return !(null != t.prefix && !t.prefix.test(N.prefix)) && (!(null != t.suffix && !t.suffix.test(N.suffix)) && !0 !== t.handler.call(this, s, N, t));
                     }) && t.preventDefault();
                 });
@@ -4109,8 +4085,7 @@
                             const i = t.offset(this.quill.scroll) + Math.min(s.offset, t.length() - 1);
                             this.quill.setSelection(i, 0, c.default.sources.USER);
                         }
-                    }
-                    else {
+                    } else {
                         const e = r.table()[i];
                         null != e && (t ? this.quill.setSelection(e.offset(this.quill.scroll) + e.length() - 1, 0, c.default.sources.USER) : this.quill.setSelection(e.offset(this.quill.scroll), 0, c.default.sources.USER));
                     }
@@ -4221,8 +4196,7 @@
                             if (l < 0) {
                                 const e = (new a.default).retain(o).insert('\n');
                                 this.quill.updateContents(e, c.default.sources.USER), this.quill.setSelection(t.index + 1, t.length, c.default.sources.SILENT);
-                            }
-                            else if (l > 0) {
+                            } else if (l > 0) {
                                 o += n.length();
                                 const t = (new a.default).retain(o).insert('\n');
                                 this.quill.updateContents(t, c.default.sources.USER), this.quill.setSelection(o, c.default.sources.USER);
@@ -5075,8 +5049,7 @@
                 if (super(t, e), Array.isArray(this.options.container)) {
                     const e = document.createElement('div');
                     f(e, this.options.container), t.container.parentNode.insertBefore(e, t.container), this.container = e;
-                }
-                else 'string' == typeof this.options.container ? this.container = document.querySelector(this.options.container) : this.container = this.options.container;
+                } else 'string' == typeof this.options.container ? this.container = document.querySelector(this.options.container) : this.container = this.options.container;
                 if (!(this.container instanceof HTMLElement)) return c.error('Container required for toolbar', this.options);
                 this.container.classList.add('ql-toolbar'), this.controls = [], this.handlers = {}, Object.keys(this.options.handlers).forEach(t => {
                     this.addHandler(t, this.options.handlers[t]);
@@ -5106,16 +5079,14 @@
                         if (t.selectedIndex < 0) return;
                         const e = t.options[t.selectedIndex];
                         o = !e.hasAttribute('selected') && (e.value || !1);
-                    }
-                    else o = !t.classList.contains('ql-active') && (t.value || !t.hasAttribute('value')), s.preventDefault();
+                    } else o = !t.classList.contains('ql-active') && (t.value || !t.hasAttribute('value')), s.preventDefault();
                     this.quill.focus();
                     var a = this.quill.selection.getRange();
                     const u = i(a, 1)[0];
                     if (null != this.handlers[e]) this.handlers[e].call(this, o); else if (this.quill.scroll.query(e).prototype instanceof n.EmbedBlot) {
                         if (!(o = prompt(`Enter ${e}`))) return;
                         this.quill.updateContents((new r.default).retain(u.index).delete(u.length).insert({[e]: o}), l.default.sources.USER);
-                    }
-                    else this.quill.format(e, o, l.default.sources.USER);
+                    } else this.quill.format(e, o, l.default.sources.USER);
                     this.update(u);
                 }), this.controls.push([e, t]);
             }
@@ -5132,12 +5103,10 @@
                             'string' == typeof t && (t = t.replace(/"/g, '\\"')), s = l.querySelector(`option[value="${t}"]`);
                         }
                         null == s ? (l.value = '', l.selectedIndex = -1) : s.selected = !0;
-                    }
-                    else if (null == t) l.classList.remove('ql-active'); else if (l.hasAttribute('value')) {
+                    } else if (null == t) l.classList.remove('ql-active'); else if (l.hasAttribute('value')) {
                         const t = e[n] === l.getAttribute('value') || null != e[n] && e[n].toString() === l.getAttribute('value') || null == e[n] && !l.getAttribute('value');
                         l.classList.toggle('ql-active', t);
-                    }
-                    else l.classList.toggle('ql-active', null != e[n]);
+                    } else l.classList.toggle('ql-active', null != e[n]);
                 });
             }
         }
@@ -5174,8 +5143,7 @@
                         Object.keys(t).forEach(t => {
                             null != this.quill.scroll.query(t, n.Scope.INLINE) && this.quill.format(t, !1, l.default.sources.USER);
                         });
-                    }
-                    else this.quill.removeFormat(t, l.default.sources.USER);
+                    } else this.quill.removeFormat(t, l.default.sources.USER);
                 }, direction(t) {
                     const e = this.quill.getFormat().align;
                     'rtl' === t && null == e ? this.quill.format('align', 'right', l.default.sources.USER) : t || 'right' !== e || this.quill.format('align', !1, l.default.sources.USER), this.quill.format('direction', t, l.default.sources.USER);
@@ -5276,8 +5244,7 @@
                                 n = this.quill.getBounds(new o.Range(i, r));
                             this.position(n);
                         }
-                    }
-                    else document.activeElement !== this.textbox && this.quill.hasFocus() && this.hide();
+                    } else document.activeElement !== this.textbox && this.quill.hasFocus() && this.hide();
                 });
             }
 
@@ -5381,8 +5348,7 @@
                                 const i = a.default.formats(e.domNode);
                                 return this.preview.textContent = i, this.preview.setAttribute('href', i), this.show(), void this.position(this.quill.getBounds(this.linkRange));
                             }
-                        }
-                        else delete this.linkRange;
+                        } else delete this.linkRange;
                         this.hide();
                     }
                 });
@@ -5420,8 +5386,7 @@
                                 if (null == t || 0 === t.length) return;
                                 let e = this.quill.getText(t);
                                 /^\S+@\S+\.\S+$/.test(e) && 0 !== e.indexOf('mailto:') && (e = `mailto:${e}`), this.quill.theme.tooltip.edit('link', e);
-                            }
-                            else this.quill.format('link', !1);
+                            } else this.quill.format('link', !1);
                         }
                     }
                 }

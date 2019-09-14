@@ -4,8 +4,6 @@ class EditorHelper {
 
     static isFormatCopied = false;
     static copiedFormat = null;
-    static tableSelectedCells = null;
-    static currentZoom = 3;
     static zoomTypes = [50, 75, 100, 125, 150, 200];
 
 
@@ -22,7 +20,7 @@ class EditorHelper {
     }
 
     static getEditorContent() {
-        return 'ats-editor-file' + quill.container.firstChild.innerHTML;
+        return quill.container.firstChild.innerHTML;
     }
 
     static customGetText() {
@@ -71,5 +69,18 @@ class EditorHelper {
             word = range.text;
         }
         return word;
+    }
+
+    static setRangeIn(element) {
+        let range = document.createRange();
+        let sel = window.getSelection();
+        range.setStart(element, 0);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    }
+
+    static isTextSelected() {
+        return !window.getSelection().isCollapsed;
     }
 }

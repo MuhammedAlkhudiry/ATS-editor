@@ -6,35 +6,54 @@ class User {
     ignoreWords = [];
 
 
-    constructor(dictionary, settings, shortcuts) {
-        this._dictionary = dictionary;
-        this._settings = settings;
-        this._shortcuts = shortcuts;
+    constructor(settings, shortcuts) {
+        this.dictionary =
+            JSON.parse(fs.readFileSync('./static/core/User/user_dictionary.json').toString());
+        this.settings = settings;
+        this.shortcuts = shortcuts;
     }
 
+    addToDictionary() {
+        fs.writeFile('./static/core/User/user_dictionary.json').then(() => new Notification('success', 'أُضيفت الكلمة إلى القاموس الشخصي'));
+        fs.readFile('./static/core/User/user_dictionary.json').then(data => {
+            this.dictionary = JSON.parse(data.toString());
+        });
+    }
+
+    removeFromDictionary() {
+
+    }
+
+    updateSettings() {
+
+    }
+
+    addToIgnoreWords() {
+        this.ignoreWords.push(misspelledWord.textContent);
+    }
 
     get dictionary() {
-        return this._dictionary;
+        fs.readFile('./static/core/User/user_dictionary.json').then(() => new Notification('success', 'أُضيفت الكلمة إلى القاموس الشخصي'));
     }
 
     set dictionary(value) {
-        this._dictionary = value;
+        this.dictionary = value;
     }
 
     get settings() {
-        return this._settings;
+        return this.settings;
     }
 
     set settings(value) {
-        this._settings = value;
+        this.settings = value;
     }
 
     get shortcuts() {
-        return this._shortcuts;
+        return this.shortcuts;
     }
 
     set shortcuts(value) {
-        this._shortcuts = value;
+        this.shortcuts = value;
     }
 }
 

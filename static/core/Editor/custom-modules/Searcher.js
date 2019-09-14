@@ -198,7 +198,7 @@ class Searcher {
     }
 
     static removeStyle() {
-        quill.formatText(0, quill.getText().length, 'SearchedString', false);
+        quill.formatText(0, quill.getLength(), 'SearchedString', false);
     }
 
     static isSearchedStringFound(isHamzaIgnored, isTashkeelIgnored) {

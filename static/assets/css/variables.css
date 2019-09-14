@@ -1,13 +1,16 @@
 :root {
+    /* colors */
     --primary: #0066cc;
     --secondary: #1a8cff;
     --light-primary: #e8f0fe;
     --dark-gray: #555;
     --light-gray: #bbb;
-    --white: #eee;
+    --white: #fefefe;
     --black: #23241f;
     --success: #009943ee;
-    --light-success: #DAFFF5;
+    --light-success: #dafff5;
     --danger: #eb1d1dee;
-    --light-danger: #FFDcDE;
+    --light-danger: #ffdcde;
+    --primary-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3);
+    --border-radius: .3em;
 }

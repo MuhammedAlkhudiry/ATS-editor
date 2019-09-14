@@ -9,7 +9,6 @@ document.getElementById('insert-poetry-btn').addEventListener('click', function 
     isPoetryInserted = true;
 });
 
-
 let observer = new MutationObserver(mutationRecords => {
 
     if (!isPoetryInserted) return;

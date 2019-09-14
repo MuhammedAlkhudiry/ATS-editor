@@ -168,22 +168,21 @@
     position: absolute;
     transition: .3s;
     transform: rotate(180deg);
-    opacity: .7;
     cursor: pointer;
     z-index: 2;
     padding: 2px 4px;
-    border-bottom-right-radius: 0.4em;
     border-top-left-radius: 0.4em;
-
+    background-color: #f9f9f9;
+    margin-top: -1px;
 }
 
-.expand-arrow:hover {
-    background-color: #fefefe77;
-    transition: .3s;
+.expand-arrow:hover svg {
     fill: var(--primary);
+
 }
 
 .expand-arrow.down {
     transform: translateY(-2.5em) rotate(0deg);
+    background-color: transparent;
     transition: .3s;
 }
