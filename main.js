@@ -42,6 +42,11 @@ app.on('ready', function () {
             show: false
         });
 
+
+        mainWindow.once('ready-to-show', () => {
+            mainWindow.show();
+        });
+
         // load main window from Flask.
         // mainWindow.loadURL(mainAddr);
 
@@ -65,9 +70,6 @@ app.on('ready', function () {
             // subpy.kill();
         });
 
-        mainWindow.once('ready-to-show', () => {
-            mainWindow.show();
-        });
     };
 
     /* ------------------------- starting Flask server ------------------------- */

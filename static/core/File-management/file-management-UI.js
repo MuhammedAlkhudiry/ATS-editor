@@ -128,7 +128,7 @@ tippy('#save-icon', {
 setInterval(function () {
     // todo: if file.path exist..
     if (change.length() > 0 && file.path) {
-        file.content =  'ats-editor-file' +  EditorHelper.getEditorContent();
+        file.content = 'ats-editor-file' + EditorHelper.getEditorContent();
         FileSaver.autoSave(file);
         change = new Delta();
         file.setSavingStatus('المستند محفوظ', 'saved-file');
@@ -184,13 +184,14 @@ document.body.addEventListener('drop', (e) => {
         new Notification('unsaved-file').then((result) => {
             if (result.value) {
                 EditorHelper.cleanEditor();
-                FileHelper.handleLoadedFile(FileLoader.loadByDragDrop(draggedFile));
+                FileLoader.loadByDragDrop(draggedFile);
             }
         });
 
     } else {
         EditorHelper.cleanEditor();
-        FileHelper.handleLoadedFile(FileLoader.loadByDragDrop(draggedFile));
+        FileLoader.loadByDragDrop(draggedFile);
+
     }
 });
 

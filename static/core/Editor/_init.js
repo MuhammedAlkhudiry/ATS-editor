@@ -69,7 +69,6 @@ const quill = new Quill('#editor', {
         },
         blotFormatter: {},
         history: {
-            delay: 4000,
             maxStack: 500,
         },
     },
@@ -88,7 +87,7 @@ const keyboardModule = quill.getModule('keyboard');
 const quillEditor = document.getElementsByClassName('ql-editor')[0];
 quillEditor.classList.add('zoom-100');
 
-quill.insertText(0, 'احمد في المسجد');
+quill.insertText(0, 'صلى الله عليه وسلم');
 // quill.insertText(22, 'أحُمد في المسجد');
 // quill.insertText(44, 'أحمد في المسجد');
 tableModule.insertTable(3, 3);

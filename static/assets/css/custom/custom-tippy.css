@@ -1,5 +1,8 @@
 .tippy-tooltip {
     background-color: var(--dark-gray);
+    color: var(--white);
+    direction: rtl;
+    text-align: right;
 }
 
 .tippy-tooltip .tippy-roundarrow {

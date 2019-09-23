@@ -9,6 +9,13 @@ tippy('#file-name', {
     content: 'اسم المستند',
 });
 
+tippy('#open-side-bar-icon', {
+    content: 'مستند جديد، فتح مستند، حفظ مستند . . . ',
+    delay: 1000,
+    placement: 'left',
+    animation: 'fade',
+    size: 'small'
+});
 tippy('#open-file-icon', {
     content: 'فتح',
 });
@@ -21,6 +28,7 @@ tippy('#save-icon', {
     content: 'حفظ باسم',
     multiple: true,
 });
+
 tippy('#saving-status-text', {
     content: 'حالة المستند',
     multiple: true,

@@ -1561,12 +1561,25 @@
                     const tableRect = this.table.getBoundingClientRect();
                     const containerRect = this.quill.root.parentNode.getBoundingClientRect();
                     const tableViewRect = this.table.parentNode.getBoundingClientRect();
-                    css(this.domNode, {
-                        width: '22px',
-                        height: '22px',
-                        left: ''.concat(tableRect.x - 25, 'px'),
-                        top: ''.concat(tableViewRect.top - containerRect.top + 22, 'px')
-                    });
+                    // css(this.domNode, {
+                    //     width: '22px',
+                    //     height: '22px',
+                    //     left: ''.concat(tableRect.x - 25, 'px'),
+                    //     top: ''.concat(tableViewRect.top - containerRect.top + 22, 'px')
+                    // });
+                    new popper(this.table, this.domNode, {
+                            placement: 'left-start',
+                            modifiers: {
+                                offset: {
+                                    enabled: true,
+                                },
+                                preventOverflow: {
+                                    enabled: true,
+                                    escapeWithReference: true,
+                                }
+                            }
+                        }
+                    );
                 }
 
                 createStyingItems() {
@@ -1774,7 +1787,6 @@
                 initMovingTool() {
                     this.domNode = document.createElement('div');
                     this.domNode.classList.add('qlbt-move-tool');
-                    this.domNode.classList.add('icon');
                     this.domNode.innerHTML =
                         `<svg style="width:22px;height:22px"  viewBox="0 0 24 24"><path class="ql-custom-stroke-2" d="M20,2H4C2.89,2 2,2.89 2,4V20C2,21.11 2.89,22 4,22H20C21.11,22 22,21.11 22,20V4C22,2.89 21.11,2 20,2M20,20H4V4H20M13,8V10H11V8H9L12,5L15,8M16,15V13H14V11H16V9L19,12M10,13H8V15L5,12L8,9V11H10M15,16L12,19L9,16H11V14H13V16" /></svg>`;
                     this.domNode.addEventListener('mousedown', this.boundDrag);
@@ -1782,12 +1794,15 @@
                     const tableRect = this.table.getBoundingClientRect();
                     const containerRect = this.quill.root.parentNode.getBoundingClientRect();
                     const tableViewRect = this.table.parentNode.getBoundingClientRect();
-                    css(this.domNode, {
-                        width: '22px',
-                        height: '22px',
-                        left: ''.concat(tableRect.x - 25, 'px'),
-                        top: ''.concat(tableViewRect.top - containerRect.top, 'px')
-                    });
+                    // css(this.domNode, {
+                    //     width: '22px',
+                    //     height: '22px',
+                    //     left: ''.concat(tableRect.x - 25, 'px'),
+                    //     top: ''.concat(tableViewRect.top - containerRect.top, 'px')
+                    // });
+                    new popper(this.table, this.domNode, {placement: 'bottom-start'}
+                    );
+
                     tippy(this.domNode, {
                         content: 'نقل الجدول',
                         placement: 'left'
@@ -1858,24 +1873,27 @@
                     this.domNode.classList.add('qlbt-col-tool');
                     this.updateToolCells();
                     parent.appendChild(this.domNode);
-                    css(this.domNode, {
-                        width: ''.concat(tableViewRect.width, 'px'),
-                        height: ''.concat(COL_TOOL_HEIGHT, 'px'),
-                        left: ''.concat(tableRect.x - this.domNode.clientWidth + tableRect.width, 'px'),
-                        top: ''.concat(tableViewRect.top - containerRect.top + parent.scrollTop - COL_TOOL_HEIGHT - 5, 'px')
-                    });
+                    // css(this.domNode, {
+                    //     width: ''.concat(tableViewRect.width, 'px'),
+                    //     height: ''.concat(COL_TOOL_HEIGHT, 'px'),
+                    //     left: ''.concat(tableRect.x - this.domNode.clientWidth + tableRect.width, 'px'),
+                    //     top: ''.concat(tableViewRect.top - containerRect.top + parent.scrollTop - COL_TOOL_HEIGHT - 5, 'px')
+                    // });
+                    new popper(this.table, this.domNode, {});
 
-                    tippy(this.domNode, {
-                        content: 'التحكم بعرض الأعمدة',
-                        placement: 'left'
-                    });
+                    // tippy(this.domNode, {
+                    //     content: 'التحكم بعرض الأعمدة',
+                    //     placement: 'left'
+                    // });
                 }
 
                 createToolCell() {
+                    const tableRect = this.table.getBoundingClientRect();
                     const toolCell = document.createElement('div');
                     toolCell.classList.add('qlbt-col-tool-cell');
                     const resizeHolder = document.createElement('div');
                     resizeHolder.classList.add('qlbt-col-tool-cell-holder');
+                    resizeHolder.style.height = `${tableRect.height + 10}px`;
                     css(toolCell, {
                         'height': ''.concat(COL_TOOL_CELL_HEIGHT, 'px')
                     });
@@ -1994,7 +2012,7 @@
                             top: ''.concat(cellRect.top, 'px'),
                             left: ''.concat(cellRect.left + cellRect.width - 1, 'px'),
                             zIndex: '100',
-                            height: ''.concat(tableRect.height + COL_TOOL_HEIGHT + 4, 'px'),
+                            height: ''.concat(tableRect.height + 10, 'px'),
                             width: '1px',
                             backgroundColor: PRIMARY_COLOR
                         });
@@ -2022,7 +2040,7 @@
                 }, 0);
             }
 
-// CONCATENATED MODULE: ./src/formats/header.js
+// CONCATENATED MODULE: ./src/formats/title-bar.js
 
 
             const Block = external_commonjs_quill_commonjs2_quill_amd_quill_root_Quill_default.a.import('blots/block');
@@ -2127,7 +2145,9 @@
 
                     this.cache = {};
                 }
-
+                deleteAt() {
+                    return false;
+                }
             }
 
             header_Header.blotName = 'header';
@@ -2226,7 +2246,9 @@
                 tableCell() {
                     return this.parent;
                 }
-
+                deleteAt() {
+                    return false;
+                }
             }
 
             TableCellLine.blotName = 'table-cell-line';
@@ -2353,6 +2375,9 @@
                     return this.row() && this.row().table();
                 }
 
+                deleteAt() {
+                    return false;
+                }
             }
 
             TableCell.blotName = 'table';
@@ -2421,7 +2446,9 @@
                 table() {
                     return this.parent && this.parent.parent;
                 }
-
+                deleteAt() {
+                    return false;
+                }
             }
 
             TableRow.blotName = 'table-row';
@@ -2464,7 +2491,9 @@
                 html() {
                     return this.domNode.outerHTML;
                 }
-
+                deleteAt() {
+                    return false;
+                }
             }
 
             TableCol.blotName = 'table-col';
@@ -2879,7 +2908,9 @@
                     if (body == null) return [];
                     return body.children.map(row => row);
                 }
-
+                deleteAt() {
+                    return false;
+                }
             }
 
             table_TableContainer.blotName = 'table-container';
@@ -2903,7 +2934,9 @@
                         }
                     }, false);
                 }
-
+                deleteAt() {
+                    return false;
+                }
             }
 
             table_TableViewWrapper.blotName = 'table-view';
@@ -2937,7 +2970,7 @@
 // CONCATENATED MODULE: ./src/modules/table-selection.js
 
 
-            const table_selection_PRIMARY_COLOR = '#1a8cff';
+            const table_selection_PRIMARY_COLOR = '#06c';
             const LINE_POSITIONS = ['left', 'right', 'top', 'bottom'];
             const table_selection_ERROR_LIMIT = 2;
 
@@ -3847,12 +3880,7 @@
 
                     handler(range, context) {
                         const [line, offset] = this.quill.getLine(range.index);
-
-                        if (!line.prev || line.prev.statics.blotName !== 'table-cell-line') {
-                            return false;
-                        }
-
-                        return true;
+                        return !(!line.prev || line.prev.statics.blotName !== 'table-cell-line');
                     }
 
                 },

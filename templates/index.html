@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<!--suppress ALL -->
-<html>
+<html lang="ar">
 
 <head>
     <meta charset="UTF-8">
@@ -21,11 +20,11 @@
     <link rel="stylesheet"
           href="../static/core/Editor/css/context-menu.css">
     <link rel="stylesheet"
-          href="../static/assets/css/title-bar.css">
+          href="../static/core/title-bar/css/title-bar.css">
     <link rel="stylesheet"
-          href="../static/assets/css/side-bar.css">
+          href="../static/core/side-bar/css/side-bar.css">
     <link rel="stylesheet"
-          href="../static/assets/css/footer.css">
+          href="../static/core/bottom-bar/css/bottom-bar.css">
     <link rel="stylesheet"
           href="../static/assets/css/animation.css">
     <link rel="stylesheet"
@@ -44,18 +43,38 @@
           href="../static/assets/css/custom/custom-tippy.css">
     <link rel="stylesheet"
           href="../static/assets/css/custom/light.css">
+    <link rel="stylesheet"
+          href="../static/assets/css/loader.css">
     <title>ATS-Editor</title>
 </head>
 
 <body>
 
-<!-- header-start -->
-
 <div id="main-container"
      class="for-screen">
-
-    <!-- title bar -->
-
+    <div class="loader"
+         style="display: block">
+        <svg
+                viewBox="0 0 100 100">
+            <polyline class="line-cornered stroke-still"
+                      points="0,0 100,0 100,100"
+                      stroke-width="10"
+                      fill="none"></polyline>
+            <polyline class="line-cornered stroke-still"
+                      points="0,0 0,100 100,100"
+                      stroke-width="10"
+                      fill="none"></polyline>
+            <polyline class="line-cornered stroke-animation"
+                      points="0,0 100,0 100,100"
+                      stroke-width="10"
+                      fill="none"></polyline>
+            <polyline class="line-cornered stroke-animation"
+                      points="0,0 0,100 100,100"
+                      stroke-width="10"
+                      fill="none"></polyline>
+        </svg>
+        <span class="loading-now-note">...تحميل</span>
+    </div>
     <div class="title-bar">
       <span class="icon title-bar-icon"
             id="exit-icon">
@@ -108,19 +127,26 @@
             <span class="focus-bg"></span>
         </div>
 
-        <div class="icon open-side-bar title-bar-icon">
-            <svg width="22"
-                 height="22"
-                 viewBox="0 0 24 24">
-                <path fill="#000000"
-                      d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
+        <div id="open-side-bar-icon"
+             class="icon open-side-bar title-bar-icon">
+            <svg viewBox="0 0 100 100"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path class="line--1"
+                      d="M0 40l14-10c4.7-3.3 9-5 13-5h72"/>
+                <path class="line--2"
+                      d="M0 43h99"/>
+                <path class="line--3"
+                      d="M0 46l14 10c4.7 3.3 9 5 13 5h72"/>
             </svg>
-
-            <aside class="side-bar"
-                   id="side-bar">
-                <ul class="side-bar-list">
-                    <li class="side-bar-item"
-                        id="new-file">
+        </div>
+    </div>
+    <div class="side-bar-container">
+        <aside class="side-bar"
+               id="side-bar">
+            <div></div>
+            <ul class="side-bar-list">
+                <li class="side-bar-item"
+                    id="new-file">
                         <span>
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -131,25 +157,23 @@
                                     viewBox="0 0 24 24"><path class="ql-custom-stroke-2"
                                                               d="M17,14H19V17H22V19H19V22H17V19H14V17H17V14M5,3H19C20.11,3 21,3.89 21,5V12.8C20.39,12.45 19.72,12.2 19,12.08V5H5V19H12.08C12.2,19.72 12.45,20.39 12.8,21H5C3.89,21 3,20.11 3,19V5C3,3.89 3.89,3 5,3M7,7H17V9H7V7M7,11H17V12.08C16.15,12.22 15.37,12.54 14.68,13H7V11M7,15H12V17H7V15Z"/></svg>
                         </span>
-                        <span>جديد</span>
-                    </li>
-                    <li class="side-bar-item"
-                        id="open-file">فتح
-                    </li>
-                    <li class="side-bar-item"
-                        id="save-file">حفظ
-                    </li>
-                    <li class="side-bar-item"
-                        id="print-file">طباعة
-                    </li>
-                    <hr>
-                    <li class="side-bar-item">الإعدادات</li>
-                    <li class="side-bar-item">إغلاق</li>
-                </ul>
-            </aside>
-        </div>
+                    <span>جديد</span>
+                </li>
+                <li class="side-bar-item"
+                    id="open-file">فتح
+                </li>
+                <li class="side-bar-item"
+                    id="save-file">حفظ
+                </li>
+                <li class="side-bar-item"
+                    id="print-file">طباعة
+                </li>
+                <hr>
+                <li class="side-bar-item">الإعدادات</li>
+                <li class="side-bar-item">إغلاق</li>
+            </ul>
+        </aside>
     </div>
-
 
     <div class="file-management-bar">
       <span class="icon"
@@ -187,8 +211,6 @@
 
     </div>
 
-
-    <!-- Create the toolbar container -->
     <div id="toolbar-container">
         <span class="ql-formats">
         <button class="ql-undo">
@@ -246,7 +268,6 @@
       d="M8.09,13.91A4.6,4.6,0,0,0,9,14,5,5,0,1,0,4,9"></path></svg>
         </button>
         </span>
-
         <span class="ql-formats">
         <select class="ql-font">
           <option value="Arial"
@@ -434,7 +455,6 @@
       </span>
     </div>
 
-    <!-- ----------------------------- insert-bar ------------------------------ -->
 
     <div id="insert-bar"
          class="slide-in">
@@ -715,10 +735,7 @@
         </div>
     </div>
 
-    <!-- ----------------------------------------------------------------------- -->
 
-    <!-- header-end -->
-    <!-- Create the editor container -->
     <div id="text-box">
         <div class="expand-arrow down"
              id="expand-arrow">
@@ -728,11 +745,8 @@
                         d="M7.41,18.41L6,17L12,11L18,17L16.59,18.41L12,13.83L7.41,18.41M7.41,12.41L6,11L12,5L18,11L16.59,12.41L12,7.83L7.41,12.41Z"/>
             </svg>
         </div>
-        <div class="container">
-            <div id="editor"></div>
-        </div>
-
-        <div id="footer">
+        <div id="editor"></div>
+        <div id="bottom-bar">
             <span id="word-number">عدد الكلمات</span>
             <div id="zoom-section">
                 <div id="increase-zoom"
@@ -757,9 +771,8 @@
             </div>
         </div>
 
-
     </div>
-    <!-- create float-menu show when select text -->
+
     <div id="float-menu"
          class="fade-in-bck">
 
@@ -918,7 +931,7 @@
         </ul>
     </div>
 
-    <!-- create float-menu show when select text -->
+
     <div id="correction-menu">
         <div id="show-correction-icon">
             <span>
@@ -1059,106 +1072,113 @@
             </li>
         </ul>
     </div>
-    <!-- Initialize Quill editor -->
-    <script src="../static/quill/quill.js"></script>
-    <script src="../static/quill/quill-better-table.js"></script>
-    <script src="../static/quill/quill-blot-formatter.min.js"></script>
-    <script src="../static/quill/quill-emoji/quill-emoji.js"></script>
-    <script>
-        <!--load Electron/node.js modules-->
-        const path = require('path'),
-            fs = require('fs').promises,
-            Swal = require('sweetalert2'),
-            tippy = require('tippy.js'),
-            popper = require('popper.js'),
-            axios = require('axios'),
-            electronLocalshortcut = require('electron-localshortcut'),
-            Store = require('electron-store'),
-            pdf = require('html-pdf'),
-            store = new Store(),
-            remote = require('electron').remote,
-            {BrowserWindow} = remote,
-            win = remote.getCurrentWindow(),
-            dialog = remote.dialog,
-            app = remote.app,
-            Inline = Quill.import('blots/inline'),
-            Block = Quill.import('blots/block'),
-            Delta = Quill.import('delta');
-        //    global DOM variables
-        const textBox = document.getElementById('text-box'),
-            insertBar = document.getElementById('insert-bar'),
-            resizeIcon = document.getElementById('resize-icon'),
-            lastModifiedDate = document.getElementById('last-modified-date'),
-            searchInput = document.getElementById('search-input'),
-            contextMenu = document.getElementById('context-menu');
-    </script>
-
-    <script src="../static/core/Insert-management/insert-date/hijri-date.js"></script>
-    <script src="../static/core/Insert-management/insert-date/datepicker.js"></script>
-
-    <!--loading request-->
-    <script src="../static/request/PyRequest.js"></script>
-    <!--loading helpers-->
-    <script src="../static/helpers/utilities.js"></script>
-    <script src="../static/helpers/Notification.js"></script>
-    <script src="../static/helpers/ArabicHelper.js"></script>
-    <script src="../static/helpers/EditorHelper.js"></script>
-    <script src="../static/helpers/TypingHelper.js"></script>
-    <script src="../static/helpers/FileHelper.js"></script>
-    <!--loading js assets-->
-    <script src="../static/assets/js/header.js"></script>
-    <script src="../static/assets/js/footer.js"></script>
-    <script src="../static/assets/js/side-bar.js"></script>
-    <!-- You can also require other files to run in this process -->
-    <!--loading custom quill components-->
-    <script src="../static/core/Editor/custom-modules/Searcher.js"></script>
-    <script src="../static/core/Editor/custom-blots/AyahBlot.js"></script>
-    <script src="../static/core/Editor/custom-blots/HadithBlot.js"></script>
-    <script src="../static/core/Editor/custom-blots/PoetryBlot.js"></script>
-    <script src="../static/core/Editor/custom-blots/SearchBlot.js"></script>
-    <script src="../static/core/Editor/custom-blots/SpellingErrorBlot.js"></script>
-    <!--config quill editor-->
-    <script src="../static/core/Editor/_init.js"></script>
-
-    <!--loading custom quill components-->
-    <script src="../static/core/Editor/custom-editing/custom-buttons.js"></script>
-    <script src="../static/core/Editor/custom-editing/custom-handlers.js"></script>
-    <script src="../static/core/Editor/custom-editing/custom-matchers.js"></script>
-    <script src="../static/core/Editor/custom-editing/custom-keybinding.js"></script>
-
-    <!--loading user-management-->
-    <script src="../static/core/User/User.js"></script>
-    <script src="../static/core/User/Settings-management/setting-management-UI.js"></script>
-
-    <!--loading file-management-->
-    <script src="../static/core/File-management/ATSFile.js"></script>
-    <script src="../static/core/File-management/FileLoader.js"></script>
-    <script src="../static/core/File-management/FileSaver.js"></script>
-    <script src="../static/core/File-management/file-management-UI.js"></script>
-    <!--loading insert-management-->
-    <script src="../static/core/Insert-management/Inserter.js"></script>
-    <script src="../static/core/Insert-management/insert-management-UI.js"></script>
-    <script src="../static/core/Insert-management/insert-table.js"></script>
-    <script src="../static/core/Insert-management/insert-islamic-text/insert-ayah-UI.js"></script>
-    <script src="../static/core/Insert-management/insert-islamic-text/insert-hadith-UI.js"></script>
-    <script src="../static/core/Insert-management/insert-islamic-text/insert-poetry-UI.js"></script>
-    <script src="../static/core/Insert-management/insert-date/insert-date.js"></script>
-
-    <!--loading the rest-->
-    <script src="../static/core/Editor/UI/float-menu.js"></script>
-    <script src="../static/core/Editor/UI/correction-popup-menu.js"></script>
-    <script src="../static/core/Editor/UI/context-menu.js"></script>
-    <script src="../static/core/Editor/typing/keyboard-shortcuts.js"></script>
-    <script src="../static/core/Editor/typing/TypingHandler.js"></script>
-    <script src="../static/core/Editor/typing/typing-event-handlers.js"></script>
-    <script src="../static/assets/js/tooltip.js"></script>
-
 </div>
 
 <div class="for-print"
      style="display: none">
 
 </div>
+
+<!-- Initialize Quill editor -->
+<script src="../static/quill/quill.js"></script>
+<script src="../static/quill/quill-better-table.js"></script>
+<script src="../static/quill/quill-blot-formatter.min.js"></script>
+<script src="../static/quill/quill-emoji/quill-emoji.js"></script>
+<script>
+    <!--load Electron/node.js modules-->
+    const path = require('path'),
+        fs = require('fs'),
+        fsp = fs.promises,
+        Swal = require('sweetalert2'),
+        tippy = require('tippy.js'),
+        popper = require('popper.js'),
+        Tether = require('tether'),
+        axios = require('axios'),
+        electronLocalshortcut = require('electron-localshortcut'),
+        Store = require('electron-store'),
+        pdf = require('html-pdf'),
+        store = new Store(),
+        remote = require('electron').remote,
+        {BrowserWindow} = remote,
+        win = remote.getCurrentWindow(),
+        dialog = remote.dialog,
+        app = remote.app,
+        Inline = Quill.import('blots/inline'),
+        Block = Quill.import('blots/block'),
+        Delta = Quill.import('delta');
+    //    global DOM variables
+    const textBox = document.getElementById('text-box'),
+        insertBar = document.getElementById('insert-bar'),
+        resizeIcon = document.getElementById('resize-icon'),
+        lastModifiedDate = document.getElementById('last-modified-date'),
+        searchInput = document.getElementById('search-input'),
+        contextMenu = document.getElementById('context-menu');
+</script>
+
+<script src="../static/core/Insert-management/insert-date/hijri-date.js"></script>
+<script src="../static/core/Insert-management/insert-date/datepicker.js"></script>
+
+<!--loading request-->
+<script src="../static/request/PyRequest.js"></script>
+<!--loading helpers-->
+<script src="../static/helpers/utilities.js"></script>
+<script src="../static/helpers/Notification.js"></script>
+<script src="../static/helpers/ArabicHelper.js"></script>
+<script src="../static/helpers/EditorHelper.js"></script>
+<script src="../static/helpers/TypingHelper.js"></script>
+<script src="../static/helpers/FileHelper.js"></script>
+<!--loading js assets-->
+<script src="../static/core/title-bar/title-bar.js"></script>
+<script src="../static/core/bottom-bar/bottom-bar.js"></script>
+<script src="../static/core/side-bar/side-bar.js"></script>
+<!-- You can also require other files to run in this process -->
+<!--loading custom quill components-->
+<script src="../static/core/Editor/custom-modules/Searcher.js"></script>
+<script src="../static/core/Editor/custom-blots/AyahBlot.js"></script>
+<script src="../static/core/Editor/custom-blots/HadithBlot.js"></script>
+<script src="../static/core/Editor/custom-blots/PoetryBlot.js"></script>
+<script src="../static/core/Editor/custom-blots/SearchBlot.js"></script>
+<script src="../static/core/Editor/custom-blots/SpellingErrorBlot.js"></script>
+<!--config quill editor-->
+<script src="../static/core/Editor/_init.js"></script>
+
+<!--loading custom quill components-->
+<script src="../static/core/Editor/custom-editing/custom-buttons.js"></script>
+<script src="../static/core/Editor/custom-editing/custom-handlers.js"></script>
+<script src="../static/core/Editor/custom-editing/custom-matchers.js"></script>
+<script src="../static/core/Editor/custom-editing/custom-keybinding.js"></script>
+
+<!--loading user-management-->
+<script src="../static/core/User/User.js"></script>
+<script src="../static/core/User/Settings-management/setting-management-UI.js"></script>
+
+<!--loading file-management-->
+<script src="../static/core/File-management/ATSFile.js"></script>
+<script src="../static/core/File-management/FileLoader.js"></script>
+<script src="../static/core/File-management/FileSaver.js"></script>
+<script src="../static/core/File-management/file-management-UI.js"></script>
+<!--loading insert-management-->
+<script src="../static/core/Insert-management/Inserter.js"></script>
+<script src="../static/core/Insert-management/insert-management-UI.js"></script>
+<script src="../static/core/Insert-management/insert-table.js"></script>
+<script src="../static/core/Insert-management/insert-islamic-text/insert-ayah-UI.js"></script>
+<script src="../static/core/Insert-management/insert-islamic-text/insert-hadith-UI.js"></script>
+<script src="../static/core/Insert-management/insert-islamic-text/insert-poetry-UI.js"></script>
+<script src="../static/core/Insert-management/insert-date/insert-date.js"></script>
+
+<!--loading the rest-->
+<script src="../static/core/Editor/UI/float-menu.js"></script>
+<script src="../static/core/Editor/UI/correction-popup-menu.js"></script>
+<script src="../static/core/Editor/UI/context-menu.js"></script>
+<script src="../static/core/Editor/typing/keyboard-shortcuts.js"></script>
+<script src="../static/core/Editor/typing/TextChange.js"></script>
+<script src="../static/core/Editor/typing/typing-event-handlers.js"></script>
+<script src="../static/assets/js/tooltip.js"></script>
+<!-- remove loader -->
+<script>
+    setTimeout(() => document.querySelector('.loader').classList.add('fade-out-bck-loader'), 1000);
+    setTimeout(() => document.querySelector('.loader').remove(), 1000);
+</script>
 </body>
 
 </html>

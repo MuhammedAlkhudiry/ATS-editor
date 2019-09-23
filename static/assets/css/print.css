@@ -1,0 +1,73 @@
+
+@media print {
+
+    .for-screen, .tippy-tooltip, .swal2-show {
+        display: none !important;
+    }
+
+    .for-print {
+        display: block !important;
+        margin: 0 auto;
+    }
+
+    .ql-editor {
+        box-shadow: none !important;
+        margin: 0 !important;
+    }
+
+    .ql-container {
+        border: none !important;
+    }
+
+    .for-print p {
+        font-size: 12pt;
+    }
+
+    body {
+        background: white;
+        /*font-size: 12pt;*/
+    }
+
+    a:link,
+    a:visited {
+        color: #520;
+        background: transparent;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    a:link:after,
+    a:visited:after {
+        content: " (" attr(href) ") ";
+        font-size: 90%;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        page-break-inside: avoid
+    }
+
+    img {
+        page-break-inside: avoid;
+        page-break-after: avoid;
+    }
+
+    table, pre {
+        page-break-inside: avoid
+    }
+
+    ul, ol, dl {
+        page-break-before: avoid
+    }
+
+    body, h1, h2, h3, ol, ul, div {
+        width: auto;
+        border: 0;
+        margin: 0 5%;
+        padding: 0;
+        float: none;
+        position: static;
+        overflow: visible;
+    }
+
+}

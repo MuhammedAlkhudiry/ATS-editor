@@ -32,9 +32,9 @@ class FileLoader {
     }
 
     static loadByDragDrop(draggedFile, file) {
-        let docFile = 'application/msword';
-        let docxFile = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
-        let loadedFile = new ATSFile();
+        const docFile = 'application/msword';
+        const docxFile = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+        const loadedFile = new ATSFile();
         if (draggedFile.type === 'text/html') {
             loadedFile.path = draggedFile.path;
 
@@ -45,7 +45,7 @@ class FileLoader {
 
         } else if (draggedFile.type === docFile || draggedFile.type === docxFile) {
             // TODO: convert from doc/docx to html
-        } else {
+        } else if (draggedFile.type !== 'image/jpeg') {
             new Notification('fail', 'صيغة المستند غير مقبولة');
         }
     }

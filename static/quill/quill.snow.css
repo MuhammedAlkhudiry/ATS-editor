@@ -50,7 +50,7 @@
 .ql-editor {
     box-sizing: border-box;
     line-height: 1.42;
-    height: 100%;
+    /*height: 100%;*/
     width: 794px;
     min-height: 1123px;
     outline: none;
@@ -1332,15 +1332,27 @@ table td {
     overflow: hidden;
     text-overflow: ellipsis;
     transition: .3s;
+    border: none;
 }
+
 
 .qlbt-col-tool, .qlbt-move-tool, .qlbt-style-tool {
     position: absolute;
     display: flex;
-    align-items: flex-end;
     z-index: 99;
     height: 16px;
+}
+
+.qlbt-col-tool {
+    margin-top: -15px;
+    margin-left: -3px;
+    opacity: 0;
+}
+
+.qlbt-move-tool, .qlbt-style-tool {
+
     opacity: .35;
+    transition: .2s;
     cursor: pointer;
 }
 
@@ -1350,12 +1362,10 @@ table td {
 
 .qlbt-move-tool:hover,
 .qlbt-move-tool:focus-within,
-.qlbt-col-tool:focus-within,
-.qlbt-col-tool:hover,
 .qlbt-style-tool:focus-within,
 .qlbt-style-tool:hover {
     opacity: .8;
-    transition: .5s;
+    transition: .2s;
 }
 
 .qlbt-style-tool {
@@ -1364,30 +1374,30 @@ table td {
 }
 
 .qlbt-col-tool:hover .qlbt-col-tool-cell {
-    background-color: var(--light-primary);
-    transition: .3s;
+    /*background-color: var(--light-primary);*/
+    transition: .2s;
 
 }
 
 .qlbt-col-tool .qlbt-col-tool-cell {
     position: relative;
     background-color: #fff;
-    border-top: 1px solid #000;
-    border-right: 2px solid #000;
-    border-bottom: 1px solid #000;
+    /*border-top: 1px solid #000;*/
+    /*border-right: 2px solid #000;*/
+    /*border-bottom: 1px solid #000;*/
 }
 
 .qlbt-col-tool .qlbt-col-tool-cell:first-child {
-    border-left: 2px solid #000;
+    /*border-left: 2px solid #000;*/
 }
 
 .qlbt-col-tool .qlbt-col-tool-cell-holder {
     position: absolute;
-    right: -1px;
+    right: 0;
     top: 0;
     bottom: 0;
     z-index: 3;
-    width: 3px;
+    width: 2px;
     background-color: var(--primary);
     cursor: ew-resize;
 }

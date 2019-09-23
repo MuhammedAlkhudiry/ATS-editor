@@ -1,0 +1,182 @@
+.title-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 30px);
+    grid-template-areas: 'close resize min settings dragging-area side-bar';
+    height: 30px;
+    background-image: linear-gradient(to left, #dfdfdf 100%, #dfdfdf 0%);
+    width: 100%;
+    position: relative;
+
+}
+
+#exit-icon {
+    grid-area: close;
+}
+
+#resize-icon {
+    grid-area: resize;
+}
+
+#min-icon {
+    grid-area: min;
+}
+
+#setting-icon {
+    grid-area: settings;
+}
+
+.open-side-bar {
+    grid-area: side-bar;
+}
+
+.title-bar-icon {
+    cursor: pointer;
+    transition: 0.3s;
+    -webkit-app-region: no-drag;
+}
+
+#exit-icon:hover {
+    background-color: #d15f5f;
+    transition: 0.3s;
+}
+
+#exit-icon:hover svg {
+    fill: var(--white);
+}
+
+.title-bar-icon:hover {
+    background-color: #eee;
+    transition: 0.3s;
+}
+
+.title-bar-icon {
+    background-color: #cbcbcb;
+    justify-self: left;
+    width: 30px;
+}
+
+#setting-icon:hover path {
+    fill: var(--primary);
+}
+
+#file-name-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    background: transparent;
+    direction: rtl;
+    margin: 0 5vw;
+    width: 100%;
+    /*-webkit-app-region: drag;*/
+}
+
+#file-name {
+    padding: 4px 8px;
+    border: 1px solid transparent;
+    position: relative;
+    background: transparent;
+    width: 40%;
+    height: 85%;
+    transition: 0.2s ease-in-out;
+    border-radius: .3em;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+#file-name:focus, #file-name:hover {
+    border-right: 2px solid var(--primary);
+    transition: 0.3s ease-in-out;
+    background-color: var(--white);
+}
+
+.valid-file-name {
+    border-left: 4px solid #009943ee !important;;
+    background-color: var(--light-success) !important;
+
+}
+
+.invalid-file-name {
+    border-left: 4px solid #eb1d1dee !important;
+    background-color: var(--light-danger) !important;
+
+}
+
+#file-name ~ .focus-bg {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--light-primary);
+    transition: 0.6s ease-in-out;
+    z-index: -1;
+}
+
+#file-name:focus ~ .focus-bg {
+    transition: 0.3s ease-in-out;
+    width: 100%;
+    left: 0;
+}
+
+.open-side-bar {
+    z-index: 1001;
+    direction: rtl;
+    position: relative;
+    color: var(--dark-gray);
+    justify-self: end;
+}
+
+.open-side-bar.show {
+    transform: translateX(-170px);
+}
+
+.open-side-bar svg {
+    cursor: pointer;
+    position: absolute;
+}
+
+.open-side-bar path {
+    fill: none;
+    stroke: var(--dark-gray);
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    --length: 45;
+    --offset: -38;
+    stroke-dasharray: var(--length) var(--total-length);
+    stroke-dashoffset: var(--offset);
+    transition: all .4s cubic-bezier(.645, .045, .355, 1);
+}
+
+.open-side-bar .line--1,
+.open-side-bar .line--3 {
+    --total-length: 103.35061645507812;
+    --offset: -42.35061645507812;
+}
+
+.open-side-bar .line--2 {
+    --total-length: 133;
+}
+
+.open-side-bar.show path {
+    transform: translateX(25px);
+}
+
+.open-side-bar.show .line--1,
+.open-side-bar.show .line--3 {
+    --offset: 1;
+    --length: 25;
+}
+
+.open-side-bar.show .line--2 {
+    --offset: 9;
+        --length: 65;
+
+}
+
+
+.back.show .line--1,
+.back.show .line--3 {
+    --length: 33.602325267;
+}

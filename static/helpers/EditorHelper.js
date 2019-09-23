@@ -83,4 +83,45 @@ class EditorHelper {
     static isTextSelected() {
         return !window.getSelection().isCollapsed;
     }
+
+    static isLastCharsEquals(oldDelta, numberOfChar, string) {
+        return oldDelta.ops[0].insert.slice(-numberOfChar) === string;
+    }
+
+    static isRTL(currentFormat) {
+        return currentFormat.align === 'right' && currentFormat.direction === 'rtl';
+    }
+
+    static isLTR(currentFormat) {
+        return !(currentFormat.align === 'right' && currentFormat.direction === 'rtl');
+    }
+
+    static getInsertedText(delta) {
+        // if delta is undefined, return empty array.
+        return delta ? delta.ops.filter(op => {
+            if (op.insert)
+                if (typeof op.insert === 'string') return op.insert;
+        }) : [];
+    }
+
+    static setToRTL() {
+        quill.format('direction', 'rtl');
+        quill.format('align', 'right');
+
+    }
+
+    static setToLTR() {
+        quill.format('direction', false);
+        quill.format('align', false);
+
+    }
+
+    static scrollToCaret() {
+        const currRangeContainer = window.getSelection().getRangeAt(0).endContainer;
+        const containerPos = currRangeContainer.getBoundingClientRect().top;
+
+        // if caret in the bottom/top of the window, scroll
+        if (containerPos < 200 || containerPos > 800)
+            textBox.scrollTop = currRangeContainer.offsetTop - textBox.offsetTop - 300;
+    }
 }

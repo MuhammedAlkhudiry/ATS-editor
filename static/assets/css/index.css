@@ -14,7 +14,7 @@
     overflow: hidden;
     height: 100%;
     width: 100%;
-    background-image: linear-gradient(60deg, #8CB7EE, #c2e7ff);
+    background-image: linear-gradient(60deg, #8cb7ee, #c2e7ff);
 
     /*background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);*/
 
@@ -27,7 +27,7 @@
 }
 
 
-html {
+html, body {
     /* Adjust font size */
     font-size: 100%;
     -webkit-text-size-adjust: 100%;
@@ -40,6 +40,7 @@ html {
     font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
     text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+    scroll-behavior: smooth;
 }
 
 svg, hr {
@@ -119,6 +120,7 @@ input::placeholder {
     width: 100vw;
     overflow-y: overlay;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 .icon {
@@ -150,29 +152,6 @@ input::placeholder {
 
 }
 
-::-webkit-scrollbar {
-    width: 14px;
-    height: 18px;
-}
-
-::-webkit-scrollbar-thumb {
-    height: 6px;
-    border: 4px solid rgba(0, 0, 0, 0);
-    background-clip: padding-box;
-    border-radius: 6px;
-    background-color: rgba(0, 0, 0, 0.15);
-    box-shadow: inset -1px -1px 0 rgba(0, 0, 0, 0.05), inset 1px 1px 0 rgba(0, 0, 0, 0.05);
-}
-
-::-webkit-scrollbar-button {
-    width: 0;
-    height: 0;
-}
-
-::-webkit-scrollbar-corner {
-    background-color: transparent;
-}
-
 .btn {
     cursor: pointer;
     background-color: var(--primary);
@@ -202,71 +181,6 @@ input::placeholder {
 
 .ql-custom-stroke-3 {
     opacity: 0.4;
-}
-
-
-@media print {
-
-    .for-screen, .tippy-tooltip, .swal2-show {
-        display: none !important;
-    }
-
-    .for-print {
-        display: block !important;
-    }
-
-    .ql-editor {
-        box-shadow: none;
-        margin: 0;
-    }
-
-    body {
-        background: white;
-        /*font-size: 12pt;*/
-    }
-
-    a:link,
-    a:visited {
-        color: #520;
-        background: transparent;
-        font-weight: bold;
-        text-decoration: underline;
-    }
-
-    a:link:after,
-    a:visited:after {
-        content: " (" attr(href) ") ";
-        font-size: 90%;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-        page-break-after: avoid;
-        page-break-inside: avoid
-    }
-
-    img {
-        page-break-inside: avoid;
-        page-break-after: avoid;
-    }
-
-    table, pre {
-        page-break-inside: avoid
-    }
-
-    ul, ol, dl {
-        page-break-before: avoid
-    }
-
-    body, h1, h2, h3, ol, ul, div {
-        width: auto;
-        border: 0;
-        margin: 0 5%;
-        padding: 0;
-        float: none;
-        position: static;
-        overflow: visible;
-    }
-
 }
 
 .check-box {

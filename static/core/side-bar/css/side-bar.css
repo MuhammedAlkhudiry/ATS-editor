@@ -1,0 +1,46 @@
+.side-bar-container {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    transition: .2s;
+    pointer-events: none;
+}
+
+.side-bar-container.show {
+    background-color: #e8f0fe95;
+    transition: .2s;
+}
+
+.side-bar {
+    float: right;
+    direction: rtl;
+    text-align: right;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--primary-shadow);
+    display: grid;
+    width: 200px;
+    height: 100%;
+    transition: .2s;
+    pointer-events: auto;
+    cursor: pointer;
+    transform: translateX(100%);
+
+}
+
+.side-bar.show {
+    transform: translateX(0%);
+    transition: .3s;
+}
+
+.side-bar-item {
+    padding: 4px 8px;
+
+}
+
+.side-bar-item:hover {
+    background-color: var(--light-primary);
+    transition: .2s;
+}

@@ -2,6 +2,10 @@ const requireSelectionElements = document.querySelectorAll('.require-select');
 
 textBox.addEventListener('contextmenu', (e) => {
 
+    // if clicked in table, return..
+    if (['DIV', 'TD', 'TR', 'TABLE'].includes(e.target.tagName)) return;
+
+    console.log(e.target);
     if (EditorHelper.isTextSelected()) {
         requireSelectionElements.forEach(ele => ele.classList.remove('disabled'));
     } else {

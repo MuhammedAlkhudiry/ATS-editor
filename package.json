@@ -37,6 +37,7 @@
     "quill-blot-formatter": "^1.0.5",
     "quran-json": "^1.0.1",
     "sweetalert2": "^8.14.0",
+    "tether": "^1.4.7",
     "tippy.js": "^4.3.4"
   }
 }

@@ -1,8 +1,8 @@
-const footer = document.getElementById('footer');
+const bottomBar = document.getElementById('bottom-bar');
 const currentZoomElement = document.getElementById('current-zoom');
 const zoomButtons = document.querySelectorAll('.zoom-button');
 
-footer.addEventListener('click', e => {
+bottomBar.addEventListener('click', e => {
 
     // if clicked not increase-zoom or decrease-zoom, return
     if (!['increase-zoom', 'decrease-zoom'].includes(e.target.id)) return true;
