@@ -2,7 +2,7 @@ let ayahInput = document.getElementById('ayah-input');
 let ayahList;
 
 
-ayahInput.addEventListener('input', function (e) {
+ayahInput.addEventListener('input', function () {
 
     const searchedAyah = this.value;
     /*close any already open list*/
@@ -10,7 +10,7 @@ ayahInput.addEventListener('input', function (e) {
 
     if (!searchedAyah) return;
 
-    currentFocus = -1;
+    EditorHelper.currentFocus = -1;
     /*create a DIV element that will contain the items (values):*/
     ayahList = document.createElement('DIV');
     ayahList.id = 'ayah-list';
@@ -21,22 +21,32 @@ ayahInput.addEventListener('input', function (e) {
     /*for each item in the array...*/
     for (const [i, ayah] of Ayat_NoTashkeel.entries()) {
         if (ayah.content.trim().contains(searchedAyah.trim())) {
-            /*create a DIV element for each matching element:*/
-            let ayahListItem = document.createElement('DIV');
+            setTimeout(() => {
+                /*create a DIV element for each matching element:*/
+                let ayahListItem = document.createElement('DIV');
 
-            ayahListItem.innerHTML = Ayat_Tashkeel[i].content.replace(searchedAyah, `<strong>${searchedAyah}</strong>`);
+                ayahListItem.innerHTML = Ayat_Tashkeel[i].content.replace(searchedAyah, `<strong>${searchedAyah}</strong>`);
+                ayahListItem.dataset.AyahNumber = Ayat_Tashkeel[i].surah_number;
+                ayahListItem.dataset.surahNumber = Ayat_Tashkeel[i].verse_number;
+                for (const surah of surahs) {
+                        if (parseInt(ayahListItem.dataset.surahNumber) === surah.number) {
+                            ayahListItem.dataset.surahName = surah.name;
+                        }
+                }
+                ayahListItem.addEventListener('click', function (e) {
 
-            ayahListItem.addEventListener('click', function (e) {
+                    /*insert ayah in editor*/
+                    new Inserter(this.textContent, 'ayah', {
+                        ayahNumber: ayahListItem.dataset.AyahNumber,
+                        surahNumber: ayahListItem.dataset.surahNumber,
+                        surahName: ayahListItem.dataset.surahName
+                    });
+                    closeCurrentList();
+                });
 
-                /*insert ayah in editor*/
-                new Inserter(this.textContent, 'ayah');
-                closeCurrentList();
-            });
-
-            ayahList.appendChild(ayahListItem);
-            ayahList.style.display = 'block';
-            if (ayahList.childElementCount > 15) break;
-
+                ayahList.appendChild(ayahListItem);
+                ayahList.style.display = 'block';
+            }, 0);
         }
     }
 });
@@ -49,28 +59,27 @@ ayahInput.addEventListener('keydown', function (e) {
     switch (e.key) {
 
         case 'Enter':
-            if (currentFocus > -1) {
+            if (EditorHelper.currentFocus > -1) {
                 /*and simulate a click on the "active" item:*/
-                if (ayahListItems) ayahListItems[currentFocus].click();
+                if (ayahListItems) ayahListItems[EditorHelper.currentFocus].click();
             }
             break;
         case 'ArrowUp':
-            currentFocus--;
+            EditorHelper.currentFocus--;
             /*and and make the current item more visible:*/
             addActive(ayahListItems);
-            ayahListItems[currentFocus].scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
+            ayahListItems[EditorHelper.currentFocus].scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
             e.preventDefault();
             break;
         case 'ArrowDown':
-            currentFocus++;
+            EditorHelper.currentFocus++;
             /*and and make the current item more visible:*/
             addActive(ayahListItems);
-            ayahListItems[currentFocus].scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
+            ayahListItems[EditorHelper.currentFocus].scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
             e.preventDefault();
             break;
     }
 });
-
 
 function addActive(ayahListItems) {
 
@@ -79,13 +88,13 @@ function addActive(ayahListItems) {
 
     /*start by removing the "active" class on all items*/
     removeActive(ayahListItems);
-    if (currentFocus >= ayahListItems.length) currentFocus = 0;
-    if (currentFocus < 0) currentFocus = (ayahListItems.length - 1);
+    if (EditorHelper.currentFocus >= ayahListItems.length) EditorHelper.currentFocus = 0;
+    if (EditorHelper.currentFocus < 0) EditorHelper.currentFocus = (ayahListItems.length - 1);
 
-    ayahListItems[currentFocus].classList.add('insert-list-active');
+    ayahListItems[EditorHelper.currentFocus].classList.add('list-item-active');
 }
 
 function removeActive() {
-    if (document.querySelector('.insert-list-active'))
-        document.querySelector('.insert-list-active').className = '';
+    if (document.querySelector('.list-item-active'))
+        document.querySelector('.list-item-active').className = '';
 }

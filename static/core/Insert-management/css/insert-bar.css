@@ -74,36 +74,6 @@
     visibility: hidden;
 }
 
-#insert-table-box {
-    top: 100%;
-    right: 65%;
-
-}
-
-#insert-ayah-box {
-    top: 100%;
-    right: 55%;
-
-}
-
-#insert-hadith-box {
-    top: 100%;
-    right: 45%;
-
-}
-
-#insert-poetry-box {
-    top: 100%;
-    right: 35%;
-
-}
-
-#insert-date-box {
-    top: 100%;
-    right: 25%;
-
-}
-
 .insert-box.show {
     opacity: 1;
     visibility: visible;
@@ -141,7 +111,7 @@
     background-color: #e9e9e9;
 }
 
-.insert-list-active {
+.list-item-active {
     background-color: var(--primary) !important;
     color: #ffffff;
 }

@@ -1,38 +1,39 @@
 class Inserter {
 
-    constructor(text, textType) {
-
+    constructor(text, textType, textDetails) {
+        this.text = text;
+        this.textDetails = textDetails;
         switch (textType) {
             case 'ayah':
-                Inserter.insertAyah(text);
+                this.insertAyah();
                 break;
             case 'hadith':
-                Inserter.insertHadith(text);
+                this.insertHadith();
                 break;
             case 'poetry':
-                Inserter.insertPoetry(text);
+                this.insertPoetry();
                 break;
             case 'date':
-                Inserter.insertDate(text);
+                this.insertDate();
                 break;
         }
     }
 
-    static insertAyah(text) {
-        quill.insertText(TypingHelper.getCaretPosition(), `﴿ ${text} ﴾`, 'Ayah', true);
+    insertAyah() {
+        quill.insertText(quill.getSelection(true), `﴿ ${this.text} ﴾`, 'Ayah', this.textDetails);
     }
 
-    static insertHadith(text) {
-        quill.insertText(TypingHelper.getCaretPosition(), `(${text})`, 'Hadith', true);
+    insertHadith() {
+        quill.insertText(quill.getSelection(true), `(${this.text})`, 'Hadith', this.textDetails);
 
     }
 
-    static insertPoetry(text) {
-        quill.insertText(TypingHelper.getCaretPosition(), `${text}`, 'Poetry', true);
+    insertPoetry() {
+        quill.insertText(quill.getSelection(true), `${this.text}`, 'Poetry', true);
     }
 
-    static insertDate(text) {
-        quill.insertText(TypingHelper.getCaretPosition(), `${text}`);
+    insertDate() {
+        quill.insertText(quill.getSelection(true), `${this.text}`);
 
     }
 }

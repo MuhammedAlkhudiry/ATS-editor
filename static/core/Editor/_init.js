@@ -101,9 +101,3 @@ tableModule.insertTable(3, 3);
 //
 //     console.log(sum);
 // }, 1000);
-
-
-// todo: for styling tables
-quillEditor.addEventListener('mouseup', evt => {
-    let selectedCells = EditorHelper.tableSelectedCells;
-});

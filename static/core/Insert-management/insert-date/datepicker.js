@@ -8,7 +8,7 @@
  *   Calendar class name was changed to Datepicker
  *
  * Revised on 8 January 2018:
- *   UI has been changed to adapt with W3CSS
+ *   Menus has been changed to adapt with W3CSS
  */
 'use strict';
 

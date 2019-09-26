@@ -8,7 +8,7 @@ hadithInput.addEventListener('input', function (e) {
 
     if (!searchedHadith) return;
 
-    currentFocus = -1;
+    EditorHelper.currentFocus = -1;
     /*create a DIV element that will contain the items (values):*/
     hadithList = document.createElement('DIV');
     hadithList.id = 'hadith-list';
@@ -19,22 +19,31 @@ hadithInput.addEventListener('input', function (e) {
     /*for each item in the array...*/
     for (const [i, hadith] of hadiths_NoTashkeel.entries()) {
         if (hadith.content.trim().contains(searchedHadith.trim())) {
-            /*create a DIV element for each matching element:*/
-            let hadithListItem = document.createElement('DIV');
+            setTimeout(() => {
+                let hadithListItem = document.createElement('DIV');
+                debugger
+                hadithListItem.innerHTML = hadiths_Tashkeel[i].content.replace(searchedHadith, `<strong>${searchedHadith}</strong>`);
+                hadithListItem.dataset.authenticity = hadiths_Tashkeel[i].authenticity;
+                hadithListItem.dataset.collections = hadiths_Tashkeel[i].collections.join(' و');
+                hadithListItem.dataset.narrator = hadiths_Tashkeel[i].narrator;
+                hadithListItem.dataset.hadithNumber = hadiths_Tashkeel[i].number;
 
-            hadithListItem.innerHTML = hadiths_Tashkeel[i].content.replace(searchedHadith, `<strong>${searchedHadith}</strong>`);
+                hadithListItem.addEventListener('click', function (e) {
 
-            hadithListItem.addEventListener('click', function (e) {
+                    /*insert hadith in editor*/
+                    new Inserter(this.textContent, 'hadith', {
+                        authenticity: hadithListItem.dataset.authenticity,
+                        collections: hadithListItem.dataset.collections,
+                        narrator: hadithListItem.dataset.narrator,
+                        hadithNumber: hadithListItem.dataset.hadithNumber
+                    });
+                    closeCurrentList();
+                });
 
-                /*insert hadith in editor*/
-                new Inserter(this.textContent, 'hadith');
-                closeCurrentList();
-            });
+                hadithList.appendChild(hadithListItem);
+                hadithList.style.display = 'block';
 
-            hadithList.appendChild(hadithListItem);
-            hadithList.style.display = 'block';
-            if (hadithList.childElementCount > 15) break;
-
+            }, 0);
         }
     }
 });
@@ -48,22 +57,22 @@ hadithInput.addEventListener('keydown', function (e) {
     switch (e.key) {
 
         case 'Enter':
-            if (currentFocus > -1) {
+            if (EditorHelper.currentFocus > -1) {
                 /*and simulate a click on the "active" item:*/
-                if (hadithListItems) hadithListItems[currentFocus].click();
+                if (hadithListItems) hadithListItems[EditorHelper.currentFocus].click();
             }
             break;
         case 'ArrowUp':
-            currentFocus--;
+            EditorHelper.currentFocus--;
             /*and and make the current item more visible:*/
-            hadithListItems[currentFocus].scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
+            hadithListItems[EditorHelper.currentFocus].scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
             addActive(hadithListItems);
             e.preventDefault();
             break;
         case 'ArrowDown':
-            currentFocus++;
+            EditorHelper.currentFocus++;
             /*and and make the current item more visible:*/
-            hadithListItems[currentFocus].scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
+            hadithListItems[EditorHelper.currentFocus].scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
             addActive(hadithListItems);
             e.preventDefault();
             break;
@@ -78,14 +87,14 @@ function addActive(hadithListItems) {
 
     /*start by removing the "active" class on all items*/
     removeActive(hadithListItems);
-    if (currentFocus >= hadithListItems.length) currentFocus = 0;
-    if (currentFocus < 0) currentFocus = (hadithListItems.length - 1);
+    if (EditorHelper.currentFocus >= hadithListItems.length) EditorHelper.currentFocus = 0;
+    if (EditorHelper.currentFocus < 0) EditorHelper.currentFocus = (hadithListItems.length - 1);
 
-    hadithListItems[currentFocus].classList.add('insert-list-active');
+    hadithListItems[EditorHelper.currentFocus].classList.add('list-item-active');
 }
 
 function removeActive() {
-    if (document.querySelector('.insert-list-active'))
-        document.querySelector('.insert-list-active').className = '';
+    if (document.querySelector('.list-item-active'))
+        document.querySelector('.list-item-active').className = '';
 }
 

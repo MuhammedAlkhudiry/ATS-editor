@@ -3,14 +3,25 @@
     --primary: #0066cc;
     --secondary: #1a8cff;
     --light-primary: #e8f0fe;
+
+    --black: #282828;
     --dark-gray: #555;
     --light-gray: #bbb;
     --white: #fefefe;
-    --black: #282828;
+
     --success: #009943ee;
     --light-success: #dafff5;
+
     --danger: #eb1d1dee;
     --light-danger: #ffdcde;
-    --primary-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3);
+
+    --primary-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.15);
+    --secondary-shadow: 0 1px 1px rgba(0, 0, 0, 0.05),
+    0 2px 2px rgba(0, 0, 0, 0.05),
+    0 4px 4px rgba(0, 0, 0, 0.05),
+    0 6px 8px rgba(0, 0, 0, 0.05),
+    0 8px 16px rgba(0, 0, 0, 0.05);
+
     --border-radius: .3em;
+    --quick-transition: .2s ease-in-out;
 }

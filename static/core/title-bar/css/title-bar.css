@@ -1,12 +1,17 @@
 .title-bar {
     display: grid;
     grid-template-columns: repeat(4, 30px);
-    grid-template-areas: 'close resize min settings dragging-area side-bar';
+    grid-template-areas: 'close resize min settings file-name side-bar';
     height: 30px;
-    background-image: linear-gradient(to left, #dfdfdf 100%, #dfdfdf 0%);
+    background-image: linear-gradient(to left, #efefef 100%, #efefef 0%);
     width: 100%;
     position: relative;
+    -webkit-app-region: drag;
 
+}
+
+.title-bar-icon, #file-name, #saving-status, #last-modified-date{
+    -webkit-app-region: no-drag;
 }
 
 #exit-icon {
@@ -21,7 +26,7 @@
     grid-area: min;
 }
 
-#setting-icon {
+.setting-icon {
     grid-area: settings;
 }
 
@@ -31,13 +36,16 @@
 
 .title-bar-icon {
     cursor: pointer;
-    transition: 0.3s;
+    transition: var(--quick-transition);
+    background-color: #efefef;
+    justify-self: left;
+    width: 30px;
     -webkit-app-region: no-drag;
 }
 
 #exit-icon:hover {
     background-color: #d15f5f;
-    transition: 0.3s;
+    transition: var(--quick-transition);
 }
 
 #exit-icon:hover svg {
@@ -45,30 +53,22 @@
 }
 
 .title-bar-icon:hover {
-    background-color: #eee;
-    transition: 0.3s;
+    background-color: #ffffff;
+    transition: var(--quick-transition);
 }
 
-.title-bar-icon {
-    background-color: #cbcbcb;
-    justify-self: left;
-    width: 30px;
-}
-
-#setting-icon:hover path {
+.setting-icon:hover path {
     fill: var(--primary);
 }
 
-#file-name-container {
+#file-details-container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     position: relative;
     background: transparent;
     direction: rtl;
     margin: 0 5vw;
     width: 100%;
-    /*-webkit-app-region: drag;*/
 }
 
 #file-name {
@@ -78,27 +78,43 @@
     background: transparent;
     width: 40%;
     height: 85%;
-    transition: 0.2s ease-in-out;
+    transition: var(--quick-transition);
     border-radius: .3em;
     font-size: 11px;
     font-weight: bold;
+    align-self: center;
 }
 
-#file-name:focus, #file-name:hover {
-    border-right: 2px solid var(--primary);
-    transition: 0.3s ease-in-out;
+#last-modified-date {
+    color: var(--dark-gray);
+    font-size: 12px;
+}
+
+#saving-status, #last-modified-date {
+    font-weight: bold;
+    opacity: 0.7;
+    align-self: center;
+
+}
+
+#saving-status {
+    font-size: 13px;
+}
+
+#file-name:hover {
     background-color: var(--white);
+    transition: var(--quick-transition);
 }
 
-.valid-file-name {
-    border-left: 4px solid #009943ee !important;;
-    background-color: var(--light-success) !important;
+#file-name:focus {
+    background-color: var(--white);
+    border-bottom: 2px solid var(--primary);
+    transition: var(--quick-transition);
 
 }
 
 .invalid-file-name {
-    border-left: 4px solid #eb1d1dee !important;
-    background-color: var(--light-danger) !important;
+    background-color: var(--light-danger);
 
 }
 
@@ -109,15 +125,31 @@
     width: 0;
     height: 100%;
     background-color: var(--light-primary);
-    transition: 0.6s ease-in-out;
+    transition: 0.6s;
     z-index: -1;
 }
 
 #file-name:focus ~ .focus-bg {
-    transition: 0.3s ease-in-out;
+    transition: var(--quick-transition);
     width: 100%;
     left: 0;
 }
+
+
+/* context classes */
+
+.currently-saving {
+    color: #4693ee;
+}
+
+.saved-file {
+    color: #009943ee;
+}
+
+.unsaved-file {
+    color: #eb1d1dee;
+}
+
 
 .open-side-bar {
     z-index: 1001;
@@ -128,7 +160,7 @@
 }
 
 .open-side-bar.show {
-    transform: translateX(-170px);
+    transform: translateX(-200px);
 }
 
 .open-side-bar svg {
@@ -171,12 +203,12 @@
 
 .open-side-bar.show .line--2 {
     --offset: 9;
-        --length: 65;
+    --length: 65;
 
 }
-
 
 .back.show .line--1,
 .back.show .line--3 {
     --length: 33.602325267;
 }
+

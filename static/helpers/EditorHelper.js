@@ -3,14 +3,17 @@
 class EditorHelper {
 
     static isFormatCopied = false;
+    static isAutoCompleteMenuShown = false;
     static copiedFormat = null;
     static zoomTypes = [50, 75, 100, 125, 150, 200];
-
+    static currentFocus = -1;
 
     static cleanEditor() {
         quill.setContents([]);
         quill.format('direction', 'rtl');
         quill.format('align', 'right');
+        new Notification('info', 'مستند جديد');
+        fileManager.fileNameFieldText.value = 'مستند جديد';
 
     }
 
@@ -25,11 +28,12 @@ class EditorHelper {
 
     static customGetText() {
         return quill.getContents().filter(function (op) {
-            return typeof op.insert === 'string' || op.insert.image;
+            return typeof op.insert === 'string' || op.insert.image || op.insert.video;
         }).map(function (op) {
             if (op.insert.image) {
-                return op.insert.image = 'i';
-            }
+                return op.insert.image = '҄';
+            } else if (op.insert.video)
+                return op.insert.video = '҄';
             return op.insert;
         }).join('');
     }
@@ -40,11 +44,10 @@ class EditorHelper {
             let indices = quill.getText().getIndicesOf(word);
             for (let i = 0; i < indices.length; i++) {
                 setTimeout(() => {
-                    let currentCaretPos = TypingHelper.getCaretPosition();
+                    let currentCaretPos = quill.getSelection(true);
                     quill.formatText(indices[i], word.length, 'Misspell', true);
                     TypingHelper.setCaretPosition(currentCaretPos);
                 }, 0);
-
             }
         }
     }
@@ -118,7 +121,11 @@ class EditorHelper {
 
     static scrollToCaret() {
         const currRangeContainer = window.getSelection().getRangeAt(0).endContainer;
-        const containerPos = currRangeContainer.getBoundingClientRect().top;
+        let containerPos;
+        if (currRangeContainer.nodeName === 'P')
+            containerPos = currRangeContainer.getBoundingClientRect().top;
+        else
+            containerPos = currRangeContainer.parentElement.getBoundingClientRect().top;
 
         // if caret in the bottom/top of the window, scroll
         if (containerPos < 200 || containerPos > 800)

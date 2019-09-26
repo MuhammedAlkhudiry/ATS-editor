@@ -24,20 +24,18 @@
   "license": "ISC",
   "devDependencies": {
     "devtron": "^1.4.0",
-    "electron": "^6.0.2"
+    "electron": "^6.0.2",
+    "electron-reload": "^1.4.1"
   },
   "dependencies": {
     "axios": "^0.19.0",
     "electron-localshortcut": "^3.1.0",
-    "electron-reload": "^1.4.1",
     "electron-store": "^4.0.0",
+    "fs-extra": "^8.1.0",
     "hijrah-date": "^1.0.3",
-    "html-pdf": "^2.2.0",
     "popper.js": "^1.15.0",
     "quill-blot-formatter": "^1.0.5",
-    "quran-json": "^1.0.1",
     "sweetalert2": "^8.14.0",
-    "tether": "^1.4.7",
     "tippy.js": "^4.3.4"
   }
 }

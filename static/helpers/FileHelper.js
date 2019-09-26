@@ -4,10 +4,6 @@
         return fileContent.contains('ats-editor-file');
     }
 
-    static isFileNameNotValid(fileName) {
-        return fileName.isEmpty();
-    }
-
 
     static getFileNameFromPath(path) {
 

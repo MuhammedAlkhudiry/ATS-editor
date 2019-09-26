@@ -14,13 +14,14 @@
 }
 
 .side-bar {
+    display: grid;
+    grid-template-rows: 30px;
     float: right;
     direction: rtl;
     text-align: right;
     background-color: var(--white);
     border-radius: var(--border-radius);
     box-shadow: var(--primary-shadow);
-    display: grid;
     width: 200px;
     height: 100%;
     transition: .2s;
@@ -35,12 +36,28 @@
     transition: .3s;
 }
 
-.side-bar-item {
-    padding: 4px 8px;
+.side-bar .note {
+    justify-items: normal;
+    font-size: 16px;
 
 }
 
-.side-bar-item:hover {
-    background-color: var(--light-primary);
-    transition: .2s;
+#save-file {
+    position: relative;
+}
+
+#save-extensions-list {
+    display: grid;
+    position: absolute;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--primary-shadow);
+    width: 150px;
+    font-size: 14px;
+
+}
+
+
+#save-extensions-list .menu-item * {
+    pointer-events: none;
 }

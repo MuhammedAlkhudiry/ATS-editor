@@ -16,17 +16,26 @@ tippy('#open-side-bar-icon', {
     animation: 'fade',
     size: 'small'
 });
-tippy('#open-file-icon', {
-    content: 'فتح',
-});
 
-tippy('#new-file-icon', {
-    content: 'جديد',
-});
+tippy('#docx', {
+    content: 'مناسب لفتح المستند لاحقًا في برنامج وورد',
+    placement: 'left'
 
-tippy('#save-icon', {
-    content: 'حفظ باسم',
-    multiple: true,
+});
+tippy('#pdf', {
+    content: 'مناسب لطباعة المستند',
+    placement: 'left'
+
+});
+tippy('#html', {
+    content: 'مناسب لتحرير المستند في برنامج المحرر العربي الذكي لاحقًا',
+    placement: 'left'
+
+});
+tippy('#plain-text', {
+    content: 'مناسب لحفظ المستند بصيغة txt.',
+    placement: 'left'
+
 });
 
 tippy('#saving-status-text', {

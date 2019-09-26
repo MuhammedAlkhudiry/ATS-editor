@@ -1567,7 +1567,7 @@
                     //     left: ''.concat(tableRect.x - 25, 'px'),
                     //     top: ''.concat(tableViewRect.top - containerRect.top + 22, 'px')
                     // });
-                    new popper(this.table, this.domNode, {
+                    new Popper(this.table, this.domNode, {
                             placement: 'left-start',
                             modifiers: {
                                 offset: {
@@ -1729,16 +1729,10 @@
                 }
 
                 createColorPicker(colorPickerParent) {
-                    let colors = ['#000000', '#e60000', '#ff9900',
-                        '#ffff00',
-                        '#008a00', '#0066cc', '#9933ff', '#ffffff',
-                        '#facccc', '#ffebcc', '#ffffcc', '#cce8cc',
-                        '#cce0f5', '#ebd6ff', '#bbbbbb', '#f06666',
-                        '#ffc266', '#ffff66', '#66b966', '#66a3e0',
-                        '#c285ff', '#888888', '#a10000', '#b26b00',
-                        '#b2b200', '#006100', '#0047b2', '#6b24b2',
-                        '#444444', '#5c0000', '#663d00', '#666600',
-                        '#003700', '#002966', '#3d1466'];
+                    let colors = ['#000000', '#e60000', '#ff9900', '#ffff00', '#008a00', '#0066cc', '#9933ff', '#ffffff', '#facccc',
+                        '#ffebcc', '#ffffcc', '#cce8cc', '#cce0f5', '#ebd6ff', '#bbbbbb', '#f06666', '#ffc266', '#ffff66', '#66b966',
+                        '#66a3e0', '#c285ff', '#888888', '#a10000', '#b26b00', '#b2b200', '#006100', '#0047b2', '#6b24b2', '#444444',
+                        '#5c0000', '#663d00', '#666600', '#003700', '#002966', '#3d1466'];
 
                     let colorPickerContainer = document.createElement('span');
                     colorPickerContainer.classList.add('qlbt-style-colors-picker-options');
@@ -1800,7 +1794,7 @@
                     //     left: ''.concat(tableRect.x - 25, 'px'),
                     //     top: ''.concat(tableViewRect.top - containerRect.top, 'px')
                     // });
-                    new popper(this.table, this.domNode, {placement: 'bottom-start'}
+                    new Popper(this.table, this.domNode, {placement: 'bottom-start'}
                     );
 
                     tippy(this.domNode, {
@@ -1879,12 +1873,97 @@
                     //     left: ''.concat(tableRect.x - this.domNode.clientWidth + tableRect.width, 'px'),
                     //     top: ''.concat(tableViewRect.top - containerRect.top + parent.scrollTop - COL_TOOL_HEIGHT - 5, 'px')
                     // });
-                    new popper(this.table, this.domNode, {});
+                    new Popper(this.table, this.domNode, {});
 
-                    // tippy(this.domNode, {
-                    //     content: 'التحكم بعرض الأعمدة',
-                    //     placement: 'left'
-                    // });
+                    // resizableGrid(this.table);
+                    //
+                    // function resizableGrid(table) {
+                    //     var row = table.getElementsByTagName('tr')[0],
+                    //         cols = row ? row.children : undefined;
+                    //     if (!cols) return;
+                    //
+                    //     table.style.overflow = 'hidden';
+                    //
+                    //     var tableHeight = table.offsetHeight;
+                    //
+                    //     for (var i = 0; i < cols.length; i++) {
+                    //         var div = createDiv(tableHeight);
+                    //         cols[i].appendChild(div);
+                    //         cols[i].style.position = 'relative';
+                    //         setListeners(div);
+                    //     }
+                    //
+                    //     function setListeners(div) {
+                    //         var pageX, curCol, nxtCol, curColWidth, nxtColWidth;
+                    //
+                    //         div.addEventListener('mousedown', function (e) {
+                    //             curCol = e.target.parentElement;
+                    //             nxtCol = curCol.nextElementSibling;
+                    //             pageX = e.pageX;
+                    //
+                    //             var padding = paddingDiff(curCol);
+                    //
+                    //             curColWidth = curCol.offsetWidth - padding;
+                    //             if (nxtCol)
+                    //                 nxtColWidth = nxtCol.offsetWidth - padding;
+                    //         });
+                    //
+                    //         div.addEventListener('mouseover', function (e) {
+                    //             e.target.style.borderRight = '2px solid #0000ff';
+                    //         });
+                    //
+                    //         div.addEventListener('mouseout', function (e) {
+                    //             e.target.style.borderRight = '';
+                    //         });
+                    //
+                    //         table.parentNode.addEventListener('mousemove', function (e) {
+                    //             if (curCol) {
+                    //                 var diffX = e.pageX - pageX;
+                    //
+                    //                 if (nxtCol)
+                    //                     nxtCol.style.width = (nxtColWidth - (diffX)) + 'px';
+                    //
+                    //                 curCol.style.width = (curColWidth + diffX) + 'px';
+                    //             }
+                    //         });
+                    //
+                    //         table.parentNode.addEventListener('mouseup', function (e) {
+                    //             curCol = undefined;
+                    //             nxtCol = undefined;
+                    //             pageX = undefined;
+                    //             nxtColWidth = undefined;
+                    //             curColWidth = undefined;
+                    //         });
+                    //     }
+                    //
+                    //     function createDiv(height) {
+                    //         var div = document.createElement('div');
+                    //         div.style.top = 0;
+                    //         div.style.right = 0;
+                    //         div.style.width = '5px';
+                    //         div.style.position = 'absolute';
+                    //         div.style.cursor = 'col-resize';
+                    //         div.style.userSelect = 'none';
+                    //         div.style.height = height + 'px';
+                    //         return div;
+                    //     }
+                    //
+                    //     function paddingDiff(col) {
+                    //
+                    //         // if (getStyleVal(col, 'box-sizing') === 'border-box') {
+                    //         //     return 0;
+                    //         // }
+                    //
+                    //         var padLeft = getStyleVal(col, 'padding-left');
+                    //         var padRight = getStyleVal(col, 'padding-right');
+                    //         return (parseInt(padLeft) + parseInt(padRight));
+                    //
+                    //     }
+                    //
+                    //     function getStyleVal(elm, css) {
+                    //         return (window.getComputedStyle(elm, null).getPropertyValue(css));
+                    //     }
+                    // };
                 }
 
                 createToolCell() {
@@ -2145,6 +2224,7 @@
 
                     this.cache = {};
                 }
+
                 deleteAt() {
                     return false;
                 }
@@ -2246,6 +2326,7 @@
                 tableCell() {
                     return this.parent;
                 }
+
                 deleteAt() {
                     return false;
                 }
@@ -2446,6 +2527,7 @@
                 table() {
                     return this.parent && this.parent.parent;
                 }
+
                 deleteAt() {
                     return false;
                 }
@@ -2491,6 +2573,7 @@
                 html() {
                     return this.domNode.outerHTML;
                 }
+
                 deleteAt() {
                     return false;
                 }
@@ -2908,6 +2991,7 @@
                     if (body == null) return [];
                     return body.children.map(row => row);
                 }
+
                 deleteAt() {
                     return false;
                 }
@@ -2934,6 +3018,7 @@
                         }
                     }, false);
                 }
+
                 deleteAt() {
                     return false;
                 }

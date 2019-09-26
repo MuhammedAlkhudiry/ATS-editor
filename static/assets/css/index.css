@@ -9,18 +9,16 @@
 #main-container {
     position: fixed;
     display: grid;
-    grid-template-rows: 30px 40px min-content max-content auto;
+    grid-template-rows: 30px repeat(3, max-content) auto;
     z-index: 100;
     overflow: hidden;
     height: 100%;
     width: 100%;
     background-image: linear-gradient(60deg, #8cb7ee, #c2e7ff);
 
-    /*background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);*/
-
 }
 
-#main-container:not(#text-box) {
+#main-container :not(#text-box) {
     -webkit-user-drag: none;
     user-select: none;
 
@@ -96,11 +94,13 @@ input::placeholder {
 .show {
     visibility: visible;
     opacity: 1;
+    transition: var(--quick-transition);
 }
 
 .hide {
     visibility: hidden;
     opacity: 0;
+    transition: var(--quick-transition);
 }
 
 .note {
@@ -150,6 +150,29 @@ input::placeholder {
 .icon.disabled .ql-custom-stroke-1, .icon.disabled .ql-custom-stroke-2 {
     fill: var(--dark-gray);
 
+}
+
+::-webkit-scrollbar {
+    width: 14px;
+    height: 18px;
+}
+
+::-webkit-scrollbar-thumb {
+    height: 6px;
+    border: 4px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.25);
+    box-shadow: inset -1px -1px 0 rgba(0, 0, 0, 0.05), inset 1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
 }
 
 .btn {
@@ -255,4 +278,44 @@ input::placeholder {
     transform: scale(3.5);
     opacity: 0;
     transition: all 0.6s ease;
+}
+
+.menu {
+    display: grid;
+    z-index: 100;
+    direction: rtl;
+    color: var(--dark-gray);
+    font-weight: bold;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--secondary-shadow);
+    width: 200px;
+    transition: var(--quick-transition);
+    cursor: pointer;
+    position: absolute;
+}
+
+.menu-item, .menu-item-with-arrow {
+    display: grid;
+    transition: var(--quick-transition);
+    padding: 4px 8px;
+}
+
+.menu-item:hover, .menu-item-with-arrow:hover {
+    background-color: var(--light-primary);
+    transition: var(--quick-transition);
+}
+
+.menu-item {
+    grid-template-columns: .25fr 1fr;
+}
+
+.menu-item-with-arrow {
+    grid-template-columns: .25fr 1fr .15fr;
+}
+
+.menu-item:hover path, .menu-item-with-arrow:hover path,
+.menu-item:hover span, .menu-item-with-arrow:hover span {
+    fill: var(--primary);
+    color: var(--primary);
 }

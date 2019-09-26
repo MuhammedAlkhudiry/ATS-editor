@@ -18,7 +18,9 @@ quillEditor.addEventListener('keydown', e => {
         EditorHelper.scrollToCaret();
 });
 
-quill.keyboard.addBinding({
+// auto-complete menu
+
+keyboardModule.addBinding({
     key: ' ',
     collapsed: true,
     format: {list: false},  // ...on an line that's not already a list
@@ -35,7 +37,7 @@ quill.keyboard.addBinding({
     }
 });
 
-quill.keyboard.addBinding({
+keyboardModule.addBinding({
     key: ' ',
     collapsed: true,
     prefix: /صلى الله عليه وسلم/,            // ...following a arabic number
@@ -53,7 +55,7 @@ quill.keyboard.addBinding({
     }
 });
 
-quill.keyboard.addBinding({
+keyboardModule.addBinding({
     key: ',',
     collapsed: true,
     shiftKey: null,
@@ -65,7 +67,7 @@ quill.keyboard.addBinding({
     }
 });
 
-quill.keyboard.addBinding({
+keyboardModule.addBinding({
     key: ';',
     collapsed: true,
     shiftKey: null,
@@ -78,7 +80,7 @@ quill.keyboard.addBinding({
 });
 
 
-quill.keyboard.addBinding({
+keyboardModule.addBinding({
     key: '1',
     collapsed: true,
     format: {align: 'right', direction: 'rtl'},
@@ -89,7 +91,7 @@ quill.keyboard.addBinding({
         quill.setSelection(range.index + 1);
     }
 });
-quill.keyboard.addBinding({
+keyboardModule.addBinding({
     key: '2',
     collapsed: true,
     format: {align: 'right', direction: 'rtl'},
@@ -100,7 +102,7 @@ quill.keyboard.addBinding({
         quill.setSelection(range.index + 1);
     }
 });
-quill.keyboard.addBinding({
+keyboardModule.addBinding({
     key: '3',
     collapsed: true,
     format: {align: 'right', direction: 'rtl'},
@@ -111,7 +113,7 @@ quill.keyboard.addBinding({
         quill.setSelection(range.index + 1);
     }
 });
-quill.keyboard.addBinding({
+keyboardModule.addBinding({
     key: '4',
     collapsed: true,
     format: {align: 'right', direction: 'rtl'},
@@ -122,7 +124,7 @@ quill.keyboard.addBinding({
         quill.setSelection(range.index + 1);
     }
 });
-quill.keyboard.addBinding({
+keyboardModule.addBinding({
     key: '5',
     collapsed: true,
     format: {align: 'right', direction: 'rtl'},
@@ -133,7 +135,7 @@ quill.keyboard.addBinding({
         quill.setSelection(range.index + 1);
     }
 });
-quill.keyboard.addBinding({
+keyboardModule.addBinding({
     key: '6',
     collapsed: true,
     format: {align: 'right', direction: 'rtl'},
@@ -144,7 +146,7 @@ quill.keyboard.addBinding({
         quill.setSelection(range.index + 1);
     }
 });
-quill.keyboard.addBinding({
+keyboardModule.addBinding({
     key: '7',
     collapsed: true,
     format: {align: 'right', direction: 'rtl'},
@@ -155,7 +157,7 @@ quill.keyboard.addBinding({
         quill.setSelection(range.index + 1);
     }
 });
-quill.keyboard.addBinding({
+keyboardModule.addBinding({
     key: '8',
     collapsed: true,
     format: {align: 'right', direction: 'rtl'},
@@ -166,7 +168,7 @@ quill.keyboard.addBinding({
         quill.setSelection(range.index + 1);
     }
 });
-quill.keyboard.addBinding({
+keyboardModule.addBinding({
     key: '9',
     collapsed: true,
     format: {align: 'right', direction: 'rtl'},

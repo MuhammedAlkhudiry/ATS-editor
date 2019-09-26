@@ -8,7 +8,7 @@ quill.on('text-change', function (delta, oldDelta, source) {
         EditorHelper.getInsertedText(delta)).isEmpty() || EditorHelper.isLTR(quill.getFormat())) return;
 
     const change = new TextChange();
-    change.setPreviousTextLen(delta);
+    if (delta.ops[0].retain) change.previousTextLen = delta.ops[0].retain;
 
 
     if (insertedOp.attributes) {
