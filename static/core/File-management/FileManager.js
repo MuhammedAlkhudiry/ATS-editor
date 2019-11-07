@@ -1,6 +1,5 @@
 class FileManager {
 
-
     constructor() {
         this.fileNameFieldText = document.getElementById('file-name');
         this.fileNameFieldText.addEventListener('input', this.changeFileName.bind(this));
@@ -23,24 +22,25 @@ class FileManager {
     createNewFile() {
         if (change.length() === 0) EditorHelper.cleanEditor();
         else
-            new Notification('unsaved-file')
+            new AlertHelper('unsaved-file')
                 .then((result) => {
-                    if (result.value) EditorHelper.cleanEditor();
+                    if (result.value) {
+                        EditorHelper.cleanEditor();
+                        new AlertHelper('info', 'مستند جديد');
+                        fileManager.fileNameFieldText.value = 'مستند جديد';
+                    }
                 });
     }
 
     openFile() {
         if (change.length() === 0) {
-            EditorHelper.cleanEditor();
             this.loadFile(file);
         } else
-            new Notification('unsaved-file').then((result) => {
+            new AlertHelper('unsaved-file').then((result) => {
                 if (result.value) {
-                    EditorHelper.cleanEditor();
                     this.loadFile();
                 }
             });
-
     }
 
     handleDragDropFile(e) {
@@ -50,20 +50,18 @@ class FileManager {
         if (e.dataTransfer.files.length === 0) return;
 
         if (e.dataTransfer.files.length > 1) {
-            new Notification('fail', 'تعذر فتح المستند.. يسمح بفتح مستند واحد فقط');
+            new AlertHelper('fail', 'تعذر فتح المستند.. يسمح بفتح مستند واحد فقط');
             return;
         }
 
         let draggedFile = e.dataTransfer.files[0];
 
         if (change.length() === 0) {
-            EditorHelper.cleanEditor();
             ATSFile.loadFileByDragDrop(draggedFile);
 
         } else
-            new Notification('unsaved-file').then((result) => {
+            new AlertHelper('unsaved-file').then((result) => {
                 if (result.value) {
-                    EditorHelper.cleanEditor();
                     ATSFile.loadFileByDragDrop(draggedFile);
                 }
             });
@@ -87,19 +85,21 @@ class FileManager {
         // show open file dialog, if you choose file, then read it.
         dialog.showOpenDialog(options)
             .then(result => {
-                if (!result.canceled) {
-                    loadedFile.path = result.filePaths[0];
-                    fsx.readFile(loadedFile.path, 'utf8');
-                }
-            })
-            .then(data => {
-                loadedFile.content = data;
-                FileHelper.handleLoadedFile(loadedFile, file);
+                debugger
+                if (result.canceled) return;
+                loadedFile.path = result.filePaths[0];
+                fsx.readFile(loadedFile.path, 'utf8')
+                    .then(data => {
+                        if (!data) return;
+                        loadedFile.content = data;
+                        FileHelper.handleLoadedFile(loadedFile, file);
 
-            }).catch(() => new Notification('fail', 'ثمة خلل.. تعذر فتح الملف'));
+                    });
+            })
+            .catch(() => new AlertHelper('fail', 'ثمة خلل.. تعذر فتح الملف'));
     }
 
-    loadFileByDragDrop() {
+    loadFileByDragDrop(draggedFile) {
         const docFile = 'application/msword';
         const docxFile = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
         const loadedFile = new ATSFile();
@@ -109,12 +109,12 @@ class FileManager {
             fsx.readFile(loadedFile.path, 'utf8').then(data => {
                 loadedFile.content = data;
                 FileHelper.handleLoadedFile(loadedFile, file);
-            }).catch(() => new Notification('fail', 'ثمة خلل.. تعذر فتح الملف'));
+            }).catch(() => new AlertHelper('fail', 'ثمة خلل.. تعذر فتح الملف'));
 
         } else if (draggedFile.type === docFile || draggedFile.type === docxFile) {
             // TODO: convert from doc/docx to html
         } else if (draggedFile.type !== 'image/jpeg') {
-            new Notification('fail', 'صيغة المستند غير مقبولة');
+            new AlertHelper('fail', 'صيغة المستند غير مقبولة');
         }
     }
 
@@ -123,31 +123,44 @@ class FileManager {
         document.querySelector('.for-print').innerHTML = document.querySelector('.ql-container').outerHTML;
         win.webContents.printToPDF({})
             .then((data) => fsx.writeFile(file.path, data))
-            .then(() => {
-                new Notification('success', 'حٌفظ المستند');
-                file.setSavingStatus('المستند محفوظ', 'saved-file');
-            }).catch((err) => {
-            new Notification('fail', 'تعذر حفظ المستند');
-            console.log(err);});
+            .then(() => new AlertHelper('success', 'PDF حٌفظ المستند بصيغة'))
+            .catch((err) => {
+                new AlertHelper('fail', 'تعذر حفظ المستند');
+                console.log(err);
+            });
     }
 
     saveAsHTML(file) {
         Searcher.removeStyle();
-
-        fsx.writeFile(file.path, file.content).then(() => {
-            new Notification('success', 'حٌفظ المستند');
-            file.setSavingStatus('المستند محفوظ', 'saved-file');
-
-        }).catch(() => new Notification('fail', 'تعذر حفظ المستند'));
+        file.content = 'ats-editor-file' + EditorHelper.getEditorContent();
+        debugger
+        fsx.writeFile(file.path, file.content)
+            .then(() => {
+                new AlertHelper('success', 'حٌفظ المستند');
+                file.setSavingStatus('المستند محفوظ', 'saved-file');
+            }).catch((err) => {
+            console.log(err);
+            new AlertHelper('fail', 'تعذر حفظ المستند');
+        });
     }
 
     saveAsPlainText(file) {
         Searcher.removeStyle();
-        fsx.writeFile(file.path, file.content).then(() => {
-            new Notification('success', 'حٌفظ المستند');
-            file.setSavingStatus('المستند محفوظ', 'saved-file');
+        file.content = quill.getText();
+        fsx.writeFile(file.path, file.content)
+            .then(() => {
+                new AlertHelper('success', 'حٌفظ المستند');
+                file.setSavingStatus('المستند محفوظ', 'saved-file');
+            })
+            .catch(() => new AlertHelper('fail', 'تعذر حفظ المستند'));
+    }
 
-        }).catch(() => new Notification('fail', 'تعذر حفظ المستند'));
+    saveAsDOCX(file) {
+        Searcher.removeStyle();
+        fsx.writeFile(file.path, file.content)
+            .then(() => new AlertHelper('success', 'DOCX حٌفظ المستند بصيغة'))
+            .catch(() => new AlertHelper('fail', 'تعذر حفظ المستند'));
+
     }
 }
 

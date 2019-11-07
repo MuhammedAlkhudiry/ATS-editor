@@ -1,4 +1,4 @@
- class FileHelper {
+class FileHelper {
 
     static isOpenedFileValid(fileContent) {
         return fileContent.contains('ats-editor-file');
@@ -16,11 +16,18 @@
 
         if (FileHelper.isOpenedFileValid(loadedFile.content)) {
             file = loadedFile;
+            EditorHelper.cleanEditor();
             EditorHelper.setEditorContent(file.content);
             file.setName(FileHelper.getFileNameFromPath(file.path));
-            new Notification('success', 'فُتح الملف');
+            new AlertHelper('success', 'فُتح الملف');
         } else {
-            new Notification('fail', 'المستند معطوب')
+            new AlertHelper('fail', 'المستند معطوب');
         }
+    }
+
+    static HTMLToDocx() {
+        const doc = new Document();
+
+        return doc;
     }
 };

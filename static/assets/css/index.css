@@ -46,6 +46,13 @@ svg, hr {
     fill: var(--dark-gray);
 }
 
+hr {
+    width: 85%;
+    margin: 1em auto;
+    opacity: 0.7;
+
+}
+
 ul, ol {
     list-style: none;
 }
@@ -60,7 +67,7 @@ input, button, body:not(#text-box) {
 input {
     padding: .15em .5em;
     border: 1px solid #23241f;
-    transition: .3s;
+    transition: var(--quick-transition);
 }
 
 input:focus {
@@ -72,23 +79,30 @@ input::placeholder {
     opacity: 0.4;
 }
 
-.text-input {
-    border: 1px solid #d4d4d4;
+input[type="text"] {
+    width: 100%;
     font-size: 12px;
-    border-radius: 0.4em;
+    border: 1px solid #d4d4d4;
+    border-radius: var(--border-radius);
+}
+
+input[type="text"]:focus, .btn:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 4px 0 var(--primary);
 }
 
 .text-input.valid {
-    border-color: var(--success) !important;
+    box-shadow: 0 0 4px 0 var(--success);
 }
 
 .text-input.invalid {
-    border-color: var(--danger) !important;
+    box-shadow: 0 0 4px 0 var(--danger);
 }
 
 .disabled {
     pointer-events: none;
     opacity: 0.3;
+    cursor: none;
 }
 
 .show {
@@ -112,11 +126,12 @@ input::placeholder {
     justify-items: center;
     align-items: center;
     font-weight: bold;
+    pointer-events: none;
 }
 
 
 #text-box {
-    height: 80vh;
+    height: 100vh;
     width: 100vw;
     overflow-y: overlay;
     overflow-x: hidden;
@@ -176,14 +191,30 @@ input::placeholder {
 }
 
 .btn {
-    cursor: pointer;
+    padding: 12px;
+    transition: var(--quick-transition);
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none !important;
+    color: #fff;
+    border: 0 none;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.3;
+    box-shadow: var(--primary-shadow);
     background-color: var(--primary);
-    color: #e0f0f0;
-    outline: 0;
-    transition: background-color 0.3s ease;
-    border: none;
-    border-radius: .4em;
-    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--secondary);
+    transition: all 150ms linear;
+    opacity: .85;
+}
+
+.btn:focus {
+        box-shadow: 0 0 0 .2rem #1a8cff66;
+
 }
 
 .btn:hover {
@@ -299,6 +330,7 @@ input::placeholder {
     display: grid;
     transition: var(--quick-transition);
     padding: 4px 8px;
+    cursor: pointer;
 }
 
 .menu-item:hover, .menu-item-with-arrow:hover {
@@ -308,10 +340,11 @@ input::placeholder {
 
 .menu-item {
     grid-template-columns: .25fr 1fr;
+    align-items: center;
 }
 
 .menu-item-with-arrow {
-    grid-template-columns: .25fr 1fr .15fr;
+    grid-template-columns: .3fr 1fr .15fr;
 }
 
 .menu-item:hover path, .menu-item-with-arrow:hover path,

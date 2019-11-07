@@ -18,7 +18,7 @@
     "Rich-Editor",
     "WYGIWYS",
     "NLP",
-    "quill"
+    "quilljs"
   ],
   "author": "",
   "license": "ISC",
@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
+    "docx": "^5.0.0-rc6",
     "electron-localshortcut": "^3.1.0",
     "electron-store": "^4.0.0",
     "fs-extra": "^8.1.0",

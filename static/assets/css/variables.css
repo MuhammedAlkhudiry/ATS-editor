@@ -6,13 +6,13 @@
 
     --black: #282828;
     --dark-gray: #555;
-    --light-gray: #bbb;
+    --light-gray: #EBEBEB;
     --white: #fefefe;
 
-    --success: #009943ee;
+    --success: #5abc72;
     --light-success: #dafff5;
 
-    --danger: #eb1d1dee;
+    --danger: #D75757ee;
     --light-danger: #ffdcde;
 
     --primary-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.15);
@@ -24,4 +24,7 @@
 
     --border-radius: .3em;
     --quick-transition: .2s ease-in-out;
+    --slow-transition: .5s ease-in-out;
+
+    --focus-effect: 0 0 0 2px #fff, 0 0 0 4px rgba(50, 100, 150, .4);
 }

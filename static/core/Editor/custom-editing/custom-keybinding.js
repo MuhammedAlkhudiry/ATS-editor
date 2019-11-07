@@ -14,8 +14,7 @@ quillEditor.addEventListener('keydown', e => {
 
 // always scroll to caret position
 quillEditor.addEventListener('keydown', e => {
-    if (['Enter', 'Backspace'].includes(e.key))
-        EditorHelper.scrollToCaret();
+    EditorHelper.scrollToCaret();
 });
 
 // auto-complete menu

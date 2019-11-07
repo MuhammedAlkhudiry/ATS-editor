@@ -7,23 +7,25 @@ quill.on('text-change', function (delta, oldDelta, source) {
     if ((insertedOp =
         EditorHelper.getInsertedText(delta)).isEmpty() || EditorHelper.isLTR(quill.getFormat())) return;
 
-    const change = new TextChange();
-    if (delta.ops[0].retain) change.previousTextLen = delta.ops[0].retain;
+    let change = {
+        retain: delta.ops[0].retain
+    };
 
-
-    if (insertedOp.attributes) {
-        if (insertedOp.length < 5) {
-            if ('Ayah' in insertedOp.attributes) {
-                change.removeFormat({Ayah: false});
-            } else if ('Hadith' in insertedOp.attributes) {
-                change.removeFormat({Hadith: false});
-            } else if ('Misspell' in insertedOp.attributes) {
-                change.removeFormat({Misspell: false});
-            }
-            quill.updateContents({
-                ops: change.ops
-            });
+    if (insertedOp.attributes && insertedOp.length < 5) {
+        if ('Ayah' in insertedOp.attributes) {
+            change = {...change, Ayah: false};
+        } else if ('Hadith' in insertedOp.attributes) {
+            change = {...change, Hadith: false};
+        } else if ('Misspell' in insertedOp.attributes) {
+            change = {...change, Misspell: false};
         }
+        let ops = [
+            change.retain,
+            change[1],
+        ];
+        quill.updateContents({
+            ops: ops
+        });
     }
 });
 

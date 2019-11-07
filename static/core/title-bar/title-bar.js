@@ -1,20 +1,20 @@
 /* ------------------------- controlling main window ------------------------ */
+const ExitIcons = document.getElementsByClassName('exit-icon');
 
-document.getElementById('exit-icon').addEventListener('click', e => {
-    if (change.length() > 0) {
-        new Notification('unsaved-file').then(result => {
-            // if result.value means 'yes' pressed, else no.
-            if (result.value) {
-                win.close();
+[...ExitIcons].forEach(icon => icon.addEventListener('click', e => {
+        if (change.length() === 0) {
+            win.close();
+        } else
+            new AlertHelper('unsaved-file').then(result => {
+                // if result.value means 'yes' pressed, else no.
+                if (result.value) {
+                    win.close();
+                }
+            });
 
-                // make sure the app is closed.
-                if (!win.isDestroyed()) win.destroy();
-            }
-        });
-    } else {
-        win.close();
-    }
-});
+        // make sure the app is closed.
+        if (!win.isDestroyed()) win.destroy();
+    }));
 
 win.on('unmaximize', e => resizeIcon.innerHTML =
     `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="18" height="18" viewBox="0 0 24 24"><path d="M4,4H20V20H4V4M6,8V18H18V8H6Z"></path></svg>`);
@@ -29,7 +29,8 @@ document.getElementById('min-icon').addEventListener('click', e => win.minimize(
 /* -------------------------------------------------------------------------- */
 
 // When the user scrolls the page
-textBox.addEventListener('scroll', e => textBox.scrollTop > 0 ? (insertBar.style.boxShadow = '0px 1px 5px #00000020') : (insertBar.style.boxShadow = 'none'));
+textBox.addEventListener('scroll', e => textBox.scrollTop > 0 ? (insertBar.style.boxShadow = '0px 1px 8px #00000035') :
+    (insertBar.style.boxShadow = 'none'));
 
 /* -------------------------------------------------------------------------- */
 

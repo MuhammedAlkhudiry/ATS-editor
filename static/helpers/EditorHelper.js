@@ -1,7 +1,7 @@
 'use strict';
 
 class EditorHelper {
-
+    static isPoetryInserted = false;
     static isFormatCopied = false;
     static isAutoCompleteMenuShown = false;
     static copiedFormat = null;
@@ -12,9 +12,6 @@ class EditorHelper {
         quill.setContents([]);
         quill.format('direction', 'rtl');
         quill.format('align', 'right');
-        new Notification('info', 'مستند جديد');
-        fileManager.fileNameFieldText.value = 'مستند جديد';
-
     }
 
     static setEditorContent(htmlString) {
@@ -130,5 +127,16 @@ class EditorHelper {
         // if caret in the bottom/top of the window, scroll
         if (containerPos < 200 || containerPos > 800)
             textBox.scrollTop = currRangeContainer.offsetTop - textBox.offsetTop - 300;
+    }
+
+    static isCaretInTable() {
+        let caretContainer = window.getSelection().getRangeAt(0).endContainer;
+
+        if (!caretContainer.dataset) return false;
+        else return caretContainer.dataset.row;
+    };
+
+    static insertEmptyLineIn(index = quill.getSelection()) {
+        quill.insertText(index, '\n');
     }
 }

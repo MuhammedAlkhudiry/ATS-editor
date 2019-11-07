@@ -1,16 +1,21 @@
 .side-bar-container {
     position: absolute;
     z-index: 1000;
+    display: grid;
+    grid-template-columns: auto 200px;
     width: 100%;
     height: 100%;
     background-color: transparent;
-    transition: .2s;
     pointer-events: none;
 }
 
-.side-bar-container.show {
+.cover-while-side-bar-open {
+    transition: var(--quick-transition);
+}
+
+.side-bar-container.show .cover-while-side-bar-open {
     background-color: #e8f0fe95;
-    transition: .2s;
+    transition: var(--slow-transition);
 }
 
 .side-bar {
@@ -24,26 +29,21 @@
     box-shadow: var(--primary-shadow);
     width: 200px;
     height: 100%;
-    transition: .2s;
+    transition: var(--quick-transition);
     pointer-events: auto;
-    cursor: pointer;
     transform: translateX(100%);
 
 }
 
 .side-bar.show {
     transform: translateX(0%);
-    transition: .3s;
+    transition: var(--quick-transition);
 }
 
 .side-bar .note {
     justify-items: normal;
     font-size: 16px;
 
-}
-
-#save-file {
-    position: relative;
 }
 
 #save-extensions-list {

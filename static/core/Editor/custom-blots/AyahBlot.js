@@ -4,12 +4,14 @@ class AyahBlot extends Inline {
         node.dataset.ayahNumber = ayahDetails.ayahNumber;
         node.dataset.surahNumber = ayahDetails.surahNumber;
         node.dataset.surahName = ayahDetails.surahName;
-        return node
+
+        tippy(node, {
+            content: ` الآية: ${node.dataset.ayahNumber} <br> ${node.dataset.surahName}`,
+        });
+        return node;
     }
 }
 
 AyahBlot.blotName = 'Ayah';
 AyahBlot.className = 'ql-ayah';
 AyahBlot.tagName = 'div';
-
-//  AyahBlot;

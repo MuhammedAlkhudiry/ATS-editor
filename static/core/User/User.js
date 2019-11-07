@@ -6,18 +6,17 @@ class User {
     ignoreWords = [];
 
 
-    constructor(settings, shortcuts) {
+    constructor(settings) {
         fsx.readJson('./static/core/User/user_dictionary.json').then(data => this.dictionary = data);
         this.settings = settings;
-        this.shortcuts = shortcuts;
     }
 
-    addToDictionary() {
-        fsx.writeJson('./static/core/User/user_dictionary.json').then(() => new Notification('success', 'أُضيفت الكلمة إلى القاموس الشخصي'));
+    addToDictionary(word) {
+        fsx.writeJson('./static/core/User/user_dictionary.json').then(() => new AlertHelper('success', 'أُضيفت الكلمة إلى القاموس الشخصي'));
         fsx.readJson('./static/core/User/user_dictionary.json').then(data => this.dictionary = data);
     }
 
-    removeFromDictionary() {
+    removeFromDictionary(word) {
 
     }
 
@@ -28,5 +27,10 @@ class User {
     addToIgnoreWords() {
         this.ignoreWords.push(misspelledWord.textContent);
     }
+
+    removeFromIgnoreWords(word) {
+
+    }
+
 }
 

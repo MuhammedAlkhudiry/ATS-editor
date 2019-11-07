@@ -3,7 +3,7 @@ const requireSelectionElements = document.querySelectorAll('.require-select');
 textBox.addEventListener('contextmenu', (e) => {
 
     // if clicked in table, return..
-    if (['DIV', 'TD', 'TR', 'TABLE'].includes(e.target.tagName)) return;
+    if (['TD', 'TR', 'TABLE'].includes(e.target.tagName)) return;
 
     console.log(e.target);
     if (EditorHelper.isTextSelected()) {
@@ -27,22 +27,25 @@ textBox.addEventListener('blur', hideContextMenu);
 
 contextMenu.addEventListener('click', e => {
     const clickedItem = e.target;
-    const selectedWord = EditorHelper.getCurrentWord();
-    console.log(selectedWord);
+
+    e.preventDefault();
     switch (clickedItem.id) {
         case 'ctx-cut':
-            document.execCommand('cut');
+            document.execCommand('Cut');
             break;
         case 'ctx-copy':
-            document.execCommand('copy');
+            document.execCommand('Copy');
             break;
         case 'ctx-paste':
-            document.execCommand('paste');
+            if (!quill.hasFocus())
+                quill.focus();
+            document.execCommand('Paste');
             break;
         case 'ctx-delete':
-            document.execCommand('delete');
+            document.execCommand('Delete');
             break;
         default:
+            const selectedWord = EditorHelper.getCurrentWord();
             if (clickedItem.classList.contains('add-to-dictionary'))
                 user.addToDictionary(selectedWord);
             else if (clickedItem.classList.contains('ignore-word'))

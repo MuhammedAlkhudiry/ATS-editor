@@ -80,7 +80,7 @@
 
 #correction-menu li:hover {
     background-color: var(--light-primary);
-    transition: .3s;
+    transition: var(--quick-transition);
 }
 
 #correction-menu li svg {

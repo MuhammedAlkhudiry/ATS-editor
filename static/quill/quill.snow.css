@@ -50,7 +50,6 @@
 .ql-editor {
     box-sizing: border-box;
     line-height: 1.42;
-    /*height: 100%;*/
     width: 794px;
     min-height: 1123px;
     outline: none;
@@ -61,7 +60,7 @@
     text-align: left;
     white-space: pre-wrap;
     word-wrap: break-word;
-    box-shadow: 0 0 6px #00000035;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     background-color: #ffffff;
     z-index: -1;
     transition: 0.3s;
@@ -814,12 +813,12 @@
 
 .ql-snow .ql-editor a {
     text-decoration: underline;
-    transition: .3s;
+    transition: var(--quick-transition);
 }
 
 .ql-snow .ql-editor a:hover {
     background-color: var(--light-primary);
-    transition: .3s;
+    transition: var(--quick-transition);
 }
 
 .ql-snow .ql-editor blockquote {
@@ -906,7 +905,8 @@
 }
 
 .ql-snow .ql-picker.ql-expanded .ql-picker-label {
-    color: #ccc;
+    opacity: .8;
+    /*color: #ccc;*/
     z-index: 2;
 }
 
@@ -1183,7 +1183,7 @@
 
 
 .ql-toolbar.ql-snow .ql-picker-label {
-    border: 1px solid transparent;
+    /*border: 1px solid transparent;*/
 }
 
 .ql-toolbar.ql-snow .ql-picker-options {
@@ -1331,7 +1331,7 @@ table td {
     color: #595959;
     overflow: hidden;
     text-overflow: ellipsis;
-    transition: .3s;
+    transition: var(--quick-transition);
     border: none;
 }
 
@@ -1434,18 +1434,18 @@ button.ql-copy-format.ql-active {
 #insertColumnLeft:hover path, #insertColumnRight:hover path, #insertRowUp:hover path,
 #insertRowDown:hover {
     fill: var(--success);
-    transition: .3s;
+    transition: var(--quick-transition);
 
 }
 
 #deleteColumn:hover path, #deleteRow:hover path, #deleteTable:hover path {
     fill: var(--danger);
-    transition: .3s;
+    transition: var(--quick-transition);
 }
 
 #insertColumnLeft path, #insertColumnRight path, #insertRowUp path,
 #insertRowDown, #deleteColumn path, #deleteRow path, #deleteTable path {
-    transition: .3s;
+    transition: var(--quick-transition);
 }
 
 .qlbt-operation-menu *:not(hr):hover {
@@ -1457,7 +1457,7 @@ button.ql-copy-format.ql-active {
     border: 1px var(--dark-gray) dotted;
     background-color: var(--white);
     padding: 30px;
-    transition: .3s;
+    transition: var(--quick-transition);
 }
 
 .qlbt-style-colors-picker-options {

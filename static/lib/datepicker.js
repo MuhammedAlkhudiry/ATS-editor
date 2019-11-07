@@ -26,7 +26,8 @@ function Datepicker(isHijr, year, month, firstDay, lang, theme, width) {
             return el;
         },
         addEvt = function (el, ev, cb) {
-            if (window.addEventListener) el.addEventListener(ev, cb); else if (el.attachEvent) el.attachEvent('on' + ev, cb); else el['on' + ev] = cb;
+            if (window.addEventListener) el.addEventListener(ev, cb); else if (el.attachEvent) el.attachEvent('on' + ev, cb); else el['on' + ev] =
+                cb;
         },
         dpickElm = createElm('div', 'zulns-datepicker w3-card-4'),
         headerElm = createElm('div', 'w3-display-container w3-theme'),
@@ -124,8 +125,7 @@ function Datepicker(isHijr, year, month, firstDay, lang, theme, width) {
                 if (i <= ppdr || ppdr + pcdr < i) {
                     grid.disabled = true;
                     grid.style.cursor = 'default';
-                }
-                else {
+                } else {
                     grid.className += ' w3-ripple date';
                     if (i % 7 === isFri) grid.className += ' w3-hover-teal';
                     else if (i % 7 === isSun) grid.className += ' w3-hover-red';
@@ -286,8 +286,7 @@ function Datepicker(isHijr, year, month, firstDay, lang, theme, width) {
             if (td) {
                 dispDate.setTime(getCurTime());
                 dispDate.setDate(1);
-            }
-            else {
+            } else {
                 let d = dispDate.getDate();
                 dispDate.setDate(1);
                 if (d > 15) dispDate.setMonth(dispDate.getMonth() + 1);
@@ -325,19 +324,15 @@ function Datepicker(isHijr, year, month, firstDay, lang, theme, width) {
             if (0 <= t && t < dtl) {
                 oldTheme = theme;
                 theme = dt[t];
-            }
-            else newTheme();
-        }
-        else if (typeof t == 'string') {
+            } else newTheme();
+        } else if (typeof t == 'string') {
             t = t.toLowerCase();
             for (; i < dtl; i++) if (dt[i] === t) break;
             if (i < dtl) {
                 oldTheme = theme;
                 theme = dt[i];
-            }
-            else newTheme();
-        }
-        else newTheme();
+            } else newTheme();
+        } else newTheme();
         applyTheme();
     };
     dp.setTime = function (t) {
@@ -381,8 +376,7 @@ function Datepicker(isHijr, year, month, firstDay, lang, theme, width) {
     if (typeof lang == 'string') {
         lang = lang.toLowerCase();
         if (typeof Datepicker.language[lang] != 'object') lang = 'en';
-    }
-    else lang = 'en';
+    } else lang = 'en';
     Datepicker.lang = lang;
     dp.setTheme(theme);
     width = HijriDate.int(width, 300);
@@ -391,8 +385,7 @@ function Datepicker(isHijr, year, month, firstDay, lang, theme, width) {
     if (!isNaN(year) && isNaN(month)) {
         dispDate.setTime(getFixTime(year));
         dispDate.setDate(1);
-    }
-    else {
+    } else {
         dispDate.setTime(getCurTime());
         dispDate.setDate(1);
         if (!isNaN(year)) dispDate.setFullYear(year);
@@ -427,8 +420,7 @@ Date.prototype.getYearString = function (y) {
             y = 1 - y;
         }
         y = y + ' ' + e[i];
-    }
-    else y = y.toString();
+    } else y = y.toString();
     return y;
 };
 HijriDate.prototype.getDateString = function () {
@@ -461,8 +453,7 @@ HijriDate.prototype.getYearString = function (y) {
             y = 1 - y;
         }
         y = y + ' ' + e[i];
-    }
-    else y = y.toString();
+    } else y = y.toString();
     return y;
 };
 Object.defineProperty(Datepicker.prototype, 'onPicked', {value: null, writable: true});
@@ -475,7 +466,10 @@ Object.defineProperty(Datepicker, 'getDigit', {
         return d;
     }
 });
-Object.defineProperty(Datepicker, 'themes', {value: ['amber', 'aqua', 'black', 'blue', 'blue-grey', 'brown', 'cyan', 'dark-grey', 'deep-orange', 'deep-purple', 'green', 'grey', 'indigo', 'khaki', 'light-blue', 'light-green', 'lime', 'orange', 'pink', 'purple', 'red', 'teal', 'yellow']});
+Object.defineProperty(Datepicker, 'themes', {
+    value: ['amber', 'aqua', 'black', 'blue', 'blue-grey', 'brown', 'cyan', 'dark-grey', 'deep-orange', 'deep-purple', 'green', 'grey',
+        'indigo', 'khaki', 'light-blue', 'light-green', 'lime', 'orange', 'pink', 'purple', 'red', 'teal', 'yellow']
+});
 Object.defineProperty(Datepicker, 'lang', {value: 'en', writable: true});
 Object.defineProperty(Datepicker, 'getVal', {
     value: function (key) {
@@ -487,7 +481,8 @@ Datepicker.language = {
         isRTL: false,
         eraSuffix: ['AD', 'BC'],
         hEraSuffix: ['H', 'BH'],
-        monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November',
+            'December'],
         weekdayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         weekdayShortNames: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     }
@@ -499,14 +494,17 @@ Datepicker.language['id'] = {
     monthNames: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
     weekdayNames: ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum\'at', 'Sabtu'],
     weekdayShortNames: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'],
-    hMonthNames: ['Muharam', 'Safar', 'Rabi\'ul-Awal', 'Rabi\'ul-Akhir', 'Jumadil-Awal', 'Jumadil-Akhir', 'Rajab', 'Sya\'ban', 'Ramadhan', 'Syawwal', 'Zulqa\'idah', 'Zulhijjah']
+    hMonthNames: ['Muharam', 'Safar', 'Rabi\'ul-Awal', 'Rabi\'ul-Akhir', 'Jumadil-Awal', 'Jumadil-Akhir', 'Rajab', 'Sya\'ban', 'Ramadhan',
+        'Syawwal', 'Zulqa\'idah', 'Zulhijjah']
 };
 Datepicker.language['ar'] = {
     isRTL: true,
     digit: ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'],
     eraSuffix: ['ميلادي', 'قبل الميلاد'],
     hEraSuffix: ['هجرة', 'قبل الهجرة'],
-    monthNames: ['يَنايِر', 'فِبرايِر', 'مارِس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغُسطُس', 'سِبْتَمْبِر', 'أکْتببِر', 'نوفَمْبِر', 'ديسَمْبِر'],
+    monthNames: ['يَنايِر', 'فِبرايِر', 'مارِس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغُسطُس', 'سِبْتَمْبِر', 'أکْتببِر', 'نوفَمْبِر',
+        'ديسَمْبِر'],
     weekdayNames: ['الأحَد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'],
-    hMonthNames: ['المُحَرَّم', 'صَفَر ', 'رَبيع الاوَّل', 'رَبيع الآخِر', 'جُمادى الأولى', 'جُمادى الآخِرة', 'رَجَب', 'شَعبان', 'رَمَضان', 'شَوّال', 'ذو القَعدة', 'ذو الحِجّة']
+    hMonthNames: ['المُحَرَّم', 'صَفَر ', 'رَبيع الاوَّل', 'رَبيع الآخِر', 'جُمادى الأولى', 'جُمادى الآخِرة', 'رَجَب', 'شَعبان', 'رَمَضان',
+        'شَوّال', 'ذو القَعدة', 'ذو الحِجّة']
 };

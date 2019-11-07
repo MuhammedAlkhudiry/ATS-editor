@@ -2,14 +2,14 @@
     background-color: #f8ff00;
     animation: fade-in-bck 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
     display: inline;
-    transition: .2s;
+    transition: var(--quick-transition);
 }
 
 .ql-searched-string:hover {
     background-color: #f9ff44;
     border-radius: 5px;
     padding: 2px;
-    transition: .2s;
+    transition: var(--quick-transition);
 }
 
 .ql-mis-spell {
@@ -33,12 +33,12 @@
     font-family: uthmanic-font;
     animation: fade-in-bck 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
     display: inline;
-    transition: .2s;
+    transition: var(--quick-transition);
 }
 
 .ql-ayah:hover {
-    transition: .2s;
-    background: #03FB7122;
+    transition: var(--quick-transition);
+    background: #03fb7122;
     border-radius: .4em;
 
 }
@@ -48,11 +48,11 @@
     font-family: "Traditional Arabic";
     animation: fade-in-bck 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
     display: inline;
-    transition: .2s;
+    transition: var(--quick-transition);
 }
 
 .ql-hadith:hover {
-    transition: .2s;
+    transition: var(--quick-transition);
     background: #63491122;
     border-radius: .4em;
 
@@ -61,14 +61,49 @@
 .ql-poetry {
     color: #26323dee;
     animation: fade-in-bck 0.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-    transition: .2s;
+    transition: var(--quick-transition);
     width: fit-content;
     margin: 0 auto;
 }
 
 .ql-poetry:hover {
-    transition: .2s;
+    transition: var(--quick-transition);
     background: #26323d11;
     border-radius: .4em;
     border: 1px #26323d33 solid;
+}
+
+.ql-page-breaker {
+    border: none;
+    letter-spacing: 2px;
+    font-size: 14px;
+}
+
+.ql-page-breaker:before {
+    content: '-----------------------------------------------\002702 -----------------------------------------------------------';
+
+}
+
+.ql-page-breaker:hover {
+    transition: var(--quick-transition);
+    background: var(--light-gray);
+    border-top: 1px dashed #424242;
+    border-bottom: 1px dashed #fff;
+}
+
+.ql-divider {
+    border: none;
+    color: #111;
+    letter-spacing: 1em;
+    text-align: center;
+    font-size: 16px;
+    user-select: none;
+}
+
+.ql-divider:before {
+    content: '● ● ●';
+}
+
+.ql-divider:hover {
+    transform: scale(1.5);
 }

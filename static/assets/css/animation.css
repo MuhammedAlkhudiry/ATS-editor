@@ -16,12 +16,12 @@
     -webkit-animation: slide-in 0.4s forwards;
 }
 
-.slide-in .insert-icon {
+.slide-in .advanced-toolbar-icon {
     visibility: visible;
     opacity: 0.8;
 }
 
-.slide-out .insert-icon {
+.slide-out .advanced-toolbar-icon {
     visibility: hidden;
     opacity: 0;
 }

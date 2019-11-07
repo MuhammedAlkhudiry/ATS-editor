@@ -10,3 +10,7 @@
     font-size: .75rem !important;
     width: auto !important;
 }
+
+.swal2-styled.swal2-confirm{
+    background-color: var(--secondary);
+}

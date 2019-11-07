@@ -3,7 +3,7 @@
     z-index: 100;
     direction: rtl;
     color: var(--black);
-    transition: .3s;
+    transition: var(--quick-transition);
     position: absolute;
     font-size: 12px;
 }

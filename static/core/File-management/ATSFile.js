@@ -44,8 +44,9 @@ class ATSFile {
     saveFile(e) {
         if (e.defaultPrevented) return;
         if (fileManager.fileNameFieldText.value.isEmpty()) {
-            new Notification('fail', 'خانة اسم المستند فارغة');
+            new AlertHelper('fail', 'خانة اسم المستند فارغة');
             fileManager.fileNameFieldText.focus();
+            openSideBarIcon.click();
             fileManager.changeFileName();
             return;
         }
@@ -64,8 +65,7 @@ class ATSFile {
                 {name: chosenExt, extensions: [chosenExt]},
             ],
         }).then(path => {
-            this.path = path;
-            this.content = 'ats-editor-file' + EditorHelper.getEditorContent();
+            this.path = path.filePath;
             switch (chosenExt) {
                 case 'html':
                     fileManager.saveAsHTML(this);
@@ -74,19 +74,20 @@ class ATSFile {
                     fileManager.saveAsPDF(this);
                     break;
                 case'docx':
+                    fileManager.saveAsDOCX(this);
                     break;
                 case'txt':
                     fileManager.saveAsPlainText(this);
                     break;
             }
             change = new Delta();
-        }).catch(() => new Notification('fail', 'ثمة خلل.. تعذر حفظ المستند'));
+        }).catch(() => new AlertHelper('fail', 'ثمة خلل.. تعذر حفظ المستند'));
 
 
     }
 
     autoSave() {
-        if (!change.length() > 0 || !this.path) return;
+        if (change.length() === 0 || !this.path) return;
 
         fsx.pathExists(this.path)
             .then(exists => {
@@ -98,10 +99,8 @@ class ATSFile {
                 }
             })
             .then(() => this.setSavingStatus('المستند محفوظ', 'saved-file'))
-            .catch(() => new Notification('fail', 'تعذر حفظ المستند.. المستند الحالي منقول أو محذوف'));
+            .catch(() => new AlertHelper('fail', 'تعذر حفظ المستند.. المستند الحالي منقول أو محذوف'));
     }
-
-
 }
 
 let file = new ATSFile(),

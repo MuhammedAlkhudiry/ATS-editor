@@ -1,5 +1,5 @@
 'use strict';
-class Notification {
+class AlertHelper {
 
 
     constructor(msgType, msg = '') {

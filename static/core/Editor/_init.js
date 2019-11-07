@@ -40,6 +40,8 @@ Quill.register(SpellingErrorBlot);
 Quill.register(AyahBlot);
 Quill.register(hadithBlot);
 Quill.register(PoetryBlot);
+Quill.register(PageBreakerBlot);
+Quill.register(DividerBlot);
 
 /* -------------------------------------------------------------------------- */
 
@@ -77,7 +79,6 @@ const quill = new Quill('#editor', {
     },
 });
 
-
 quill.format('direction', 'rtl');
 quill.format('align', 'right');
 
@@ -87,10 +88,10 @@ const keyboardModule = quill.getModule('keyboard');
 const quillEditor = document.getElementsByClassName('ql-editor')[0];
 quillEditor.classList.add('zoom-100');
 
-quill.insertText(0, 'صلى الله عليه وسلم');
+// quill.insertText(0, 'صلى الله عليه وسلم');
 // quill.insertText(22, 'أحُمد في المسجد');
 // quill.insertText(44, 'أحمد في المسجد');
-tableModule.insertTable(3, 3);
+// tableModule.insertTable(3, 3);
 
 
 // for pagination
