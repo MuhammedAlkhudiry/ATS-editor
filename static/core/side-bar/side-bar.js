@@ -17,7 +17,6 @@ saveIcon.addEventListener('click', (e) => {
 });
 
 document.addEventListener('click', (e) => {
-    console.log(e.target);
     if (['UL', 'LI'].includes(e.target.tagName) || e.target === openSideBarIcon || !sideBarContainer.classList.contains('show')) return;
     openSideBarIcon.click();
 });

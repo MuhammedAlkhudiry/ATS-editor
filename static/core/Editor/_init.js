@@ -72,6 +72,8 @@ const quill = new Quill('#editor', {
         blotFormatter: {},
         history: {
             maxStack: 500,
+            delay: 500,
+            userOnly: false
         },
     },
     keyboard: {
@@ -82,23 +84,15 @@ const quill = new Quill('#editor', {
 quill.format('direction', 'rtl');
 quill.format('align', 'right');
 
+const quillEditor = document.getElementsByClassName('ql-editor')[0];
+quillEditor.classList.add('zoom-100');
+
 const tableModule = quill.getModule('better-table');
 const toolbarModule = quill.getModule('toolbar');
 const keyboardModule = quill.getModule('keyboard');
-const quillEditor = document.getElementsByClassName('ql-editor')[0];
-quillEditor.classList.add('zoom-100');
+const historyModule = quill.getModule('history');
 
 // quill.insertText(0, 'صلى الله عليه وسلم');
 // quill.insertText(22, 'أحُمد في المسجد');
 // quill.insertText(44, 'أحمد في المسجد');
 // tableModule.insertTable(3, 3);
-
-
-// for pagination
-// setInterval(() => {
-//     let sum = Array.from(textBox.querySelectorAll('p')).map(para => {
-//         return para.clientHeight;
-//     }).reduce((a, b) => a + b, 0);
-//
-//     console.log(sum);
-// }, 1000);

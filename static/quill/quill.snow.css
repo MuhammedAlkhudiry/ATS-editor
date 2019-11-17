@@ -1179,8 +1179,14 @@
 
 .ql-toolbar.ql-snow .ql-formats {
     margin: 8px 0 0 15px;
+    transition: var(--quick-transition);
 }
 
+.ql-toolbar.ql-snow .ql-formats:hover {
+    /*background-color: var(--light-gray);*/
+    border-radius: var(--border-radius);
+    transition: var(--quick-transition);
+}
 
 .ql-toolbar.ql-snow .ql-picker-label {
     /*border: 1px solid transparent;*/

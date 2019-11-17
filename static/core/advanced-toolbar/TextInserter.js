@@ -62,7 +62,7 @@ class TextInserter {
                     setTimeout(() => {
                         let textListItem = document.createElement('DIV');
                         textListItem.innerHTML =
-                            textToSearch.withTashkeel[i].content.replace(searchedText, `<strong>${searchedText}</strong>`);
+                            textToSearch.withTashkeel[i].content.replace(searchedText, `<strong style="color: var(--danger)">${searchedText}</strong>`);
                         if (ayahOrHadith === 'ayah') {
                             textListItem.dataset.AyahNumber = textToSearch.withTashkeel[i].surah_number;
                             textListItem.dataset.surahNumber = textToSearch.withTashkeel[i].verse_number;

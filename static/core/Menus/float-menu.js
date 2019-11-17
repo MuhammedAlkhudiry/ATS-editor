@@ -1,13 +1,11 @@
 let floatingMenu = document.getElementById('float-menu');
 quill.on('selection-change', function () {
-
-    // no text selected..
     if (window.getSelection().isCollapsed) return;
 
     let sel = window.getSelection(),
         rect = sel.getRangeAt(0).getBoundingClientRect();
 
-    floatingMenu.style.top = `${rect.y + 20}px`;
+    floatingMenu.style.top = `${rect.y - 30}px`;
     floatingMenu.style.left = `${rect.x - floatingMenu.clientWidth + rect.width}px`;
 
     floatingMenu.className = 'show';

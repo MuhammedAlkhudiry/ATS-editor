@@ -110,9 +110,5 @@ let observer = new MutationObserver(mutationRecords => {
 
 });
 
-// observe everything except attributes
-observer.observe(textBox, {
-    childList: true, // observe direct children
-    subtree: true, // and lower descendants too
-    characterDataOldValue: true // pass old data to callback
-});
+
+observer.observe(textBox, {childList: true, subtree: true, characterDataOldValue: true});

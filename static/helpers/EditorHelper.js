@@ -7,6 +7,7 @@ class EditorHelper {
     static copiedFormat = null;
     static zoomTypes = [50, 75, 100, 125, 150, 200];
     static currentFocus = -1;
+    static userText = [];
 
     static cleanEditor() {
         quill.setContents([]);
@@ -139,4 +140,10 @@ class EditorHelper {
     static insertEmptyLineIn(index = quill.getSelection()) {
         quill.insertText(index, '\n');
     }
+
+    static updateUserText() {
+        EditorHelper.userText = quill.getText().split(' ');
+    }
 }
+
+setInterval(() => EditorHelper.updateUserText(), 5000);

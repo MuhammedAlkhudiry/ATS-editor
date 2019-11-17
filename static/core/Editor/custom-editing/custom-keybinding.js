@@ -39,7 +39,7 @@ keyboardModule.addBinding({
 keyboardModule.addBinding({
     key: ' ',
     collapsed: true,
-    prefix: /صلى الله عليه وسلم/,            // ...following a arabic number
+    prefix: /صلى الله عليه وسلم/,
     handler: (range, context) => {
         let change = [
             {insert: 'ﷺ '},
@@ -65,7 +65,6 @@ keyboardModule.addBinding({
         quill.setSelection(range.index + 1);
     }
 });
-
 keyboardModule.addBinding({
     key: ';',
     collapsed: true,
@@ -77,7 +76,6 @@ keyboardModule.addBinding({
         quill.setSelection(range.index + 1);
     }
 });
-
 
 keyboardModule.addBinding({
     key: '1',

@@ -10,7 +10,7 @@
     font-size: 14px;
 }
 
-.title-bar-icon, #file-name, #saving-status, #last-modified-date {
+.title-bar-icon, #file-name {
     -webkit-app-region: no-drag;
 }
 

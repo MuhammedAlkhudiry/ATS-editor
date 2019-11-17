@@ -4,25 +4,24 @@
 const {app, BrowserWindow} = require('electron');
 const path = require('path');
 const axios = require('axios');
+const spawn = require('child_process').spawn;
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow;
+let win;
 // todo: dl
 require('electron-reload')(__dirname);
+const subpy = spawn('python', ['./engine/app.py']);
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 
-app.on('ready', function () {
+app.on('ready', () => {
 
     /* ------------------ setting up Flask server ----------------- */
 
-    // develop
-    // const subpy = require('child_process').spawn('python', ['./engine/app.py']);
-
     // packaging
-    // var subpy = require('child_process').spawn('./dist/python.exe');
+    // const subpy = require('child_process').spawn('./dist/python.exe');
 
     /* ------------------ setting up Flask server ----------------- */
 
@@ -30,62 +29,68 @@ app.on('ready', function () {
     const openWindow = () => {
 
         // setting main window..
-        mainWindow = new BrowserWindow({
+        win = new BrowserWindow({
             width: 1000,
-            height: 800,
+            height: 1000,
             webPreferences: {
                 preload: path.join(__dirname, 'preload.js'),
                 nodeIntegration: true
             },
             frame: false,
-            backgroundColor: '#0066cc',
             show: false
         });
 
 
-        mainWindow.once('ready-to-show', () => {
-            mainWindow.show();
+        win.once('ready-to-show', () => {
+            win.show();
         });
 
         // load main window from Flask.
-        // mainWindow.loadURL(mainAddr);
+        // win.loadURL(mainAddr).then(() => {
+        //     setTimeout(() => {
+        //         win.setBounds({width: 1000, height: 800});
+        //         win.center();
+        //     }, 0);
+        // });
 
         // for developing front-end
-        mainWindow.loadFile('./templates/index.html');
+        win.loadFile('./templates/index.html').then(() => {
+            // setTimeout(() => {
+            //     win.setBounds({width: 1000, height: 800});
+            //     win.center();
+            // }, 2000);
+        });
 
         // TODO: dl
         // Open the DevTools.
-        mainWindow.webContents.openDevTools();
-        // install electron extension
-        // require('devtron').install();
+        win.webContents.openDevTools();
+        win.webContents.session.clearCache();
 
-        mainWindow.webContents.session.clearCache();
-
-        mainWindow.on('closed', function () {
-            mainWindow = null;
-            // subpy.kill();
+        win.on('closed', () => {
+            win = null;
+            subpy.kill();
         });
-        mainWindow.on('session-end', function () {
-            mainWindow = null;
-            // subpy.kill();
+        win.on('session-end', () => {
+            win = null;
+            subpy.kill();
         });
-
     };
+
 
     /* ------------------------- starting Flask server ------------------------- */
 
-    const startUp = function () {
+    const startServer = () => {
         axios.get(mainAddr)
-            .then(function (htmlString) {
+            .then((htmlString) => {
                 console.log('server started!');
                 openWindow();
             })
-            .catch(function (err) {
-                console.log(err);
-                startUp();
+            .catch((err) => {
+                // console.log(err);
+                // startServer();
             });
     };
-// startUp();
+    // startServer();
 
     // for front-end
     openWindow();
@@ -96,16 +101,16 @@ app.on('ready', function () {
 /* ---------------------------- closing functions --------------------------- */
 
 // Quit when all windows are closed.
-app.on('window-all-closed', function () {
+app.on('window-all-closed', () => {
     // On macOS it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') app.quit();
 });
 
-app.on('activate', function () {
+app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if (mainWindow === null) openWindow();
+    if (win === null) openWindow();
 });
 
 

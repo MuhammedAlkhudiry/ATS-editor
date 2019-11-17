@@ -1,49 +1,53 @@
-
 /* ----------------------------- new, save, open ---------------------------- */
 
 electronLocalshortcut.register(win, 'Ctrl+N', () => {
-  createNewFile();
+    fileManager.createNewFile();
 });
 
 electronLocalshortcut.register(win, 'Ctrl+S', () => {
-  saveFile();
+    fileManager.saveAsHTML();
 });
 
 electronLocalshortcut.register(win, 'Ctrl+O', () => {
-  openFile()
+    fileManager.openFile();
 });
 /* -------------------------------------------------------------------------- */
 
 electronLocalshortcut.register(win, 'Ctrl+F', () => {
-  searchFile();
+    document.getElementById('search-replace').click();
+    quill.blur();
+    setTimeout(() => {
+        document.getElementById('search-input').focus();
+    }, 200);
+
 });
 
 electronLocalshortcut.register(win, 'Ctrl+J', () => {
-  quill.format('align', 'justify');
+    quill.format('align', 'justify');
 });
 electronLocalshortcut.register(win, 'Ctrl+E', () => {
-  quill.format('align', 'center');
+    quill.format('align', 'center');
 });
 
 electronLocalshortcut.register(win, 'Ctrl+R', () => {
-  // because Ctrl+R is to reload the browser, so we need to disable it.
-  onkeydown = e => {
-    if (e.key === 'r' && e.ctrlKey) {
-      e.preventDefault();
-      quill.format('align', 'right');
-    }
-  }
+    // because Ctrl+R is to reload the browser, so we need to disable it.
+    onkeydown = e => {
+        if (e.key === 'r' && e.ctrlKey) {
+            e.preventDefault();
+            quill.format('align', 'right');
+        }
+    };
 });
 
 electronLocalshortcut.register(win, 'Ctrl+L', () => {
-  quill.format('align', 'left');
+    quill.format('align', 'left');
 });
 
-// electronLocalshortcut.register(win, 'Ctrl+Space', () => {
-//   editSelectedText("removeFormat");
-// });
-
-electronLocalshortcut.register(win, 'Ctrl+Q', () => {
+electronLocalshortcut.register(win, 'Ctrl+Space', () => {
   quill.format('clean');
 });
-  /* -------------------------------------------------------------------------- */
+
+electronLocalshortcut.register(win, 'Ctrl+Q', () => {
+    quill.format('clean');
+});
+/* -------------------------------------------------------------------------- */

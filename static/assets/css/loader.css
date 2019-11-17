@@ -1,10 +1,13 @@
-.loader {
+#loader {
     position: absolute;
     z-index: 1002;
     width: 100%;
     height: 100%;
     background: var(--white);
-    text-align: center;
+    pointer-events: none;
+}
+
+.loader-draggable {
     -webkit-app-region: drag;
 }
 
@@ -14,7 +17,7 @@
     font-weight: bold;
 }
 
-.loader svg {
+#loader svg {
     width: 30vw;
     height: 30vh;
     margin: 20%;

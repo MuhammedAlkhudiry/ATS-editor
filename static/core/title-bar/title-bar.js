@@ -29,8 +29,8 @@ document.getElementById('min-icon').addEventListener('click', e => win.minimize(
 /* -------------------------------------------------------------------------- */
 
 // When the user scrolls the page
-textBox.addEventListener('scroll', e => textBox.scrollTop > 0 ? (insertBar.style.boxShadow = '0px 1px 8px #00000035') :
-    (insertBar.style.boxShadow = 'none'));
+textBox.addEventListener('scroll', e => textBox.scrollTop > 0 ? (advancedToolbarBar.style.boxShadow = '0px 1px 8px #00000035') :
+    (advancedToolbarBar.style.boxShadow = 'none'));
 
 /* -------------------------------------------------------------------------- */
 

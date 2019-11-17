@@ -27,7 +27,7 @@
     <title>ATS-Editor</title></head>
 <body>
 <div id="main-container" class="for-screen">
-    <div class="loader" style="display: block">
+    <div class="loader-draggable" id="loader" style="display: block">
         <svg viewBox="0 0 100 100">
             <polyline class="line-cornered stroke-still" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
             <polyline class="line-cornered stroke-still" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
@@ -564,10 +564,12 @@
     </div>
     <div class="menu fade-in-bck hide" id="auto-complete-menu"></div>
 </div>
-<div class="for-print" style="display: none"></div><!-- Initialize Quill editor -->
+<div class="for-print" style="display: none"></div>
+<!-- Initialize Quill editor -->
 <script src="../static/quill/quill.js"></script>
 <script src="../static/quill/quill-better-table.js"></script>
-<script src="../static/quill/quill-blot-formatter.min.js"></script><!--<script src="../static/quill/quill-emoji/quill-emoji.js"></script>-->
+<script src="../static/quill/quill-blot-formatter.min.js"></script>
+<!--<script src="../static/quill/quill-emoji/quill-emoji.js"></script>-->
 <script>
     const path = require('path'),
         fsx = require('fs-extra'),
@@ -586,7 +588,7 @@
         Delta = Quill.import('delta');
     //    global DOM variables
     const textBox = document.getElementById('text-box'),
-        insertBar = document.getElementById('advanced-toolbar-bar'), resizeIcon = document.getElementById('resize-icon'),
+        advancedToolbarBar = document.getElementById('advanced-toolbar-bar'), resizeIcon = document.getElementById('resize-icon'),
         lastModifiedDate = document.getElementById('last-modified-date'), searchInput = document.getElementById('search-input'),
         contextMenu = document.getElementById('context-menu');
 </script>
@@ -599,10 +601,11 @@
 <script src="../static/helpers/ArabicHelper.js"></script>
 <script src="../static/helpers/EditorHelper.js"></script>
 <script src="../static/helpers/TypingHelper.js"></script>
-<script src="../static/helpers/FileHelper.js"></script><!--loading js assets-->
+<script src="../static/helpers/FileHelper.js"></script>
+                                                   <!--loading js assets-->
 <script src="../static/core/title-bar/title-bar.js"></script>
 <script src="../static/core/bottom-bar/bottom-bar.js"></script>
-<script src="../static/core/side-bar/side-bar.js"></script><!-- You can also require other files to run in this process -->
+<script src="../static/core/side-bar/side-bar.js"></script>
                                                    <!--loading custom quill components-->
 <script src="../static/core/Editor/custom-modules/Searcher.js"></script>
 <script src="../static/core/Editor/custom-blots/AyahBlot.js"></script>
@@ -610,13 +613,17 @@
 <script src="../static/core/Editor/custom-blots/PoetryBlot.js"></script>
 <script src="../static/core/Editor/custom-blots/SearchBlot.js"></script>
 <script src="../static/core/Editor/custom-blots/SpellingErrorBlot.js"></script>
-<script src="../static/core/Editor/custom-blots/PageBreakerBlot.js"></script><!--config quill editor-->
-<script src="../static/core/Editor/_init.js"></script><!--loading custom quill components-->
+<script src="../static/core/Editor/custom-blots/PageBreakerBlot.js"></script>
+                                                   <!--config quill editor-->
+<script src="../static/core/Editor/_init.js"></script>
+                                                   <!--loading custom quill components-->
 <script src="../static/core/Editor/custom-editing/custom-buttons.js"></script>
 <script src="../static/core/Editor/custom-editing/custom-handlers.js"></script>
 <script src="../static/core/Editor/custom-editing/custom-matchers.js"></script>
-<script src="../static/core/Editor/custom-editing/custom-keybinding.js"></script><!--loading user-management-->
-<script src="../static/core/User/User.js"></script><!--loading file-management-->
+<script src="../static/core/Editor/custom-editing/custom-keybinding.js"></script>
+                                                   <!--loading user-management-->
+<script src="../static/core/User/User.js"></script>
+                                                   <!--loading file-management-->
 <script src="../static/core/File-management/FileManager.js"></script>
 <script src="../static/core/File-management/ATSFile.js"></script>
 
@@ -624,6 +631,7 @@
 <script src="../static/core/advanced-toolbar/AdvancedToolbar.js"></script>
 <script src="../static/core/advanced-toolbar/Inserter.js"></script>
 <script src="../static/core/advanced-toolbar/TextInserter.js"></script>
+<script src="../static/core/spell/Analyzer.js"></script>
 
                                                    <!--loading the rest-->
 <script src="../static/core/Menus/float-menu.js"></script>
@@ -636,8 +644,12 @@
 <script src="../static/assets/js/poppers.js"></script>
                                                    <!-- remove loader -->
 <script>
-    setTimeout(() => document.querySelector('.loader').classList.add('fade-out-bck-loader'), 0);
-    setTimeout(() => document.querySelector('.loader').remove(), 0);
+    setTimeout(() => {
+        document.getElementById('loader').classList.add('fade-out-bck-loader');
+        document.getElementById('loader').classList.remove('loader-draggable');
+
+    }, 0);
+    setTimeout(() => document.getElementById('loader').remove(), 0);
 </script>
 </body>
 
