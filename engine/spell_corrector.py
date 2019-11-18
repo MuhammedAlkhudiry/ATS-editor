@@ -18,6 +18,13 @@ WORDS = Counter(text_to_words(read_dataset()))
 def P(word, N=sum(WORDS.values())): return WORDS[word] / N
 
 
+def clean(s):
+    s = re.sub(r"([.!?,'/()])", r" \1 ", s)
+    s = re.sub(r"[اأإآءئ]", "ا", s)
+    s = re.sub(r"[هة]", "ه", s)
+    return s
+
+
 def correction(word):
     """Most probable spelling correction for word."""
     correctWords = dict()
