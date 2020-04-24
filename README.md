@@ -2,7 +2,10 @@
 
 A text editor written using web technology incloding JS (Electron.js).
 
+Related repo: [Arabic-context-free-grammer](https://github.com/KMLX28/Arabic-context-free-grammer)
+
 ![](docs/unnamed.png)
 
 ---
+
 ![](docs/12.jpg)
