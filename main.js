@@ -41,9 +41,7 @@ app.on('ready', () => {
         });
 
 
-        win.once('ready-to-show', () => {
-            win.show();
-        });
+        win.once('ready-to-show', () => win.show());
 
         // load main window from Flask.
         // win.loadURL(mainAddr).then(() => {

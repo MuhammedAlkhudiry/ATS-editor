@@ -1,15 +1,19 @@
 #bottom-bar {
     display: grid;
-    grid-template-columns: 10em 15em;
+    grid-template-rows: 20% 70%;
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: #f3f3f3;
-    color: var(--black);
-    font-size: 11px;
+    color: var(--primary);
+    font-size: 21px;
     box-shadow: 0 0 6px #00000035;
     font-weight: bold;
+    height: 500px;
+    direction: rtl;
+    padding: 30px;
+
 }
 
 #zoom-section {
