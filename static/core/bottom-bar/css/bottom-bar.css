@@ -13,7 +13,7 @@
     height: 500px;
     direction: rtl;
     padding: 30px;
-
+    user-select: text;
 }
 
 #zoom-section {
